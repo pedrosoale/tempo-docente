@@ -4,9 +4,9 @@ Plataforma de dados educacionais para professores da Educação Básica: consult
 Base Nacional Comum Curricular (BNCC) com fonte oficial rastreável, e (planejado)
 cruzamento com avaliações externas como SAEB e SARESP.
 
-- **No ar hoje:** <https://tempo-docente.pedrosoale.workers.dev>
-- **Domínio próprio:** `tempodocente.com.br` (DNS em migração para a Cloudflare —
-  ver [Domínio](#domínio-tempodocentecombr))
+- **No ar em:** <https://tempodocente.com.br> (e também em
+  <https://tempo-docente.pedrosoale.workers.dev>, o subdomínio `workers.dev` do
+  Worker, que continua funcionando)
 - **Repositório:** público, `main` é a branch de produção
 
 ## Estado atual
@@ -71,18 +71,20 @@ usa).
 
 ### Domínio (`tempodocente.com.br`)
 
-Registrado no registro.br. Está em processo de migração do DNS automático do
-registro.br para os nameservers da Cloudflare (`jen.ns.cloudflare.com` e
-`miles.ns.cloudflare.com`), para permitir configurar `tempodocente.com.br` como
-Custom Domain do Worker. Depois que a propagação terminar (o registro.br sincroniza
-periodicamente, pode levar horas), falta apenas: painel Cloudflare → Workers &
-Pages → `tempo-docente` → Settings → Domains & Routes → Add Custom Domain →
-`tempodocente.com.br`. A Cloudflare provisiona o certificado SSL automaticamente,
-sem nenhum passo adicional no código.
+Registrado no registro.br, DNS migrado para os nameservers da Cloudflare
+(`jen.ns.cloudflare.com` e `miles.ns.cloudflare.com`), zona ativa. `tempodocente.com.br`
+e `www.tempodocente.com.br` estão configurados como Custom Domains do Worker
+`tempo-docente` (Workers & Pages → `tempo-docente` → Settings → Domains & Routes),
+com certificado SSL provisionado automaticamente pela Cloudflare.
 
 Os registros de e-mail existentes no domínio (`MX` vazio, `TXT` SPF `-all`, `TXT`
-DMARC `p=reject`) são intencionais — dizem "este domínio não envia e-mail" e devem
-ser mantidos como estão na zona da Cloudflare.
+DMARC `p=reject`) são intencionais — dizem "este domínio não envia e-mail" e foram
+mantidos como estavam na zona da Cloudflare. **Isso significa que
+`contato@tempodocente.com.br` (link no rodapé do site) não é funcional hoje** —
+não há nenhum serviço de e-mail configurado para o domínio. Se isso for
+configurado no futuro (Cloudflare Email Routing para encaminhamento gratuito, ou
+Google Workspace/Zoho Mail para caixas de e-mail completas), os registros acima
+precisam ser substituídos pelos que o provedor escolhido exigir.
 
 ## Estrutura do projeto
 
