@@ -1,7 +1,6 @@
 "use client";
 
 import { ArrowUpRight, Menu } from "lucide-react";
-import Link from "next/link";
 import { useRef } from "react";
 
 const links = [
@@ -19,20 +18,20 @@ export function Header() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <Link className="wordmark" href="/" aria-label="Tempo Docente — início">
+        <a className="wordmark" href="/" aria-label="Tempo Docente — início">
           <span className="wordmark-name">Tempo Docente</span>
           <span className="wordmark-dot" aria-hidden="true" />
-        </Link>
+        </a>
 
         <nav className="desktop-nav" aria-label="Navegação principal">
           {links.map(([label, href]) => (
-            <Link key={href} href={href}>{label}</Link>
+            <a key={href} href={href}>{label}</a>
           ))}
         </nav>
 
-        <Link className="header-cta" href="/bncc">
+        <a className="header-cta" href="/bncc">
           Explorar BNCC <ArrowUpRight size={16} aria-hidden="true" />
-        </Link>
+        </a>
 
         <details className="mobile-menu" ref={mobileMenu}>
           <summary aria-label="Abrir menu">
@@ -40,9 +39,9 @@ export function Header() {
           </summary>
           <nav aria-label="Navegação móvel">
             {links.map(([label, href]) => (
-              <Link key={href} href={href} onClick={closeMobileMenu}>{label}</Link>
+              <a key={href} href={href} onClick={closeMobileMenu}>{label}</a>
             ))}
-            <Link className="mobile-menu-cta" href="/bncc" onClick={closeMobileMenu}>Explorar BNCC</Link>
+            <a className="mobile-menu-cta" href="/bncc" onClick={closeMobileMenu}>Explorar BNCC</a>
           </nav>
         </details>
       </div>

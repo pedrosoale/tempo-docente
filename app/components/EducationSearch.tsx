@@ -1,5 +1,4 @@
 import { ArrowRight, Search } from "lucide-react";
-import Link from "next/link";
 
 const examples = ["EF07MA18", "Equações", "Frações", "Matemática 8º ano"];
 
@@ -26,7 +25,7 @@ export function EducationSearch() {
           <div className="search-examples" aria-label="Exemplos de busca">
             <span>Experimente:</span>
             {examples.map((example) => (
-              <Link key={example} href={`/bncc?q=${encodeURIComponent(example)}`}>{example}</Link>
+              <a key={example} href={`/bncc?q=${encodeURIComponent(example)}`}>{example}</a>
             ))}
           </div>
           <small>Busca na base oficial da BNCC — Matemática, do 6º ao 9º ano.</small>

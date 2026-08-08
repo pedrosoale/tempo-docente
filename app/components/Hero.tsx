@@ -1,5 +1,4 @@
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 import { HeroPlatformPreview } from "./HeroPlatformPreview";
 
 export function Hero() {
@@ -14,7 +13,7 @@ export function Hero() {
             dados educacionais em informações mais claras para o planejamento pedagógico.
           </p>
           <div className="hero-actions">
-            <Link className="button button-primary" href="/bncc">Explorar a BNCC <ArrowRight size={18} /></Link>
+            <a className="button button-primary" href="/bncc">Explorar a BNCC <ArrowRight size={18} /></a>
             <a className="button button-secondary" href="#avaliacoes">Ver avaliações externas</a>
           </div>
           <div className="hero-topics" aria-label="Temas da plataforma">

@@ -1,5 +1,4 @@
 import { BookOpenCheck, Database, ShieldCheck } from "lucide-react";
-import Link from "next/link";
 import { bnccMetadata } from "@/lib/bncc/data";
 
 type BnccIntroProps = {
@@ -27,8 +26,8 @@ export function BnccIntro({
     <section className="bncc-intro">
       <div className="container">
         <nav className="bncc-breadcrumb" aria-label="Breadcrumb">
-          <Link href="/">Início</Link><span aria-hidden="true">/</span>
-          <Link href="/bncc">BNCC</Link>
+          <a href="/">Início</a><span aria-hidden="true">/</span>
+          <a href="/bncc">BNCC</a>
           {currentYear && <><span aria-hidden="true">/</span><span aria-current="page">{currentYear}</span></>}
         </nav>
 

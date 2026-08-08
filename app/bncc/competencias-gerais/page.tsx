@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { competenciasGerais, competenciasGeraisMetadata } from "@/lib/bncc/data";
 
 export const metadata: Metadata = {
@@ -18,8 +17,8 @@ export default function CompetenciasGeraisPage() {
     <article className="bncc-skill-page">
       <div className="container">
         <nav className="bncc-breadcrumb" aria-label="Breadcrumb">
-          <Link href="/">Início</Link><span aria-hidden="true">/</span>
-          <Link href="/bncc">BNCC</Link><span aria-hidden="true">/</span>
+          <a href="/">Início</a><span aria-hidden="true">/</span>
+          <a href="/bncc">BNCC</a><span aria-hidden="true">/</span>
           <span aria-current="page">Competências Gerais</span>
         </nav>
 

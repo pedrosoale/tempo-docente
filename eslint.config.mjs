@@ -35,6 +35,12 @@ const eslintConfig = defineConfig([
         version: "detect",
       },
     },
+    rules: {
+      // Plain <a> is intentional here, not an oversight — vinext's next/link
+      // shim throws at runtime when deployed as a Worker. See the "Bug
+      // conhecido" section in README.md before re-enabling this rule.
+      "@next/next/no-html-link-for-pages": "off",
+    },
   },
 ]);
 

@@ -1,100 +1,156 @@
-# vinext-starter
+# Tempo Docente
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+Plataforma de dados educacionais para professores da Educação Básica: consulta à
+Base Nacional Comum Curricular (BNCC) com fonte oficial rastreável, e (planejado)
+cruzamento com avaliações externas como SAEB e SARESP.
 
-## Prerequisites
+- **No ar hoje:** <https://tempo-docente.pedrosoale.workers.dev>
+- **Domínio próprio:** `tempodocente.com.br` (DNS em migração para a Cloudflare —
+  ver [Domínio](#domínio-tempodocentecombr))
+- **Repositório:** público, `main` é a branch de produção
 
-- Node.js `>=22.13.0`
+## Estado atual
 
-## Quick Start
+Módulo funcional: **BNCC — Ensino Fundamental, Anos Finais (6º ao 9º ano)**, com os
+9 componentes curriculares completos, mais as 10 **Competências Gerais** da Educação
+Básica — 739 registros ao todo, todos extraídos do PDF oficial do MEC com
+proveniência rastreada (fonte, URL, página, data de importação). Ver
+[`data/bncc/README.md`](data/bncc/README.md) para o detalhamento por componente e o
+pipeline de extração/importação.
+
+**Ainda não importado** (roadmap, não implementado): Ensino Fundamental — Anos
+Iniciais (1º ao 5º ano), Educação Infantil, Ensino Médio. SAEB, SARESP e qualquer
+funcionalidade de IA/planejamento de aula/login **não existem ainda** — os cartões
+correspondentes na home aparecem como "Em breve".
+
+## Stack
+
+- **Framework:** [vinext](https://github.com/cloudflare/vinext) (compatível com a
+  API do Next.js App Router, mas roda nativamente em Cloudflare Workers) — React 19,
+  TypeScript, Tailwind CSS 4.
+- **Hospedagem:** Cloudflare Workers (Workers com Static Assets). Não é Vercel, não
+  é hospedagem tradicional (PHP/Node genérico) — o projeto foi construído
+  especificamente para rodar como Worker.
+- **Dados:** JSON estático versionado em `data/bncc/*.json`, sem banco de dados. O
+  conteúdo da BNCC muda raramente, então não há necessidade de escrita em runtime;
+  `db/schema.ts` (Drizzle + D1) existe no starter mas está vazio e não é usado.
+
+## Como rodar localmente
 
 ```bash
 npm install
-npm run dev
-npm run build
+npm run dev      # servidor de desenvolvimento (Vite + Wrangler local)
+npm run build    # gera o build de produção em dist/
+npm start        # roda o build de produção localmente
+npm test         # build + suíte de testes (node --test)
+npm run lint
 ```
 
-This starter does not use `wrangler.jsonc`.
+Requer Node `>=22.13.0`.
 
-## Included Shape
+## Deploy (Cloudflare Workers)
 
-- edit site code under `app/`
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
-
-## Workspace Auth Headers
-
-Signed-in visitors receive both `oai-authenticated-user-id` and `oai-authenticated-user-email`. Private Sites require every visitor to sign in; public Sites may also have anonymous visitors, for whom neither header is present.
-
-The user ID is stable for the same user on the same Site and different across Sites. Email and name are intended for display or contact purposes.
-
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
-
-Treat the full name as optional and fall back to email when it is absent:
-
-```tsx
-import { headers } from "next/headers";
-
-export default async function Home() {
-  const requestHeaders = await headers();
-  const userId = requestHeaders.get("oai-authenticated-user-id");
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
-
-  const displayName = fullName ?? email;
-  // ...
-}
+```bash
+npm run deploy
 ```
 
-## Optional Dispatch-Owned ChatGPT Sign-In
+Isso executa `vinext build` (gera `dist/server/wrangler.json` já configurado com
+nome, assets e compatibility date) e em seguida `wrangler deploy` apontando pra esse
+arquivo. Não existe `wrangler.toml` no projeto — o vinext gera a config do Worker a
+cada build a partir de `vite.config.ts`.
 
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
+**Pré-requisito:** `wrangler` autenticado numa conta Cloudflare (`npx wrangler login`
+— abre o navegador para autorizar). A conta usada hoje é a de
+`profe.pedroso@gmail.com`, subdomínio `workers.dev` registrado como `pedrosoale`
+(por isso a URL é `tempo-docente.pedrosoale.workers.dev`).
 
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
-  browser links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
+Se `wrangler deploy` reclamar de conflito entre `wrangler.json` e
+`.wrangler/deploy/config.json`, rode com `--config dist/server/wrangler.json`
+explicitamente a partir da raiz do projeto (é o comando que `npm run deploy` já
+usa).
 
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
+### Domínio (`tempodocente.com.br`)
 
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
+Registrado no registro.br. Está em processo de migração do DNS automático do
+registro.br para os nameservers da Cloudflare (`jen.ns.cloudflare.com` e
+`miles.ns.cloudflare.com`), para permitir configurar `tempodocente.com.br` como
+Custom Domain do Worker. Depois que a propagação terminar (o registro.br sincroniza
+periodicamente, pode levar horas), falta apenas: painel Cloudflare → Workers &
+Pages → `tempo-docente` → Settings → Domains & Routes → Add Custom Domain →
+`tempodocente.com.br`. A Cloudflare provisiona o certificado SSL automaticamente,
+sem nenhum passo adicional no código.
 
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
+Os registros de e-mail existentes no domínio (`MX` vazio, `TXT` SPF `-all`, `TXT`
+DMARC `p=reject`) são intencionais — dizem "este domínio não envia e-mail" e devem
+ser mantidos como estão na zona da Cloudflare.
 
-## Useful Commands
+## Estrutura do projeto
 
-- `npm run dev`: start local development
-- `npm run build`: verify the vinext build output
-- `npm test`: build the starter and verify its rendered loading skeleton
-- `npm run db:generate`: generate Drizzle migrations after schema changes
+```text
+app/                    rotas (App Router) e componentes de UI
+  bncc/                 hub da BNCC, páginas por componente/ano, página de detalhe [codigo]
+  components/           Header, Footer, Hero, busca, etc. (compartilhados)
+lib/bncc/
+  types.ts              union de tipos dos registros da BNCC (ver abaixo)
+  data.ts               carrega os datasets JSON, expõe getAllRegistros/getRegistroByCode/etc.
+  search.mjs            filtro de busca/ano/unidade/objeto usado pelo explorer e pela busca global
+data/bncc/               datasets finais (*.json) + relatórios de importação + README próprio
+scripts/bncc/
+  extract_*.py           extratores por componente (PyMuPDF, leem o PDF oficial do MEC)
+  import.mjs              valida os snapshots extraídos e gera os datasets finais + relatórios
+tests/                   node --test — importação, busca, HTML renderizado por rota
+worker/index.ts           entry point do Cloudflare Worker (roteamento de imagem + handler do vinext)
+```
 
-## Learn More
+O modelo de dados (`lib/bncc/types.ts`) é um discriminated union por `tipo`
+(`"habilidade" | "competencia_geral" | ...`), pensado para caber Educação Infantil e
+Ensino Médio no futuro sem forçar a estrutura de Anos Finais sobre eles. Cada
+registro carrega proveniência completa (`fonte`, `fonte_url`, `documento_url`,
+`versao_fonte`, `pagina_fonte`, `data_importacao`).
 
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+## Bug conhecido: não usar `next/link` para navegação
+
+Todos os links de navegação do app (`app/**`) usam `<a href="...">` puro, **não**
+`import Link from "next/link"`. Isso não é estilo, é uma correção deliberada: o
+`<Link>` do vinext (`node_modules/vinext/dist/shims/link.js`) lança
+`TypeError: <x> is not a function` dentro do `React.startTransition` ao navegar, no
+build de produção rodando como Worker — reproduzido tanto na `1.0.0-beta.2` quanto
+na `1.0.0-beta.5` (versão atual). Como o `<Link>` chama `e.preventDefault()` antes
+de quebrar, o clique fica sem nenhum efeito (sem navegação, sem erro visível pro
+usuário — só no console). `<a href>` simples não passa por esse código e funciona
+via navegação de página inteira normal (o SSR de cada rota já é rápido o
+suficiente).
+
+**Antes de reintroduzir `next/link`/`<Link>` em qualquer página nova:** confirme
+primeiro, num deploy real (não só `npm run dev`), que uma versão mais nova do
+`vinext` corrigiu isso. Testar clicando em qualquer link após `npm run deploy`, com
+o DevTools console aberto.
+
+## Pipeline de dados da BNCC
+
+Ver [`data/bncc/README.md`](data/bncc/README.md) para o processo completo (extração
+por componente, formato do snapshot, correções tipográficas controladas e
+documentadas, como rodar `npm run bncc:import`). Resumo rápido:
+
+```bash
+pip install -r scripts/bncc/requirements.txt
+python scripts/bncc/extract_official.py          # ou outro extract_*.py do componente
+npm run bncc:import                                # valida + gera datasets finais + relatórios
+npm run bncc:validate                               # checagem + teste de importação
+```
+
+Nunca edite os arquivos em `data/bncc/*.json` manualmente — eles são gerados por
+`import.mjs` a partir de `data/bncc/source/*.json`. Qualquer correção de texto
+precisa ser uma correção controlada e documentada no próprio script de extração
+(ver exemplos em `scripts/bncc/extract_official.py`), nunca uma edição direta do
+dado importado.
+
+## Sobre os arquivos herdados do template
+
+Este projeto começou a partir do starter oficial do vinext (`vinext-starter`), que
+foi desenhado para rodar na hospedagem interna da OpenAI ("Sites"). Os seguintes
+arquivos são resquícios desse starter e **não estão em uso** nesta aplicação:
+`.openai/hosting.json` (declara bindings D1/R2 opcionais, ambos `null` hoje),
+`app/chatgpt-auth.ts` e as rotas `/signin-with-chatgpt` (login via ChatGPT — nenhuma
+página do site usa isso). Podem ser removidos com segurança se algum dia
+atrapalharem; foram deixados por não interferirem em nada do funcionamento atual.

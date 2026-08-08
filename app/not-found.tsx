@@ -1,5 +1,4 @@
 import { SearchX } from "lucide-react";
-import Link from "next/link";
 
 export default function NotFound() {
   return (
@@ -9,7 +8,7 @@ export default function NotFound() {
         <span>404</span>
         <h1>Página não encontrada.</h1>
         <p>O código informado não corresponde a uma habilidade disponível neste módulo.</p>
-        <div className="not-found-actions"><Link className="button button-primary" href="/bncc">Consultar a BNCC</Link><Link className="button button-secondary" href="/">Voltar ao início</Link></div>
+        <div className="not-found-actions"><a className="button button-primary" href="/bncc">Consultar a BNCC</a><a className="button button-secondary" href="/">Voltar ao início</a></div>
       </div>
     </main>
   );

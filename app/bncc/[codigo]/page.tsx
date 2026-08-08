@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { ArrowLeft, ArrowRight, BookOpenText, Sparkles } from "lucide-react";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { COMPONENTES_ANOS_FINAIS, getAdjacentSkills, getAllRegistros, getRelatedSkills, getRegistroByCode } from "@/lib/bncc/data";
 
@@ -67,9 +66,9 @@ export default async function SkillPage({ params }: SkillPageProps) {
     <article className="bncc-skill-page">
       <div className="container">
         <nav className="bncc-breadcrumb" aria-label="Breadcrumb">
-          <Link href="/bncc">BNCC</Link><span aria-hidden="true">/</span>
-          <Link href={basePath}>{skill.componente}</Link><span aria-hidden="true">/</span>
-          <Link href={`${basePath}/${gradeSlug}`}>{skill.ano}</Link><span aria-hidden="true">/</span>
+          <a href="/bncc">BNCC</a><span aria-hidden="true">/</span>
+          <a href={basePath}>{skill.componente}</a><span aria-hidden="true">/</span>
+          <a href={`${basePath}/${gradeSlug}`}>{skill.ano}</a><span aria-hidden="true">/</span>
           <span aria-current="page">{skill.codigo}</span>
         </nav>
 
@@ -117,23 +116,23 @@ export default async function SkillPage({ params }: SkillPageProps) {
         </div>
 
         <nav className="bncc-adjacent" aria-label="Navegação entre habilidades">
-          {previous ? <Link href={`/bncc/${previous.codigo.toLowerCase()}`}><ArrowLeft size={18} /><span>Habilidade anterior<strong>{previous.codigo}</strong></span></Link> : <span />}
-          {next ? <Link href={`/bncc/${next.codigo.toLowerCase()}`}><span>Próxima habilidade<strong>{next.codigo}</strong></span><ArrowRight size={18} /></Link> : <span />}
+          {previous ? <a href={`/bncc/${previous.codigo.toLowerCase()}`}><ArrowLeft size={18} /><span>Habilidade anterior<strong>{previous.codigo}</strong></span></a> : <span />}
+          {next ? <a href={`/bncc/${next.codigo.toLowerCase()}`}><span>Próxima habilidade<strong>{next.codigo}</strong></span><ArrowRight size={18} /></a> : <span />}
         </nav>
 
         {related.length > 0 && (
           <section className="bncc-related" aria-labelledby="related-title">
             <div className="bncc-section-heading">
               <div><span>Estrutura curricular</span><h2 id="related-title">Outras habilidades deste {groupLabel}</h2></div>
-              <Link href={`${basePath}/${gradeSlug}`}>Ver todas do {skill.ano} <ArrowRight size={16} /></Link>
+              <a href={`${basePath}/${gradeSlug}`}>Ver todas do {skill.ano} <ArrowRight size={16} /></a>
             </div>
             <div className="bncc-related-grid">
               {related.map((item) => (
-                <Link key={item.codigo} href={`/bncc/${item.codigo.toLowerCase()}`}>
+                <a key={item.codigo} href={`/bncc/${item.codigo.toLowerCase()}`}>
                   <code>{item.codigo}</code>
                   <p>{item.texto}</p>
                   <span>Mesmo ano e {groupLabel} <ArrowRight size={15} /></span>
-                </Link>
+                </a>
               ))}
             </div>
           </section>

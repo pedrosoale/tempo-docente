@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { ArrowUpRight, BookOpenText } from "lucide-react";
-import Link from "next/link";
 import { COMPONENTES_ANOS_FINAIS } from "@/lib/bncc/data";
 import { BnccIntro } from "../components/BnccIntro";
 
@@ -27,7 +26,7 @@ export default function EnsinoFundamentalPage() {
         <div className="container">
           <div className="access-grid">
             {COMPONENTES_ANOS_FINAIS.map((componente) => (
-              <Link className="access-card" href={`/bncc/${componente.slug}`} key={componente.slug}>
+              <a className="access-card" href={`/bncc/${componente.slug}`} key={componente.slug}>
                 <div className="access-card-top">
                   <span className="access-icon"><BookOpenText size={22} aria-hidden="true" /></span>
                   <span className="access-label">{componente.skills.length} habilidades</span>
@@ -37,7 +36,7 @@ export default function EnsinoFundamentalPage() {
                   <p>{componente.descricao}</p>
                 </div>
                 <span className="card-action">Explorar {componente.nome} <ArrowUpRight size={17} aria-hidden="true" /></span>
-              </Link>
+              </a>
             ))}
           </div>
         </div>

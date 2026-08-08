@@ -1,7 +1,6 @@
 "use client";
 
 import { ArrowRight, BookOpenText, RotateCcw, Search, SlidersHorizontal } from "lucide-react";
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { HabilidadeFundamental } from "@/lib/bncc/data";
 import { filterSkills, uniqueSorted } from "@/lib/bncc/search.mjs";
@@ -180,7 +179,7 @@ export function BnccExplorer({
                     {skill.objeto_conhecimento ? (
                       <div><span>Objeto de conhecimento</span><strong>{objectLabel(skill.objeto_conhecimento)}</strong></div>
                     ) : <div />}
-                    <Link href={`/bncc/${skill.codigo.toLowerCase()}`}>Ver habilidade <ArrowRight size={17} aria-hidden="true" /></Link>
+                    <a href={`/bncc/${skill.codigo.toLowerCase()}`}>Ver habilidade <ArrowRight size={17} aria-hidden="true" /></a>
                   </div>
                 </article>
               ))}

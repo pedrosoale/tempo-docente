@@ -1,15 +1,31 @@
 # Base local da BNCC
 
-Escopo importado até agora: Competências Gerais da Educação Básica (10/10) e Ensino
-Fundamental — Anos Finais — Matemática (6º ao 9º ano). Os demais escopos (Educação
-Infantil, demais componentes do Fundamental, Ensino Médio) ainda não foram importados —
-ver `README.md` da raiz do projeto / relatório de expansão para o roadmap.
+Escopo importado até agora: **Competências Gerais da Educação Básica** (10/10) e
+**Ensino Fundamental — Anos Finais (6º ao 9º ano)** — todos os 9 componentes
+curriculares. Total: 739 registros. Ver `data/bncc/import-report.json` para os
+totais agregados por etapa/tipo/componente (gerado a cada `npm run bncc:import`).
+
+| Componente | Habilidades | Snapshot bruto | Dataset final |
+| --- | --- | --- | --- |
+| Matemática | 121 | `source/official-mec-bncc-matematica-anos-finais.json` | `matematica-anos-finais.json` |
+| Língua Portuguesa | 185 | `source/official-mec-bncc-lingua-portuguesa-anos-finais.json` | `lingua-portuguesa-anos-finais.json` |
+| Arte | 35 | `source/official-mec-bncc-arte-anos-finais.json` | `arte-anos-finais.json` |
+| Educação Física | 42 | `source/official-mec-bncc-educacao-fisica-anos-finais.json` | `educacao-fisica-anos-finais.json` |
+| Língua Inglesa | 88 | `source/official-mec-bncc-lingua-inglesa-anos-finais.json` | `lingua-inglesa-anos-finais.json` |
+| Ciências | 63 | `source/official-mec-bncc-ciencias-anos-finais.json` | `ciencias-anos-finais.json` |
+| Geografia | 67 | `source/official-mec-bncc-geografia-anos-finais.json` | `geografia-anos-finais.json` |
+| História | 98 | `source/official-mec-bncc-historia-anos-finais.json` | `historia-anos-finais.json` |
+| Ensino Religioso | 30 | `source/official-mec-bncc-ensino-religioso-anos-finais.json` | `ensino-religioso-anos-finais.json` |
+| Competências Gerais | 10 | `source/official-mec-bncc-competencias-gerais.json` | `competencias-gerais.json` |
+
+**Ainda não importado** (roadmap): Ensino Fundamental — Anos Iniciais (1º ao 5º
+ano), Educação Infantil, Ensino Médio — ver `README.md` da raiz do projeto.
 
 ## Proveniência
 
 - Fonte institucional: Base Nacional Comum Curricular, Ministério da Educação.
 - Documento: `BNCC_EI_EF_110518_versaofinal_site.pdf`.
-- URL oficial: https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf
+- URL oficial: <https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf>
 - Classificação: `dado_oficial`.
 
 **Atenção ao escopo real deste arquivo.** O nome do arquivo referencia a versão final de
@@ -23,46 +39,81 @@ habilidades no padrão `EM13...`. Nada disso foi importado ainda — só é regi
 para quem for extrair o Ensino Médio no futuro: **reutilize este mesmo PDF**, não é
 necessário procurar um arquivo separado.
 
-### Matemática — Ensino Fundamental, Anos Finais
+## Extratores por componente (`scripts/bncc/`)
 
-O snapshot em `source/official-mec-bncc-matematica-anos-finais.json` é extraído das
-páginas de Matemática do PDF oficial. As tabelas são apresentadas em páginas espelhadas:
-unidade temática e objeto de conhecimento à esquerda, habilidades à direita. O extrator
-(`scripts/bncc/extract_official.py`) associa os registros pelas linhas vetoriais das
-próprias tabelas, sem reescrever o texto das habilidades.
+Cada componente tem seu próprio script de extração porque o PDF oficial organiza
+cada um em um layout de tabela ligeiramente diferente — a extração usa as próprias
+linhas vetoriais das tabelas (`page.get_drawings()`) para achar os limites de cada
+linha/registro, nunca regex sobre o texto corrido. Nenhum extrator reescreve o texto
+oficial da habilidade; o único tratamento aplicado é a correção tipográfica
+controlada e documentada abaixo (glifos que o PyMuPDF falha em extrair, como `π` ou
+expoentes), sempre restrita a um código e campo específicos.
 
-O PDF posiciona o expoente da fórmula de `EF08MA09` como glifo elevado. Como a extração
-textual do PDF o achata para `ax2`, o pipeline aplica a correção controlada e rastreada
-`ax2 → ax²` apenas nessa habilidade e nesses dois campos. O validador também alerta caso
-um sobrescrito matemático conhecido volte a ser achatado.
+- `extract_official.py` — Matemática (também tem as correções `ax²` e `π` de
+  exemplo).
+- `extract_lingua_portuguesa.py` — Língua Portuguesa. Estrutura própria de 3 níveis
+  (Campo de atuação → Prática de linguagem → Objeto de conhecimento); usa
+  `table_boundaries(..., min_count=1)` porque algumas páginas (ex.: introdução do
+  Campo Artístico-Literário) têm só 1 linha de tabela real.
+- `extract_arte.py`, `extract_educacao_fisica.py`, `extract_lingua_inglesa.py` —
+  layouts próprios (Arte tem um único código `EF69AR##` consolidado para 6º-9º;
+  Educação Física e Língua Inglesa têm códigos pareados por dupla de anos, ex.
+  `EF67EF01`).
+- `extract_grade_component.py` — script genérico e parametrizado (via
+  `--start-heading`, `--end-marker`, `--code-prefix`, `--area`, `--componente`) usado
+  para Ciências, Geografia, História e Ensino Religioso, que compartilham o mesmo
+  layout de tabela (unidade temática/objeto à esquerda, ano derivado dos dígitos do
+  próprio código, não da posição na página — robusto a páginas de "Continuação").
+- `extract_competencias_gerais.py` — localiza o cabeçalho "COMPETÊNCIAS GERAIS DA
+  EDUCAÇÃO BÁSICA" no próprio texto do PDF (não por índice de página fixo), lê os 10
+  itens numerados e falha se não achar exatamente 1–10.
+- `bncc_extract_common.py` — módulo compartilhado: `clean_text`,
+  `find_heading_page`, `table_boundaries`, `column_text` (filtra texto por posição
+  real da linha, evita que texto de uma coluna vizinha vaze pra outra em tabelas
+  largas — ver nota abaixo).
 
-### Competências Gerais da Educação Básica
+### Correções tipográficas controladas conhecidas
 
-O snapshot em `source/official-mec-bncc-competencias-gerais.json` é extraído localizando
-o cabeçalho "COMPETÊNCIAS GERAIS DA EDUCAÇÃO BÁSICA" no próprio texto do PDF
-(`scripts/bncc/extract_competencias_gerais.py`), sem depender de índice de página fixo.
-Os dez itens numerados aparecem em duas páginas consecutivas; o extrator lê ambas e
-falha se não encontrar exatamente os números 1–10.
+- `EF08MA09`: `ax2 → ax²` (expoente achatado pelo PyMuPDF).
+- `EF07MA33`: restaura o símbolo `π`, que o PyMuPDF também falha em extrair desse
+  glifo específico (bug pré-existente, confirmado direto no PDF bruto).
+- Competências Gerais, item 8: `com- preendendo-se → compreendendo-se` (hifenização
+  de quebra de linha do PDF; nenhum outro hífen do texto é tocado, inclusive hífens
+  legítimos como "visual-motora").
 
-A quebra de linha do PDF hifeniza "compreendendo-se" como "com-" / "preendendo-se" no
-item 8. A extração bruta juntaria isso como "com- preendendo-se"; o pipeline aplica uma
-correção controlada e documentada (mesmo padrão do `ax²` acima) para restaurar a palavra
-oficial sem tocar em nenhum outro hífen do texto (inclusive hífens legítimos como
-"visual-motora", que não são afetados).
+Qualquer nova correção desse tipo deve seguir o mesmo padrão: documentada aqui,
+restrita a um código/campo específico, nunca uma substituição ampla ou silenciosa.
+
+### Bug de contaminação corrigido (Língua Portuguesa)
+
+A extração original usava `page.get_textbox(rect)`, que recorta por **sobreposição**
+de caractere/span com o retângulo — em tabelas largas isso vaza texto de uma coluna
+vizinha quando a linha de origem passa perto da borda do retângulo. Isso produzia
+valores de `objeto_conhecimento` de 900+ caracteres, contaminados com o parágrafo de
+introdução do Campo Artístico-Literário, para os códigos EF69LP44/45/46. Corrigido
+com o helper `column_text()` (em `bncc_extract_common.py`), que filtra por posição
+`x0` real de cada linha via `get_text('dict')` em vez de recorte por sobreposição.
 
 ## Atualização
 
 1. Instale `scripts/bncc/requirements.txt` em um ambiente Python.
-2. Execute o extrator do escopo desejado (`extract_official.py` ou
-   `extract_competencias_gerais.py`) apontando para o PDF oficial.
+2. Execute o(s) extrator(es) do(s) escopo(s) desejado(s), apontando para o PDF
+   oficial (todos usam a mesma URL/documento, ver acima).
 3. Execute `npm run bncc:import` — processa todos os escopos conhecidos de uma vez,
    grava um dataset e um relatório por escopo, e agrega os totais em
    `data/bncc/import-report.json`. É idempotente: reexecutar sem mudar as fontes produz
    o mesmo resultado (além dos carimbos de data/hora).
-4. Revise os relatórios (`data/bncc/<escopo>.report.json` e o agregado) e execute os
-   testes.
+4. Revise os relatórios (`data/bncc/<escopo>.report.json` e o agregado) e execute
+   `npm run bncc:validate` (ou a suíte completa com `npm test`).
 
 A ferramenta de planilha oficial do MEC foi investigada e usa `bnccapi.mec.gov.br`,
 porém o endpoint segue indisponível (reconfirmado nesta rodada). Quando restabelecido,
 ele pode substituir o PDF como entrada estruturada, mantendo as mesmas validações e o
 mesmo modelo de saída.
+
+Uma planilha oficial do MEC (Excel, 1º ao 9º ano, sem Ensino Médio) foi fornecida
+manualmente e usada para validação cruzada de Língua Portuguesa e Língua Inglesa
+(273 registros comparados, correspondência quase perfeita — 2 casos em que esta
+extração era mais precisa que a planilha). Não está versionada no repositório
+(`.gitignore`) por não ser necessária para o site funcionar; quem quiser refazer
+essa validação precisa da própria planilha.

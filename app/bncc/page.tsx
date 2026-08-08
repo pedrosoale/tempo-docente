@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { ArrowRight, ArrowUpRight, BookOpenText, Layers, School, Search, Sparkles } from "lucide-react";
-import Link from "next/link";
 import { getAllRegistros } from "@/lib/bncc/data";
 import { filterSkills } from "@/lib/bncc/search.mjs";
 import type { BnccRegistro } from "@/lib/bncc/types";
@@ -60,7 +59,7 @@ export default async function BnccHubPage({ searchParams }: BnccHubPageProps) {
               <div className="bncc-search-examples" aria-label="Exemplos de busca">
                 <span>Experimente:</span>
                 {["EF07MA18", "frações", "argumentação"].map((example) => (
-                  <Link key={example} href={`/bncc?q=${encodeURIComponent(example)}`}>{example}</Link>
+                  <a key={example} href={`/bncc?q=${encodeURIComponent(example)}`}>{example}</a>
                 ))}
               </div>
             </form>
@@ -84,7 +83,7 @@ export default async function BnccHubPage({ searchParams }: BnccHubPageProps) {
                 <BookOpenText size={30} aria-hidden="true" />
                 <h2>Nenhum registro encontrado.</h2>
                 <p>Tente outro código ou termo de busca.</p>
-                <Link className="button button-secondary" href="/bncc">Limpar busca</Link>
+                <a className="button button-secondary" href="/bncc">Limpar busca</a>
               </div>
             ) : (
               <div className="bncc-results-list">
@@ -97,7 +96,7 @@ export default async function BnccHubPage({ searchParams }: BnccHubPageProps) {
                     <p className="bncc-result-skill">{registro.texto}</p>
                     <div className="bncc-result-footer">
                       <div />
-                      <Link href={registroHref(registro)}>Ver registro <ArrowRight size={17} aria-hidden="true" /></Link>
+                      <a href={registroHref(registro)}>Ver registro <ArrowRight size={17} aria-hidden="true" /></a>
                     </div>
                   </article>
                 ))}
@@ -116,7 +115,7 @@ export default async function BnccHubPage({ searchParams }: BnccHubPageProps) {
               <p>Escolha uma etapa da Educação Básica ou busque diretamente acima.</p>
             </div>
             <div className="access-grid">
-              <Link className="access-card" href="/bncc/competencias-gerais">
+              <a className="access-card" href="/bncc/competencias-gerais">
                 <div className="access-card-top">
                   <span className="access-icon"><Sparkles size={22} aria-hidden="true" /></span>
                   <span className="access-label">Toda a Educação Básica</span>
@@ -126,7 +125,7 @@ export default async function BnccHubPage({ searchParams }: BnccHubPageProps) {
                   <p>Consulte as 10 competências gerais que orientam a Educação Infantil, o Ensino Fundamental e o Ensino Médio.</p>
                 </div>
                 <span className="card-action">Ver competências <ArrowUpRight size={17} aria-hidden="true" /></span>
-              </Link>
+              </a>
 
               <div className="access-card access-card-soon" aria-disabled="true">
                 <div className="access-card-top">
@@ -141,7 +140,7 @@ export default async function BnccHubPage({ searchParams }: BnccHubPageProps) {
                 <span className="card-action card-action-soon">Em breve</span>
               </div>
 
-              <Link className="access-card" href="/bncc/ensino-fundamental">
+              <a className="access-card" href="/bncc/ensino-fundamental">
                 <div className="access-card-top">
                   <span className="access-icon"><BookOpenText size={22} aria-hidden="true" /></span>
                   <span className="access-label">1º ao 9º ano</span>
@@ -151,7 +150,7 @@ export default async function BnccHubPage({ searchParams }: BnccHubPageProps) {
                   <p>Habilidades por ano, área e componente. Disponível hoje: os 9 componentes dos Anos Finais (6º ao 9º ano). Anos Iniciais em breve.</p>
                 </div>
                 <span className="card-action">Explorar componentes <ArrowUpRight size={17} aria-hidden="true" /></span>
-              </Link>
+              </a>
 
               <div className="access-card access-card-soon" aria-disabled="true">
                 <div className="access-card-top">

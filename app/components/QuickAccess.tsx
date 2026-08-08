@@ -1,5 +1,4 @@
 import { ArrowUpRight, BarChart3, BookOpenText, GitCompareArrows, MapPinned, type LucideIcon } from "lucide-react";
-import Link from "next/link";
 
 type AccessItem = {
   title: string;
@@ -78,9 +77,9 @@ function QuickAccessCard({ item }: { item: AccessItem }) {
   }
 
   return (
-    <Link className="access-card" href={item.href}>
+    <a className="access-card" href={item.href}>
       {content}
-    </Link>
+    </a>
   );
 }
 
