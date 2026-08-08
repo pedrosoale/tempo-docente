@@ -28,7 +28,7 @@ export function EducationSearch() {
               <a key={example} href={`/bncc?q=${encodeURIComponent(example)}`}>{example}</a>
             ))}
           </div>
-          <small>Busca na base oficial da BNCC — Matemática, do 6º ao 9º ano.</small>
+          <small>Busca na base oficial da BNCC — todos os componentes curriculares do 6º ao 9º ano.</small>
         </div>
       </div>
     </section>
