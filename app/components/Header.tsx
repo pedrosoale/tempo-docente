@@ -19,8 +19,8 @@ export function Header() {
     <header className="site-header">
       <div className="container header-inner">
         <a className="wordmark" href="/" aria-label="Tempo Docente — início">
+          <img className="wordmark-mark" src="/mark.png" alt="" width={28} height={28} />
           <span className="wordmark-name">Tempo Docente</span>
-          <span className="wordmark-dot" aria-hidden="true" />
         </a>
 
         <nav className="desktop-nav" aria-label="Navegação principal">

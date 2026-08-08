@@ -3,7 +3,10 @@ export function Footer() {
     <footer className="footer" id="sobre">
       <div className="container footer-main">
         <div>
-          <a className="wordmark footer-wordmark" href="/">Tempo Docente<span className="wordmark-dot" aria-hidden="true" /></a>
+          <a className="wordmark footer-wordmark" href="/">
+            <img className="wordmark-mark" src="/mark-light.png" alt="" width={28} height={28} />
+            Tempo Docente
+          </a>
           <p>Dados, planejamento e inteligência para a educação.</p>
         </div>
         <nav aria-label="Navegação do rodapé">

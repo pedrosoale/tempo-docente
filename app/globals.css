@@ -105,12 +105,10 @@ summary {
   white-space: nowrap;
 }
 
-.wordmark-dot {
-  width: 7px;
-  height: 7px;
-  margin-top: 8px;
-  border-radius: 999px;
-  background: var(--teal);
+.wordmark-mark {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
 }
 
 .desktop-nav {
