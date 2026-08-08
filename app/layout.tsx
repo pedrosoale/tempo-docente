@@ -23,13 +23,13 @@ export const metadata: Metadata = {
     siteName: "Tempo Docente",
     locale: "pt_BR",
     type: "website",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Tempo Docente — dados, planejamento e inteligência para a educação" }],
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Tempo Docente — dados, planejamento e inteligência para a educação" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Tempo Docente",
     description: "Dados, planejamento e inteligência para a educação.",
-    images: ["/og.png"],
+    images: ["/og.jpg"],
   },
 };
 
