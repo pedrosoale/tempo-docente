@@ -1,0 +1,24 @@
+{
+  "escopo": "ensino-religioso-anos-finais",
+  "data_importacao": "2026-08-08T15:25:50.911Z",
+  "lote_importacao": "2026-08-08-ensino-religioso-anos-finais",
+  "arquivo_fonte": "data/bncc/source/official-mec-bncc-ensino-religioso-anos-finais.json",
+  "hash_sha256_fonte": "1c27124aedce6d0ca70a3412c373e470917b87c401bc4be30e6459c8ca60016c",
+  "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+  "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas (mesma técnica de Matemática/Arte); ano derivado diretamente do código, não da posição de página, por robustez a páginas de continuação",
+  "total_por_ano": {
+    "6º ano": 7,
+    "7º ano": 8,
+    "8º ano": 7,
+    "9º ano": 8
+  },
+  "total_por_unidade_tematica": {
+    "Crenças religiosas e filosofias de vida": 25,
+    "Manifestações religiosas": 5
+  },
+  "total_geral": 30,
+  "duplicidades": [],
+  "registros_rejeitados": [],
+  "alertas": [],
+  "status": "valido"
+}

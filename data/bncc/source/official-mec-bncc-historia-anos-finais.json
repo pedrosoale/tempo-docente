@@ -1,0 +1,1974 @@
+{
+  "metadata": {
+    "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+    "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+    "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+    "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+    "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas (mesma técnica de Matemática/Arte); ano derivado diretamente do código, não da posição de página, por robustez a páginas de continuação",
+    "data_extracao": "2026-08-08T14:39:14.217676Z",
+    "escopo": "Ensino Fundamental — Anos Finais — História — 6º ao 9º ano",
+    "classificacao": "dado_oficial"
+  },
+  "habilidades": [
+    {
+      "codigo": "EF06HI01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "História: tempo, espaço e formas de registros",
+      "objeto_conhecimento": "A questão do tempo, sincronias e diacronias:\nreflexões sobre o sentido das cronologias",
+      "habilidade": "Identificar diferentes formas de compreensão da noção de tempo e de periodização dos processos históricos (continuidades e rupturas).",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 422,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06HI02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "História: tempo, espaço e formas de registros",
+      "objeto_conhecimento": "Formas de registro da história e da produção do\nconhecimento histórico",
+      "habilidade": "Identificar a gênese da produção do saber histórico e analisar o significado das fontes que originaram determinadas formas de registro em sociedades e épocas distintas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 422,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06HI03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "História: tempo, espaço e formas de registros",
+      "objeto_conhecimento": "As origens da humanidade, seus deslocamentos e\nos processos de sedentarização",
+      "habilidade": "Identificar as hipóteses científicas sobre o surgimento da espécie humana e sua historicidade e analisar os significados dos mitos de fundação.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 422,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06HI04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "História: tempo, espaço e formas de registros",
+      "objeto_conhecimento": "As origens da humanidade, seus deslocamentos e\nos processos de sedentarização",
+      "habilidade": "Conhecer as teorias sobre a origem do homem americano.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 422,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06HI05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "História: tempo, espaço e formas de registros",
+      "objeto_conhecimento": "As origens da humanidade, seus deslocamentos e\nos processos de sedentarização",
+      "habilidade": "Descrever modificações da natureza e da paisagem realizadas por diferentes tipos de sociedade, com destaque para os povos indígenas originários e povos africanos, e discutir a natureza e a lógica das transformações ocorridas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 422,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06HI06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "História: tempo, espaço e formas de registros",
+      "objeto_conhecimento": "As origens da humanidade, seus deslocamentos e\nos processos de sedentarização",
+      "habilidade": "Identificar geograficamente as rotas de povoamento no território americano.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 422,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06HI07",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "A invenção do mundo clássico e o contraponto com outras sociedades",
+      "objeto_conhecimento": "Povos da Antiguidade na África (egípcios), no\nOriente Médio (mesopotâmicos) e nas Américas\n(pré-colombianos)\nOs povos indígenas originários do atual território\nbrasileiro e seus hábitos culturais e sociais",
+      "habilidade": "Identificar aspectos e formas de registro das sociedades antigas na África, no Oriente Médio e nas Américas, distinguindo alguns significados presentes na cultura material e na tradição oral dessas sociedades.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 422,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06HI08",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "A invenção do mundo clássico e o contraponto com outras sociedades",
+      "objeto_conhecimento": "Povos da Antiguidade na África (egípcios), no\nOriente Médio (mesopotâmicos) e nas Américas\n(pré-colombianos)\nOs povos indígenas originários do atual território\nbrasileiro e seus hábitos culturais e sociais",
+      "habilidade": "Identificar os espaços territoriais ocupados e os aportes culturais, científicos, sociais e econômicos dos astecas, maias e incas e dos povos indígenas de diversas regiões brasileiras.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 422,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06HI09",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "A invenção do mundo clássico e o contraponto com outras sociedades",
+      "objeto_conhecimento": "O Ocidente Clássico: aspectos da cultura na\nGrécia e em Roma",
+      "habilidade": "Discutir o conceito de Antiguidade Clássica, seu alcance e limite na tradição ocidental, assim como os impactos sobre outras sociedades e culturas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 422,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06HI10",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "Lógicas de organização política",
+      "objeto_conhecimento": "As noções de cidadania e política na Grécia e em\nRoma\n• \u0007Domínios e expansão das culturas grega e\nromana\n• \u0007Significados do conceito de “império” e as\nlógicas de conquista, conflito e negociação\ndessa forma de organização política\nAs diferentes formas de organização política\nna África: reinos, impérios, cidades-estados e\nsociedades linhageiras ou aldeias",
+      "habilidade": "Explicar a formação da Grécia Antiga, com ênfase na formação da pólis e nas transformações políticas, sociais e culturais.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 422,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06HI11",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "Lógicas de organização política",
+      "objeto_conhecimento": "As noções de cidadania e política na Grécia e em\nRoma\n• \u0007Domínios e expansão das culturas grega e\nromana\n• \u0007Significados do conceito de “império” e as\nlógicas de conquista, conflito e negociação\ndessa forma de organização política\nAs diferentes formas de organização política\nna África: reinos, impérios, cidades-estados e\nsociedades linhageiras ou aldeias",
+      "habilidade": "Caracterizar o processo de formação da Roma Antiga e suas configurações sociais e políticas nos períodos monárquico e republicano.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 422,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06HI12",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "Lógicas de organização política",
+      "objeto_conhecimento": "As noções de cidadania e política na Grécia e em\nRoma\n• \u0007Domínios e expansão das culturas grega e\nromana\n• \u0007Significados do conceito de “império” e as\nlógicas de conquista, conflito e negociação\ndessa forma de organização política\nAs diferentes formas de organização política\nna África: reinos, impérios, cidades-estados e\nsociedades linhageiras ou aldeias",
+      "habilidade": "Associar o conceito de cidadania a dinâmicas de inclusão e exclusão na Grécia e Roma antigas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 422,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06HI13",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "Lógicas de organização política",
+      "objeto_conhecimento": "As noções de cidadania e política na Grécia e em\nRoma\n• \u0007Domínios e expansão das culturas grega e\nromana\n• \u0007Significados do conceito de “império” e as\nlógicas de conquista, conflito e negociação\ndessa forma de organização política\nAs diferentes formas de organização política\nna África: reinos, impérios, cidades-estados e\nsociedades linhageiras ou aldeias",
+      "habilidade": "Conceituar “império” no mundo antigo, com vistas à análise das diferentes formas de equilíbrio e desequilíbrio entre as partes envolvidas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 422,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06HI14",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "Lógicas de organização política",
+      "objeto_conhecimento": "A passagem do mundo antigo para o mundo medieval\nA fragmentação do poder político na Idade Média",
+      "habilidade": "Identificar e analisar diferentes formas de contato, adaptação ou exclusão entre populações em diferentes tempos e espaços.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 422,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06HI15",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "Lógicas de organização política",
+      "objeto_conhecimento": "O Mediterrâneo como espaço de interação entre as\nsociedades da Europa, da África e do Oriente Médio",
+      "habilidade": "Descrever as dinâmicas de circulação de pessoas, produtos e culturas no Mediterrâneo e seu significado.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 422,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06HI16",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "Trabalho e formas de organização social e cultural",
+      "objeto_conhecimento": "Senhores e servos no mundo antigo e no medieval\nEscravidão e trabalho livre em diferentes\ntemporalidades e espaços (Roma Antiga, Europa\nmedieval e África)\nLógicas comerciais na Antiguidade romana e no\nmundo medieval",
+      "habilidade": "Caracterizar e comparar as dinâmicas de abastecimento e as formas de organização do trabalho e da vida social em diferentes sociedades e períodos, com destaque para as relações entre senhores e servos.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 422,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06HI17",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "Trabalho e formas de organização social e cultural",
+      "objeto_conhecimento": "Senhores e servos no mundo antigo e no medieval\nEscravidão e trabalho livre em diferentes\ntemporalidades e espaços (Roma Antiga, Europa\nmedieval e África)\nLógicas comerciais na Antiguidade romana e no\nmundo medieval",
+      "habilidade": "Diferenciar escravidão, servidão e trabalho livre no mundo antigo.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 422,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06HI18",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "Trabalho e formas de organização social e cultural",
+      "objeto_conhecimento": "O papel da religião cristã, dos mosteiros e da\ncultura na Idade Média",
+      "habilidade": "Analisar o papel da religião cristã na cultura e nos modos de organização social no período medieval.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 422,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07HI01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "O mundo moderno e a conexão entre sociedades africanas, americanas e europeias",
+      "objeto_conhecimento": "A construção da ideia de modernidade e seus\nimpactos na concepção de História\nA ideia de “Novo Mundo” ante o Mundo Antigo:\npermanências e rupturas de saberes e práticas na\nemergência do mundo moderno",
+      "habilidade": "Explicar o significado de “modernidade” e suas lógicas de inclusão e exclusão, com base em uma concepção europeia.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 424,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07HI02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "O mundo moderno e a conexão entre sociedades africanas, americanas e europeias",
+      "objeto_conhecimento": "A construção da ideia de modernidade e seus\nimpactos na concepção de História\nA ideia de “Novo Mundo” ante o Mundo Antigo:\npermanências e rupturas de saberes e práticas na\nemergência do mundo moderno",
+      "habilidade": "Identificar conexões e interações entre as sociedades do Novo Mundo, da Europa, da África e da Ásia no contexto das navegações e indicar a complexidade e as interações que ocorrem nos Oceanos Atlântico, Índico e Pacífico.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 424,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07HI03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "O mundo moderno e a conexão entre sociedades africanas, americanas e europeias",
+      "objeto_conhecimento": "Saberes dos povos africanos e pré-colombianos\nexpressos na cultura material e imaterial",
+      "habilidade": "Identificar aspectos e processos específicos das sociedades africanas e americanas antes da chegada dos europeus, com destaque para as formas de organização social e o desenvolvimento de saberes e técnicas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 424,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07HI04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "Humanismos, Renascimentos e o Novo Mundo",
+      "objeto_conhecimento": "Humanismos: uma nova visão de ser humano e\nde mundo\nRenascimentos artísticos e culturais",
+      "habilidade": "Identificar as principais características dos Humanismos e dos Renascimentos e analisar seus significados.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 424,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07HI05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "Humanismos, Renascimentos e o Novo Mundo",
+      "objeto_conhecimento": "Reformas religiosas: a cristandade fragmentada",
+      "habilidade": "Identificar e relacionar as vinculações entre as reformas religiosas e os processos culturais e sociais do período moderno na Europa e na América.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 424,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07HI06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "Humanismos, Renascimentos e o Novo Mundo",
+      "objeto_conhecimento": "As descobertas científicas e a expansão marítima",
+      "habilidade": "Comparar as navegações no Atlântico e no Pacífico entre os séculos XIV e XVI.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 424,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07HI07",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "A organização do poder e as dinâmicas do mundo colonial americano",
+      "objeto_conhecimento": "A formação e o funcionamento das monarquias\neuropeias: a lógica da centralização política e os\nconflitos na Europa",
+      "habilidade": "Descrever os processos de formação e consolidação das monarquias e suas principais características com vistas à compreensão das razões da centralização política.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 424,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07HI08",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "A organização do poder e as dinâmicas do mundo colonial americano",
+      "objeto_conhecimento": "A conquista da América e as formas de\norganização política dos indígenas e europeus:\nconflitos, dominação e conciliação",
+      "habilidade": "Descrever as formas de organização das sociedades americanas no tempo da conquista com vistas à compreensão dos mecanismos de alianças, confrontos e resistências.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 424,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07HI09",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "A organização do poder e as dinâmicas do mundo colonial americano",
+      "objeto_conhecimento": "A conquista da América e as formas de\norganização política dos indígenas e europeus:\nconflitos, dominação e conciliação",
+      "habilidade": "Analisar os diferentes impactos da conquista europeia da América para as populações ameríndias e identificar as formas de resistência.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 424,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07HI10",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "A organização do poder e as dinâmicas do mundo colonial americano",
+      "objeto_conhecimento": "A estruturação dos vice-reinos nas Américas\nResistências indígenas, invasões e expansão na\nAmérica portuguesa",
+      "habilidade": "Analisar, com base em documentos históricos, diferentes interpretações sobre as dinâmicas das sociedades americanas no período colonial.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 424,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07HI11",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "A organização do poder e as dinâmicas do mundo colonial americano",
+      "objeto_conhecimento": "A estruturação dos vice-reinos nas Américas\nResistências indígenas, invasões e expansão na\nAmérica portuguesa",
+      "habilidade": "Analisar a formação histórico-geográfica do território da América portuguesa por meio de mapas históricos.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 424,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07HI12",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "A organização do poder e as dinâmicas do mundo colonial americano",
+      "objeto_conhecimento": "A estruturação dos vice-reinos nas Américas\nResistências indígenas, invasões e expansão na\nAmérica portuguesa",
+      "habilidade": "Identificar a distribuição territorial da população brasileira em diferentes épocas, considerando a diversidade étnico-racial e étnico-cultural (indígena, africana, europeia e asiática).",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 424,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07HI13",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "Lógicas comerciais e mercantis da modernidade",
+      "objeto_conhecimento": "As lógicas mercantis e o domínio europeu sobre\nos mares e o contraponto Oriental",
+      "habilidade": "Caracterizar a ação dos europeus e suas lógicas mercantis visando ao domínio no mundo atlântico.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 424,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07HI14",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "Lógicas comerciais e mercantis da modernidade",
+      "objeto_conhecimento": "As lógicas mercantis e o domínio europeu sobre\nos mares e o contraponto Oriental",
+      "habilidade": "Descrever as dinâmicas comerciais das sociedades americanas e africanas e analisar suas interações com outras sociedades do Ocidente e do Oriente.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 424,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07HI15",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "Lógicas comerciais e mercantis da modernidade",
+      "objeto_conhecimento": "As lógicas internas das sociedades africanas\nAs formas de organização das sociedades\nameríndias\nA escravidão moderna e o tráfico de\nescravizados",
+      "habilidade": "Discutir o conceito de escravidão moderna e suas distinções em relação ao escravismo antigo e à servidão medieval.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 424,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07HI16",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "Lógicas comerciais e mercantis da modernidade",
+      "objeto_conhecimento": "As lógicas internas das sociedades africanas\nAs formas de organização das sociedades\nameríndias\nA escravidão moderna e o tráfico de\nescravizados",
+      "habilidade": "Analisar os mecanismos e as dinâmicas de comércio de escravizados em suas diferentes fases, identificando os agentes responsáveis pelo tráfico e as regiões e zonas africanas de procedência dos escravizados.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 424,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07HI17",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "Lógicas comerciais e mercantis da modernidade",
+      "objeto_conhecimento": "A emergência do capitalismo",
+      "habilidade": "Discutir as razões da passagem do mercantilismo para o capitalismo.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 424,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "O mundo contemporâneo: o Antigo Regime em crise",
+      "objeto_conhecimento": "A questão do iluminismo e da ilustração",
+      "habilidade": "Identificar os principais aspectos conceituais do iluminismo e do liberalismo e discutir a relação entre eles e a organização do mundo contemporâneo.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 426,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "O mundo contemporâneo: o Antigo Regime em crise",
+      "objeto_conhecimento": "As revoluções inglesas e os princípios do\nliberalismo",
+      "habilidade": "Identificar as particularidades político-sociais da Inglaterra do século XVII e analisar os desdobramentos posteriores à Revolução Gloriosa.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 426,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "O mundo contemporâneo: o Antigo Regime em crise",
+      "objeto_conhecimento": "Revolução Industrial e seus impactos na\nprodução e circulação de povos, produtos e\nculturas",
+      "habilidade": "Analisar os impactos da Revolução Industrial na produção e circulação de povos, produtos e culturas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 426,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "O mundo contemporâneo: o Antigo Regime em crise",
+      "objeto_conhecimento": "Revolução Francesa e seus desdobramentos",
+      "habilidade": "Identificar e relacionar os processos da Revolução Francesa e seus desdobramentos na Europa e no mundo.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 426,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "O mundo contemporâneo: o Antigo Regime em crise",
+      "objeto_conhecimento": "Rebeliões na América portuguesa: as\nconjurações mineira e baiana",
+      "habilidade": "Explicar os movimentos e as rebeliões da América portuguesa, articulando as temáticas locais e suas interfaces com processos ocorridos na Europa e nas Américas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 426,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Os processos de independência nas Américas",
+      "objeto_conhecimento": "Independência dos Estados Unidos da América\nIndependências na América espanhola\n• \u0007A revolução dos escravizados em São\nDomingo e seus múltiplos significados e\ndesdobramentos: o caso do Haiti\nOs caminhos até a independência do Brasil",
+      "habilidade": "Aplicar os conceitos de Estado, nação, território, governo e país para o entendimento de conflitos e tensões.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 426,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI07",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Os processos de independência nas Américas",
+      "objeto_conhecimento": "Independência dos Estados Unidos da América\nIndependências na América espanhola\n• \u0007A revolução dos escravizados em São\nDomingo e seus múltiplos significados e\ndesdobramentos: o caso do Haiti\nOs caminhos até a independência do Brasil",
+      "habilidade": "Identificar e contextualizar as especificidades dos diversos processos de independência nas Américas, seus aspectos populacionais e suas conformações territoriais.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 426,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI08",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Os processos de independência nas Américas",
+      "objeto_conhecimento": "Independência dos Estados Unidos da América\nIndependências na América espanhola\n• \u0007A revolução dos escravizados em São\nDomingo e seus múltiplos significados e\ndesdobramentos: o caso do Haiti\nOs caminhos até a independência do Brasil",
+      "habilidade": "Conhecer o ideário dos líderes dos movimentos independentistas e seu papel nas revoluções que levaram à independência das colônias hispano-americanas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 426,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI09",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Os processos de independência nas Américas",
+      "objeto_conhecimento": "Independência dos Estados Unidos da América\nIndependências na América espanhola\n• \u0007A revolução dos escravizados em São\nDomingo e seus múltiplos significados e\ndesdobramentos: o caso do Haiti\nOs caminhos até a independência do Brasil",
+      "habilidade": "Conhecer as características e os principais pensadores do Pan-americanismo.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 426,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI10",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Os processos de independência nas Américas",
+      "objeto_conhecimento": "Independência dos Estados Unidos da América\nIndependências na América espanhola\n• \u0007A revolução dos escravizados em São\nDomingo e seus múltiplos significados e\ndesdobramentos: o caso do Haiti\nOs caminhos até a independência do Brasil",
+      "habilidade": "Identificar a Revolução de São Domingo como evento singular e desdobramento da Revolução Francesa e avaliar suas implicações.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 426,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI11",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Os processos de independência nas Américas",
+      "objeto_conhecimento": "Independência dos Estados Unidos da América\nIndependências na América espanhola\n• \u0007A revolução dos escravizados em São\nDomingo e seus múltiplos significados e\ndesdobramentos: o caso do Haiti\nOs caminhos até a independência do Brasil",
+      "habilidade": "Identificar e explicar os protagonismos e a atuação de diferentes grupos sociais e étnicos nas lutas de independência no Brasil, na América espanhola e no Haiti.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 426,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI12",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Os processos de independência nas Américas",
+      "objeto_conhecimento": "Independência dos Estados Unidos da América\nIndependências na América espanhola\n• \u0007A revolução dos escravizados em São\nDomingo e seus múltiplos significados e\ndesdobramentos: o caso do Haiti\nOs caminhos até a independência do Brasil",
+      "habilidade": "Caracterizar a organização política e social no Brasil desde a chegada da Corte portuguesa, em 1808, até 1822 e seus desdobramentos para a história política brasileira.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 426,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI13",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Os processos de independência nas Américas",
+      "objeto_conhecimento": "Independência dos Estados Unidos da América\nIndependências na América espanhola\n• \u0007A revolução dos escravizados em São\nDomingo e seus múltiplos significados e\ndesdobramentos: o caso do Haiti\nOs caminhos até a independência do Brasil",
+      "habilidade": "Analisar o processo de independência em diferentes países latino-americanos e comparar as formas de governo neles adotadas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 426,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI14",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Os processos de independência nas Américas",
+      "objeto_conhecimento": "A tutela da população indígena, a escravidão\ndos negros e a tutela dos egressos da escravidão",
+      "habilidade": "Discutir a noção da tutela dos grupos indígenas e a participação dos negros na sociedade brasileira do final do período colonial, identificando permanências na forma de preconceitos, estereótipos e violências sobre as populações indígenas e negras no Brasil e nas Américas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 426,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI15",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "O Brasil no século XIX",
+      "objeto_conhecimento": "Brasil: Primeiro Reinado\nO Período Regencial e as contestações ao poder\ncentral\nO Brasil do Segundo Reinado: política e\neconomia\n• \u0007A Lei de Terras e seus desdobramentos na\npolítica do Segundo Reinado\n• \u0007Territórios e fronteiras: a Guerra do Paraguai",
+      "habilidade": "Identificar e analisar o equilíbrio das forças e os sujeitos envolvidos nas disputas políticas durante o Primeiro e o Segundo Reinado.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 428,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI16",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "O Brasil no século XIX",
+      "objeto_conhecimento": "Brasil: Primeiro Reinado\nO Período Regencial e as contestações ao poder\ncentral\nO Brasil do Segundo Reinado: política e\neconomia\n• \u0007A Lei de Terras e seus desdobramentos na\npolítica do Segundo Reinado\n• \u0007Territórios e fronteiras: a Guerra do Paraguai",
+      "habilidade": "Identificar, comparar e analisar a diversidade política, social e regional nas rebeliões e nos movimentos contestatórios ao poder centralizado.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 428,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI17",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "O Brasil no século XIX",
+      "objeto_conhecimento": "Brasil: Primeiro Reinado\nO Período Regencial e as contestações ao poder\ncentral\nO Brasil do Segundo Reinado: política e\neconomia\n• \u0007A Lei de Terras e seus desdobramentos na\npolítica do Segundo Reinado\n• \u0007Territórios e fronteiras: a Guerra do Paraguai",
+      "habilidade": "Relacionar as transformações territoriais, em razão de questões de fronteiras, com as tensões e conflitos durante o Império.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 428,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI18",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "O Brasil no século XIX",
+      "objeto_conhecimento": "Brasil: Primeiro Reinado\nO Período Regencial e as contestações ao poder\ncentral\nO Brasil do Segundo Reinado: política e\neconomia\n• \u0007A Lei de Terras e seus desdobramentos na\npolítica do Segundo Reinado\n• \u0007Territórios e fronteiras: a Guerra do Paraguai",
+      "habilidade": "Identificar as questões internas e externas sobre a atuação do Brasil na Guerra do Paraguai e discutir diferentes versões sobre o conflito.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 428,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI19",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "O Brasil no século XIX",
+      "objeto_conhecimento": "O escravismo no Brasil do século XIX: plantations\ne revoltas de escravizados, abolicionismo e\npolíticas migratórias no Brasil Imperial",
+      "habilidade": "Formular questionamentos sobre o legado da escravidão nas Américas, com base na seleção e consulta de fontes de diferentes naturezas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 428,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI20",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "O Brasil no século XIX",
+      "objeto_conhecimento": "O escravismo no Brasil do século XIX: plantations\ne revoltas de escravizados, abolicionismo e\npolíticas migratórias no Brasil Imperial",
+      "habilidade": "Identificar e relacionar aspectos das estruturas sociais da atualidade com os legados da escravidão no Brasil e discutir a importância de ações afirmativas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 428,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI21",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "O Brasil no século XIX",
+      "objeto_conhecimento": "Políticas de extermínio do indígena durante o\nImpério",
+      "habilidade": "Identificar e analisar as políticas oficiais com relação ao indígena durante o Império.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 428,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI22",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "O Brasil no século XIX",
+      "objeto_conhecimento": "A produção do imaginário nacional brasileiro:\ncultura popular, representações visuais, letras e o\nRomantismo no Brasil",
+      "habilidade": "Discutir o papel das culturas letradas, não letradas e das artes na produção das identidades no Brasil do século XIX.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 428,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI23",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Configurações do mundo no século XIX",
+      "objeto_conhecimento": "Nacionalismo, revoluções e as novas nações\neuropeias",
+      "habilidade": "Estabelecer relações causais entre as ideologias raciais e o determinismo no contexto do imperialismo europeu e seus impactos na África e na Ásia.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 428,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI24",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Configurações do mundo no século XIX",
+      "objeto_conhecimento": "Uma nova ordem econômica: as demandas do\ncapitalismo industrial e o lugar das economias\nafricanas e asiáticas nas dinâmicas globais",
+      "habilidade": "Reconhecer os principais produtos, utilizados pelos europeus, procedentes do continente africano durante o imperialismo e analisar os impactos sobre as comunidades locais na forma de organização e exploração econômica.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 428,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI25",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Configurações do mundo no século XIX",
+      "objeto_conhecimento": "Os Estados Unidos da América e a América\nLatina no século XIX",
+      "habilidade": "Caracterizar e contextualizar aspectos das relações entre os Estados Unidos da América e a América Latina no século XIX.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 428,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI26",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Configurações do mundo no século XIX",
+      "objeto_conhecimento": "O imperialismo europeu e a partilha da África e\nda Ásia",
+      "habilidade": "Identificar e contextualizar o protagonismo das populações locais na resistência ao imperialismo na África e Ásia.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 428,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08HI27",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Configurações do mundo no século XIX",
+      "objeto_conhecimento": "Pensamento e cultura no século XIX: darwinismo\ne racismo\nO discurso civilizatório nas Américas, o\nsilenciamento dos saberes indígenas e as formas\nde integração e destruição de comunidades e\npovos indígenas\nA resistência dos povos e comunidades\nindígenas diante da ofensiva civilizatória",
+      "habilidade": "Identificar as tensões e os significados dos discursos civilizatórios, avaliando seus impactos negativos para os povos indígenas originários e as populações negras nas Américas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 428,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "O nascimento da República no Brasil e os processos históricos até a metade do século XX",
+      "objeto_conhecimento": "Experiências republicanas e práticas autoritárias:\nas tensões e disputas do mundo contemporâneo\nA proclamação da República e seus primeiros\ndesdobramentos",
+      "habilidade": "Descrever e contextualizar os principais aspectos sociais, culturais, econômicos e políticos da emergência da República no Brasil.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 430,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "O nascimento da República no Brasil e os processos históricos até a metade do século XX",
+      "objeto_conhecimento": "Experiências republicanas e práticas autoritárias:\nas tensões e disputas do mundo contemporâneo\nA proclamação da República e seus primeiros\ndesdobramentos",
+      "habilidade": "Caracterizar e compreender os ciclos da história republicana, identificando particularidades da história local e regional até 1954.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 430,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "O nascimento da República no Brasil e os processos históricos até a metade do século XX",
+      "objeto_conhecimento": "A questão da inserção dos negros no período\nrepublicano do pós-abolição\nOs movimentos sociais e a imprensa negra;\na cultura afro-brasileira como elemento de\nresistência e superação das discriminações",
+      "habilidade": "Identificar os mecanismos de inserção dos negros na sociedade brasileira pós-abolição e avaliar os seus resultados.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 430,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "O nascimento da República no Brasil e os processos históricos até a metade do século XX",
+      "objeto_conhecimento": "A questão da inserção dos negros no período\nrepublicano do pós-abolição\nOs movimentos sociais e a imprensa negra;\na cultura afro-brasileira como elemento de\nresistência e superação das discriminações",
+      "habilidade": "Discutir a importância da participação da população negra na formação econômica, política e social do Brasil.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 430,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "O nascimento da República no Brasil e os processos históricos até a metade do século XX",
+      "objeto_conhecimento": "Primeira República e suas características\nContestações e dinâmicas da vida cultural no\nBrasil entre 1900 e 1930",
+      "habilidade": "Identificar os processos de urbanização e modernização da sociedade brasileira e avaliar suas contradições e impactos na região em que vive.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 430,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "O nascimento da República no Brasil e os processos históricos até a metade do século XX",
+      "objeto_conhecimento": "O período varguista e suas contradições\nA emergência da vida urbana e a segregação\nespacial\nO trabalhismo e seu protagonismo político",
+      "habilidade": "Identificar e discutir o papel do trabalhismo como força política, social e cultural no Brasil, em diferentes escalas (nacional, regional, cidade, comunidade).",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 430,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI07",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "O nascimento da República no Brasil e os processos históricos até a metade do século XX",
+      "objeto_conhecimento": "A questão indígena durante a República (até\n1964)",
+      "habilidade": "Identificar e explicar, em meio a lógicas de inclusão e exclusão, as pautas dos povos indígenas, no contexto republicano (até 1964), e das populações afrodescendentes.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 430,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI08",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "O nascimento da República no Brasil e os processos históricos até a metade do século XX",
+      "objeto_conhecimento": "Anarquismo e protagonismo feminino",
+      "habilidade": "Identificar as transformações ocorridas no debate sobre as questões da diversidade no Brasil durante o século XX e compreender o significado das mudanças de abordagem em relação ao tema.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 430,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI09",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "O nascimento da República no Brasil e os processos históricos até a metade do século XX",
+      "objeto_conhecimento": "Anarquismo e protagonismo feminino",
+      "habilidade": "Relacionar as conquistas de direitos políticos, sociais e civis à atuação de movimentos sociais.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 430,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI10",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Totalitarismos e conflitos mundiais",
+      "objeto_conhecimento": "O mundo em conflito: a Primeira Guerra Mundial\nA questão da Palestina\nA Revolução Russa\nA crise capitalista de 1929",
+      "habilidade": "Identificar e relacionar as dinâmicas do capitalismo e suas crises, os grandes conflitos mundiais e os conflitos vivenciados na Europa.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 430,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI11",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Totalitarismos e conflitos mundiais",
+      "objeto_conhecimento": "O mundo em conflito: a Primeira Guerra Mundial\nA questão da Palestina\nA Revolução Russa\nA crise capitalista de 1929",
+      "habilidade": "Identificar as especificidades e os desdobramentos mundiais da Revolução Russa e seu significado histórico.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 430,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI12",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Totalitarismos e conflitos mundiais",
+      "objeto_conhecimento": "O mundo em conflito: a Primeira Guerra Mundial\nA questão da Palestina\nA Revolução Russa\nA crise capitalista de 1929",
+      "habilidade": "Analisar a crise capitalista de 1929 e seus desdobramentos em relação à economia global.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 430,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI13",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Totalitarismos e conflitos mundiais",
+      "objeto_conhecimento": "A emergência do fascismo e do nazismo\nA Segunda Guerra Mundial\nJudeus e outras vítimas do holocausto",
+      "habilidade": "Descrever e contextualizar os processos da emergência do fascismo e do nazismo, a consolidação dos estados totalitários e as práticas de extermínio (como o holocausto).",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 430,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI14",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Totalitarismos e conflitos mundiais",
+      "objeto_conhecimento": "O colonialismo na África\nAs guerras mundiais, a crise do colonialismo e o\nadvento dos nacionalismos africanos e asiáticos",
+      "habilidade": "Caracterizar e discutir as dinâmicas do colonialismo no continente africano e asiático e as lógicas de resistência das populações locais diante das questões internacionais.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 430,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI15",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Totalitarismos e conflitos mundiais",
+      "objeto_conhecimento": "A Organização das Nações Unidas (ONU) e a\nquestão dos Direitos Humanos",
+      "habilidade": "Discutir as motivações que levaram à criação da Organização das Nações Unidas (ONU) no contexto do pós-guerra e os propósitos dessa organização.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 430,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI16",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Totalitarismos e conflitos mundiais",
+      "objeto_conhecimento": "A Organização das Nações Unidas (ONU) e a\nquestão dos Direitos Humanos",
+      "habilidade": "Relacionar a Carta dos Direitos Humanos ao processo de afirmação dos direitos fundamentais e de defesa da dignidade humana, valorizando as instituições voltadas para a defesa desses direitos e para a identificação dos agentes responsáveis por sua violação.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 430,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI17",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Modernização, ditadura civil-militar e redemocratização: o Brasil após 1946",
+      "objeto_conhecimento": "O Brasil da era JK e o ideal de uma nação\nmoderna: a urbanização e seus desdobramentos\nem um país em transformação",
+      "habilidade": "Identificar e analisar processos sociais, econômicos, culturais e políticos do Brasil a partir de 1946.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 432,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI18",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Modernização, ditadura civil-militar e redemocratização: o Brasil após 1946",
+      "objeto_conhecimento": "O Brasil da era JK e o ideal de uma nação\nmoderna: a urbanização e seus desdobramentos\nem um país em transformação",
+      "habilidade": "Descrever e analisar as relações entre as transformações urbanas e seus impactos na cultura brasileira entre 1946 e 1964 e na produção das desigualdades regionais e sociais.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 432,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI19",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Modernização, ditadura civil-militar e redemocratização: o Brasil após 1946",
+      "objeto_conhecimento": "Os anos 1960: revolução cultural?\nA ditadura civil-militar e os processos de\nresistência\nAs questões indígena e negra e a ditadura",
+      "habilidade": "Identificar e compreender o processo que resultou na ditadura civil-militar no Brasil e discutir a emergência de questões relacionadas à memória e à justiça sobre os casos de violação dos direitos humanos.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 432,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI20",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Modernização, ditadura civil-militar e redemocratização: o Brasil após 1946",
+      "objeto_conhecimento": "Os anos 1960: revolução cultural?\nA ditadura civil-militar e os processos de\nresistência\nAs questões indígena e negra e a ditadura",
+      "habilidade": "Discutir os processos de resistência e as propostas de reorganização da sociedade brasileira durante a ditadura civil-militar.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 432,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI21",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Modernização, ditadura civil-militar e redemocratização: o Brasil após 1946",
+      "objeto_conhecimento": "Os anos 1960: revolução cultural?\nA ditadura civil-militar e os processos de\nresistência\nAs questões indígena e negra e a ditadura",
+      "habilidade": "Identificar e relacionar as demandas indígenas e quilombolas como forma de contestação ao modelo desenvolvimentista da ditadura.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 432,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI22",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Modernização, ditadura civil-militar e redemocratização: o Brasil após 1946",
+      "objeto_conhecimento": "O processo de redemocratização\nA Constituição de 1988 e a emancipação das\ncidadanias (analfabetos, indígenas, negros, jovens\netc.)\nA história recente do Brasil: transformações\npolíticas, econômicas, sociais e culturais de 1989\naos dias atuais\nOs protagonismos da sociedade civil e as\nalterações da sociedade brasileira\nA questão da violência contra populações\nmarginalizadas\nO Brasil e suas relações internacionais na era da\nglobalização",
+      "habilidade": "Discutir o papel da mobilização da sociedade brasileira do final do período ditatorial até a Constituição de 1988.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 432,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI23",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Modernização, ditadura civil-militar e redemocratização: o Brasil após 1946",
+      "objeto_conhecimento": "O processo de redemocratização\nA Constituição de 1988 e a emancipação das\ncidadanias (analfabetos, indígenas, negros, jovens\netc.)\nA história recente do Brasil: transformações\npolíticas, econômicas, sociais e culturais de 1989\naos dias atuais\nOs protagonismos da sociedade civil e as\nalterações da sociedade brasileira\nA questão da violência contra populações\nmarginalizadas\nO Brasil e suas relações internacionais na era da\nglobalização",
+      "habilidade": "Identificar direitos civis, políticos e sociais expressos na Constituição de 1988 e relacioná-los à noção de cidadania e ao pacto da sociedade brasileira de combate a diversas formas de preconceito, como o racismo.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 432,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI24",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Modernização, ditadura civil-militar e redemocratização: o Brasil após 1946",
+      "objeto_conhecimento": "O processo de redemocratização\nA Constituição de 1988 e a emancipação das\ncidadanias (analfabetos, indígenas, negros, jovens\netc.)\nA história recente do Brasil: transformações\npolíticas, econômicas, sociais e culturais de 1989\naos dias atuais\nOs protagonismos da sociedade civil e as\nalterações da sociedade brasileira\nA questão da violência contra populações\nmarginalizadas\nO Brasil e suas relações internacionais na era da\nglobalização",
+      "habilidade": "Analisar as transformações políticas, econômicas, sociais e culturais de 1989 aos dias atuais, identificando questões prioritárias para a promoção da cidadania e dos valores democráticos.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 432,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI25",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Modernização, ditadura civil-militar e redemocratização: o Brasil após 1946",
+      "objeto_conhecimento": "O processo de redemocratização\nA Constituição de 1988 e a emancipação das\ncidadanias (analfabetos, indígenas, negros, jovens\netc.)\nA história recente do Brasil: transformações\npolíticas, econômicas, sociais e culturais de 1989\naos dias atuais\nOs protagonismos da sociedade civil e as\nalterações da sociedade brasileira\nA questão da violência contra populações\nmarginalizadas\nO Brasil e suas relações internacionais na era da\nglobalização",
+      "habilidade": "Relacionar as transformações da sociedade brasileira aos protagonismos da sociedade civil após 1989.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 432,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI26",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Modernização, ditadura civil-militar e redemocratização: o Brasil após 1946",
+      "objeto_conhecimento": "O processo de redemocratização\nA Constituição de 1988 e a emancipação das\ncidadanias (analfabetos, indígenas, negros, jovens\netc.)\nA história recente do Brasil: transformações\npolíticas, econômicas, sociais e culturais de 1989\naos dias atuais\nOs protagonismos da sociedade civil e as\nalterações da sociedade brasileira\nA questão da violência contra populações\nmarginalizadas\nO Brasil e suas relações internacionais na era da\nglobalização",
+      "habilidade": "Discutir e analisar as causas da violência contra populações marginalizadas (negros, indígenas, mulheres, homossexuais, camponeses, pobres etc.) com vistas à tomada de consciência e à construção de uma cultura de paz, empatia e respeito às pessoas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 432,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI27",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Modernização, ditadura civil-militar e redemocratização: o Brasil após 1946",
+      "objeto_conhecimento": "O processo de redemocratização\nA Constituição de 1988 e a emancipação das\ncidadanias (analfabetos, indígenas, negros, jovens\netc.)\nA história recente do Brasil: transformações\npolíticas, econômicas, sociais e culturais de 1989\naos dias atuais\nOs protagonismos da sociedade civil e as\nalterações da sociedade brasileira\nA questão da violência contra populações\nmarginalizadas\nO Brasil e suas relações internacionais na era da\nglobalização",
+      "habilidade": "Relacionar aspectos das mudanças econômicas, culturais e sociais ocorridas no Brasil a partir da década de 1990 ao papel do País no cenário internacional na era da globalização.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 432,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI28",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "A história recente",
+      "objeto_conhecimento": "A Guerra Fria: confrontos de dois modelos\npolíticos\nA Revolução Chinesa e as tensões entre China e\nRússia\nA Revolução Cubana e as tensões entre Estados\nUnidos da América e Cuba",
+      "habilidade": "Identificar e analisar aspectos da Guerra Fria, seus principais conflitos e as tensões geopolíticas no interior dos blocos liderados por soviéticos e estadunidenses.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 434,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI29",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "A história recente",
+      "objeto_conhecimento": "As experiências ditatoriais na América Latina",
+      "habilidade": "Descrever e analisar as experiências ditatoriais na América Latina, seus procedimentos e vínculos com o poder, em nível nacional e internacional, e a atuação de movimentos de contestação às ditaduras.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 434,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI30",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "A história recente",
+      "objeto_conhecimento": "As experiências ditatoriais na América Latina",
+      "habilidade": "Comparar as características dos regimes ditatoriais latino-americanos, com especial atenção para a censura política, a opressão e o uso da força, bem como para as reformas econômicas e sociais e seus impactos.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 434,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI31",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "A história recente",
+      "objeto_conhecimento": "Os processos de descolonização na África e na\nÁsia",
+      "habilidade": "Descrever e avaliar os processos de descolonização na África e na Ásia.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 434,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI32",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "A história recente",
+      "objeto_conhecimento": "O fim da Guerra Fria e o processo de\nglobalização\nPolíticas econômicas na América Latina",
+      "habilidade": "Analisar mudanças e permanências associadas ao processo de globalização, considerando os argumentos dos movimentos críticos às políticas globais.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 434,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI33",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "A história recente",
+      "objeto_conhecimento": "O fim da Guerra Fria e o processo de\nglobalização\nPolíticas econômicas na América Latina",
+      "habilidade": "Analisar as transformações nas relações políticas locais e globais geradas pelo desenvolvimento das tecnologias digitais de informação e comunicação.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 434,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI34",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "A história recente",
+      "objeto_conhecimento": "O fim da Guerra Fria e o processo de\nglobalização\nPolíticas econômicas na América Latina",
+      "habilidade": "Discutir as motivações da adoção de diferentes políticas econômicas na América Latina, assim como seus impactos sociais nos países da região.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 434,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI35",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "A história recente",
+      "objeto_conhecimento": "Os conflitos do século XXI e a questão do\nterrorismo\nPluralidades e diversidades identitárias na\natualidade\nAs pautas dos povos indígenas no século XXI e\nsuas formas de inserção no debate local, regional,\nnacional e internacional",
+      "habilidade": "Analisar os aspectos relacionados ao fenômeno do terrorismo na contemporaneidade, incluindo os movimentos migratórios e os choques entre diferentes grupos e culturas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 434,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09HI36",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ciências Humanas",
+      "componente": "História",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "A história recente",
+      "objeto_conhecimento": "Os conflitos do século XXI e a questão do\nterrorismo\nPluralidades e diversidades identitárias na\natualidade\nAs pautas dos povos indígenas no século XXI e\nsuas formas de inserção no debate local, regional,\nnacional e internacional",
+      "habilidade": "Identificar e discutir as diversidades identitárias e seus significados históricos no início do século XXI, combatendo qualquer forma de preconceito e violência.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 434,
+      "classificacao": "dado_oficial"
+    }
+  ]
+}

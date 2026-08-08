@@ -1,0 +1,27 @@
+{
+  "escopo": "geografia-anos-finais",
+  "data_importacao": "2026-08-08T15:25:50.905Z",
+  "lote_importacao": "2026-08-08-geografia-anos-finais",
+  "arquivo_fonte": "data/bncc/source/official-mec-bncc-geografia-anos-finais.json",
+  "hash_sha256_fonte": "62c231d8a98b5701fcd19be131656c67f6b3244c9c6247efc0a44afad526d1ba",
+  "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+  "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas (mesma técnica de Matemática/Arte); ano derivado diretamente do código, não da posição de página, por robustez a páginas de continuação",
+  "total_por_ano": {
+    "6º ano": 13,
+    "7º ano": 12,
+    "8º ano": 24,
+    "9º ano": 18
+  },
+  "total_por_unidade_tematica": {
+    "O sujeito e seu lugar no mundo": 11,
+    "Conexões e escalas": 19,
+    "Mundo do trabalho": 15,
+    "Formas de representação e pensamento espacial": 8,
+    "Natureza, ambientes e qualidade de vida": 14
+  },
+  "total_geral": 67,
+  "duplicidades": [],
+  "registros_rejeitados": [],
+  "alertas": [],
+  "status": "valido"
+}

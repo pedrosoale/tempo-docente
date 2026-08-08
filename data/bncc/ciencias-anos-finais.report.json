@@ -1,0 +1,25 @@
+{
+  "escopo": "ciencias-anos-finais",
+  "data_importacao": "2026-08-08T15:25:50.902Z",
+  "lote_importacao": "2026-08-08-ciencias-anos-finais",
+  "arquivo_fonte": "data/bncc/source/official-mec-bncc-ciencias-anos-finais.json",
+  "hash_sha256_fonte": "460ef3f920945cf133533f634fa315fb3637c25e5a6010a1e63ab081f5a18d31",
+  "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+  "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas (mesma técnica de Matemática/Arte); ano derivado diretamente do código, não da posição de página, por robustez a páginas de continuação",
+  "total_por_ano": {
+    "6º ano": 14,
+    "7º ano": 16,
+    "8º ano": 16,
+    "9º ano": 17
+  },
+  "total_por_unidade_tematica": {
+    "Matéria e energia": 23,
+    "Vida e evolução": 22,
+    "Terra e Universo": 18
+  },
+  "total_geral": 63,
+  "duplicidades": [],
+  "registros_rejeitados": [],
+  "alertas": [],
+  "status": "valido"
+}

@@ -1,0 +1,35 @@
+{
+  "escopo": "lingua-portuguesa-anos-finais",
+  "data_importacao": "2026-08-08T15:25:50.879Z",
+  "lote_importacao": "2026-08-08-lingua-portuguesa-anos-finais",
+  "arquivo_fonte": "data/bncc/source/official-mec-bncc-lingua-portuguesa-anos-finais.json",
+  "hash_sha256_fonte": "362cad006b09e11a463b178fa7b576ad38d52f1e85d628a3b8d8e328c97c1063",
+  "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+  "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas (mesma técnica de Matemática); campo de atuação e prática de linguagem detectados por cabeçalho de linha com herança",
+  "total_por_ano": {
+    "6º ao 9º ano": 56,
+    "6º ano": 12,
+    "7º ano": 14,
+    "6º e 7º ano": 38,
+    "8º e 9º ano": 37,
+    "8º ano": 16,
+    "9º ano": 12
+  },
+  "total_por_campo_atuacao": {
+    "Campo Jornalístico-Midiático": 71,
+    "Campo de Atuação na Vida Pública": 39,
+    "Campo Artístico-Literário": 34,
+    "Todos os Campos de Atuação": 41
+  },
+  "total_geral": 185,
+  "duplicidades": [],
+  "registros_rejeitados": [],
+  "alertas": [
+    {
+      "codigo": "EF67LP27",
+      "alerta": "Texto da habilidade pode estar truncado: pontuação final ausente (conferido contra o PDF oficial — pode ser assim na fonte)"
+    }
+  ],
+  "limitacoes_conhecidas": [],
+  "status": "valido"
+}

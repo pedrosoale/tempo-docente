@@ -1,0 +1,26 @@
+{
+  "escopo": "educacao-fisica-anos-finais",
+  "data_importacao": "2026-08-08T15:25:50.900Z",
+  "lote_importacao": "2026-08-08-educacao-fisica-anos-finais",
+  "arquivo_fonte": "data/bncc/source/official-mec-bncc-educacao-fisica-anos-finais.json",
+  "hash_sha256_fonte": "d9f78a8f1fee6d6e71fcb2aa37ce783f561117d73bbd907183f71a55bb474f8a",
+  "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+  "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas (mesma técnica de Matemática/Arte), unidade temática com herança por linha",
+  "total_por_ano": {
+    "6º e 7º ano": 21,
+    "8º e 9º ano": 21
+  },
+  "total_por_unidade_tematica": {
+    "Brincadeiras e jogos": 2,
+    "Esportes": 11,
+    "Ginásticas": 8,
+    "Danças": 7,
+    "Lutas": 7,
+    "Práticas corporais de aventura": 7
+  },
+  "total_geral": 42,
+  "duplicidades": [],
+  "registros_rejeitados": [],
+  "alertas": [],
+  "status": "valido"
+}

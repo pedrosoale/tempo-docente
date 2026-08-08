@@ -1,0 +1,614 @@
+{
+  "metadata": {
+    "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+    "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+    "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+    "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+    "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas (mesma técnica de Matemática/Arte); ano derivado diretamente do código, não da posição de página, por robustez a páginas de continuação",
+    "data_extracao": "2026-08-08T14:39:17.193878Z",
+    "escopo": "Ensino Fundamental — Anos Finais — Ensino Religioso — 6º ao 9º ano",
+    "classificacao": "dado_oficial"
+  },
+  "habilidades": [
+    {
+      "codigo": "EF06ER01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Tradição escrita: registro dos ensinamentos\nsagrados",
+      "habilidade": "Reconhecer o papel da tradição escrita na preservação de memórias, acontecimentos e ensinamentos religiosos.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 454,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06ER02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Tradição escrita: registro dos ensinamentos\nsagrados",
+      "habilidade": "Reconhecer e valorizar a diversidade de textos religiosos escritos (textos do Budismo, Cristianismo, Espiritismo, Hinduísmo, Islamismo, Judaísmo, entre outros).",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 454,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06ER03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Ensinamentos da tradição escrita",
+      "habilidade": "Reconhecer, em textos escritos, ensinamentos relacionados a modos de ser e viver.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 454,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06ER04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Ensinamentos da tradição escrita",
+      "habilidade": "Reconhecer que os textos escritos são utilizados pelas tradições religiosas de maneiras diversas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 454,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06ER05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Ensinamentos da tradição escrita",
+      "habilidade": "Discutir como o estudo e a interpretação dos textos religiosos influenciam os adeptos a vivenciarem os ensinamentos das tradições religiosas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 454,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06ER06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Símbolos, ritos e mitos religiosos",
+      "habilidade": "Reconhecer a importância dos mitos, ritos, símbolos e textos na estruturação das diferentes crenças, tradições e movimentos religiosos.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 454,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF06ER07",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "6º ano",
+      "anos_aplicaveis": [
+        "6º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Símbolos, ritos e mitos religiosos",
+      "habilidade": "Exemplificar a relação entre mito, rito e símbolo nas práticas celebrativas de diferentes tradições religiosas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 454,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07ER01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "Manifestações religiosas",
+      "objeto_conhecimento": "Místicas e espiritualidades",
+      "habilidade": "Reconhecer e respeitar as práticas de comunicação com as divindades em distintas manifestações e tradições religiosas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 456,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07ER02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "Manifestações religiosas",
+      "objeto_conhecimento": "Místicas e espiritualidades",
+      "habilidade": "Identificar práticas de espiritualidade utilizadas pelas pessoas em determinadas situações (acidentes, doenças, fenômenos climáticos).",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 456,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07ER03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "Manifestações religiosas",
+      "objeto_conhecimento": "Lideranças religiosas",
+      "habilidade": "Reconhecer os papéis atribuídos às lideranças de diferentes tradições religiosas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 456,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07ER04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "Manifestações religiosas",
+      "objeto_conhecimento": "Lideranças religiosas",
+      "habilidade": "Exemplificar líderes religiosos que se destacaram por suas contribuições à sociedade.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 456,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07ER05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "Manifestações religiosas",
+      "objeto_conhecimento": "Lideranças religiosas",
+      "habilidade": "Discutir estratégias que promovam a convivência ética e respeitosa entre as religiões.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 456,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07ER06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Princípios éticos e valores religiosos",
+      "habilidade": "Identificar princípios éticos em diferentes tradições religiosas e filosofias de vida, discutindo como podem influenciar condutas pessoais e práticas sociais.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 456,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07ER07",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Liderança e direitos humanos",
+      "habilidade": "Identificar e discutir o papel das lideranças religiosas e seculares na defesa e promoção dos direitos humanos.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 456,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF07ER08",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "7º ano",
+      "anos_aplicaveis": [
+        "7º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Liderança e direitos humanos",
+      "habilidade": "Reconhecer o direito à liberdade de consciência, crença ou convicção, questionando concepções e práticas sociais que a violam.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 456,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08ER01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Crenças, convicções e atitudes",
+      "habilidade": "Discutir como as crenças e convicções podem influenciar escolhas e atitudes pessoais e coletivas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 458,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08ER02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Crenças, convicções e atitudes",
+      "habilidade": "Analisar filosofias de vida, manifestações e tradições religiosas destacando seus princípios éticos.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 458,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08ER03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Doutrinas religiosas",
+      "habilidade": "Analisar doutrinas das diferentes tradições religiosas e suas concepções de mundo, vida e morte.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 458,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08ER04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Crenças, filosofias de vida e esfera pública",
+      "habilidade": "Discutir como filosofias de vida, tradições e instituições religiosas podem influenciar diferentes campos da esfera pública (política, saúde, educação, economia).",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 458,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08ER05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Crenças, filosofias de vida e esfera pública",
+      "habilidade": "Debater sobre as possibilidades e os limites da interferência das tradições religiosas na esfera pública.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 458,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08ER06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Crenças, filosofias de vida e esfera pública",
+      "habilidade": "Analisar práticas, projetos e políticas públicas que contribuem para a promoção da liberdade de pensamento, crenças e convicções.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 458,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF08ER07",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "8º ano",
+      "anos_aplicaveis": [
+        "8º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Tradições religiosas, mídias e tecnologias",
+      "habilidade": "Analisar as formas de uso das mídias e tecnologias pelas diferentes denominações religiosas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 458,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09ER01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Imanência e transcendência",
+      "habilidade": "Analisar princípios e orientações para o cuidado da vida e nas diversas tradições religiosas e filosofias de vida.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 460,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09ER02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Imanência e transcendência",
+      "habilidade": "Discutir as diferentes expressões de valorização e de desrespeito à vida, por meio da análise de matérias nas diferentes mídias.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 460,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09ER03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Vida e morte",
+      "habilidade": "Identificar sentidos do viver e do morrer em diferentes tradições religiosas, através do estudo de mitos fundantes.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 460,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09ER04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Vida e morte",
+      "habilidade": "Identificar concepções de vida e morte em diferentes tradições religiosas e filosofias de vida, por meio da análise de diferentes ritos fúnebres.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 460,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09ER05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Vida e morte",
+      "habilidade": "Analisar as diferentes ideias de imortalidade elaboradas pelas tradições religiosas (ancestralidade, reencarnação, transmigração e ressurreição).",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 460,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09ER06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Princípios e valores éticos",
+      "habilidade": "Reconhecer a coexistência como uma atitude ética de respeito à vida e à dignidade humana.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 460,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09ER07",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Princípios e valores éticos",
+      "habilidade": "Identificar princípios éticos (familiares, religiosos e culturais) que possam alicerçar a construção de projetos de vida.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 460,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF09ER08",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Finais",
+      "area": "Ensino Religioso",
+      "componente": "Ensino Religioso",
+      "ano": "9º ano",
+      "anos_aplicaveis": [
+        "9º ano"
+      ],
+      "unidade_tematica": "Crenças religiosas e filosofias de vida",
+      "objeto_conhecimento": "Princípios e valores éticos",
+      "habilidade": "Construir projetos de vida assentados em princípios e valores éticos.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 460,
+      "classificacao": "dado_oficial"
+    }
+  ]
+}
