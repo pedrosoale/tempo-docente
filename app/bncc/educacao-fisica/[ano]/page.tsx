@@ -4,7 +4,7 @@ import { educacaoFisicaSkills } from "@/lib/bncc/data";
 import { BnccExplorer } from "../../components/BnccExplorer";
 import { BnccIntro } from "../../components/BnccIntro";
 
-const validYears = ["6-ano", "7-ano", "8-ano", "9-ano"] as const;
+const validYears = ["1-ano", "2-ano", "3-ano", "4-ano", "5-ano", "6-ano", "7-ano", "8-ano", "9-ano"] as const;
 
 type YearPageProps = { params: Promise<{ ano: string }> };
 

@@ -4,8 +4,8 @@ import { BnccExplorer } from "../components/BnccExplorer";
 import { BnccIntro } from "../components/BnccIntro";
 
 export const metadata: Metadata = {
-  title: "BNCC de Arte — Anos Finais | Tempo Docente",
-  description: "Consulte as habilidades da BNCC de Arte do Ensino Fundamental — Anos Finais, por unidade temática.",
+  title: "BNCC de Arte | Tempo Docente",
+  description: "Consulte as habilidades da BNCC de Arte do Ensino Fundamental, do 1º ao 9º ano, por unidade temática.",
   alternates: { canonical: "/bncc/arte" },
 };
 
@@ -14,11 +14,11 @@ export default function ArtePage() {
     <>
       <BnccIntro
         title="BNCC de Arte"
-        subtitle="Consulte as habilidades de Artes Visuais, Dança, Música, Teatro e Artes Integradas da BNCC — Ensino Fundamental, Anos Finais."
+        subtitle="Consulte as habilidades de Artes Visuais, Dança, Música, Teatro e Artes Integradas da BNCC — Ensino Fundamental."
         scopeComponent="Arte"
-        scopeSegmento="Ensino Fundamental — Anos Finais"
+        scopeSegmento="Ensino Fundamental — Anos Iniciais e Anos Finais"
         scopeTotal={`${arteSkills.length} habilidades`}
-        scopeGrades="6º ao 9º ano (código único)"
+        scopeGrades="1º ao 9º ano (códigos únicos EF15AR/EF69AR)"
       />
       <BnccExplorer
         skills={arteSkills}

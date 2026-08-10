@@ -4,8 +4,8 @@ import { BnccExplorer } from "../components/BnccExplorer";
 import { BnccIntro } from "../components/BnccIntro";
 
 export const metadata: Metadata = {
-  title: "BNCC de Ciências — Anos Finais | Tempo Docente",
-  description: "Consulte as habilidades da BNCC de Ciências do Ensino Fundamental — Anos Finais, por unidade temática.",
+  title: "BNCC de Ciências | Tempo Docente",
+  description: "Consulte as habilidades da BNCC de Ciências do Ensino Fundamental, do 1º ao 9º ano, por unidade temática.",
   alternates: { canonical: "/bncc/ciencias" },
 };
 
@@ -14,11 +14,11 @@ export default function CienciasPage() {
     <>
       <BnccIntro
         title="BNCC de Ciências"
-        subtitle="Consulte as habilidades de Matéria e Energia, Vida e Evolução e Terra e Universo — Ensino Fundamental, Anos Finais."
+        subtitle="Consulte as habilidades de Matéria e Energia, Vida e Evolução e Terra e Universo — Ensino Fundamental."
         scopeComponent="Ciências"
-        scopeSegmento="Ensino Fundamental — Anos Finais"
+        scopeSegmento="Ensino Fundamental — Anos Iniciais e Anos Finais"
         scopeTotal={`${cienciasSkills.length} habilidades`}
-        scopeGrades="6º, 7º, 8º e 9º anos"
+        scopeGrades="1º ao 9º ano"
       />
       <BnccExplorer
         skills={cienciasSkills}

@@ -1,22 +1,22 @@
 {
-  "escopo": "arte-anos-finais",
-  "data_importacao": "2026-08-10T21:13:15.726Z",
-  "lote_importacao": "2026-08-10-arte-anos-finais",
-  "arquivo_fonte": "data/bncc/source/official-mec-bncc-arte-anos-finais.json",
-  "hash_sha256_fonte": "b65a6c81670af9f6baeb18175043d9799f4a3063b13c825f6456bc25fe1dec6d",
+  "escopo": "arte-anos-iniciais",
+  "data_importacao": "2026-08-10T21:13:15.723Z",
+  "lote_importacao": "2026-08-10-arte-anos-iniciais",
+  "arquivo_fonte": "data/bncc/source/official-mec-bncc-arte-anos-iniciais.json",
+  "hash_sha256_fonte": "9908be403b31823ea494bccc25750ac8a69f573cdea077de4087442f406c676f",
   "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
   "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas (mesma técnica de Matemática), unidade temática com herança por linha e entre pares de página",
   "total_por_ano": {
-    "6º ao 9º ano": 35
+    "1º ao 5º ano": 26
   },
   "total_por_unidade_tematica": {
-    "Artes visuais": 8,
-    "Dança": 7,
-    "Música": 8,
-    "Teatro": 7,
-    "Artes integradas": 5
+    "Artes visuais": 7,
+    "Dança": 5,
+    "Música": 5,
+    "Teatro": 5,
+    "Artes integradas": 4
   },
-  "total_geral": 35,
+  "total_geral": 26,
   "duplicidades": [],
   "registros_rejeitados": [],
   "alertas": [],

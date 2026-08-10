@@ -16,7 +16,7 @@ export default function EnsinoFundamentalPage() {
     <>
       <BnccIntro
         title="BNCC — Ensino Fundamental"
-        subtitle="Escolha um componente curricular para consultar as habilidades oficiais. Matemática já cobre o 1º ao 9º ano; os demais componentes cobrem o 6º ao 9º ano, com os Anos Iniciais em expansão."
+        subtitle="Escolha um componente curricular para consultar as habilidades oficiais. Sete dos nove já cobrem o 1º ao 9º ano; Língua Portuguesa ainda cobre só o 6º ao 9º (Anos Iniciais em expansão), e Língua Inglesa começa no 6º ano na própria BNCC."
         scopeComponent="Ensino Fundamental"
         scopeSegmento="Anos Iniciais e Anos Finais"
         scopeTotal={`${totalHabilidades} habilidades`}

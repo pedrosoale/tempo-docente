@@ -32,10 +32,31 @@ from bncc_extract_common import (
     table_bottom,
 )
 
-GRADE_TO_LABEL = {"06": "6º ano", "07": "7º ano", "08": "8º ano", "09": "9º ano"}
+GRADE_TO_LABEL = {
+    "01": "1º ano", "02": "2º ano", "03": "3º ano", "04": "4º ano", "05": "5º ano",
+    "06": "6º ano", "07": "7º ano", "08": "8º ano", "09": "9º ano",
+}
+
+# Documented, code-specific typography corrections (same pattern as
+# extract_official.py's ax²/π fixes). PyMuPDF's line-join inserts a space at
+# every line wrap, which is wrong when the wrap itself is a hyphenated
+# word-break — confirmed against the raw PDF ("matérias-\nprimas") and the
+# official spreadsheet export, which both agree on the unhyphenated form.
+CONTROLLED_TYPOGRAPHY_CORRECTIONS: dict[str, dict[str, tuple[tuple[str, str], ...]]] = {
+    "EF04GE08": {
+        "habilidade": (("matérias- primas", "matérias-primas"),),
+    },
+}
 
 
-def extract_pair(unit_page: pymupdf.Page, skill_page: pymupdf.Page, current_unit: str | None, code_pattern: re.Pattern, area: str, componente: str) -> tuple[list[dict], str | None]:
+def restore_official_typography(record: dict) -> dict:
+    for field, replacements in CONTROLLED_TYPOGRAPHY_CORRECTIONS.get(record["codigo"], {}).items():
+        for flattened, official in replacements:
+            record[field] = record[field].replace(flattened, official)
+    return record
+
+
+def extract_pair(unit_page: pymupdf.Page, skill_page: pymupdf.Page, current_unit: str | None, code_pattern: re.Pattern, area: str, componente: str, segmento: str) -> tuple[list[dict], str | None]:
     boundaries = table_boundaries(unit_page)
     # Append a synthetic closing edge instead of overwriting boundaries[-1] —
     # see extract_lingua_portuguesa.py for why replacing it is unsafe.
@@ -64,12 +85,12 @@ def extract_pair(unit_page: pymupdf.Page, skill_page: pymupdf.Page, current_unit
         for code, skill in code_pattern.findall(skills_text):
             grade_key = code[2:4]
             if grade_key not in GRADE_TO_LABEL:
-                continue  # Anos Iniciais leakage guard; should not happen within our page range
+                continue  # Adjacent-section leakage guard; should not happen within our page range
             records.append(
                 {
                     "codigo": code,
                     "etapa": "Ensino Fundamental",
-                    "segmento": "Anos Finais",
+                    "segmento": segmento,
                     "area": area,
                     "componente": componente,
                     "ano": GRADE_TO_LABEL[grade_key],
@@ -97,8 +118,11 @@ def main() -> None:
     parser.add_argument("--start-heading", required=True, help='e.g. "CIÊNCIAS – 6º ANO"')
     parser.add_argument("--end-marker", required=True, help='e.g. "4.4" (next major section number)')
     parser.add_argument("--code-prefix", required=True, help='2-4 letter component code, e.g. "CI"')
+    parser.add_argument("--grade-digits", default="0[6-9]", help='regex digit class for the grade portion of the code, e.g. "0[1-5]" for Anos Iniciais')
+    parser.add_argument("--segmento", default="Anos Finais", help='"Anos Iniciais" or "Anos Finais"')
     parser.add_argument("--area", required=True)
     parser.add_argument("--componente", required=True)
+    parser.add_argument("--escopo-nota-anos", default="6º ao 9º ano")
     parser.add_argument("--escopo-note", default="")
     args = parser.parse_args()
 
@@ -107,7 +131,7 @@ def main() -> None:
     if not args.pdf.exists():
         raise FileNotFoundError(f"Official PDF not found: {args.pdf}")
 
-    code_pattern = re.compile(rf"\((EF0[6-9]{args.code_prefix}\d{{2}})\)\s*(.*?)(?=\(EF0[6-9]{args.code_prefix}\d{{2}}\)|\Z)", re.S)
+    code_pattern = re.compile(rf"\((EF{args.grade_digits}{args.code_prefix}\d{{2}})\)\s*(.*?)(?=\(EF{args.grade_digits}{args.code_prefix}\d{{2}}\)|\Z)", re.S)
 
     document = pymupdf.open(args.pdf)
     start = find_heading_page(document, args.start_heading)
@@ -119,8 +143,9 @@ def main() -> None:
         skill_index = unit_index + 1
         if skill_index >= end:
             break
-        pair_records, current_unit = extract_pair(document[unit_index], document[skill_index], current_unit, code_pattern, args.area, args.componente)
+        pair_records, current_unit = extract_pair(document[unit_index], document[skill_index], current_unit, code_pattern, args.area, args.componente, args.segmento)
         records.extend(pair_records)
+    records = [restore_official_typography(record) for record in records]
 
     seen = set()
     for record in records:
@@ -139,7 +164,7 @@ def main() -> None:
             "versao_fonte": SOURCE_VERSION,
             "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas (mesma técnica de Matemática/Arte); ano derivado diretamente do código, não da posição de página, por robustez a páginas de continuação",
             "data_extracao": imported_at,
-            "escopo": f"Ensino Fundamental — Anos Finais — {args.componente} — 6º ao 9º ano" + (f" ({args.escopo_note})" if args.escopo_note else ""),
+            "escopo": f"Ensino Fundamental — {args.segmento} — {args.componente} — {args.escopo_nota_anos}" + (f" ({args.escopo_note})" if args.escopo_note else ""),
             "classificacao": "dado_oficial",
         },
         "habilidades": records,

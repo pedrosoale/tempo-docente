@@ -351,11 +351,14 @@ async function processLinguaPortuguesaAnosFinais() {
 const GRADE_TO_LABEL = {
   "01": "1º ano", "02": "2º ano", "03": "3º ano", "04": "4º ano", "05": "5º ano",
   "06": "6º ano", "07": "7º ano", "08": "8º ano", "09": "9º ano",
+  "12": "1º e 2º ano", "35": "3º ao 5º ano", "15": "1º ao 5º ano",
   "67": "6º e 7º ano", "89": "8º e 9º ano", "69": "6º ao 9º ano",
 };
 const GRADE_TO_ANOS = {
   "01": ["1º ano"], "02": ["2º ano"], "03": ["3º ano"], "04": ["4º ano"], "05": ["5º ano"],
   "06": ["6º ano"], "07": ["7º ano"], "08": ["8º ano"], "09": ["9º ano"],
+  "12": ["1º ano", "2º ano"], "35": ["3º ano", "4º ano", "5º ano"],
+  "15": ["1º ano", "2º ano", "3º ano", "4º ano", "5º ano"],
   "67": ["6º ano", "7º ano"], "89": ["8º ano", "9º ano"],
   "69": ["6º ano", "7º ano", "8º ano", "9º ano"],
 };
@@ -492,10 +495,22 @@ const SIMPLE_COMPONENTS = [
     componenteLabel: "Matemática (EF01-05MAxx)",
   },
   {
+    scopeId: "arte-anos-iniciais",
+    sourceFile: "data/bncc/source/official-mec-bncc-arte-anos-iniciais.json",
+    codePattern: /^EF(15)AR\d{2}$/,
+    componenteLabel: "Arte (EF15ARxx)",
+  },
+  {
     scopeId: "arte-anos-finais",
     sourceFile: "data/bncc/source/official-mec-bncc-arte-anos-finais.json",
     codePattern: /^EF(69)AR\d{2}$/,
     componenteLabel: "Arte (EF69ARxx)",
+  },
+  {
+    scopeId: "educacao-fisica-anos-iniciais",
+    sourceFile: "data/bncc/source/official-mec-bncc-educacao-fisica-anos-iniciais.json",
+    codePattern: /^EF(12|35)EF\d{2}$/,
+    componenteLabel: "Educação Física (EF12EFxx/EF35EFxx)",
   },
   {
     scopeId: "educacao-fisica-anos-finais",
@@ -510,10 +525,22 @@ const SIMPLE_COMPONENTS = [
     componenteLabel: "Língua Inglesa (EF06-09LIxx)",
   },
   {
+    scopeId: "ciencias-anos-iniciais",
+    sourceFile: "data/bncc/source/official-mec-bncc-ciencias-anos-iniciais.json",
+    codePattern: /^EF(01|02|03|04|05)CI\d{2}$/,
+    componenteLabel: "Ciências (EF01-05CIxx)",
+  },
+  {
     scopeId: "ciencias-anos-finais",
     sourceFile: "data/bncc/source/official-mec-bncc-ciencias-anos-finais.json",
     codePattern: /^EF(06|07|08|09)CI\d{2}$/,
     componenteLabel: "Ciências (EF06-09CIxx)",
+  },
+  {
+    scopeId: "geografia-anos-iniciais",
+    sourceFile: "data/bncc/source/official-mec-bncc-geografia-anos-iniciais.json",
+    codePattern: /^EF(01|02|03|04|05)GE\d{2}$/,
+    componenteLabel: "Geografia (EF01-05GExx)",
   },
   {
     scopeId: "geografia-anos-finais",
@@ -522,10 +549,22 @@ const SIMPLE_COMPONENTS = [
     componenteLabel: "Geografia (EF06-09GExx)",
   },
   {
+    scopeId: "historia-anos-iniciais",
+    sourceFile: "data/bncc/source/official-mec-bncc-historia-anos-iniciais.json",
+    codePattern: /^EF(01|02|03|04|05)HI\d{2}$/,
+    componenteLabel: "História (EF01-05HIxx)",
+  },
+  {
     scopeId: "historia-anos-finais",
     sourceFile: "data/bncc/source/official-mec-bncc-historia-anos-finais.json",
     codePattern: /^EF(06|07|08|09)HI\d{2}$/,
     componenteLabel: "História (EF06-09HIxx)",
+  },
+  {
+    scopeId: "ensino-religioso-anos-iniciais",
+    sourceFile: "data/bncc/source/official-mec-bncc-ensino-religioso-anos-iniciais.json",
+    codePattern: /^EF(01|02|03|04|05)ER\d{2}$/,
+    componenteLabel: "Ensino Religioso (EF01-05ERxx)",
   },
   {
     scopeId: "ensino-religioso-anos-finais",

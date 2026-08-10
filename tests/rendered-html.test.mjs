@@ -106,8 +106,9 @@ test("server-renders the BNCC Arte explorer with the consolidated EF69AR code", 
   const html = await response.text();
 
   assert.match(html, /BNCC de Arte/);
-  assert.match(html, /35 habilidades/);
+  assert.match(html, /61 habilidades/);
   assert.match(html, /EF69AR01/);
+  assert.match(html, /EF15AR01/);
 });
 
 test("an Educação Física year page surfaces the grade-paired code that applies to it", async () => {

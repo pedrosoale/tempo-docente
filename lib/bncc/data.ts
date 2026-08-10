@@ -1,10 +1,16 @@
-import arteDataset from "@/data/bncc/arte-anos-finais.json";
-import cienciasDataset from "@/data/bncc/ciencias-anos-finais.json";
+import arteAnosFinaisDataset from "@/data/bncc/arte-anos-finais.json";
+import arteAnosIniciaisDataset from "@/data/bncc/arte-anos-iniciais.json";
+import cienciasAnosFinaisDataset from "@/data/bncc/ciencias-anos-finais.json";
+import cienciasAnosIniciaisDataset from "@/data/bncc/ciencias-anos-iniciais.json";
 import competenciasDataset from "@/data/bncc/competencias-gerais.json";
-import educacaoFisicaDataset from "@/data/bncc/educacao-fisica-anos-finais.json";
-import ensinoReligiosoDataset from "@/data/bncc/ensino-religioso-anos-finais.json";
-import geografiaDataset from "@/data/bncc/geografia-anos-finais.json";
-import historiaDataset from "@/data/bncc/historia-anos-finais.json";
+import educacaoFisicaAnosFinaisDataset from "@/data/bncc/educacao-fisica-anos-finais.json";
+import educacaoFisicaAnosIniciaisDataset from "@/data/bncc/educacao-fisica-anos-iniciais.json";
+import ensinoReligiosoAnosFinaisDataset from "@/data/bncc/ensino-religioso-anos-finais.json";
+import ensinoReligiosoAnosIniciaisDataset from "@/data/bncc/ensino-religioso-anos-iniciais.json";
+import geografiaAnosFinaisDataset from "@/data/bncc/geografia-anos-finais.json";
+import geografiaAnosIniciaisDataset from "@/data/bncc/geografia-anos-iniciais.json";
+import historiaAnosFinaisDataset from "@/data/bncc/historia-anos-finais.json";
+import historiaAnosIniciaisDataset from "@/data/bncc/historia-anos-iniciais.json";
 import linguaInglesaDataset from "@/data/bncc/lingua-inglesa-anos-finais.json";
 import linguaPortuguesaDataset from "@/data/bncc/lingua-portuguesa-anos-finais.json";
 import matematicaAnosFinaisDataset from "@/data/bncc/matematica-anos-finais.json";
@@ -17,26 +23,26 @@ export const bnccSkills = [...matematicaAnosIniciaisDataset.registros, ...matema
 export const linguaPortuguesaMetadata = linguaPortuguesaDataset.metadata;
 export const linguaPortuguesaSkills = linguaPortuguesaDataset.registros as HabilidadeFundamental[];
 
-export const arteMetadata = arteDataset.metadata;
-export const arteSkills = arteDataset.registros as HabilidadeFundamental[];
+export const arteMetadata = arteAnosFinaisDataset.metadata;
+export const arteSkills = [...arteAnosIniciaisDataset.registros, ...arteAnosFinaisDataset.registros] as HabilidadeFundamental[];
 
-export const educacaoFisicaMetadata = educacaoFisicaDataset.metadata;
-export const educacaoFisicaSkills = educacaoFisicaDataset.registros as HabilidadeFundamental[];
+export const educacaoFisicaMetadata = educacaoFisicaAnosFinaisDataset.metadata;
+export const educacaoFisicaSkills = [...educacaoFisicaAnosIniciaisDataset.registros, ...educacaoFisicaAnosFinaisDataset.registros] as HabilidadeFundamental[];
 
 export const linguaInglesaMetadata = linguaInglesaDataset.metadata;
 export const linguaInglesaSkills = linguaInglesaDataset.registros as HabilidadeFundamental[];
 
-export const cienciasMetadata = cienciasDataset.metadata;
-export const cienciasSkills = cienciasDataset.registros as HabilidadeFundamental[];
+export const cienciasMetadata = cienciasAnosFinaisDataset.metadata;
+export const cienciasSkills = [...cienciasAnosIniciaisDataset.registros, ...cienciasAnosFinaisDataset.registros] as HabilidadeFundamental[];
 
-export const geografiaMetadata = geografiaDataset.metadata;
-export const geografiaSkills = geografiaDataset.registros as HabilidadeFundamental[];
+export const geografiaMetadata = geografiaAnosFinaisDataset.metadata;
+export const geografiaSkills = [...geografiaAnosIniciaisDataset.registros, ...geografiaAnosFinaisDataset.registros] as HabilidadeFundamental[];
 
-export const historiaMetadata = historiaDataset.metadata;
-export const historiaSkills = historiaDataset.registros as HabilidadeFundamental[];
+export const historiaMetadata = historiaAnosFinaisDataset.metadata;
+export const historiaSkills = [...historiaAnosIniciaisDataset.registros, ...historiaAnosFinaisDataset.registros] as HabilidadeFundamental[];
 
-export const ensinoReligiosoMetadata = ensinoReligiosoDataset.metadata;
-export const ensinoReligiosoSkills = ensinoReligiosoDataset.registros as HabilidadeFundamental[];
+export const ensinoReligiosoMetadata = ensinoReligiosoAnosFinaisDataset.metadata;
+export const ensinoReligiosoSkills = [...ensinoReligiosoAnosIniciaisDataset.registros, ...ensinoReligiosoAnosFinaisDataset.registros] as HabilidadeFundamental[];
 
 export const competenciasGeraisMetadata = competenciasDataset.metadata;
 export const competenciasGerais = competenciasDataset.registros as CompetenciaGeral[];

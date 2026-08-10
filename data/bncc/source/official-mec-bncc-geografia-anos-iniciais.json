@@ -1,0 +1,1133 @@
+{
+  "metadata": {
+    "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+    "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+    "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+    "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+    "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas",
+    "escopo": "Ensino Fundamental — Anos Iniciais — Geografia — 1º ao 5º ano",
+    "classificacao": "dado_oficial"
+  },
+  "habilidades": [
+    {
+      "codigo": "EF01GE01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "1º ano",
+      "anos_aplicaveis": [
+        "1º ano"
+      ],
+      "unidade_tematica": "O sujeito e seu lugar no mundo",
+      "objeto_conhecimento": "O modo de vida das crianças em diferentes\nlugares",
+      "habilidade": "Descrever características observadas de seus lugares de vivência (moradia, escola etc.) e identificar semelhanças e diferenças entre esses lugares.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 372,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF01GE02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "1º ano",
+      "anos_aplicaveis": [
+        "1º ano"
+      ],
+      "unidade_tematica": "O sujeito e seu lugar no mundo",
+      "objeto_conhecimento": "O modo de vida das crianças em diferentes\nlugares",
+      "habilidade": "Identificar semelhanças e diferenças entre jogos e brincadeiras de diferentes épocas e lugares.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 372,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF01GE03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "1º ano",
+      "anos_aplicaveis": [
+        "1º ano"
+      ],
+      "unidade_tematica": "O sujeito e seu lugar no mundo",
+      "objeto_conhecimento": "Situações de convívio em diferentes lugares",
+      "habilidade": "Identificar e relatar semelhanças e diferenças de usos do espaço público (praças, parques) para o lazer e diferentes manifestações.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 372,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF01GE04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "1º ano",
+      "anos_aplicaveis": [
+        "1º ano"
+      ],
+      "unidade_tematica": "O sujeito e seu lugar no mundo",
+      "objeto_conhecimento": "Situações de convívio em diferentes lugares",
+      "habilidade": "Discutir e elaborar, coletivamente, regras de convívio em diferentes espaços (sala de aula, escola etc.).",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 372,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF01GE05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "1º ano",
+      "anos_aplicaveis": [
+        "1º ano"
+      ],
+      "unidade_tematica": "Conexões e escalas",
+      "objeto_conhecimento": "Ciclos naturais e a vida cotidiana",
+      "habilidade": "Observar e descrever ritmos naturais (dia e noite, variação de temperatura e umidade etc.) em diferentes escalas espaciais e temporais, comparando a sua realidade com outras.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 372,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF01GE06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "1º ano",
+      "anos_aplicaveis": [
+        "1º ano"
+      ],
+      "unidade_tematica": "Mundo do trabalho",
+      "objeto_conhecimento": "Diferentes tipos de trabalho existentes no seu\ndia a dia",
+      "habilidade": "Descrever e comparar diferentes tipos de moradia ou objetos de uso cotidiano (brinquedos, roupas, mobiliários), considerando técnicas e materiais utilizados em sua produção.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 372,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF01GE07",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "1º ano",
+      "anos_aplicaveis": [
+        "1º ano"
+      ],
+      "unidade_tematica": "Mundo do trabalho",
+      "objeto_conhecimento": "Diferentes tipos de trabalho existentes no seu\ndia a dia",
+      "habilidade": "Descrever atividades de trabalho relacionadas com o dia a dia da sua comunidade.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 372,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF01GE08",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "1º ano",
+      "anos_aplicaveis": [
+        "1º ano"
+      ],
+      "unidade_tematica": "Formas de representação e pensamento espacial",
+      "objeto_conhecimento": "Pontos de referência",
+      "habilidade": "Criar mapas mentais e desenhos com base em itinerários, contos literários, histórias inventadas e brincadeiras.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 372,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF01GE09",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "1º ano",
+      "anos_aplicaveis": [
+        "1º ano"
+      ],
+      "unidade_tematica": "Formas de representação e pensamento espacial",
+      "objeto_conhecimento": "Pontos de referência",
+      "habilidade": "Elaborar e utilizar mapas simples para localizar elementos do local de vivência, considerando referenciais espaciais (frente e atrás, esquerda e direita, em cima e embaixo, dentro e fora) e tendo o corpo como referência.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 372,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF01GE10",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "1º ano",
+      "anos_aplicaveis": [
+        "1º ano"
+      ],
+      "unidade_tematica": "Natureza, ambientes e qualidade de vida",
+      "objeto_conhecimento": "Condições de vida nos lugares de vivência",
+      "habilidade": "Descrever características de seus lugares de vivência relacionadas aos ritmos da natureza (chuva, vento, calor etc.).",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 372,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF01GE11",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "1º ano",
+      "anos_aplicaveis": [
+        "1º ano"
+      ],
+      "unidade_tematica": "Natureza, ambientes e qualidade de vida",
+      "objeto_conhecimento": "Condições de vida nos lugares de vivência",
+      "habilidade": "Associar mudanças de vestuário e hábitos alimentares em sua comunidade ao longo do ano, decorrentes da variação de temperatura e umidade no ambiente.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 372,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF02GE01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "2º ano",
+      "anos_aplicaveis": [
+        "2º ano"
+      ],
+      "unidade_tematica": "O sujeito e seu lugar no mundo",
+      "objeto_conhecimento": "Convivência e interações entre pessoas na\ncomunidade",
+      "habilidade": "Descrever a história das migrações no bairro ou comunidade em que vive.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 374,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF02GE02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "2º ano",
+      "anos_aplicaveis": [
+        "2º ano"
+      ],
+      "unidade_tematica": "O sujeito e seu lugar no mundo",
+      "objeto_conhecimento": "Convivência e interações entre pessoas na\ncomunidade",
+      "habilidade": "Comparar costumes e tradições de diferentes populações inseridas no bairro ou comunidade em que vive, reconhecendo a importância do respeito às diferenças.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 374,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF02GE03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "2º ano",
+      "anos_aplicaveis": [
+        "2º ano"
+      ],
+      "unidade_tematica": "O sujeito e seu lugar no mundo",
+      "objeto_conhecimento": "Riscos e cuidados nos meios de transporte e de\ncomunicação",
+      "habilidade": "Comparar diferentes meios de transporte e de comunicação, indicando o seu papel na conexão entre lugares, e discutir os riscos para a vida e para o ambiente e seu uso responsável.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 374,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF02GE04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "2º ano",
+      "anos_aplicaveis": [
+        "2º ano"
+      ],
+      "unidade_tematica": "Conexões e escalas",
+      "objeto_conhecimento": "Experiências da comunidade no tempo e no\nespaço",
+      "habilidade": "Reconhecer semelhanças e diferenças nos hábitos, nas relações com a natureza e no modo de viver de pessoas em diferentes lugares.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 374,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF02GE05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "2º ano",
+      "anos_aplicaveis": [
+        "2º ano"
+      ],
+      "unidade_tematica": "Conexões e escalas",
+      "objeto_conhecimento": "Mudanças e permanências",
+      "habilidade": "Analisar mudanças e permanências, comparando imagens de um mesmo lugar em diferentes tempos.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 374,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF02GE06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "2º ano",
+      "anos_aplicaveis": [
+        "2º ano"
+      ],
+      "unidade_tematica": "Mundo do trabalho",
+      "objeto_conhecimento": "Tipos de trabalho em lugares e tempos\ndiferentes",
+      "habilidade": "Relacionar o dia e a noite a diferentes tipos de atividades sociais (horário escolar, comercial, sono etc.).",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 374,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF02GE07",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "2º ano",
+      "anos_aplicaveis": [
+        "2º ano"
+      ],
+      "unidade_tematica": "Mundo do trabalho",
+      "objeto_conhecimento": "Tipos de trabalho em lugares e tempos\ndiferentes",
+      "habilidade": "Descrever as atividades extrativas (minerais, agropecuárias e industriais) de diferentes lugares, identificando os impactos ambientais.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 374,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF02GE08",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "2º ano",
+      "anos_aplicaveis": [
+        "2º ano"
+      ],
+      "unidade_tematica": "Formas de representação e pensamento espacial",
+      "objeto_conhecimento": "Localização, orientação e representação espacial",
+      "habilidade": "Identificar e elaborar diferentes formas de representação (desenhos, mapas mentais, maquetes) para representar componentes da paisagem dos lugares de vivência.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 374,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF02GE09",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "2º ano",
+      "anos_aplicaveis": [
+        "2º ano"
+      ],
+      "unidade_tematica": "Formas de representação e pensamento espacial",
+      "objeto_conhecimento": "Localização, orientação e representação espacial",
+      "habilidade": "Identificar objetos e lugares de vivência (escola e moradia) em imagens aéreas e mapas (visão vertical) e fotografias (visão oblíqua).",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 374,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF02GE10",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "2º ano",
+      "anos_aplicaveis": [
+        "2º ano"
+      ],
+      "unidade_tematica": "Formas de representação e pensamento espacial",
+      "objeto_conhecimento": "Localização, orientação e representação espacial",
+      "habilidade": "Aplicar princípios de localização e posição de objetos (referenciais espaciais, como frente e atrás, esquerda e direita, em cima e embaixo, dentro e fora) por meio de representações espaciais da sala de aula e da escola.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 374,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF02GE11",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "2º ano",
+      "anos_aplicaveis": [
+        "2º ano"
+      ],
+      "unidade_tematica": "Natureza, ambientes e qualidade de vida",
+      "objeto_conhecimento": "Os usos dos recursos naturais: solo e água no\ncampo e na cidade",
+      "habilidade": "Reconhecer a importância do solo e da água para a vida, identificando seus diferentes usos (plantação e extração de materiais, entre outras possibilidades) e os impactos desses usos no cotidiano da cidade e do campo.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 374,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF03GE01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "unidade_tematica": "O sujeito e seu lugar no mundo",
+      "objeto_conhecimento": "A cidade e o campo: aproximações e diferenças",
+      "habilidade": "Identificar e comparar aspectos culturais dos grupos sociais de seus lugares de vivência, seja na cidade, seja no campo.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 376,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF03GE02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "unidade_tematica": "O sujeito e seu lugar no mundo",
+      "objeto_conhecimento": "A cidade e o campo: aproximações e diferenças",
+      "habilidade": "Identificar, em seus lugares de vivência, marcas de contribuição cultural e econômica de grupos de diferentes origens.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 376,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF03GE03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "unidade_tematica": "O sujeito e seu lugar no mundo",
+      "objeto_conhecimento": "A cidade e o campo: aproximações e diferenças",
+      "habilidade": "Reconhecer os diferentes modos de vida de povos e comunidades tradicionais em distintos lugares.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 376,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF03GE04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "unidade_tematica": "Conexões e escalas",
+      "objeto_conhecimento": "Paisagens naturais e antrópicas em\ntransformação",
+      "habilidade": "Explicar como os processos naturais e históricos atuam na produção e na mudança das paisagens naturais e antrópicas nos seus lugares de vivência, comparando-os a outros lugares.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 376,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF03GE05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "unidade_tematica": "Mundo do trabalho",
+      "objeto_conhecimento": "Matéria-prima e indústria",
+      "habilidade": "Identificar alimentos, minerais e outros produtos cultivados e extraídos da natureza, comparando as atividades de trabalho em diferentes lugares.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 376,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF03GE06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "unidade_tematica": "Formas de representação e pensamento espacial",
+      "objeto_conhecimento": "Representações cartográficas",
+      "habilidade": "Identificar e interpretar imagens bidimensionais e tridimensionais em diferentes tipos de representação cartográfica.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 376,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF03GE07",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "unidade_tematica": "Formas de representação e pensamento espacial",
+      "objeto_conhecimento": "Representações cartográficas",
+      "habilidade": "Reconhecer e elaborar legendas com símbolos de diversos tipos de representações em diferentes escalas cartográficas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 376,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF03GE08",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "unidade_tematica": "Natureza, ambientes e qualidade de vida",
+      "objeto_conhecimento": "Produção, circulação e consumo",
+      "habilidade": "Relacionar a produção de lixo doméstico ou da escola aos problemas causados pelo consumo excessivo e construir propostas para o consumo consciente, considerando a ampliação de hábitos de redução, reúso e reciclagem/descarte de materiais consumidos em casa, na escola e/ou no entorno.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 376,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF03GE09",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "unidade_tematica": "Natureza, ambientes e qualidade de vida",
+      "objeto_conhecimento": "Impactos das atividades humanas",
+      "habilidade": "Investigar os usos dos recursos naturais, com destaque para os usos da água em atividades cotidianas (alimentação, higiene, cultivo de plantas etc.), e discutir os problemas ambientais provocados por esses usos.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 376,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF03GE10",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "unidade_tematica": "Natureza, ambientes e qualidade de vida",
+      "objeto_conhecimento": "Impactos das atividades humanas",
+      "habilidade": "Identificar os cuidados necessários para utilização da água na agricultura e na geração de energia de modo a garantir a manutenção do provimento de água potável.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 376,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF03GE11",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "unidade_tematica": "Natureza, ambientes e qualidade de vida",
+      "objeto_conhecimento": "Impactos das atividades humanas",
+      "habilidade": "Comparar impactos das atividades econômicas urbanas e rurais sobre o ambiente físico natural, assim como os riscos provenientes do uso de ferramentas e máquinas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 376,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF04GE01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "unidade_tematica": "O sujeito e seu lugar no mundo",
+      "objeto_conhecimento": "Território e diversidade cultural",
+      "habilidade": "Selecionar, em seus lugares de vivência e em suas histórias familiares e/ou da comunidade, elementos de distintas culturas (indígenas, afro-brasileiras, de outras regiões do país, latino-americanas, europeias, asiáticas etc.), valorizando o que é próprio em cada uma delas e sua contribuição para a formação da cultura local, regional e brasileira.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 378,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF04GE02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "unidade_tematica": "O sujeito e seu lugar no mundo",
+      "objeto_conhecimento": "Processos migratórios no Brasil",
+      "habilidade": "Descrever processos migratórios e suas contribuições para a formação da sociedade brasileira.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 378,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF04GE03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "unidade_tematica": "O sujeito e seu lugar no mundo",
+      "objeto_conhecimento": "Instâncias do poder público e canais de\nparticipação social",
+      "habilidade": "Distinguir funções e papéis dos órgãos do poder público municipal e canais de participação social na gestão do Município, incluindo a Câmara de Vereadores e Conselhos Municipais.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 378,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF04GE04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "unidade_tematica": "Conexões e escalas",
+      "objeto_conhecimento": "Relação campo e cidade",
+      "habilidade": "Reconhecer especificidades e analisar a interdependência do campo e da cidade, considerando fluxos econômicos, de informações, de ideias e de pessoas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 378,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF04GE05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "unidade_tematica": "Conexões e escalas",
+      "objeto_conhecimento": "Unidades político-administrativas do Brasil",
+      "habilidade": "Distinguir unidades político-administrativas oficiais nacionais (Distrito, Município, Unidade da Federação e grande região), suas fronteiras e sua hierarquia, localizando seus lugares de vivência.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 378,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF04GE06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "unidade_tematica": "Conexões e escalas",
+      "objeto_conhecimento": "Territórios étnico-culturais",
+      "habilidade": "Identificar e descrever territórios étnico-culturais existentes no Brasil, tais como terras indígenas e de comunidades remanescentes de quilombos, reconhecendo a legitimidade da demarcação desses territórios.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 378,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF04GE07",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "unidade_tematica": "Mundo do trabalho",
+      "objeto_conhecimento": "Trabalho no campo e na cidade",
+      "habilidade": "Comparar as características do trabalho no campo e na cidade.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 378,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF04GE08",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "unidade_tematica": "Mundo do trabalho",
+      "objeto_conhecimento": "Produção, circulação e consumo",
+      "habilidade": "Descrever e discutir o processo de produção (transformação de matérias-primas), circulação e consumo de diferentes produtos.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 378,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF04GE09",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "unidade_tematica": "Formas de representação e pensamento espacial",
+      "objeto_conhecimento": "Sistema de orientação",
+      "habilidade": "Utilizar as direções cardeais na localização de componentes físicos e humanos nas paisagens rurais e urbanas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 378,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF04GE10",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "unidade_tematica": "Formas de representação e pensamento espacial",
+      "objeto_conhecimento": "Elementos constitutivos dos mapas",
+      "habilidade": "Comparar tipos variados de mapas, identificando suas características, elaboradores, finalidades, diferenças e semelhanças.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 378,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF04GE11",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "unidade_tematica": "Natureza, ambientes e qualidade de vida",
+      "objeto_conhecimento": "Conservação e degradação da natureza",
+      "habilidade": "Identificar as características das paisagens naturais e antrópicas (relevo, cobertura vegetal, rios etc.) no ambiente em que vive, bem como a ação humana na conservação ou degradação dessas áreas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 378,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF05GE01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "unidade_tematica": "O sujeito e seu lugar no mundo",
+      "objeto_conhecimento": "Dinâmica populacional",
+      "habilidade": "Descrever e analisar dinâmicas populacionais na Unidade da Federação em que vive, estabelecendo relações entre migrações e condições de infraestrutura.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 380,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF05GE02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "unidade_tematica": "O sujeito e seu lugar no mundo",
+      "objeto_conhecimento": "Diferenças étnico-raciais e étnico-culturais e\ndesigualdades sociais",
+      "habilidade": "Identificar diferenças étnico-raciais e étnico-culturais e desigualdades sociais entre grupos em diferentes territórios.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 380,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF05GE03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "unidade_tematica": "Conexões e escalas",
+      "objeto_conhecimento": "Território, redes e urbanização",
+      "habilidade": "Identificar as formas e funções das cidades e analisar as mudanças sociais, econômicas e ambientais provocadas pelo seu crescimento.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 380,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF05GE04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "unidade_tematica": "Conexões e escalas",
+      "objeto_conhecimento": "Território, redes e urbanização",
+      "habilidade": "Reconhecer as características da cidade e analisar as interações entre a cidade e o campo e entre cidades na rede urbana.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 380,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF05GE05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "unidade_tematica": "Mundo do trabalho",
+      "objeto_conhecimento": "Trabalho e inovação tecnológica",
+      "habilidade": "Identificar e comparar as mudanças dos tipos de trabalho e desenvolvimento tecnológico na agropecuária, na indústria, no comércio e nos serviços.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 380,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF05GE06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "unidade_tematica": "Mundo do trabalho",
+      "objeto_conhecimento": "Trabalho e inovação tecnológica",
+      "habilidade": "Identificar e comparar transformações dos meios de transporte e de comunicação.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 380,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF05GE07",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "unidade_tematica": "Mundo do trabalho",
+      "objeto_conhecimento": "Trabalho e inovação tecnológica",
+      "habilidade": "Identificar os diferentes tipos de energia utilizados na produção industrial, agrícola e extrativa e no cotidiano das populações.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 380,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF05GE08",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "unidade_tematica": "Formas de representação e pensamento espacial",
+      "objeto_conhecimento": "Mapas e imagens de satélite",
+      "habilidade": "Analisar transformações de paisagens nas cidades, comparando sequência de fotografias, fotografias aéreas e imagens de satélite de épocas diferentes.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 380,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF05GE09",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "unidade_tematica": "Formas de representação e pensamento espacial",
+      "objeto_conhecimento": "Representação das cidades e do espaço urbano",
+      "habilidade": "Estabelecer conexões e hierarquias entre diferentes cidades, utilizando mapas temáticos e representações gráficas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 380,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF05GE10",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "unidade_tematica": "Natureza, ambientes e qualidade de vida",
+      "objeto_conhecimento": "Qualidade ambiental",
+      "habilidade": "Reconhecer e comparar atributos da qualidade ambiental e algumas formas de poluição dos cursos de água e dos oceanos (esgotos, efluentes industriais, marés negras etc.).",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 380,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF05GE11",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "unidade_tematica": "Natureza, ambientes e qualidade de vida",
+      "objeto_conhecimento": "Diferentes tipos de poluição",
+      "habilidade": "Identificar e descrever problemas ambientais que ocorrem no entorno da escola e da residência (lixões, indústrias poluentes, destruição do patrimônio histórico etc.), propondo soluções (inclusive tecnológicas) para esses problemas.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 380,
+      "classificacao": "dado_oficial"
+    },
+    {
+      "codigo": "EF05GE12",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "area": "Ciências Humanas",
+      "componente": "Geografia",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "unidade_tematica": "Natureza, ambientes e qualidade de vida",
+      "objeto_conhecimento": "Gestão pública da qualidade de vida",
+      "habilidade": "Identificar órgãos do poder público e canais de participação social responsáveis por buscar soluções para a melhoria da qualidade de vida (em áreas como meio ambiente, mobilidade, moradia e direito à cidade) e discutir as propostas implementadas por esses órgãos que afetam a comunidade em que vive.",
+      "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+      "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+      "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+      "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+      "pagina_fonte": 380,
+      "classificacao": "dado_oficial"
+    }
+  ]
+}

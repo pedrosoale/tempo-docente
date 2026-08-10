@@ -1,0 +1,28 @@
+{
+  "escopo": "geografia-anos-iniciais",
+  "data_importacao": "2026-08-10T21:13:15.728Z",
+  "lote_importacao": "2026-08-10-geografia-anos-iniciais",
+  "arquivo_fonte": "data/bncc/source/official-mec-bncc-geografia-anos-iniciais.json",
+  "hash_sha256_fonte": "09a9d42b20fd535a2b7d439b36c15ba2f433662eb3e55094eadbe215dfec6774",
+  "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+  "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas",
+  "total_por_ano": {
+    "1º ano": 11,
+    "2º ano": 11,
+    "3º ano": 11,
+    "4º ano": 11,
+    "5º ano": 12
+  },
+  "total_por_unidade_tematica": {
+    "O sujeito e seu lugar no mundo": 15,
+    "Conexões e escalas": 9,
+    "Mundo do trabalho": 10,
+    "Formas de representação e pensamento espacial": 11,
+    "Natureza, ambientes e qualidade de vida": 11
+  },
+  "total_geral": 56,
+  "duplicidades": [],
+  "registros_rejeitados": [],
+  "alertas": [],
+  "status": "valido"
+}

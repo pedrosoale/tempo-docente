@@ -3,12 +3,18 @@ import test from "node:test";
 
 const COMPONENTES = [
   { scopeId: "matematica-anos-iniciais", componente: "Matemática", total: 126, codigoRegex: /^EF0[1-5]MA\d{2}$/ },
+  { scopeId: "arte-anos-iniciais", componente: "Arte", total: 26, codigoRegex: /^EF15AR\d{2}$/ },
   { scopeId: "arte-anos-finais", componente: "Arte", total: 35, codigoRegex: /^EF69AR\d{2}$/ },
+  { scopeId: "educacao-fisica-anos-iniciais", componente: "Educação Física", total: 27, codigoRegex: /^EF(12|35)EF\d{2}$/ },
   { scopeId: "educacao-fisica-anos-finais", componente: "Educação Física", total: 42, codigoRegex: /^EF(67|89)EF\d{2}$/ },
   { scopeId: "lingua-inglesa-anos-finais", componente: "Língua Inglesa", total: 88, codigoRegex: /^EF0[6-9]LI\d{2}$/ },
+  { scopeId: "ciencias-anos-iniciais", componente: "Ciências", total: 48, codigoRegex: /^EF0[1-5]CI\d{2}$/ },
   { scopeId: "ciencias-anos-finais", componente: "Ciências", total: 63, codigoRegex: /^EF0[6-9]CI\d{2}$/ },
+  { scopeId: "geografia-anos-iniciais", componente: "Geografia", total: 56, codigoRegex: /^EF0[1-5]GE\d{2}$/ },
   { scopeId: "geografia-anos-finais", componente: "Geografia", total: 67, codigoRegex: /^EF0[6-9]GE\d{2}$/ },
+  { scopeId: "historia-anos-iniciais", componente: "História", total: 52, codigoRegex: /^EF0[1-5]HI\d{2}$/ },
   { scopeId: "historia-anos-finais", componente: "História", total: 98, codigoRegex: /^EF0[6-9]HI\d{2}$/ },
+  { scopeId: "ensino-religioso-anos-iniciais", componente: "Ensino Religioso", total: 33, codigoRegex: /^EF0[1-5]ER\d{2}$/ },
   { scopeId: "ensino-religioso-anos-finais", componente: "Ensino Religioso", total: 30, codigoRegex: /^EF0[6-9]ER\d{2}$/ },
 ];
 
@@ -72,8 +78,8 @@ test("Ensino Religioso: all four Anos Finais grades are represented despite the 
 test("aggregate import report accounts for all Ensino Fundamental Anos Finais components plus Competências Gerais", async () => {
   const summary = (await import("../data/bncc/import-report.json", { with: { type: "json" } })).default;
   assert.equal(summary.status, "valido");
-  assert.equal(summary.total_geral, 865);
-  assert.equal(summary.total_por_etapa["Ensino Fundamental"], 855);
+  assert.equal(summary.total_geral, 1107);
+  assert.equal(summary.total_por_etapa["Ensino Fundamental"], 1097);
   assert.equal(summary.total_por_etapa["Educação Básica"], 10);
   for (const { scopeId, total } of COMPONENTES) {
     assert.equal(summary.escopos[scopeId].status, "valido");

@@ -37,10 +37,8 @@ SUBSECTIONS = [
 ]
 END_MARKER = "4.1.4"  # start of Língua Inglesa
 
-CODE_PATTERN = re.compile(r"\((EF(?:67|89)EF\d{2})\)\s*(.*?)(?=\(EF(?:67|89)EF\d{2}\)|\Z)", re.S)
 
-
-def extract_pair(unit_page: pymupdf.Page, skill_page: pymupdf.Page, current_unit: str | None, grade_key: str, ano: str, anos_aplicaveis: list[str]) -> tuple[list[dict], str | None]:
+def extract_pair(unit_page: pymupdf.Page, skill_page: pymupdf.Page, current_unit: str | None, grade_key: str, ano: str, anos_aplicaveis: list[str], code_pattern: re.Pattern, segmento: str) -> tuple[list[dict], str | None]:
     boundaries = table_boundaries(unit_page)
     # Append a synthetic closing edge instead of overwriting boundaries[-1] —
     # see extract_lingua_portuguesa.py for why replacing it is unsafe.
@@ -62,14 +60,14 @@ def extract_pair(unit_page: pymupdf.Page, skill_page: pymupdf.Page, current_unit
         if not current_unit:
             raise ValueError(f"No unidade temática established before page {unit_page.number + 1}, row {top}-{bottom}")
 
-        for code, skill in CODE_PATTERN.findall(skills_text):
+        for code, skill in code_pattern.findall(skills_text):
             if code[2:4] != grade_key:
                 continue  # belongs to the other subsection's leftover text on a shared row, if any
             records.append(
                 {
                     "codigo": code,
                     "etapa": "Ensino Fundamental",
-                    "segmento": "Anos Finais",
+                    "segmento": segmento,
                     "area": "Linguagens",
                     "componente": "Educação Física",
                     "ano": ano,
@@ -94,6 +92,17 @@ def main() -> None:
     parser.add_argument("--pdf", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--download", action="store_true")
+    parser.add_argument("--heading1", default=SUBSECTIONS[0][0])
+    parser.add_argument("--grade-key1", default=SUBSECTIONS[0][1])
+    parser.add_argument("--ano1", default=SUBSECTIONS[0][2])
+    parser.add_argument("--anos-aplicaveis1", default=",".join(SUBSECTIONS[0][3]))
+    parser.add_argument("--heading2", default=SUBSECTIONS[1][0])
+    parser.add_argument("--grade-key2", default=SUBSECTIONS[1][1])
+    parser.add_argument("--ano2", default=SUBSECTIONS[1][2])
+    parser.add_argument("--anos-aplicaveis2", default=",".join(SUBSECTIONS[1][3]))
+    parser.add_argument("--end-marker", default=END_MARKER)
+    parser.add_argument("--segmento", default="Anos Finais")
+    parser.add_argument("--escopo-nota", default="6º ao 9º ano (códigos pareados EF67EF/EF89EF, sem variação por ano único)")
     args = parser.parse_args()
 
     if args.download:
@@ -101,20 +110,27 @@ def main() -> None:
     if not args.pdf.exists():
         raise FileNotFoundError(f"Official PDF not found: {args.pdf}")
 
+    subsections = [
+        (args.heading1, args.grade_key1, args.ano1, args.anos_aplicaveis1.split(",")),
+        (args.heading2, args.grade_key2, args.ano2, args.anos_aplicaveis2.split(",")),
+    ]
+    grade_keys = "|".join(re.escape(key) for key in (args.grade_key1, args.grade_key2))
+    code_pattern = re.compile(rf"\((EF(?:{grade_keys})EF\d{{2}})\)\s*(.*?)(?=\(EF(?:{grade_keys})EF\d{{2}}\)|\Z)", re.S)
+
     document = pymupdf.open(args.pdf)
-    starts = [find_heading_page(document, heading) for heading, *_ in SUBSECTIONS]
-    end = find_heading_page(document, END_MARKER, start=starts[-1])
+    starts = [find_heading_page(document, heading) for heading, *_ in subsections]
+    end = find_heading_page(document, args.end_marker, start=starts[-1])
     bounds = list(zip(starts, starts[1:] + [end]))
 
     records: list[dict] = []
-    for (heading, grade_key, ano, anos_aplicaveis), (start, section_end) in zip(SUBSECTIONS, bounds):
+    for (heading, grade_key, ano, anos_aplicaveis), (start, section_end) in zip(subsections, bounds):
         current_unit: str | None = None
         for unit_index in range(start, section_end, 2):
             skill_index = unit_index + 1
             if skill_index >= section_end:
                 break
             pair_records, current_unit = extract_pair(
-                document[unit_index], document[skill_index], current_unit, grade_key, ano, anos_aplicaveis,
+                document[unit_index], document[skill_index], current_unit, grade_key, ano, anos_aplicaveis, code_pattern, args.segmento,
             )
             records.extend(pair_records)
 
@@ -135,7 +151,7 @@ def main() -> None:
             "versao_fonte": SOURCE_VERSION,
             "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas (mesma técnica de Matemática/Arte), unidade temática com herança por linha",
             "data_extracao": imported_at,
-            "escopo": "Ensino Fundamental — Anos Finais — Educação Física — 6º ao 9º ano (códigos pareados EF67EF/EF89EF, sem variação por ano único)",
+            "escopo": f"Ensino Fundamental — {args.segmento} — Educação Física — {args.escopo_nota}",
             "classificacao": "dado_oficial",
         },
         "habilidades": records,

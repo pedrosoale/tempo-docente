@@ -8,7 +8,7 @@
     "data_extracao": "2026-08-10T19:17:40.669404Z",
     "escopo": "Ensino Fundamental — Anos Finais — Língua Portuguesa — 6º ao 9º ano",
     "classificacao": "dado_oficial",
-    "data_importacao": "2026-08-10T19:46:07.643Z",
+    "data_importacao": "2026-08-10T21:13:15.705Z",
     "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
     "total_registros": 185,
     "hash_sha256_fonte": "226a6be6e94ae4ca7f07f2cca2637e215becf19e8f291e7550e205b251b182e7"
@@ -36,7 +36,7 @@
       "pagina_fonte": 164,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef06lp02",
@@ -60,7 +60,7 @@
       "pagina_fonte": 164,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef06lp03",
@@ -84,7 +84,7 @@
       "pagina_fonte": 172,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef06lp04",
@@ -108,7 +108,7 @@
       "pagina_fonte": 172,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef06lp05",
@@ -132,7 +132,7 @@
       "pagina_fonte": 172,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef06lp06",
@@ -156,7 +156,7 @@
       "pagina_fonte": 172,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef06lp07",
@@ -180,7 +180,7 @@
       "pagina_fonte": 174,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef06lp08",
@@ -204,7 +204,7 @@
       "pagina_fonte": 174,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef06lp09",
@@ -228,7 +228,7 @@
       "pagina_fonte": 174,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef06lp10",
@@ -252,7 +252,7 @@
       "pagina_fonte": 174,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef06lp11",
@@ -276,7 +276,7 @@
       "pagina_fonte": 174,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef06lp12",
@@ -300,7 +300,7 @@
       "pagina_fonte": 174,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef07lp01",
@@ -324,7 +324,7 @@
       "pagina_fonte": 164,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef07lp02",
@@ -348,7 +348,7 @@
       "pagina_fonte": 164,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef07lp03",
@@ -372,7 +372,7 @@
       "pagina_fonte": 172,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef07lp04",
@@ -396,7 +396,7 @@
       "pagina_fonte": 172,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef07lp05",
@@ -420,7 +420,7 @@
       "pagina_fonte": 172,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef07lp06",
@@ -444,7 +444,7 @@
       "pagina_fonte": 172,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef07lp07",
@@ -468,7 +468,7 @@
       "pagina_fonte": 172,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef07lp08",
@@ -492,7 +492,7 @@
       "pagina_fonte": 174,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef07lp09",
@@ -516,7 +516,7 @@
       "pagina_fonte": 174,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef07lp10",
@@ -540,7 +540,7 @@
       "pagina_fonte": 174,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef07lp11",
@@ -564,7 +564,7 @@
       "pagina_fonte": 174,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef07lp12",
@@ -588,7 +588,7 @@
       "pagina_fonte": 174,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef07lp13",
@@ -612,7 +612,7 @@
       "pagina_fonte": 176,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef07lp14",
@@ -636,7 +636,7 @@
       "pagina_fonte": 176,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef08lp01",
@@ -660,7 +660,7 @@
       "pagina_fonte": 178,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef08lp02",
@@ -684,7 +684,7 @@
       "pagina_fonte": 178,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef08lp03",
@@ -708,7 +708,7 @@
       "pagina_fonte": 180,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef08lp04",
@@ -732,7 +732,7 @@
       "pagina_fonte": 188,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef08lp05",
@@ -756,7 +756,7 @@
       "pagina_fonte": 188,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef08lp06",
@@ -780,7 +780,7 @@
       "pagina_fonte": 190,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef08lp07",
@@ -804,7 +804,7 @@
       "pagina_fonte": 190,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef08lp08",
@@ -828,7 +828,7 @@
       "pagina_fonte": 190,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef08lp09",
@@ -852,7 +852,7 @@
       "pagina_fonte": 190,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef08lp10",
@@ -876,7 +876,7 @@
       "pagina_fonte": 190,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef08lp11",
@@ -900,7 +900,7 @@
       "pagina_fonte": 190,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef08lp12",
@@ -924,7 +924,7 @@
       "pagina_fonte": 190,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef08lp13",
@@ -948,7 +948,7 @@
       "pagina_fonte": 190,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef08lp14",
@@ -972,7 +972,7 @@
       "pagina_fonte": 192,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef08lp15",
@@ -996,7 +996,7 @@
       "pagina_fonte": 192,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef08lp16",
@@ -1020,7 +1020,7 @@
       "pagina_fonte": 192,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef09lp01",
@@ -1044,7 +1044,7 @@
       "pagina_fonte": 178,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef09lp02",
@@ -1068,7 +1068,7 @@
       "pagina_fonte": 178,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef09lp03",
@@ -1092,7 +1092,7 @@
       "pagina_fonte": 180,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef09lp04",
@@ -1116,7 +1116,7 @@
       "pagina_fonte": 188,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef09lp05",
@@ -1140,7 +1140,7 @@
       "pagina_fonte": 190,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef09lp06",
@@ -1164,7 +1164,7 @@
       "pagina_fonte": 190,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef09lp07",
@@ -1188,7 +1188,7 @@
       "pagina_fonte": 190,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef09lp08",
@@ -1212,7 +1212,7 @@
       "pagina_fonte": 190,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef09lp09",
@@ -1236,7 +1236,7 @@
       "pagina_fonte": 192,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef09lp10",
@@ -1260,7 +1260,7 @@
       "pagina_fonte": 192,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef09lp11",
@@ -1284,7 +1284,7 @@
       "pagina_fonte": 192,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef09lp12",
@@ -1308,7 +1308,7 @@
       "pagina_fonte": 192,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp01",
@@ -1333,7 +1333,7 @@
       "pagina_fonte": 164,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp02",
@@ -1358,7 +1358,7 @@
       "pagina_fonte": 164,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp03",
@@ -1383,7 +1383,7 @@
       "pagina_fonte": 164,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp04",
@@ -1408,7 +1408,7 @@
       "pagina_fonte": 164,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp05",
@@ -1433,7 +1433,7 @@
       "pagina_fonte": 164,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp06",
@@ -1458,7 +1458,7 @@
       "pagina_fonte": 164,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp07",
@@ -1483,7 +1483,7 @@
       "pagina_fonte": 164,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp08",
@@ -1508,7 +1508,7 @@
       "pagina_fonte": 166,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp09",
@@ -1533,7 +1533,7 @@
       "pagina_fonte": 166,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp10",
@@ -1558,7 +1558,7 @@
       "pagina_fonte": 166,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp11",
@@ -1583,7 +1583,7 @@
       "pagina_fonte": 166,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp12",
@@ -1608,7 +1608,7 @@
       "pagina_fonte": 166,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp13",
@@ -1633,7 +1633,7 @@
       "pagina_fonte": 166,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp14",
@@ -1658,7 +1658,7 @@
       "pagina_fonte": 168,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp15",
@@ -1683,7 +1683,7 @@
       "pagina_fonte": 168,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp16",
@@ -1708,7 +1708,7 @@
       "pagina_fonte": 168,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp17",
@@ -1733,7 +1733,7 @@
       "pagina_fonte": 168,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp18",
@@ -1758,7 +1758,7 @@
       "pagina_fonte": 168,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp19",
@@ -1783,7 +1783,7 @@
       "pagina_fonte": 168,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp20",
@@ -1808,7 +1808,7 @@
       "pagina_fonte": 170,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp21",
@@ -1833,7 +1833,7 @@
       "pagina_fonte": 170,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp22",
@@ -1858,7 +1858,7 @@
       "pagina_fonte": 170,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp23",
@@ -1883,7 +1883,7 @@
       "pagina_fonte": 170,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp24",
@@ -1908,7 +1908,7 @@
       "pagina_fonte": 170,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp25",
@@ -1933,7 +1933,7 @@
       "pagina_fonte": 170,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp26",
@@ -1958,7 +1958,7 @@
       "pagina_fonte": 170,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp27",
@@ -1983,7 +1983,7 @@
       "pagina_fonte": 170,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp28",
@@ -2008,7 +2008,7 @@
       "pagina_fonte": 170,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp29",
@@ -2033,7 +2033,7 @@
       "pagina_fonte": 170,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp30",
@@ -2058,7 +2058,7 @@
       "pagina_fonte": 172,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp31",
@@ -2083,7 +2083,7 @@
       "pagina_fonte": 172,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp32",
@@ -2108,7 +2108,7 @@
       "pagina_fonte": 172,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp33",
@@ -2133,7 +2133,7 @@
       "pagina_fonte": 172,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp34",
@@ -2158,7 +2158,7 @@
       "pagina_fonte": 172,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp35",
@@ -2183,7 +2183,7 @@
       "pagina_fonte": 172,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp36",
@@ -2208,7 +2208,7 @@
       "pagina_fonte": 176,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp37",
@@ -2233,7 +2233,7 @@
       "pagina_fonte": 176,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef67lp38",
@@ -2258,7 +2258,7 @@
       "pagina_fonte": 176,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp01",
@@ -2285,7 +2285,7 @@
       "pagina_fonte": 142,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp02",
@@ -2312,7 +2312,7 @@
       "pagina_fonte": 142,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp03",
@@ -2339,7 +2339,7 @@
       "pagina_fonte": 142,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp04",
@@ -2366,7 +2366,7 @@
       "pagina_fonte": 142,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp05",
@@ -2393,7 +2393,7 @@
       "pagina_fonte": 142,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp06",
@@ -2420,7 +2420,7 @@
       "pagina_fonte": 144,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp07",
@@ -2447,7 +2447,7 @@
       "pagina_fonte": 144,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp08",
@@ -2474,7 +2474,7 @@
       "pagina_fonte": 144,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp09",
@@ -2501,7 +2501,7 @@
       "pagina_fonte": 144,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp10",
@@ -2528,7 +2528,7 @@
       "pagina_fonte": 144,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp11",
@@ -2555,7 +2555,7 @@
       "pagina_fonte": 144,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp12",
@@ -2582,7 +2582,7 @@
       "pagina_fonte": 146,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp13",
@@ -2609,7 +2609,7 @@
       "pagina_fonte": 146,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp14",
@@ -2636,7 +2636,7 @@
       "pagina_fonte": 146,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp15",
@@ -2663,7 +2663,7 @@
       "pagina_fonte": 146,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp16",
@@ -2690,7 +2690,7 @@
       "pagina_fonte": 146,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp17",
@@ -2717,7 +2717,7 @@
       "pagina_fonte": 146,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp18",
@@ -2744,7 +2744,7 @@
       "pagina_fonte": 146,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp19",
@@ -2771,7 +2771,7 @@
       "pagina_fonte": 146,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp20",
@@ -2798,7 +2798,7 @@
       "pagina_fonte": 148,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp21",
@@ -2825,7 +2825,7 @@
       "pagina_fonte": 148,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp22",
@@ -2852,7 +2852,7 @@
       "pagina_fonte": 148,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp23",
@@ -2879,7 +2879,7 @@
       "pagina_fonte": 148,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp24",
@@ -2906,7 +2906,7 @@
       "pagina_fonte": 150,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp25",
@@ -2933,7 +2933,7 @@
       "pagina_fonte": 150,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp26",
@@ -2960,7 +2960,7 @@
       "pagina_fonte": 150,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp27",
@@ -2987,7 +2987,7 @@
       "pagina_fonte": 150,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp28",
@@ -3014,7 +3014,7 @@
       "pagina_fonte": 150,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp29",
@@ -3041,7 +3041,7 @@
       "pagina_fonte": 152,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp30",
@@ -3068,7 +3068,7 @@
       "pagina_fonte": 152,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp31",
@@ -3095,7 +3095,7 @@
       "pagina_fonte": 152,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp32",
@@ -3122,7 +3122,7 @@
       "pagina_fonte": 152,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp33",
@@ -3149,7 +3149,7 @@
       "pagina_fonte": 152,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp34",
@@ -3176,7 +3176,7 @@
       "pagina_fonte": 152,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp35",
@@ -3203,7 +3203,7 @@
       "pagina_fonte": 154,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp36",
@@ -3230,7 +3230,7 @@
       "pagina_fonte": 154,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp37",
@@ -3257,7 +3257,7 @@
       "pagina_fonte": 154,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp38",
@@ -3284,7 +3284,7 @@
       "pagina_fonte": 154,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp39",
@@ -3311,7 +3311,7 @@
       "pagina_fonte": 154,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp40",
@@ -3338,7 +3338,7 @@
       "pagina_fonte": 156,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp41",
@@ -3365,7 +3365,7 @@
       "pagina_fonte": 156,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp42",
@@ -3392,7 +3392,7 @@
       "pagina_fonte": 156,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp43",
@@ -3419,7 +3419,7 @@
       "pagina_fonte": 156,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp44",
@@ -3446,7 +3446,7 @@
       "pagina_fonte": 158,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp45",
@@ -3473,7 +3473,7 @@
       "pagina_fonte": 158,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp46",
@@ -3500,7 +3500,7 @@
       "pagina_fonte": 158,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp47",
@@ -3527,7 +3527,7 @@
       "pagina_fonte": 160,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp48",
@@ -3554,7 +3554,7 @@
       "pagina_fonte": 160,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp49",
@@ -3581,7 +3581,7 @@
       "pagina_fonte": 160,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp50",
@@ -3608,7 +3608,7 @@
       "pagina_fonte": 160,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp51",
@@ -3635,7 +3635,7 @@
       "pagina_fonte": 160,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp52",
@@ -3662,7 +3662,7 @@
       "pagina_fonte": 160,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp53",
@@ -3689,7 +3689,7 @@
       "pagina_fonte": 162,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp54",
@@ -3716,7 +3716,7 @@
       "pagina_fonte": 162,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp55",
@@ -3743,7 +3743,7 @@
       "pagina_fonte": 162,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef69lp56",
@@ -3770,7 +3770,7 @@
       "pagina_fonte": 162,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp01",
@@ -3795,7 +3795,7 @@
       "pagina_fonte": 178,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp02",
@@ -3820,7 +3820,7 @@
       "pagina_fonte": 178,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp03",
@@ -3845,7 +3845,7 @@
       "pagina_fonte": 178,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp04",
@@ -3870,7 +3870,7 @@
       "pagina_fonte": 178,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp05",
@@ -3895,7 +3895,7 @@
       "pagina_fonte": 178,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp06",
@@ -3920,7 +3920,7 @@
       "pagina_fonte": 178,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp07",
@@ -3945,7 +3945,7 @@
       "pagina_fonte": 178,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp08",
@@ -3970,7 +3970,7 @@
       "pagina_fonte": 180,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp09",
@@ -3995,7 +3995,7 @@
       "pagina_fonte": 180,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp10",
@@ -4020,7 +4020,7 @@
       "pagina_fonte": 180,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp11",
@@ -4045,7 +4045,7 @@
       "pagina_fonte": 180,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp12",
@@ -4070,7 +4070,7 @@
       "pagina_fonte": 182,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp13",
@@ -4095,7 +4095,7 @@
       "pagina_fonte": 182,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp14",
@@ -4120,7 +4120,7 @@
       "pagina_fonte": 182,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp15",
@@ -4145,7 +4145,7 @@
       "pagina_fonte": 182,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp16",
@@ -4170,7 +4170,7 @@
       "pagina_fonte": 182,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp17",
@@ -4195,7 +4195,7 @@
       "pagina_fonte": 184,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp18",
@@ -4220,7 +4220,7 @@
       "pagina_fonte": 184,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp19",
@@ -4245,7 +4245,7 @@
       "pagina_fonte": 184,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp20",
@@ -4270,7 +4270,7 @@
       "pagina_fonte": 184,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp21",
@@ -4295,7 +4295,7 @@
       "pagina_fonte": 184,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp22",
@@ -4320,7 +4320,7 @@
       "pagina_fonte": 186,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp23",
@@ -4345,7 +4345,7 @@
       "pagina_fonte": 186,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp24",
@@ -4370,7 +4370,7 @@
       "pagina_fonte": 186,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp25",
@@ -4395,7 +4395,7 @@
       "pagina_fonte": 186,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp26",
@@ -4420,7 +4420,7 @@
       "pagina_fonte": 186,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp27",
@@ -4445,7 +4445,7 @@
       "pagina_fonte": 186,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp28",
@@ -4470,7 +4470,7 @@
       "pagina_fonte": 186,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp29",
@@ -4495,7 +4495,7 @@
       "pagina_fonte": 186,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp30",
@@ -4520,7 +4520,7 @@
       "pagina_fonte": 186,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp31",
@@ -4545,7 +4545,7 @@
       "pagina_fonte": 186,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp32",
@@ -4570,7 +4570,7 @@
       "pagina_fonte": 188,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp33",
@@ -4595,7 +4595,7 @@
       "pagina_fonte": 188,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp34",
@@ -4620,7 +4620,7 @@
       "pagina_fonte": 188,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp35",
@@ -4645,7 +4645,7 @@
       "pagina_fonte": 188,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp36",
@@ -4670,7 +4670,7 @@
       "pagina_fonte": 188,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     },
     {
       "id": "ef89lp37",
@@ -4695,7 +4695,7 @@
       "pagina_fonte": 192,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.643Z"
+      "data_importacao": "2026-08-10T21:13:15.705Z"
     }
   ]
 }

@@ -37,12 +37,8 @@ from bncc_extract_common import (
 SECTION_HEADING = "ARTE – 6º AO 9º ANO"
 END_MARKER = "4.1.3"  # start of Educação Física
 
-CODE_PATTERN = re.compile(r"\((EF69AR\d{2})\)\s*(.*?)(?=\(EF69AR\d{2}\)|\Z)", re.S)
-ANO_LABEL = "6º ao 9º ano"
-ANOS_APLICAVEIS = ["6º ano", "7º ano", "8º ano", "9º ano"]
 
-
-def extract_pair(document: pymupdf.Document, unit_index: int, skill_index: int) -> list[dict]:
+def extract_pair(document: pymupdf.Document, unit_index: int, skill_index: int, code_pattern: re.Pattern, componente: str, ano_label: str, anos_aplicaveis: list[str], segmento: str, col_split: float = 291.75) -> list[dict]:
     unit_page = document[unit_index]
     skill_page = document[skill_index]
     boundaries = table_boundaries(unit_page)
@@ -55,11 +51,11 @@ def extract_pair(document: pymupdf.Document, unit_index: int, skill_index: int) 
     current_unit = extract_pair.current_unit
 
     for top, bottom in zip(boundaries, boundaries[1:]):
-        unit_text = clean_text(unit_page.get_textbox(pymupdf.Rect(62, top + 1, 291.5, bottom - 1)))
+        unit_text = clean_text(unit_page.get_textbox(pymupdf.Rect(62, top + 1, col_split - 0.25, bottom - 1)))
         if unit_text:
             current_unit = unit_text.title() if unit_text.isupper() else unit_text
         object_text = clean_text(
-            unit_page.get_textbox(pymupdf.Rect(292, top + 1, 552.4, bottom - 1)),
+            unit_page.get_textbox(pymupdf.Rect(col_split + 0.25, top + 1, 552.4, bottom - 1)),
             preserve_lines=True,
         )
         skills_text = skill_page.get_textbox(pymupdf.Rect(40, top + 1, 536, bottom - 1))
@@ -67,16 +63,16 @@ def extract_pair(document: pymupdf.Document, unit_index: int, skill_index: int) 
         if not current_unit:
             raise ValueError(f"No unidade temática established before page {unit_index + 1}, row {top}-{bottom}")
 
-        for code, skill in CODE_PATTERN.findall(skills_text):
+        for code, skill in code_pattern.findall(skills_text):
             records.append(
                 {
                     "codigo": code,
                     "etapa": "Ensino Fundamental",
-                    "segmento": "Anos Finais",
+                    "segmento": segmento,
                     "area": "Linguagens",
-                    "componente": "Arte",
-                    "ano": ANO_LABEL,
-                    "anos_aplicaveis": ANOS_APLICAVEIS,
+                    "componente": componente,
+                    "ano": ano_label,
+                    "anos_aplicaveis": anos_aplicaveis,
                     "unidade_tematica": current_unit,
                     "objeto_conhecimento": object_text,
                     "habilidade": clean_text(skill),
@@ -101,6 +97,14 @@ def main() -> None:
     parser.add_argument("--pdf", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--download", action="store_true")
+    parser.add_argument("--start-heading", default=SECTION_HEADING)
+    parser.add_argument("--end-marker", default=END_MARKER)
+    parser.add_argument("--code-regex", default=r"\((EF69AR\d{2})\)\s*(.*?)(?=\(EF69AR\d{2}\)|\Z)")
+    parser.add_argument("--ano-label", default="6º ao 9º ano")
+    parser.add_argument("--anos-aplicaveis", default="6º ano,7º ano,8º ano,9º ano")
+    parser.add_argument("--segmento", default="Anos Finais")
+    parser.add_argument("--escopo-nota", default="6º ao 9º ano (código único EF69AR, sem variação por ano)")
+    parser.add_argument("--col-split", type=float, default=291.75, help="x-coordinate of the unidade/objeto column divider (confirmed per-table from the PDF's own vector lines, not assumed)")
     args = parser.parse_args()
 
     if args.download:
@@ -108,16 +112,19 @@ def main() -> None:
     if not args.pdf.exists():
         raise FileNotFoundError(f"Official PDF not found: {args.pdf}")
 
+    code_pattern = re.compile(args.code_regex, re.S)
+    anos_aplicaveis = args.anos_aplicaveis.split(",")
+
     document = pymupdf.open(args.pdf)
-    start = find_heading_page(document, SECTION_HEADING)
-    end = find_heading_page(document, END_MARKER, start=start)
+    start = find_heading_page(document, args.start_heading)
+    end = find_heading_page(document, args.end_marker, start=start)
 
     records: list[dict] = []
     for unit_index in range(start, end, 2):
         skill_index = unit_index + 1
         if skill_index >= end:
             break
-        records.extend(extract_pair(document, unit_index, skill_index))
+        records.extend(extract_pair(document, unit_index, skill_index, code_pattern, "Arte", args.ano_label, anos_aplicaveis, args.segmento, args.col_split))
 
     seen = set()
     for record in records:
@@ -136,7 +143,7 @@ def main() -> None:
             "versao_fonte": SOURCE_VERSION,
             "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas (mesma técnica de Matemática), unidade temática com herança por linha e entre pares de página",
             "data_extracao": imported_at,
-            "escopo": "Ensino Fundamental — Anos Finais — Arte — 6º ao 9º ano (código único EF69AR, sem variação por ano)",
+            "escopo": f"Ensino Fundamental — {args.segmento} — Arte — {args.escopo_nota}",
             "classificacao": "dado_oficial",
         },
         "habilidades": records,

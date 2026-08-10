@@ -1,0 +1,25 @@
+{
+  "escopo": "educacao-fisica-anos-iniciais",
+  "data_importacao": "2026-08-10T21:13:15.725Z",
+  "lote_importacao": "2026-08-10-educacao-fisica-anos-iniciais",
+  "arquivo_fonte": "data/bncc/source/official-mec-bncc-educacao-fisica-anos-iniciais.json",
+  "hash_sha256_fonte": "f6d87bac7b8e99c8e55e0cd9ff5add16647182094a77d25f97e75ac73041d212",
+  "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+  "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas (mesma técnica de Matemática/Arte), unidade temática com herança por linha",
+  "total_por_ano": {
+    "1º e 2º ano": 12,
+    "3º ao 5º ano": 15
+  },
+  "total_por_unidade_tematica": {
+    "Brincadeiras e jogos": 8,
+    "Esportes": 4,
+    "Ginásticas": 6,
+    "Danças": 6,
+    "Lutas": 3
+  },
+  "total_geral": 27,
+  "duplicidades": [],
+  "registros_rejeitados": [],
+  "alertas": [],
+  "status": "valido"
+}

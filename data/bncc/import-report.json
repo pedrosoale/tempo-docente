@@ -1,25 +1,25 @@
 {
-  "data_importacao": "2026-08-10T19:46:07.695Z",
+  "data_importacao": "2026-08-10T21:13:15.784Z",
   "status": "valido",
-  "total_geral": 865,
+  "total_geral": 1107,
   "total_por_etapa": {
-    "Ensino Fundamental": 855,
+    "Ensino Fundamental": 1097,
     "Educação Básica": 10
   },
   "total_por_tipo": {
-    "habilidade": 855,
+    "habilidade": 1097,
     "competencia_geral": 10
   },
   "total_por_componente": {
     "Matemática": 247,
     "Língua Portuguesa": 185,
-    "Arte": 35,
-    "Educação Física": 42,
+    "Arte": 61,
+    "Educação Física": 69,
     "Língua Inglesa": 88,
-    "Ciências": 63,
-    "Geografia": 67,
-    "História": 98,
-    "Ensino Religioso": 30
+    "Ciências": 111,
+    "Geografia": 123,
+    "História": 150,
+    "Ensino Religioso": 63
   },
   "escopos": {
     "matematica-anos-finais": {
@@ -37,10 +37,20 @@
       "total": 126,
       "relatorio": "data/bncc/matematica-anos-iniciais.report.json"
     },
+    "arte-anos-iniciais": {
+      "status": "valido",
+      "total": 26,
+      "relatorio": "data/bncc/arte-anos-iniciais.report.json"
+    },
     "arte-anos-finais": {
       "status": "valido",
       "total": 35,
       "relatorio": "data/bncc/arte-anos-finais.report.json"
+    },
+    "educacao-fisica-anos-iniciais": {
+      "status": "valido",
+      "total": 27,
+      "relatorio": "data/bncc/educacao-fisica-anos-iniciais.report.json"
     },
     "educacao-fisica-anos-finais": {
       "status": "valido",
@@ -52,20 +62,40 @@
       "total": 88,
       "relatorio": "data/bncc/lingua-inglesa-anos-finais.report.json"
     },
+    "ciencias-anos-iniciais": {
+      "status": "valido",
+      "total": 48,
+      "relatorio": "data/bncc/ciencias-anos-iniciais.report.json"
+    },
     "ciencias-anos-finais": {
       "status": "valido",
       "total": 63,
       "relatorio": "data/bncc/ciencias-anos-finais.report.json"
+    },
+    "geografia-anos-iniciais": {
+      "status": "valido",
+      "total": 56,
+      "relatorio": "data/bncc/geografia-anos-iniciais.report.json"
     },
     "geografia-anos-finais": {
       "status": "valido",
       "total": 67,
       "relatorio": "data/bncc/geografia-anos-finais.report.json"
     },
+    "historia-anos-iniciais": {
+      "status": "valido",
+      "total": 52,
+      "relatorio": "data/bncc/historia-anos-iniciais.report.json"
+    },
     "historia-anos-finais": {
       "status": "valido",
       "total": 98,
       "relatorio": "data/bncc/historia-anos-finais.report.json"
+    },
+    "ensino-religioso-anos-iniciais": {
+      "status": "valido",
+      "total": 33,
+      "relatorio": "data/bncc/ensino-religioso-anos-iniciais.report.json"
     },
     "ensino-religioso-anos-finais": {
       "status": "valido",

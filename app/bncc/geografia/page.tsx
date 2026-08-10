@@ -4,8 +4,8 @@ import { BnccExplorer } from "../components/BnccExplorer";
 import { BnccIntro } from "../components/BnccIntro";
 
 export const metadata: Metadata = {
-  title: "BNCC de Geografia — Anos Finais | Tempo Docente",
-  description: "Consulte as habilidades da BNCC de Geografia do Ensino Fundamental — Anos Finais, por unidade temática.",
+  title: "BNCC de Geografia | Tempo Docente",
+  description: "Consulte as habilidades da BNCC de Geografia do Ensino Fundamental, do 1º ao 9º ano, por unidade temática.",
   alternates: { canonical: "/bncc/geografia" },
 };
 
@@ -14,11 +14,11 @@ export default function GeografiaPage() {
     <>
       <BnccIntro
         title="BNCC de Geografia"
-        subtitle="Consulte as habilidades organizadas por unidade temática — Ensino Fundamental, Anos Finais."
+        subtitle="Consulte as habilidades organizadas por unidade temática — Ensino Fundamental."
         scopeComponent="Geografia"
-        scopeSegmento="Ensino Fundamental — Anos Finais"
+        scopeSegmento="Ensino Fundamental — Anos Iniciais e Anos Finais"
         scopeTotal={`${geografiaSkills.length} habilidades`}
-        scopeGrades="6º, 7º, 8º e 9º anos"
+        scopeGrades="1º ao 9º ano"
       />
       <BnccExplorer
         skills={geografiaSkills}

@@ -1,0 +1,36 @@
+{
+  "escopo": "historia-anos-iniciais",
+  "data_importacao": "2026-08-10T21:13:15.734Z",
+  "lote_importacao": "2026-08-10-historia-anos-iniciais",
+  "arquivo_fonte": "data/bncc/source/official-mec-bncc-historia-anos-iniciais.json",
+  "hash_sha256_fonte": "d6624ef45d792adf03d6a89f31af2b7b8c7280ab7aa3d0c27b17fedab5fe955b",
+  "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+  "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas",
+  "total_por_ano": {
+    "1º ano": 8,
+    "2º ano": 11,
+    "3º ano": 12,
+    "4º ano": 11,
+    "5º ano": 10
+  },
+  "total_por_unidade_tematica": {
+    "Mundo pessoal: meu lugar no mundo": 4,
+    "Mundo pessoal: eu, meu grupo social e meu tempo": 4,
+    "A comunidade e seus registros": 7,
+    "As formas de registrar as experiências da comunidade": 2,
+    "O trabalho e a sustentabilidade na comunidade": 2,
+    "As pessoas e os grupos que compõem a cidade e o município": 4,
+    "O lugar em que vive": 4,
+    "A noção de espaço público e privado": 4,
+    "Transformações e permanências nas trajetórias dos grupos humanos": 3,
+    "Circulação de pessoas, produtos e culturas": 5,
+    "As questões históricas relativas às migrações": 3,
+    "Povos e culturas: meu lugar no mundo e meu grupo social": 5,
+    "Registros da história: linguagens e culturas": 5
+  },
+  "total_geral": 52,
+  "duplicidades": [],
+  "registros_rejeitados": [],
+  "alertas": [],
+  "status": "valido"
+}

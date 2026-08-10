@@ -4,8 +4,8 @@ import { BnccExplorer } from "../components/BnccExplorer";
 import { BnccIntro } from "../components/BnccIntro";
 
 export const metadata: Metadata = {
-  title: "BNCC de Educação Física — Anos Finais | Tempo Docente",
-  description: "Consulte as habilidades da BNCC de Educação Física do Ensino Fundamental — Anos Finais, por unidade temática.",
+  title: "BNCC de Educação Física | Tempo Docente",
+  description: "Consulte as habilidades da BNCC de Educação Física do Ensino Fundamental, do 1º ao 9º ano, por unidade temática.",
   alternates: { canonical: "/bncc/educacao-fisica" },
 };
 
@@ -14,11 +14,11 @@ export default function EducacaoFisicaPage() {
     <>
       <BnccIntro
         title="BNCC de Educação Física"
-        subtitle="Consulte as habilidades de brincadeiras e jogos, esportes, ginásticas, danças, lutas e práticas corporais de aventura — Ensino Fundamental, Anos Finais."
+        subtitle="Consulte as habilidades de brincadeiras e jogos, esportes, ginásticas, danças, lutas e práticas corporais de aventura — Ensino Fundamental."
         scopeComponent="Educação Física"
-        scopeSegmento="Ensino Fundamental — Anos Finais"
+        scopeSegmento="Ensino Fundamental — Anos Iniciais e Anos Finais"
         scopeTotal={`${educacaoFisicaSkills.length} habilidades`}
-        scopeGrades="6º-7º e 8º-9º (códigos pareados)"
+        scopeGrades="1º ao 9º ano (códigos pareados)"
       />
       <BnccExplorer
         skills={educacaoFisicaSkills}

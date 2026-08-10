@@ -8,7 +8,7 @@
     "data_extracao": "2026-08-08T14:21:18.767554Z",
     "escopo": "Ensino Fundamental — Anos Finais — Educação Física — 6º ao 9º ano (códigos pareados EF67EF/EF89EF, sem variação por ano único)",
     "classificacao": "dado_oficial",
-    "data_importacao": "2026-08-10T19:46:07.670Z",
+    "data_importacao": "2026-08-10T21:13:15.736Z",
     "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
     "total_registros": 42,
     "hash_sha256_fonte": "d9f78a8f1fee6d6e71fcb2aa37ce783f561117d73bbd907183f71a55bb474f8a"
@@ -37,7 +37,7 @@
       "pagina_fonte": 234,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef02",
@@ -62,7 +62,7 @@
       "pagina_fonte": 234,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef03",
@@ -87,7 +87,7 @@
       "pagina_fonte": 234,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef04",
@@ -112,7 +112,7 @@
       "pagina_fonte": 234,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef05",
@@ -137,7 +137,7 @@
       "pagina_fonte": 234,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef06",
@@ -162,7 +162,7 @@
       "pagina_fonte": 234,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef07",
@@ -187,7 +187,7 @@
       "pagina_fonte": 234,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef08",
@@ -212,7 +212,7 @@
       "pagina_fonte": 234,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef09",
@@ -237,7 +237,7 @@
       "pagina_fonte": 234,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef10",
@@ -262,7 +262,7 @@
       "pagina_fonte": 234,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef11",
@@ -287,7 +287,7 @@
       "pagina_fonte": 234,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef12",
@@ -312,7 +312,7 @@
       "pagina_fonte": 234,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef13",
@@ -337,7 +337,7 @@
       "pagina_fonte": 234,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef14",
@@ -362,7 +362,7 @@
       "pagina_fonte": 236,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef15",
@@ -387,7 +387,7 @@
       "pagina_fonte": 236,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef16",
@@ -412,7 +412,7 @@
       "pagina_fonte": 236,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef17",
@@ -437,7 +437,7 @@
       "pagina_fonte": 236,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef18",
@@ -462,7 +462,7 @@
       "pagina_fonte": 236,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef19",
@@ -487,7 +487,7 @@
       "pagina_fonte": 236,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef20",
@@ -512,7 +512,7 @@
       "pagina_fonte": 236,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef67ef21",
@@ -537,7 +537,7 @@
       "pagina_fonte": 236,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef01",
@@ -562,7 +562,7 @@
       "pagina_fonte": 238,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef02",
@@ -587,7 +587,7 @@
       "pagina_fonte": 238,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef03",
@@ -612,7 +612,7 @@
       "pagina_fonte": 238,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef04",
@@ -637,7 +637,7 @@
       "pagina_fonte": 238,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef05",
@@ -662,7 +662,7 @@
       "pagina_fonte": 238,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef06",
@@ -687,7 +687,7 @@
       "pagina_fonte": 238,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef07",
@@ -712,7 +712,7 @@
       "pagina_fonte": 238,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef08",
@@ -737,7 +737,7 @@
       "pagina_fonte": 238,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef09",
@@ -762,7 +762,7 @@
       "pagina_fonte": 238,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef10",
@@ -787,7 +787,7 @@
       "pagina_fonte": 238,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef11",
@@ -812,7 +812,7 @@
       "pagina_fonte": 238,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef12",
@@ -837,7 +837,7 @@
       "pagina_fonte": 238,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef13",
@@ -862,7 +862,7 @@
       "pagina_fonte": 238,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef14",
@@ -887,7 +887,7 @@
       "pagina_fonte": 238,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef15",
@@ -912,7 +912,7 @@
       "pagina_fonte": 238,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef16",
@@ -937,7 +937,7 @@
       "pagina_fonte": 240,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef17",
@@ -962,7 +962,7 @@
       "pagina_fonte": 240,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef18",
@@ -987,7 +987,7 @@
       "pagina_fonte": 240,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef19",
@@ -1012,7 +1012,7 @@
       "pagina_fonte": 240,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef20",
@@ -1037,7 +1037,7 @@
       "pagina_fonte": 240,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     },
     {
       "id": "ef89ef21",
@@ -1062,7 +1062,7 @@
       "pagina_fonte": 240,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-10-educacao-fisica-anos-finais",
-      "data_importacao": "2026-08-10T19:46:07.670Z"
+      "data_importacao": "2026-08-10T21:13:15.736Z"
     }
   ]
 }

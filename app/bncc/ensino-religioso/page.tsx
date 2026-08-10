@@ -4,8 +4,8 @@ import { BnccExplorer } from "../components/BnccExplorer";
 import { BnccIntro } from "../components/BnccIntro";
 
 export const metadata: Metadata = {
-  title: "BNCC de Ensino Religioso — Anos Finais | Tempo Docente",
-  description: "Consulte as habilidades da BNCC de Ensino Religioso do Ensino Fundamental — Anos Finais, por unidade temática.",
+  title: "BNCC de Ensino Religioso | Tempo Docente",
+  description: "Consulte as habilidades da BNCC de Ensino Religioso do Ensino Fundamental, do 1º ao 9º ano, por unidade temática.",
   alternates: { canonical: "/bncc/ensino-religioso" },
 };
 
@@ -14,11 +14,11 @@ export default function EnsinoReligiosoPage() {
     <>
       <BnccIntro
         title="BNCC de Ensino Religioso"
-        subtitle="Consulte as habilidades de crenças religiosas e filosofias de vida e manifestações religiosas — Ensino Fundamental, Anos Finais."
+        subtitle="Consulte as habilidades de crenças religiosas e filosofias de vida e manifestações religiosas — Ensino Fundamental."
         scopeComponent="Ensino Religioso"
-        scopeSegmento="Ensino Fundamental — Anos Finais"
+        scopeSegmento="Ensino Fundamental — Anos Iniciais e Anos Finais"
         scopeTotal={`${ensinoReligiosoSkills.length} habilidades`}
-        scopeGrades="6º, 7º, 8º e 9º anos"
+        scopeGrades="1º ao 9º ano"
       />
       <BnccExplorer
         skills={ensinoReligiosoSkills}
