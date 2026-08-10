@@ -1,9 +1,9 @@
 {
   "escopo": "lingua-portuguesa-anos-finais",
-  "data_importacao": "2026-08-08T15:25:50.879Z",
-  "lote_importacao": "2026-08-08-lingua-portuguesa-anos-finais",
+  "data_importacao": "2026-08-10T19:46:07.643Z",
+  "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
   "arquivo_fonte": "data/bncc/source/official-mec-bncc-lingua-portuguesa-anos-finais.json",
-  "hash_sha256_fonte": "362cad006b09e11a463b178fa7b576ad38d52f1e85d628a3b8d8e328c97c1063",
+  "hash_sha256_fonte": "226a6be6e94ae4ca7f07f2cca2637e215becf19e8f291e7550e205b251b182e7",
   "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
   "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas (mesma técnica de Matemática); campo de atuação e prática de linguagem detectados por cabeçalho de linha com herança",
   "total_por_ano": {

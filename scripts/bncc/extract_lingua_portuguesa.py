@@ -82,11 +82,17 @@ def extract_pair(unit_page: pymupdf.Page, skill_page: pymupdf.Page, current_camp
     # here: on some pages it returns a value *smaller* than the already-detected
     # last boundary (confirmed on page 172, where it reported 392 while real
     # habilidade text — EF06LP04-06 — runs to y≈670), which would silently
-    # truncate trailing habilidades instead of extending the row. Always
-    # extend to the page's usable content height instead; a little slack past
-    # the real table edge only risks harmless trailing whitespace, never a
-    # dropped code.
-    boundaries[-1] = max(boundaries[-1], skill_page.rect.height - 40)
+    # truncate trailing habilidades instead of extending the row. Extend by
+    # appending a synthetic closing edge rather than overwriting boundaries[-1]
+    # — that value is a real internal divider between the last two rows, and
+    # replacing it merges their objeto_conhecimento/campo/prática text into one
+    # (confirmed as a live bug this same pattern caused in the Anos Iniciais
+    # Matemática extractor: EF04MA27 and EF04MA28 silently got identical,
+    # concatenated objeto_conhecimento). Appending is strictly safer: it only
+    # ever adds slack past the real table edge.
+    page_edge = skill_page.rect.height - 40
+    if page_edge > boundaries[-1]:
+        boundaries.append(page_edge)
     boundaries = [145.0, *boundaries]
     records: list[dict] = []
     current_pratica: str | None = None

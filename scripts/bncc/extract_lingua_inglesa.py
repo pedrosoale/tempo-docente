@@ -51,7 +51,11 @@ EIXO_LABELS = {
 
 def extract_pair(unit_page: pymupdf.Page, skill_page: pymupdf.Page, current_eixo: str | None) -> tuple[list[dict], str | None]:
     boundaries = table_boundaries(unit_page)
-    boundaries[-1] = max(boundaries[-1], table_bottom(skill_page))
+    # Append a synthetic closing edge instead of overwriting boundaries[-1] —
+    # see extract_lingua_portuguesa.py for why replacing it is unsafe.
+    page_edge = table_bottom(skill_page)
+    if page_edge > boundaries[-1]:
+        boundaries.append(page_edge)
     # Each eixo opens with a long descriptive paragraph that sits above the
     # first detected row rule (confirmed by inspecting page 249's text
     # y-positions: the "UNIDADES TEMÁTICAS" column header sits at y≈129 and

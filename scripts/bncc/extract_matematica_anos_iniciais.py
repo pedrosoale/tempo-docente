@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Extract BNCC Mathematics skills for grades 6-9 from the official MEC PDF.
+"""Extract BNCC Mathematics skills for grades 1-5 from the official MEC PDF.
 
-The official PDF presents each curriculum table as a two-page spread: units and
-knowledge objects on the left page, skills on the right page. This extractor
-uses the table's vector row boundaries to preserve those objective relations.
-It never rewrites official skill text.
+Same technique as extract_official.py (grades 6-9): the official PDF presents
+each curriculum table as a two-page spread, units/objects on the left page,
+skills on the right page. Row boundaries come from the table's own vector
+lines. It never rewrites official skill text.
 """
 
 from __future__ import annotations
@@ -25,34 +25,24 @@ SOURCE_VERSION = "BNCC Educação Infantil e Ensino Fundamental — versão fina
 
 # Zero-based PDF indices. Each tuple is (units/objects page, skills page).
 PAGE_PAIRS = {
-    6: [(301, 302), (303, 304), (305, 306)],
-    7: [(307, 308), (309, 310), (311, 312)],
-    8: [(313, 314), (315, 316)],
-    9: [(317, 318), (319, 320)],
+    1: [(279, 280), (281, 282)],
+    2: [(283, 284), (285, 286)],
+    3: [(287, 288), (289, 290)],
+    4: [(291, 292), (293, 294)],
+    5: [(295, 296), (297, 298)],
 }
 
-CODE_PATTERN = re.compile(r"\((EF(?:06|07|08|09)MA\d{2})\)\s*(.*?)(?=\(EF(?:06|07|08|09)MA\d{2}\)|\Z)", re.S)
+CODE_PATTERN = re.compile(r"\((EF0[1-5]MA\d{2})\)\s*(.*?)(?=\(EF0[1-5]MA\d{2}\)|\Z)", re.S)
 
-# PyMuPDF flattens the raised glyph in this formula to a baseline "2".
-# Keep the correction code-specific and documented so official prose is never
-# altered by a broad, silent replacement.
-CONTROLLED_TYPOGRAPHY_CORRECTIONS = {
-    "EF08MA09": {
-        "objeto_conhecimento": (("ax2", "ax²"),),
-        "habilidade": (("ax2", "ax²"),),
-    },
-    "EF07MA33": {
-        # PyMuPDF drops the standalone π glyph entirely (a symbol-font
-        # character with no direct text-layer mapping in this PDF), leaving a
-        # double space where it belongs. Confirmed against the official MEC
-        # spreadsheet export, which renders the character correctly.
-        "habilidade": (("número como a razão", "número π como a razão"),),
-    },
-}
+# Documented, code-specific typography corrections go here if PyMuPDF is
+# found to flatten a glyph for one of these codes (same pattern as
+# extract_official.py). None known yet for 1º-5º ano — verify against the
+# official spreadsheet export before adding any entry.
+CONTROLLED_TYPOGRAPHY_CORRECTIONS: dict[str, dict[str, tuple[tuple[str, str], ...]]] = {}
 
 
 def clean_text(value: str, preserve_lines: bool = False) -> str:
-    value = unicodedata.normalize("NFC", value.replace("\u00ad", ""))
+    value = unicodedata.normalize("NFC", value.replace("­", ""))
     lines = [re.sub(r"\s+", " ", line).strip() for line in value.splitlines()]
     lines = [line for line in lines if line]
     return "\n".join(lines) if preserve_lines else " ".join(lines)
@@ -83,30 +73,18 @@ def table_boundaries(page: pymupdf.Page) -> list[float]:
     return boundaries
 
 
-def table_bottom(page: pymupdf.Page) -> float:
-    values: list[float] = []
-    for drawing in page.get_drawings():
-        for item in drawing["items"]:
-            if item[0] != "l":
-                continue
-            start, end = item[1], item[2]
-            if abs(start.y - end.y) <= 0.2 and abs(start.x - end.x) >= 400 and 150 <= start.y <= 790:
-                values.append(round(start.y, 2))
-    if not values:
-        raise ValueError(f"Table bottom not found on PDF page {page.number + 1}")
-    return max(values)
-
-
 def extract_pair(document: pymupdf.Document, grade: int, unit_index: int, skill_index: int) -> list[dict]:
     unit_page = document[unit_index]
     skill_page = document[skill_index]
     boundaries = table_boundaries(unit_page)
-    # The skills half of a spread can extend lower than the objects half.
-    # Append a synthetic closing edge instead of overwriting boundaries[-1] —
-    # that value is a real internal divider between the last two rows, and
-    # replacing it merges their unit/object text (confirmed as a live bug
-    # this exact pattern caused in extract_lingua_portuguesa.py).
-    page_edge = table_bottom(skill_page)
+    # The table's true bottom edge is sometimes not drawn as a full-width
+    # line, leaving real trailing rows outside every detected boundary. Add a
+    # synthetic closing edge at the page height instead of overwriting the
+    # last *detected* boundary — that boundary is a real internal divider
+    # between the last two rows, and replacing it merges them (confirmed:
+    # doing so merged EF04MA27's and EF04MA28's distinct objeto_conhecimento
+    # into one, silently duplicating text across both records).
+    page_edge = skill_page.rect.height - 40
     if page_edge > boundaries[-1]:
         boundaries.append(page_edge)
     records: list[dict] = []
@@ -142,10 +120,11 @@ def extract_pair(document: pymupdf.Document, grade: int, unit_index: int, skill_
                 {
                     "codigo": code,
                     "etapa": "Ensino Fundamental",
-                    "segmento": "Anos Finais",
+                    "segmento": "Anos Iniciais",
                     "area": "Matemática",
                     "componente": "Matemática",
                     "ano": f"{grade}º ano",
+                    "anos_aplicaveis": [f"{grade}º ano"],
                     "unidade_tematica": current_unit,
                     "objeto_conhecimento": object_text,
                     "habilidade": clean_text(skill),
@@ -196,16 +175,9 @@ def main() -> None:
             "versao_fonte": SOURCE_VERSION,
             "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas",
             "data_extracao": imported_at,
-            "escopo": "Ensino Fundamental — Anos Finais — Matemática — 6º ao 9º ano",
+            "escopo": "Ensino Fundamental — Anos Iniciais — Matemática — 1º ao 5º ano",
             "classificacao": "dado_oficial",
-            "correcoes_tipograficas_controladas": [
-                {
-                    "codigo": "EF08MA09",
-                    "campos": ["objeto_conhecimento", "habilidade"],
-                    "correcao": "ax2 → ax²",
-                    "motivo": "Restauração do sobrescrito visual presente no PDF oficial",
-                }
-            ],
+            "correcoes_tipograficas_controladas": [],
         },
         "habilidades": records,
     }

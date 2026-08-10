@@ -1,7 +1,7 @@
 {
   "escopo": "historia-anos-finais",
-  "data_importacao": "2026-08-08T15:25:50.908Z",
-  "lote_importacao": "2026-08-08-historia-anos-finais",
+  "data_importacao": "2026-08-10T19:46:07.665Z",
+  "lote_importacao": "2026-08-10-historia-anos-finais",
   "arquivo_fonte": "data/bncc/source/official-mec-bncc-historia-anos-finais.json",
   "hash_sha256_fonte": "eaec65e03af56a19f95caae29c1d14496007345d2d1cc02fe32bfc5f1c3baf01",
   "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",

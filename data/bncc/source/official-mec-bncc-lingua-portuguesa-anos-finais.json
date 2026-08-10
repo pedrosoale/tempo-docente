@@ -5,7 +5,7 @@
     "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
     "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
     "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas (mesma técnica de Matemática); campo de atuação e prática de linguagem detectados por cabeçalho de linha com herança",
-    "data_extracao": "2026-08-08T15:16:14.561916Z",
+    "data_extracao": "2026-08-10T19:17:40.669404Z",
     "escopo": "Ensino Fundamental — Anos Finais — Língua Portuguesa — 6º ao 9º ano",
     "classificacao": "dado_oficial"
   },
@@ -2082,7 +2082,7 @@
         "6º ano"
       ],
       "campo_atuacao": "Campo Artístico-Literário",
-      "objeto_conhecimento": "Análise linguística/semiótica: Léxico/morfologia\nMorfossintaxe",
+      "objeto_conhecimento": "Análise linguística/semiótica: Léxico/morfologia",
       "habilidade": "Analisar diferenças de sentido entre palavras de uma série sinonímica.",
       "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
       "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
@@ -2102,7 +2102,7 @@
         "7º ano"
       ],
       "campo_atuacao": "Campo Artístico-Literário",
-      "objeto_conhecimento": "Análise linguística/semiótica: Léxico/morfologia\nMorfossintaxe",
+      "objeto_conhecimento": "Análise linguística/semiótica: Léxico/morfologia",
       "habilidade": "Formar, com base em palavras primitivas, palavras derivadas com os prefixos e sufixos mais produtivos no português.",
       "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
       "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
@@ -2123,7 +2123,7 @@
         "7º ano"
       ],
       "campo_atuacao": "Campo Artístico-Literário",
-      "objeto_conhecimento": "Análise linguística/semiótica: Léxico/morfologia\nMorfossintaxe",
+      "objeto_conhecimento": "Análise linguística/semiótica: Léxico/morfologia",
       "habilidade": "Formar antônimos com acréscimo de prefixos que expressam noção de negação.",
       "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
       "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
@@ -2144,7 +2144,7 @@
         "7º ano"
       ],
       "campo_atuacao": "Campo Artístico-Literário",
-      "objeto_conhecimento": "Análise linguística/semiótica: Léxico/morfologia\nMorfossintaxe",
+      "objeto_conhecimento": "Análise linguística/semiótica: Léxico/morfologia",
       "habilidade": "Distinguir palavras derivadas por acréscimo de afixos e palavras compostas.",
       "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
       "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
@@ -2164,7 +2164,7 @@
         "6º ano"
       ],
       "campo_atuacao": "Campo Artístico-Literário",
-      "objeto_conhecimento": "Análise linguística/semiótica: Léxico/morfologia\nMorfossintaxe",
+      "objeto_conhecimento": "Análise linguística/semiótica: Morfossintaxe",
       "habilidade": "Analisar a função e as flexões de substantivos e adjetivos e de verbos nos modos Indicativo, Subjuntivo e Imperativo: afirmativo e negativo.",
       "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
       "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
@@ -2184,7 +2184,7 @@
         "7º ano"
       ],
       "campo_atuacao": "Campo Artístico-Literário",
-      "objeto_conhecimento": "Análise linguística/semiótica: Léxico/morfologia\nMorfossintaxe",
+      "objeto_conhecimento": "Análise linguística/semiótica: Morfossintaxe",
       "habilidade": "Reconhecer, em textos, o verbo como o núcleo das orações.",
       "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
       "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
@@ -2204,7 +2204,7 @@
         "6º ano"
       ],
       "campo_atuacao": "Campo Artístico-Literário",
-      "objeto_conhecimento": "Análise linguística/semiótica: Léxico/morfologia\nMorfossintaxe",
+      "objeto_conhecimento": "Análise linguística/semiótica: Morfossintaxe",
       "habilidade": "Identificar os efeitos de sentido dos modos verbais, considerando o gênero textual e a intenção comunicativa.",
       "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
       "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
@@ -2224,7 +2224,7 @@
         "7º ano"
       ],
       "campo_atuacao": "Campo Artístico-Literário",
-      "objeto_conhecimento": "Análise linguística/semiótica: Léxico/morfologia\nMorfossintaxe",
+      "objeto_conhecimento": "Análise linguística/semiótica: Morfossintaxe",
       "habilidade": "Identificar, em orações de textos lidos ou de produção própria, verbos de predicação completa e incompleta: intransitivos e transitivos.",
       "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
       "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
@@ -2244,7 +2244,7 @@
         "6º ano"
       ],
       "campo_atuacao": "Campo Artístico-Literário",
-      "objeto_conhecimento": "Análise linguística/semiótica: Léxico/morfologia\nMorfossintaxe",
+      "objeto_conhecimento": "Análise linguística/semiótica: Morfossintaxe",
       "habilidade": "Empregar, adequadamente, as regras de concordância nominal (relações entre os substantivos e seus determinantes) e as regras de concordância verbal (relações entre o verbo e o sujeito simples e composto).",
       "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
       "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
@@ -2264,7 +2264,7 @@
         "7º ano"
       ],
       "campo_atuacao": "Campo Artístico-Literário",
-      "objeto_conhecimento": "Análise linguística/semiótica: Léxico/morfologia\nMorfossintaxe",
+      "objeto_conhecimento": "Análise linguística/semiótica: Morfossintaxe",
       "habilidade": "Empregar as regras básicas de concordância nominal e verbal em situações comunicativas e na produção de textos.",
       "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
       "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
@@ -2284,7 +2284,7 @@
         "7º ano"
       ],
       "campo_atuacao": "Campo Artístico-Literário",
-      "objeto_conhecimento": "Análise linguística/semiótica: Léxico/morfologia\nMorfossintaxe",
+      "objeto_conhecimento": "Análise linguística/semiótica: Morfossintaxe",
       "habilidade": "Identificar, em textos lidos ou de produção própria, a estrutura básica da oração: sujeito, predicado, complemento (objetos direto e indireto).",
       "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
       "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",

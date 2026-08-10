@@ -1,0 +1,28 @@
+{
+  "escopo": "matematica-anos-iniciais",
+  "data_importacao": "2026-08-10T19:46:07.659Z",
+  "lote_importacao": "2026-08-10-matematica-anos-iniciais",
+  "arquivo_fonte": "data/bncc/source/official-mec-bncc-matematica-anos-iniciais.json",
+  "hash_sha256_fonte": "a54a1385bdd20b84bf68395c0c6e1e4c535cedd477232eab0d68281727ba8688",
+  "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+  "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas",
+  "total_por_ano": {
+    "1º ano": 22,
+    "2º ano": 23,
+    "3º ano": 28,
+    "4º ano": 28,
+    "5º ano": 25
+  },
+  "total_por_unidade_tematica": {
+    "Números": 44,
+    "Álgebra": 16,
+    "Geometria": 22,
+    "Grandezas e medidas": 27,
+    "Probabilidade e estatística": 17
+  },
+  "total_geral": 126,
+  "duplicidades": [],
+  "registros_rejeitados": [],
+  "alertas": [],
+  "status": "valido"
+}

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 const COMPONENTES = [
+  { scopeId: "matematica-anos-iniciais", componente: "Matemática", total: 126, codigoRegex: /^EF0[1-5]MA\d{2}$/ },
   { scopeId: "arte-anos-finais", componente: "Arte", total: 35, codigoRegex: /^EF69AR\d{2}$/ },
   { scopeId: "educacao-fisica-anos-finais", componente: "Educação Física", total: 42, codigoRegex: /^EF(67|89)EF\d{2}$/ },
   { scopeId: "lingua-inglesa-anos-finais", componente: "Língua Inglesa", total: 88, codigoRegex: /^EF0[6-9]LI\d{2}$/ },
@@ -71,8 +72,8 @@ test("Ensino Religioso: all four Anos Finais grades are represented despite the 
 test("aggregate import report accounts for all Ensino Fundamental Anos Finais components plus Competências Gerais", async () => {
   const summary = (await import("../data/bncc/import-report.json", { with: { type: "json" } })).default;
   assert.equal(summary.status, "valido");
-  assert.equal(summary.total_geral, 739);
-  assert.equal(summary.total_por_etapa["Ensino Fundamental"], 729);
+  assert.equal(summary.total_geral, 865);
+  assert.equal(summary.total_por_etapa["Ensino Fundamental"], 855);
   assert.equal(summary.total_por_etapa["Educação Básica"], 10);
   for (const { scopeId, total } of COMPONENTES) {
     assert.equal(summary.escopos[scopeId].status, "valido");

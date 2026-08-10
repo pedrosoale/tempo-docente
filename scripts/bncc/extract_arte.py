@@ -46,7 +46,11 @@ def extract_pair(document: pymupdf.Document, unit_index: int, skill_index: int) 
     unit_page = document[unit_index]
     skill_page = document[skill_index]
     boundaries = table_boundaries(unit_page)
-    boundaries[-1] = max(boundaries[-1], table_bottom(skill_page))
+    # Append a synthetic closing edge instead of overwriting boundaries[-1] —
+    # see extract_lingua_portuguesa.py for why replacing it is unsafe.
+    page_edge = table_bottom(skill_page)
+    if page_edge > boundaries[-1]:
+        boundaries.append(page_edge)
     records: list[dict] = []
     current_unit = extract_pair.current_unit
 

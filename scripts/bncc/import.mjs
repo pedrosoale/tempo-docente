@@ -349,10 +349,12 @@ async function processLinguaPortuguesaAnosFinais() {
 }
 
 const GRADE_TO_LABEL = {
+  "01": "1º ano", "02": "2º ano", "03": "3º ano", "04": "4º ano", "05": "5º ano",
   "06": "6º ano", "07": "7º ano", "08": "8º ano", "09": "9º ano",
   "67": "6º e 7º ano", "89": "8º e 9º ano", "69": "6º ao 9º ano",
 };
 const GRADE_TO_ANOS = {
+  "01": ["1º ano"], "02": ["2º ano"], "03": ["3º ano"], "04": ["4º ano"], "05": ["5º ano"],
   "06": ["6º ano"], "07": ["7º ano"], "08": ["8º ano"], "09": ["9º ano"],
   "67": ["6º ano", "7º ano"], "89": ["8º ano", "9º ano"],
   "69": ["6º ano", "7º ano", "8º ano", "9º ano"],
@@ -483,6 +485,12 @@ async function processSimpleComponent(config) {
 }
 
 const SIMPLE_COMPONENTS = [
+  {
+    scopeId: "matematica-anos-iniciais",
+    sourceFile: "data/bncc/source/official-mec-bncc-matematica-anos-iniciais.json",
+    codePattern: /^EF(01|02|03|04|05)MA\d{2}$/,
+    componenteLabel: "Matemática (EF01-05MAxx)",
+  },
   {
     scopeId: "arte-anos-finais",
     sourceFile: "data/bncc/source/official-mec-bncc-arte-anos-finais.json",

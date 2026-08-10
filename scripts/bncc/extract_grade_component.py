@@ -37,7 +37,11 @@ GRADE_TO_LABEL = {"06": "6º ano", "07": "7º ano", "08": "8º ano", "09": "9º 
 
 def extract_pair(unit_page: pymupdf.Page, skill_page: pymupdf.Page, current_unit: str | None, code_pattern: re.Pattern, area: str, componente: str) -> tuple[list[dict], str | None]:
     boundaries = table_boundaries(unit_page)
-    boundaries[-1] = max(boundaries[-1], table_bottom(skill_page))
+    # Append a synthetic closing edge instead of overwriting boundaries[-1] —
+    # see extract_lingua_portuguesa.py for why replacing it is unsafe.
+    page_edge = table_bottom(skill_page)
+    if page_edge > boundaries[-1]:
+        boundaries.append(page_edge)
     records: list[dict] = []
 
     for top, bottom in zip(boundaries, boundaries[1:]):

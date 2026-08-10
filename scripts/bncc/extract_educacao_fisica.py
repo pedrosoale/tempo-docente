@@ -42,7 +42,11 @@ CODE_PATTERN = re.compile(r"\((EF(?:67|89)EF\d{2})\)\s*(.*?)(?=\(EF(?:67|89)EF\d
 
 def extract_pair(unit_page: pymupdf.Page, skill_page: pymupdf.Page, current_unit: str | None, grade_key: str, ano: str, anos_aplicaveis: list[str]) -> tuple[list[dict], str | None]:
     boundaries = table_boundaries(unit_page)
-    boundaries[-1] = max(boundaries[-1], table_bottom(skill_page))
+    # Append a synthetic closing edge instead of overwriting boundaries[-1] —
+    # see extract_lingua_portuguesa.py for why replacing it is unsafe.
+    page_edge = table_bottom(skill_page)
+    if page_edge > boundaries[-1]:
+        boundaries.append(page_edge)
     records: list[dict] = []
 
     for top, bottom in zip(boundaries, boundaries[1:]):

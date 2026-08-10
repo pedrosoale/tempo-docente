@@ -1,7 +1,7 @@
 {
   "escopo": "geografia-anos-finais",
-  "data_importacao": "2026-08-08T15:25:50.905Z",
-  "lote_importacao": "2026-08-08-geografia-anos-finais",
+  "data_importacao": "2026-08-10T19:46:07.664Z",
+  "lote_importacao": "2026-08-10-geografia-anos-finais",
   "arquivo_fonte": "data/bncc/source/official-mec-bncc-geografia-anos-finais.json",
   "hash_sha256_fonte": "62c231d8a98b5701fcd19be131656c67f6b3244c9c6247efc0a44afad526d1ba",
   "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
