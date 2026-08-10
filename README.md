@@ -11,15 +11,17 @@ cruzamento com avaliações externas como SAEB e SARESP.
 
 ## Estado atual
 
-Módulo funcional: **BNCC — Ensino Fundamental, Anos Finais (6º ao 9º ano)**, com os
-9 componentes curriculares completos, mais as 10 **Competências Gerais** da Educação
-Básica — 739 registros ao todo, todos extraídos do PDF oficial do MEC com
-proveniência rastreada (fonte, URL, página, data de importação). Ver
+Módulo funcional: **BNCC — Ensino Fundamental**, com os 9 componentes curriculares
+dos Anos Finais (6º ao 9º ano) completos, mais as 10 **Competências Gerais** da
+Educação Básica — 865 registros ao todo, todos extraídos do PDF oficial do MEC com
+proveniência rastreada (fonte, URL, página, data de importação). **Matemática** já
+cobre o Ensino Fundamental inteiro, 1º ao 9º ano (Anos Iniciais + Anos Finais,
+247 habilidades); os outros 8 componentes ainda só têm Anos Finais. Ver
 [`data/bncc/README.md`](data/bncc/README.md) para o detalhamento por componente e o
 pipeline de extração/importação.
 
-**Ainda não importado** (roadmap, não implementado): Ensino Fundamental — Anos
-Iniciais (1º ao 5º ano), Educação Infantil, Ensino Médio. SAEB, SARESP e qualquer
+**Ainda não importado** (roadmap, não implementado): Anos Iniciais (1º ao 5º ano)
+dos outros 8 componentes, Educação Infantil, Ensino Médio. SAEB, SARESP e qualquer
 funcionalidade de IA/planejamento de aula/login **não existem ainda** — os cartões
 correspondentes na home aparecem como "Em breve".
 

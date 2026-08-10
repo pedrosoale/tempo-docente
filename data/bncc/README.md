@@ -1,13 +1,15 @@
 # Base local da BNCC
 
-Escopo importado até agora: **Competências Gerais da Educação Básica** (10/10) e
+Escopo importado até agora: **Competências Gerais da Educação Básica** (10/10),
 **Ensino Fundamental — Anos Finais (6º ao 9º ano)** — todos os 9 componentes
-curriculares. Total: 739 registros. Ver `data/bncc/import-report.json` para os
-totais agregados por etapa/tipo/componente (gerado a cada `npm run bncc:import`).
+curriculares — e **Matemática — Anos Iniciais (1º ao 5º ano)**. Total: 865
+registros. Ver `data/bncc/import-report.json` para os totais agregados por
+etapa/tipo/componente (gerado a cada `npm run bncc:import`).
 
 | Componente | Habilidades | Snapshot bruto | Dataset final |
 | --- | --- | --- | --- |
-| Matemática | 121 | `source/official-mec-bncc-matematica-anos-finais.json` | `matematica-anos-finais.json` |
+| Matemática — Anos Finais (6º-9º) | 121 | `source/official-mec-bncc-matematica-anos-finais.json` | `matematica-anos-finais.json` |
+| Matemática — Anos Iniciais (1º-5º) | 126 | `source/official-mec-bncc-matematica-anos-iniciais.json` | `matematica-anos-iniciais.json` |
 | Língua Portuguesa | 185 | `source/official-mec-bncc-lingua-portuguesa-anos-finais.json` | `lingua-portuguesa-anos-finais.json` |
 | Arte | 35 | `source/official-mec-bncc-arte-anos-finais.json` | `arte-anos-finais.json` |
 | Educação Física | 42 | `source/official-mec-bncc-educacao-fisica-anos-finais.json` | `educacao-fisica-anos-finais.json` |
@@ -18,8 +20,11 @@ totais agregados por etapa/tipo/componente (gerado a cada `npm run bncc:import`)
 | Ensino Religioso | 30 | `source/official-mec-bncc-ensino-religioso-anos-finais.json` | `ensino-religioso-anos-finais.json` |
 | Competências Gerais | 10 | `source/official-mec-bncc-competencias-gerais.json` | `competencias-gerais.json` |
 
-**Ainda não importado** (roadmap): Ensino Fundamental — Anos Iniciais (1º ao 5º
-ano), Educação Infantil, Ensino Médio — ver `README.md` da raiz do projeto.
+Na aplicação (`lib/bncc/data.ts`), as duas linhas de Matemática são mescladas num
+único `bnccSkills` — pro usuário é um componente só, cobrindo 1º ao 9º ano.
+
+**Ainda não importado** (roadmap): Anos Iniciais (1º ao 5º ano) dos outros 8
+componentes, Educação Infantil, Ensino Médio — ver `README.md` da raiz do projeto.
 
 ## Proveniência
 
@@ -49,8 +54,11 @@ oficial da habilidade; o único tratamento aplicado é a correção tipográfica
 controlada e documentada abaixo (glifos que o PyMuPDF falha em extrair, como `π` ou
 expoentes), sempre restrita a um código e campo específicos.
 
-- `extract_official.py` — Matemática (também tem as correções `ax²` e `π` de
-  exemplo).
+- `extract_official.py` — Matemática, Anos Finais (também tem as correções `ax²`
+  e `π` de exemplo).
+- `extract_matematica_anos_iniciais.py` — Matemática, Anos Iniciais (1º-5º ano).
+  Mesma técnica de página espelhada de `extract_official.py`, mapa de páginas
+  próprio (0-based 279-298 no PDF).
 - `extract_lingua_portuguesa.py` — Língua Portuguesa. Estrutura própria de 3 níveis
   (Campo de atuação → Prática de linguagem → Objeto de conhecimento); usa
   `table_boundaries(..., min_count=1)` porque algumas páginas (ex.: introdução do
@@ -84,6 +92,31 @@ expoentes), sempre restrita a um código e campo específicos.
 Qualquer nova correção desse tipo deve seguir o mesmo padrão: documentada aqui,
 restrita a um código/campo específico, nunca uma substituição ampla ou silenciosa.
 
+### Bug de fusão de linha corrigido (afetou dado já publicado)
+
+Todo extrator baseado em tabela estende o último limite de linha detectado
+(`table_boundaries()`) até o rodapé real da página, porque a borda inferior da
+tabela nem sempre é uma linha vetorial de largura total. A correção original
+fazia isso por **substituição**: `boundaries[-1] = max(boundaries[-1], borda)`.
+O problema: quando `boundaries[-1]` já era uma divisória real entre as duas
+últimas linhas da tabela (não a borda de fechamento ausente), substituí-la
+**apaga essa divisória** e funde o texto de unidade/objeto das duas últimas
+linhas, aplicando o valor fundido a todos os códigos de ambas.
+
+Descoberto construindo o extrator de Matemática Anos Iniciais (EF04MA27 e
+EF04MA28 saíram com o mesmo `objeto_conhecimento` concatenado). Auditado em
+todos os extratores que usavam o mesmo padrão, reexecutando cada um contra o
+PDF oficial e comparando com o dado publicado: Matemática, Arte, Educação
+Física, Língua Inglesa e o extrator genérico (Ciências/Geografia/História/
+Ensino Religioso) vieram idênticos — só **Língua Portuguesa tinha corrupção
+real em produção**, 11 códigos (EF06LP03-06, EF07LP03-07, EF67LP34-35) com dois
+valores de `objeto_conhecimento` diferentes grudados. Confirmado contra a
+planilha oficial para os 11 e corrigido.
+
+Correção aplicada nos seis extratores: **adicionar** uma borda sintética de
+fechamento em vez de sobrescrever a última borda detectada — só estende a
+tabela quando não há conteúdo real logo depois, nunca apaga uma divisória.
+
 ### Bug de contaminação corrigido (Língua Portuguesa)
 
 A extração original usava `page.get_textbox(rect)`, que recorta por **sobreposição**
@@ -112,8 +145,12 @@ ele pode substituir o PDF como entrada estruturada, mantendo as mesmas validaç�
 mesmo modelo de saída.
 
 Uma planilha oficial do MEC (Excel, 1º ao 9º ano, sem Ensino Médio) foi fornecida
-manualmente e usada para validação cruzada de Língua Portuguesa e Língua Inglesa
+manualmente e usada para validação cruzada de Língua Portuguesa, Língua Inglesa
 (273 registros comparados, correspondência quase perfeita — 2 casos em que esta
-extração era mais precisa que a planilha). Não está versionada no repositório
-(`.gitignore`) por não ser necessária para o site funcionar; quem quiser refazer
-essa validação precisa da própria planilha.
+extração era mais precisa que a planilha) e Matemática Anos Iniciais (126/126
+códigos, texto, objeto e unidade — 100% idêntico, com 2 exceções que são erro de
+transcrição da própria planilha, confirmado contra o PDF bruto). A planilha
+cobre 1º ao 9º ano de todos os 9 componentes, então também serve de referência
+pros Anos Iniciais dos demais componentes quando forem extraídos. Não está
+versionada no repositório (`.gitignore`) por não ser necessária para o site
+funcionar; quem quiser refazer essa validação precisa da própria planilha.
