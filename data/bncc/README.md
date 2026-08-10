@@ -2,29 +2,33 @@
 
 Escopo importado até agora: **Competências Gerais da Educação Básica** (10/10),
 **Ensino Fundamental — Anos Finais (6º ao 9º ano)** — todos os 9 componentes
-curriculares — e **Matemática — Anos Iniciais (1º ao 5º ano)**. Total: 865
-registros. Ver `data/bncc/import-report.json` para os totais agregados por
-etapa/tipo/componente (gerado a cada `npm run bncc:import`).
+curriculares — e **Anos Iniciais (1º ao 5º ano)** de 7 dos 9 componentes
+(faltam só Língua Portuguesa e Língua Inglesa — a última não existe nos Anos
+Iniciais na própria BNCC). Total: 1107 registros. Ver
+`data/bncc/import-report.json` para os totais agregados por etapa/tipo/componente
+(gerado a cada `npm run bncc:import`).
 
-| Componente | Habilidades | Snapshot bruto | Dataset final |
-| --- | --- | --- | --- |
-| Matemática — Anos Finais (6º-9º) | 121 | `source/official-mec-bncc-matematica-anos-finais.json` | `matematica-anos-finais.json` |
-| Matemática — Anos Iniciais (1º-5º) | 126 | `source/official-mec-bncc-matematica-anos-iniciais.json` | `matematica-anos-iniciais.json` |
-| Língua Portuguesa | 185 | `source/official-mec-bncc-lingua-portuguesa-anos-finais.json` | `lingua-portuguesa-anos-finais.json` |
-| Arte | 35 | `source/official-mec-bncc-arte-anos-finais.json` | `arte-anos-finais.json` |
-| Educação Física | 42 | `source/official-mec-bncc-educacao-fisica-anos-finais.json` | `educacao-fisica-anos-finais.json` |
-| Língua Inglesa | 88 | `source/official-mec-bncc-lingua-inglesa-anos-finais.json` | `lingua-inglesa-anos-finais.json` |
-| Ciências | 63 | `source/official-mec-bncc-ciencias-anos-finais.json` | `ciencias-anos-finais.json` |
-| Geografia | 67 | `source/official-mec-bncc-geografia-anos-finais.json` | `geografia-anos-finais.json` |
-| História | 98 | `source/official-mec-bncc-historia-anos-finais.json` | `historia-anos-finais.json` |
-| Ensino Religioso | 30 | `source/official-mec-bncc-ensino-religioso-anos-finais.json` | `ensino-religioso-anos-finais.json` |
-| Competências Gerais | 10 | `source/official-mec-bncc-competencias-gerais.json` | `competencias-gerais.json` |
+| Componente | Anos Iniciais (1º-5º) | Anos Finais (6º-9º) |
+| --- | --- | --- |
+| Matemática | 126 | 121 |
+| Arte | 26 | 35 |
+| Educação Física | 27 | 42 |
+| Ciências | 48 | 63 |
+| Geografia | 56 | 67 |
+| História | 52 | 98 |
+| Ensino Religioso | 33 | 30 |
+| Língua Portuguesa | — (pendente) | 185 |
+| Língua Inglesa | não existe na BNCC | 88 |
+| Competências Gerais | 10 (toda a Educação Básica, sem ano) | |
 
-Na aplicação (`lib/bncc/data.ts`), as duas linhas de Matemática são mescladas num
-único `bnccSkills` — pro usuário é um componente só, cobrindo 1º ao 9º ano.
+Cada célula é `source/official-mec-bncc-<componente>-anos-{iniciais,finais}.json`
+→ `<componente>-anos-{iniciais,finais}.json`. Na aplicação (`lib/bncc/data.ts`),
+as duas linhas de cada componente são mescladas num único array de skills — pro
+usuário é um componente só, cobrindo 1º ao 9º ano (exceto Português, ainda só
+6º-9º, e Inglês, que a própria BNCC só tem a partir do 6º ano).
 
-**Ainda não importado** (roadmap): Anos Iniciais (1º ao 5º ano) dos outros 8
-componentes, Educação Infantil, Ensino Médio — ver `README.md` da raiz do projeto.
+**Ainda não importado** (roadmap): Anos Iniciais de Língua Portuguesa, Educação
+Infantil, Ensino Médio — ver `README.md` da raiz do projeto.
 
 ## Proveniência
 
@@ -59,19 +63,28 @@ expoentes), sempre restrita a um código e campo específicos.
 - `extract_matematica_anos_iniciais.py` — Matemática, Anos Iniciais (1º-5º ano).
   Mesma técnica de página espelhada de `extract_official.py`, mapa de páginas
   próprio (0-based 279-298 no PDF).
-- `extract_lingua_portuguesa.py` — Língua Portuguesa. Estrutura própria de 3 níveis
-  (Campo de atuação → Prática de linguagem → Objeto de conhecimento); usa
-  `table_boundaries(..., min_count=1)` porque algumas páginas (ex.: introdução do
-  Campo Artístico-Literário) têm só 1 linha de tabela real.
-- `extract_arte.py`, `extract_educacao_fisica.py`, `extract_lingua_inglesa.py` —
-  layouts próprios (Arte tem um único código `EF69AR##` consolidado para 6º-9º;
-  Educação Física e Língua Inglesa têm códigos pareados por dupla de anos, ex.
-  `EF67EF01`).
+- `extract_lingua_portuguesa.py` — Língua Portuguesa (Anos Finais). Estrutura
+  própria de 3 níveis (Campo de atuação → Prática de linguagem → Objeto de
+  conhecimento); usa `table_boundaries(..., min_count=1)` porque algumas páginas
+  (ex.: introdução do Campo Artístico-Literário) têm só 1 linha de tabela real.
+- `extract_arte.py` — Arte, Anos Iniciais e Finais. `--start-heading`/
+  `--end-marker`/`--code-regex`/`--ano-label`/`--anos-aplicaveis`/`--segmento`/
+  `--col-split` são parametrizados via CLI; os defaults reproduzem exatamente o
+  comportamento original (Anos Finais, código único `EF69AR##`). Anos Iniciais
+  usa `EF15AR##` e um `--col-split` diferente (ver nota abaixo).
+- `extract_educacao_fisica.py` — Educação Física, Anos Iniciais e Finais. Duas
+  subseções pareadas por CLI (`--heading1`/`--grade-key1`/... e `--heading2`/...):
+  Anos Finais é `EF67EF`/`EF89EF`, Anos Iniciais é `EF12EF`/`EF35EF`.
+- `extract_lingua_inglesa.py` — Língua Inglesa. Só Anos Finais — a BNCC não tem
+  Língua Inglesa nos Anos Iniciais.
 - `extract_grade_component.py` — script genérico e parametrizado (via
-  `--start-heading`, `--end-marker`, `--code-prefix`, `--area`, `--componente`) usado
-  para Ciências, Geografia, História e Ensino Religioso, que compartilham o mesmo
-  layout de tabela (unidade temática/objeto à esquerda, ano derivado dos dígitos do
-  próprio código, não da posição na página — robusto a páginas de "Continuação").
+  `--start-heading`, `--end-marker`, `--code-prefix`, `--grade-digits`,
+  `--segmento`, `--area`, `--componente`) usado para Ciências, Geografia,
+  História e Ensino Religioso — Anos Iniciais e Finais —, que compartilham o
+  mesmo layout de tabela (unidade temática/objeto à esquerda, ano derivado dos
+  dígitos do próprio código, não da posição na página — robusto a páginas de
+  "Continuação"). `--grade-digits` default `"0[6-9]"` (Anos Finais); Anos
+  Iniciais passa `"0[1-5]"`.
 - `extract_competencias_gerais.py` — localiza o cabeçalho "COMPETÊNCIAS GERAIS DA
   EDUCAÇÃO BÁSICA" no próprio texto do PDF (não por índice de página fixo), lê os 10
   itens numerados e falha se não achar exatamente 1–10.
@@ -79,6 +92,18 @@ expoentes), sempre restrita a um código e campo específicos.
   `find_heading_page`, `table_boundaries`, `column_text` (filtra texto por posição
   real da linha, evita que texto de uma coluna vizinha vaze pra outra em tabelas
   largas — ver nota abaixo).
+
+### Localizando seções de Anos Iniciais: cabeçalho não basta
+
+Para todo componente extraído nesta rodada, `find_heading_page()` sozinho (usado
+como `--end-marker`) sub- ou superestimou o fim da seção pelo menos uma vez — o
+cabeçalho da próxima seção às vezes vem depois de páginas de introdução em prosa
+ou de uma página em branco, que não têm tabela nenhuma e derrubam
+`table_boundaries()` com um erro claro (bom sinal — falha ruidosa, não dado
+errado). O procedimento que funcionou de forma confiável: extrair o texto bruto
+de cada página candidata (`page.get_text()`), localizar a última ocorrência real
+de um código do último ano (`(EF05XX##)`) e usar a página seguinte como limite —
+nunca assumir que o próximo cabeçalho textual marca o fim exato da tabela.
 
 ### Correções tipográficas controladas conhecidas
 
@@ -88,9 +113,42 @@ expoentes), sempre restrita a um código e campo específicos.
 - Competências Gerais, item 8: `com- preendendo-se → compreendendo-se` (hifenização
   de quebra de linha do PDF; nenhum outro hífen do texto é tocado, inclusive hífens
   legítimos como "visual-motora").
+- `EF04GE08`: `matérias- primas → matérias-primas` (mesmo tipo de hifenização de
+  quebra de linha; `matérias-\nprimas` no PDF bruto, confirmado contra a planilha
+  oficial).
 
 Qualquer nova correção desse tipo deve seguir o mesmo padrão: documentada aqui,
 restrita a um código/campo específico, nunca uma substituição ampla ou silenciosa.
+
+### Divergências confirmadas como erro da planilha, não da extração
+
+Encontradas durante a validação cruzada dos Anos Iniciais — mantidas como estão
+na extração porque o PDF bruto confirma nossa versão:
+
+- **EF02MA06/EF03MA05** (Matemática): a planilha tem "ou convencionais" a mais
+  num e "inclusive os convencionais," a menos no outro; o PDF bate com nossa
+  extração nos dois casos.
+- **EF03GE08** (Geografia): planilha tem um espaço espúrio em
+  "reciclagem/ descarte"; PDF não tem esse espaço.
+- **EF15AR13/EF15AR24** (Arte): o próprio PDF oficial é inconsistente entre
+  ocorrências repetidas do mesmo rótulo — "Contextos e práticas" na seção de
+  Artes Visuais/Dança, mas "Contexto e práticas" (singular) na de Música; mesma
+  coisa com "Matrizes estéticas e culturais" vs "Matrizes estéticas culturais"
+  entre Artes Visuais e Artes Integradas. A planilha aparentemente normalizou
+  essas ocorrências; nossa extração preserva o texto verbatim de cada uma,
+  conforme a regra do projeto de nunca reescrever o texto oficial.
+
+### Layout de coluna não é sempre o mesmo (Arte, Anos Iniciais)
+
+Toda tabela do documento, de Matemática a Ensino Religioso, divide as colunas
+"Unidades Temáticas" e "Objetos de Conhecimento" na mesma posição horizontal
+(x≈291,5-292). A tabela de Arte — Anos Iniciais é a única exceção confirmada:
+sua divisória real (linha vetorial do próprio PDF) fica em x≈212. Usar o divisor
+padrão ali cortava as duas colunas no lugar errado, produzindo objetos truncados
+("ráticas" em vez de "Contextos e práticas") e unidades com lixo concatenado.
+`extract_arte.py` agora recebe o divisor via `--col-split`, sempre confirmado
+inspecionando as linhas vetoriais da página (`page.get_drawings()`) antes de
+extrair — nunca assumido pela posição de outras tabelas do mesmo documento.
 
 ### Bug de fusão de linha corrigido (afetou dado já publicado)
 
@@ -145,12 +203,22 @@ ele pode substituir o PDF como entrada estruturada, mantendo as mesmas validaç�
 mesmo modelo de saída.
 
 Uma planilha oficial do MEC (Excel, 1º ao 9º ano, sem Ensino Médio) foi fornecida
-manualmente e usada para validação cruzada de Língua Portuguesa, Língua Inglesa
-(273 registros comparados, correspondência quase perfeita — 2 casos em que esta
-extração era mais precisa que a planilha) e Matemática Anos Iniciais (126/126
-códigos, texto, objeto e unidade — 100% idêntico, com 2 exceções que são erro de
-transcrição da própria planilha, confirmado contra o PDF bruto). A planilha
-cobre 1º ao 9º ano de todos os 9 componentes, então também serve de referência
-pros Anos Iniciais dos demais componentes quando forem extraídos. Não está
+manualmente e usada para validação cruzada de todos os escopos de Anos Iniciais
+extraídos até agora — código por código, texto por texto, objeto por objeto,
+unidade por unidade:
+
+| Escopo | Códigos | Divergências reais |
+| --- | --- | --- |
+| Matemática (1º-5º) | 126/126 | 0 (2 erros da planilha) |
+| Ciências (1º-5º) | 48/48 | 0 |
+| Geografia (1º-5º) | 56/56 | 0 (1 erro da planilha) |
+| História (1º-5º) | 52/52 | 0 |
+| Ensino Religioso (1º-5º) | 33/33 | 0 |
+| Arte (1º-5º) | 26/26 | 0 (2 inconsistências do próprio PDF) |
+| Educação Física (1º-5º) | 27/27 | 0 |
+| Língua Portuguesa/Inglesa (6º-9º, validação anterior) | 273 | 0 (2 casos em que a extração era mais precisa) |
+
+A planilha cobre 1º ao 9º ano de todos os 9 componentes, então também serve de
+referência pra Língua Portuguesa — Anos Iniciais quando for extraída. Não está
 versionada no repositório (`.gitignore`) por não ser necessária para o site
 funcionar; quem quiser refazer essa validação precisa da própria planilha.

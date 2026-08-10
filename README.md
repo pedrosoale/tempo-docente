@@ -13,15 +13,17 @@ cruzamento com avaliações externas como SAEB e SARESP.
 
 Módulo funcional: **BNCC — Ensino Fundamental**, com os 9 componentes curriculares
 dos Anos Finais (6º ao 9º ano) completos, mais as 10 **Competências Gerais** da
-Educação Básica — 865 registros ao todo, todos extraídos do PDF oficial do MEC com
-proveniência rastreada (fonte, URL, página, data de importação). **Matemática** já
-cobre o Ensino Fundamental inteiro, 1º ao 9º ano (Anos Iniciais + Anos Finais,
-247 habilidades); os outros 8 componentes ainda só têm Anos Finais. Ver
+Educação Básica — 1107 registros ao todo, todos extraídos do PDF oficial do MEC
+com proveniência rastreada (fonte, URL, página, data de importação). **7 dos 9
+componentes já cobrem o Ensino Fundamental inteiro, 1º ao 9º ano** (Matemática,
+Arte, Educação Física, Ciências, Geografia, História, Ensino Religioso). Só
+**Língua Portuguesa** ainda tem apenas Anos Finais (6º-9º); **Língua Inglesa**
+permanece só 6º-9º porque a própria BNCC não tem Inglês nos Anos Iniciais. Ver
 [`data/bncc/README.md`](data/bncc/README.md) para o detalhamento por componente e o
 pipeline de extração/importação.
 
-**Ainda não importado** (roadmap, não implementado): Anos Iniciais (1º ao 5º ano)
-dos outros 8 componentes, Educação Infantil, Ensino Médio. SAEB, SARESP e qualquer
+**Ainda não importado** (roadmap, não implementado): Anos Iniciais de Língua
+Portuguesa, Educação Infantil, Ensino Médio. SAEB, SARESP e qualquer
 funcionalidade de IA/planejamento de aula/login **não existem ainda** — os cartões
 correspondentes na home aparecem como "Em breve".
 
