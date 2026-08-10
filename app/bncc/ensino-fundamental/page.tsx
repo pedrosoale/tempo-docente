@@ -16,11 +16,11 @@ export default function EnsinoFundamentalPage() {
     <>
       <BnccIntro
         title="BNCC — Ensino Fundamental"
-        subtitle="Escolha um componente curricular para consultar as habilidades oficiais dos Anos Finais (6º ao 9º ano)."
-        scopeComponent="Anos Finais"
-        scopeSegmento="Ensino Fundamental"
+        subtitle="Escolha um componente curricular para consultar as habilidades oficiais. Matemática já cobre o 1º ao 9º ano; os demais componentes cobrem o 6º ao 9º ano, com os Anos Iniciais em expansão."
+        scopeComponent="Ensino Fundamental"
+        scopeSegmento="Anos Iniciais e Anos Finais"
         scopeTotal={`${totalHabilidades} habilidades`}
-        scopeGrades={`${COMPONENTES_ANOS_FINAIS.length} componentes · 6º ao 9º ano`}
+        scopeGrades={`${COMPONENTES_ANOS_FINAIS.length} componentes · 1º ao 9º ano`}
       />
       <section className="section quick-access">
         <div className="container">

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { COMPONENTES_ANOS_FINAIS, getAllRegistros } from "@/lib/bncc/data";
+import { uniqueSorted } from "@/lib/bncc/search.mjs";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://tempodocente.com.br";
@@ -8,10 +9,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/bncc",
     "/bncc/competencias-gerais",
     "/bncc/ensino-fundamental",
-    ...COMPONENTES_ANOS_FINAIS.flatMap((componente) => [
-      `/bncc/${componente.slug}`,
-      ...[6, 7, 8, 9].map((year) => `/bncc/${componente.slug}/${year}-ano`),
-    ]),
+    ...COMPONENTES_ANOS_FINAIS.flatMap((componente) => {
+      const years = uniqueSorted(componente.skills.flatMap((skill) => skill.anos_aplicaveis ?? [skill.ano]));
+      return [
+        `/bncc/${componente.slug}`,
+        ...years.map((year) => `/bncc/${componente.slug}/${year[0]}-ano`),
+      ];
+    }),
   ];
   return [
     ...staticRoutes.map((route) => ({ url: `${baseUrl}${route}`, changeFrequency: "monthly" as const, priority: route === "" ? 1 : 0.8 })),

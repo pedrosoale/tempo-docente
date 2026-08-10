@@ -82,8 +82,9 @@ test("server-renders the BNCC Matemática explorer and official dataset", async 
   const html = await response.text();
 
   assert.match(html, /BNCC de Matemática/);
-  assert.match(html, /121 habilidades/);
+  assert.match(html, /247 habilidades/);
   assert.match(html, /EF06MA01/);
+  assert.match(html, /EF01MA01/);
   assert.match(html, /Dados oficiais/);
   assert.match(html, /Ministério da Educação/);
 });

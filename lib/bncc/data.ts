@@ -7,11 +7,12 @@ import geografiaDataset from "@/data/bncc/geografia-anos-finais.json";
 import historiaDataset from "@/data/bncc/historia-anos-finais.json";
 import linguaInglesaDataset from "@/data/bncc/lingua-inglesa-anos-finais.json";
 import linguaPortuguesaDataset from "@/data/bncc/lingua-portuguesa-anos-finais.json";
-import matematicaDataset from "@/data/bncc/matematica-anos-finais.json";
+import matematicaAnosFinaisDataset from "@/data/bncc/matematica-anos-finais.json";
+import matematicaAnosIniciaisDataset from "@/data/bncc/matematica-anos-iniciais.json";
 import type { BnccRegistro, CompetenciaGeral, HabilidadeFundamental } from "./types";
 
-export const bnccMetadata = matematicaDataset.metadata;
-export const bnccSkills = matematicaDataset.registros as HabilidadeFundamental[];
+export const bnccMetadata = matematicaAnosFinaisDataset.metadata;
+export const bnccSkills = [...matematicaAnosIniciaisDataset.registros, ...matematicaAnosFinaisDataset.registros] as HabilidadeFundamental[];
 
 export const linguaPortuguesaMetadata = linguaPortuguesaDataset.metadata;
 export const linguaPortuguesaSkills = linguaPortuguesaDataset.registros as HabilidadeFundamental[];

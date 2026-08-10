@@ -1,5 +1,5 @@
 import { BookOpenCheck, Database, ShieldCheck } from "lucide-react";
-import { bnccMetadata } from "@/lib/bncc/data";
+import { bnccMetadata, bnccSkills } from "@/lib/bncc/data";
 
 type BnccIntroProps = {
   title?: string;
@@ -17,9 +17,9 @@ export function BnccIntro({
   subtitle = "Encontre habilidades da Base Nacional Comum Curricular por código, ano ou conteúdo.",
   currentYear,
   scopeComponent = "Matemática",
-  scopeSegmento = "Ensino Fundamental — Anos Finais",
-  scopeTotal = "121 habilidades",
-  scopeGrades = "6º, 7º, 8º e 9º anos",
+  scopeSegmento = "Ensino Fundamental — Anos Iniciais e Anos Finais",
+  scopeTotal = `${bnccSkills.length} habilidades`,
+  scopeGrades = "1º ao 9º ano",
   scopeVersaoFonte = bnccMetadata.versao_fonte,
 }: BnccIntroProps) {
   return (
