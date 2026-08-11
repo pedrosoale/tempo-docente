@@ -147,7 +147,7 @@ export default async function BnccHubPage({ searchParams }: BnccHubPageProps) {
                 </div>
                 <div>
                   <h3>Ensino Fundamental</h3>
-                  <p>Habilidades por ano, área e componente. Disponível hoje: os 9 componentes dos Anos Finais (6º ao 9º ano). Anos Iniciais em breve.</p>
+                  <p>Habilidades por ano, área e componente — Anos Iniciais e Anos Finais completos, do 1º ao 9º ano, nos 9 componentes curriculares.</p>
                 </div>
                 <span className="card-action">Explorar componentes <ArrowUpRight size={17} aria-hidden="true" /></span>
               </a>
