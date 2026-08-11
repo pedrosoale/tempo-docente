@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import report from "../data/bncc/lingua-portuguesa-anos-finais.report.json" with { type: "json" };
 import dataset from "../data/bncc/lingua-portuguesa-anos-finais.json" with { type: "json" };
+import reportIniciais from "../data/bncc/lingua-portuguesa-anos-iniciais.report.json" with { type: "json" };
+import datasetIniciais from "../data/bncc/lingua-portuguesa-anos-iniciais.json" with { type: "json" };
 
 const KNOWN_CAMPOS = new Set([
   "Campo Jornalístico-Midiático",
@@ -9,10 +11,15 @@ const KNOWN_CAMPOS = new Set([
   "Campo das Práticas de Estudo e Pesquisa",
   "Campo Artístico-Literário",
   "Todos os Campos de Atuação",
+  "Campo da Vida Cotidiana",
+  "Campo da Vida Pública",
 ]);
 
 const GRADE_TO_ANOS = {
+  "01": ["1º ano"], "02": ["2º ano"], "03": ["3º ano"], "04": ["4º ano"], "05": ["5º ano"],
   "06": ["6º ano"], "07": ["7º ano"], "08": ["8º ano"], "09": ["9º ano"],
+  "12": ["1º ano", "2º ano"], "35": ["3º ano", "4º ano", "5º ano"],
+  "15": ["1º ano", "2º ano", "3º ano", "4º ano", "5º ano"],
   "67": ["6º ano", "7º ano"], "89": ["8º ano", "9º ano"],
   "69": ["6º ano", "7º ano", "8º ano", "9º ano"],
 };
@@ -61,4 +68,36 @@ test("flags EF67LP27's missing terminal punctuation as a known source characteri
   ]);
   const skill = dataset.registros.find((item) => item.codigo === "EF67LP27");
   assert.match(skill.texto, /recursos literários e semióticos$/);
+});
+
+test("official Língua Portuguesa Anos Iniciais import is valid with no duplicates or rejections", () => {
+  assert.equal(reportIniciais.status, "valido");
+  assert.equal(reportIniciais.total_geral, 206);
+  assert.deepEqual(reportIniciais.duplicidades, []);
+  assert.deepEqual(reportIniciais.registros_rejeitados, []);
+  assert.equal(datasetIniciais.registros.length, reportIniciais.total_geral);
+});
+
+test("Anos Iniciais: every record has a known campo de atuação and traceable source metadata", () => {
+  for (const skill of datasetIniciais.registros) {
+    assert.match(skill.codigo, /^EF(01|02|03|04|05|12|15|35)LP\d{2}$/);
+    assert.equal(skill.tipo, "habilidade");
+    assert.equal(skill.componente, "Língua Portuguesa");
+    assert.ok(KNOWN_CAMPOS.has(skill.campo_atuacao), `unknown campo: ${skill.campo_atuacao}`);
+    assert.equal(skill.classificacao, "dado_oficial");
+    assert.match(skill.documento_url, /basenacionalcomum\.mec\.gov\.br/);
+    assert.ok(skill.lote_importacao);
+    assert.equal(skill.unidade_tematica, undefined);
+  }
+});
+
+test("Anos Iniciais: derives ano and anos_aplicaveis from the code's grade digits, including grouped codes", () => {
+  for (const skill of datasetIniciais.registros) {
+    const gradeKey = skill.codigo.slice(2, 4);
+    assert.deepEqual(skill.anos_aplicaveis, GRADE_TO_ANOS[gradeKey], skill.codigo);
+  }
+  const paired = datasetIniciais.registros.find((skill) => skill.codigo === "EF12LP01");
+  assert.deepEqual(paired.anos_aplicaveis, ["1º ano", "2º ano"]);
+  const fullRange = datasetIniciais.registros.find((skill) => skill.codigo === "EF15LP01");
+  assert.deepEqual(fullRange.anos_aplicaveis, ["1º ano", "2º ano", "3º ano", "4º ano", "5º ano"]);
 });

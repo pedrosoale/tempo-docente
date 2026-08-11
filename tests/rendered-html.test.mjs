@@ -136,8 +136,9 @@ test("server-renders the BNCC Língua Portuguesa explorer and official dataset",
   const html = await response.text();
 
   assert.match(html, /BNCC de Língua Portuguesa/);
-  assert.match(html, /185 habilidades/);
+  assert.match(html, /391 habilidades/);
   assert.match(html, /EF69LP01/);
+  assert.match(html, /EF01LP01/);
   assert.match(html, /Campo de atuação/);
   assert.match(html, /Ministério da Educação/);
 });
@@ -150,8 +151,9 @@ test("a Língua Portuguesa year page includes single-grade and grade-paired code
   assert.match(html, /EF07LP01/);
   assert.match(html, /EF67LP01/);
   assert.match(html, /EF69LP01/);
-  // The initial SSR result count reflects the year filter correctly (108 of 185
-  // apply to 7º ano). We don't assert other codes are absent from the raw HTML:
+  // The initial SSR result count reflects the year filter correctly (108 of 391
+  // apply to 7º ano — Anos Iniciais codes only cover 1º-5º, so this count is
+  // unaffected by that addition). We don't assert other codes are absent from the raw HTML:
   // BnccExplorer is a client component, so its full dataset prop is necessarily
   // serialized into the page for hydration even though only the filtered subset
   // is rendered as visible result cards.

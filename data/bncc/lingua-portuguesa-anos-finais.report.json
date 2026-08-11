@@ -1,9 +1,9 @@
 {
   "escopo": "lingua-portuguesa-anos-finais",
-  "data_importacao": "2026-08-10T21:13:15.705Z",
-  "lote_importacao": "2026-08-10-lingua-portuguesa-anos-finais",
+  "data_importacao": "2026-08-11T03:00:18.866Z",
+  "lote_importacao": "2026-08-11-lingua-portuguesa-anos-finais",
   "arquivo_fonte": "data/bncc/source/official-mec-bncc-lingua-portuguesa-anos-finais.json",
-  "hash_sha256_fonte": "226a6be6e94ae4ca7f07f2cca2637e215becf19e8f291e7550e205b251b182e7",
+  "hash_sha256_fonte": "f737b34c9f8e6c7895778bbde97a5e185c4b5669b05f68c6841293dc27c73b07",
   "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
   "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas (mesma técnica de Matemática); campo de atuação e prática de linguagem detectados por cabeçalho de linha com herança",
   "total_por_ano": {
@@ -16,10 +16,11 @@
     "9º ano": 12
   },
   "total_por_campo_atuacao": {
-    "Campo Jornalístico-Midiático": 71,
-    "Campo de Atuação na Vida Pública": 39,
-    "Campo Artístico-Literário": 34,
-    "Todos os Campos de Atuação": 41
+    "Campo Jornalístico-Midiático": 59,
+    "Campo de Atuação na Vida Pública": 21,
+    "Campo das Práticas de Estudo e Pesquisa": 30,
+    "Campo Artístico-Literário": 21,
+    "Todos os Campos de Atuação": 54
   },
   "total_geral": 185,
   "duplicidades": [],

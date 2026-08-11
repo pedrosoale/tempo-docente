@@ -2,33 +2,33 @@
 
 Escopo importado até agora: **Competências Gerais da Educação Básica** (10/10),
 **Ensino Fundamental — Anos Finais (6º ao 9º ano)** — todos os 9 componentes
-curriculares — e **Anos Iniciais (1º ao 5º ano)** de 7 dos 9 componentes
-(faltam só Língua Portuguesa e Língua Inglesa — a última não existe nos Anos
-Iniciais na própria BNCC). Total: 1107 registros. Ver
-`data/bncc/import-report.json` para os totais agregados por etapa/tipo/componente
-(gerado a cada `npm run bncc:import`).
+curriculares — e **Anos Iniciais (1º ao 5º ano)** de 8 dos 9 componentes (falta
+só Língua Inglesa, que não existe nos Anos Iniciais na própria BNCC — não é uma
+lacuna a preencher). Total: 1313 registros. Ver `data/bncc/import-report.json`
+para os totais agregados por etapa/tipo/componente (gerado a cada
+`npm run bncc:import`).
 
 | Componente | Anos Iniciais (1º-5º) | Anos Finais (6º-9º) |
 | --- | --- | --- |
 | Matemática | 126 | 121 |
+| Língua Portuguesa | 206 | 185 |
 | Arte | 26 | 35 |
 | Educação Física | 27 | 42 |
 | Ciências | 48 | 63 |
 | Geografia | 56 | 67 |
 | História | 52 | 98 |
 | Ensino Religioso | 33 | 30 |
-| Língua Portuguesa | — (pendente) | 185 |
 | Língua Inglesa | não existe na BNCC | 88 |
 | Competências Gerais | 10 (toda a Educação Básica, sem ano) | |
 
 Cada célula é `source/official-mec-bncc-<componente>-anos-{iniciais,finais}.json`
 → `<componente>-anos-{iniciais,finais}.json`. Na aplicação (`lib/bncc/data.ts`),
 as duas linhas de cada componente são mescladas num único array de skills — pro
-usuário é um componente só, cobrindo 1º ao 9º ano (exceto Português, ainda só
-6º-9º, e Inglês, que a própria BNCC só tem a partir do 6º ano).
+usuário é um componente só, cobrindo 1º ao 9º ano (exceto Inglês, que a própria
+BNCC só tem a partir do 6º ano).
 
-**Ainda não importado** (roadmap): Anos Iniciais de Língua Portuguesa, Educação
-Infantil, Ensino Médio — ver `README.md` da raiz do projeto.
+**Ainda não importado** (roadmap): Educação Infantil, Ensino Médio — ver
+`README.md` da raiz do projeto.
 
 ## Proveniência
 
@@ -63,10 +63,14 @@ expoentes), sempre restrita a um código e campo específicos.
 - `extract_matematica_anos_iniciais.py` — Matemática, Anos Iniciais (1º-5º ano).
   Mesma técnica de página espelhada de `extract_official.py`, mapa de páginas
   próprio (0-based 279-298 no PDF).
-- `extract_lingua_portuguesa.py` — Língua Portuguesa (Anos Finais). Estrutura
-  própria de 3 níveis (Campo de atuação → Prática de linguagem → Objeto de
-  conhecimento); usa `table_boundaries(..., min_count=1)` porque algumas páginas
-  (ex.: introdução do Campo Artístico-Literário) têm só 1 linha de tabela real.
+- `extract_lingua_portuguesa.py` — Língua Portuguesa, Anos Iniciais e Finais
+  (`--section-headings`/`--end-marker`/`--segmento`/`--escopo-nota`
+  parametrizados via CLI; defaults reproduzem o comportamento original de Anos
+  Finais). Estrutura própria de 3 níveis (Campo de atuação → Prática de
+  linguagem → Objeto de conhecimento); usa `table_boundaries(..., min_count=1)`
+  porque algumas páginas (ex.: introdução do Campo Artístico-Literário) têm só
+  1 linha de tabela real. Ver "Campo/prática por parágrafo" abaixo — a parte
+  mais delicada de todo este pipeline.
 - `extract_arte.py` — Arte, Anos Iniciais e Finais. `--start-heading`/
   `--end-marker`/`--code-regex`/`--ano-label`/`--anos-aplicaveis`/`--segmento`/
   `--col-split` são parametrizados via CLI; os defaults reproduzem exatamente o
@@ -185,6 +189,51 @@ introdução do Campo Artístico-Literário, para os códigos EF69LP44/45/46. Co
 com o helper `column_text()` (em `bncc_extract_common.py`), que filtra por posição
 `x0` real de cada linha via `get_text('dict')` em vez de recorte por sobreposição.
 
+### Campo/prática por parágrafo, não por retângulo inteiro (Língua Portuguesa)
+
+O maior refinamento desta rodada. `extract_pair()` lia a coluna de
+unidade/campo de uma linha inteira como um único bloco de texto
+(`get_textbox()`), então testava esse bloco contra `CAMPO_LABELS`. Isso
+quebra sempre que uma linha alta (comum quando o limite da tabela é
+estendido — ver bug de fusão acima) contém mais de um parágrafo real:
+
+- **Campo + prática empilhados** (confirmado na pág. 119): o parágrafo
+  introdutório de um campo termina e, na mesma linha detectada, já começa o
+  rótulo de prática seguinte ("Leitura/escuta"). Ler tudo como um bloco só
+  fazia o `match_campo()` "engolir" o rótulo — a prática nunca era capturada.
+- **Dois cabeçalhos de campo na mesma linha** (confirmado na pág. 171,
+  EF06LP03-06): o código antigo, testando o bloco inteiro contra
+  `CAMPO_LABELS` (um `dict`, iterado em ordem de inserção), retornava o
+  primeiro campo que batesse — por *coincidência* de ordem do dicionário, não
+  por posição no texto. Corrigido para usar o primeiro campo por posição real
+  (`unit_column_paragraphs()`, que agrupa linhas por espaçamento vertical
+  >18pt): os códigos da própria linha usam o primeiro campo encontrado nela; um
+  segundo campo na mesma linha só atualiza o estado herdado pelas linhas
+  seguintes.
+- **Rótulo + nota de rodapé** (confirmado na pág. 143: "Oralidade" seguido de
+  "*Considerar todas as habilidades..."): dois parágrafos não-campo seguidos
+  precisam ser concatenados, não um substituindo o outro.
+- **Prosa do próprio campo sendo confundida com rótulo** (confirmado na pág.
+  157, Campo Artístico-Literário: quatro parágrafos de ~200-400 caracteres
+  antes do rótulo real "Leitura"): `looks_like_pratica_label()` distingue um
+  rótulo real (curto, não começa com hífen de marcador) da prosa introdutória
+  do campo, que é descartada em vez de acumulada.
+
+Validado recontando **todos os 185 registros de Anos Finais já publicados**
+contra a planilha oficial: a versão antiga acertava `campo_atuacao` em 145/185
+(78%); a corrigida acerta 177/185 (96%) — os 8 restantes são um único padrão
+ambíguo (transição de campo numa linha sem nenhum código associado, ver
+EF89LP24 no relatório de validação) que não foi resolvido e fica documentado
+como limitação conhecida. Duas correções tipográficas controladas adicionais
+saíram dessa auditoria:
+
+- `"linguística/ semiótica" → "linguística/semiótica"`: espaço espúrio
+  presente no próprio *span* do PDF (não é quebra de linha), confirmado em
+  múltiplas ocorrências.
+- Uma linha terminando em `/` (ex. `"Análise linguística/"` quebrando para
+  `"semiótica"`) é rejuntada sem espaço — só para esse caractere específico;
+  todo outro fim de linha continua rejuntado com espaço, como antes.
+
 ## Atualização
 
 1. Instale `scripts/bncc/requirements.txt` em um ambiente Python.
@@ -216,9 +265,10 @@ unidade por unidade:
 | Ensino Religioso (1º-5º) | 33/33 | 0 |
 | Arte (1º-5º) | 26/26 | 0 (2 inconsistências do próprio PDF) |
 | Educação Física (1º-5º) | 27/27 | 0 |
+| Língua Portuguesa (1º-5º) | 206/206 | 0 (8 erros/truncamentos confirmados da planilha) |
+| Língua Portuguesa (6º-9º, reauditada nesta rodada) | 185/185 | 0 (13 erros/truncamentos confirmados da planilha) |
 | Língua Portuguesa/Inglesa (6º-9º, validação anterior) | 273 | 0 (2 casos em que a extração era mais precisa) |
 
-A planilha cobre 1º ao 9º ano de todos os 9 componentes, então também serve de
-referência pra Língua Portuguesa — Anos Iniciais quando for extraída. Não está
-versionada no repositório (`.gitignore`) por não ser necessária para o site
-funcionar; quem quiser refazer essa validação precisa da própria planilha.
+A planilha cobre 1º ao 9º ano de todos os 9 componentes. Não está versionada no
+repositório (`.gitignore`) por não ser necessária para o site funcionar; quem
+quiser refazer essa validação precisa da própria planilha.

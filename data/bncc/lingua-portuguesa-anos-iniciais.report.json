@@ -1,0 +1,32 @@
+{
+  "escopo": "lingua-portuguesa-anos-iniciais",
+  "data_importacao": "2026-08-11T03:00:18.860Z",
+  "lote_importacao": "2026-08-11-lingua-portuguesa-anos-iniciais",
+  "arquivo_fonte": "data/bncc/source/official-mec-bncc-lingua-portuguesa-anos-iniciais.json",
+  "hash_sha256_fonte": "cdd328d79865cde1b424d626582ed92394fc25d3cc15b0b3dc29694a4fe3d9cd",
+  "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+  "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas (mesma técnica de Matemática); campo de atuação e prática de linguagem detectados por cabeçalho de linha com herança",
+  "total_por_ano": {
+    "1º ao 5º ano": 19,
+    "1º ano": 26,
+    "1º e 2º ano": 19,
+    "2º ano": 29,
+    "3º ao 5º ano": 31,
+    "3º ano": 27,
+    "4º ano": 27,
+    "5º ano": 28
+  },
+  "total_por_campo_atuacao": {
+    "Todos os Campos de Atuação": 82,
+    "Campo da Vida Cotidiana": 34,
+    "Campo Artístico-Literário": 29,
+    "Campo da Vida Pública": 32,
+    "Campo das Práticas de Estudo e Pesquisa": 29
+  },
+  "total_geral": 206,
+  "duplicidades": [],
+  "registros_rejeitados": [],
+  "alertas": [],
+  "limitacoes_conhecidas": [],
+  "status": "valido"
+}

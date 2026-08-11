@@ -56,7 +56,7 @@ def table_boundaries(page: pymupdf.Page, min_count: int = 2) -> list[float]:
             # across multi-row units instead). Coordinates vary by a fraction of a
             # point between sections, so match with a small tolerance rather than
             # an exact threshold.
-            if left <= 293 and right >= 551 and 150 <= start.y <= 790:
+            if left <= 293 and right >= 550.5 and 150 <= start.y <= 790:
                 values.append(round(start.y, 2))
     boundaries = sorted(set(values))
     if len(boundaries) < min_count:

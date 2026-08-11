@@ -4,8 +4,8 @@ import { BnccExplorer } from "../components/BnccExplorer";
 import { BnccIntro } from "../components/BnccIntro";
 
 export const metadata: Metadata = {
-  title: "BNCC de Língua Portuguesa — Anos Finais | Tempo Docente",
-  description: "Consulte as habilidades da BNCC de Língua Portuguesa do Ensino Fundamental — Anos Finais, por campo de atuação e ano.",
+  title: "BNCC de Língua Portuguesa | Tempo Docente",
+  description: "Consulte as habilidades da BNCC de Língua Portuguesa do Ensino Fundamental, do 1º ao 9º ano, por campo de atuação e ano.",
   alternates: { canonical: "/bncc/lingua-portuguesa" },
 };
 
@@ -14,11 +14,11 @@ export default function LinguaPortuguesaPage() {
     <>
       <BnccIntro
         title="BNCC de Língua Portuguesa"
-        subtitle="Consulte as habilidades, organizadas por campo de atuação, da BNCC de Língua Portuguesa — Ensino Fundamental, Anos Finais."
+        subtitle="Consulte as habilidades, organizadas por campo de atuação, da BNCC de Língua Portuguesa — Ensino Fundamental."
         scopeComponent="Língua Portuguesa"
-        scopeSegmento="Ensino Fundamental — Anos Finais"
+        scopeSegmento="Ensino Fundamental — Anos Iniciais e Anos Finais"
         scopeTotal={`${linguaPortuguesaSkills.length} habilidades`}
-        scopeGrades="6º, 7º, 8º e 9º anos"
+        scopeGrades="1º ao 9º ano"
       />
       <BnccExplorer
         skills={linguaPortuguesaSkills}

@@ -12,7 +12,8 @@ import geografiaAnosIniciaisDataset from "@/data/bncc/geografia-anos-iniciais.js
 import historiaAnosFinaisDataset from "@/data/bncc/historia-anos-finais.json";
 import historiaAnosIniciaisDataset from "@/data/bncc/historia-anos-iniciais.json";
 import linguaInglesaDataset from "@/data/bncc/lingua-inglesa-anos-finais.json";
-import linguaPortuguesaDataset from "@/data/bncc/lingua-portuguesa-anos-finais.json";
+import linguaPortuguesaAnosFinaisDataset from "@/data/bncc/lingua-portuguesa-anos-finais.json";
+import linguaPortuguesaAnosIniciaisDataset from "@/data/bncc/lingua-portuguesa-anos-iniciais.json";
 import matematicaAnosFinaisDataset from "@/data/bncc/matematica-anos-finais.json";
 import matematicaAnosIniciaisDataset from "@/data/bncc/matematica-anos-iniciais.json";
 import type { BnccRegistro, CompetenciaGeral, HabilidadeFundamental } from "./types";
@@ -20,8 +21,8 @@ import type { BnccRegistro, CompetenciaGeral, HabilidadeFundamental } from "./ty
 export const bnccMetadata = matematicaAnosFinaisDataset.metadata;
 export const bnccSkills = [...matematicaAnosIniciaisDataset.registros, ...matematicaAnosFinaisDataset.registros] as HabilidadeFundamental[];
 
-export const linguaPortuguesaMetadata = linguaPortuguesaDataset.metadata;
-export const linguaPortuguesaSkills = linguaPortuguesaDataset.registros as HabilidadeFundamental[];
+export const linguaPortuguesaMetadata = linguaPortuguesaAnosFinaisDataset.metadata;
+export const linguaPortuguesaSkills = [...linguaPortuguesaAnosIniciaisDataset.registros, ...linguaPortuguesaAnosFinaisDataset.registros] as HabilidadeFundamental[];
 
 export const arteMetadata = arteAnosFinaisDataset.metadata;
 export const arteSkills = [...arteAnosIniciaisDataset.registros, ...arteAnosFinaisDataset.registros] as HabilidadeFundamental[];

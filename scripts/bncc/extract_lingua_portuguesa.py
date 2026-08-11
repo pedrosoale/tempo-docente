@@ -42,11 +42,16 @@ END_MARKER = "4.1.2"  # start of the next component (Arte); bounds the last sect
 CODE_PATTERN = re.compile(r"\((EF\d{2}LP\d{2})\)\s*(.*?)(?=\(EF\d{2}LP\d{2}\)|\Z)", re.S)
 
 GRADE_CODE_TO_LABEL = {
+    "01": "1º ano", "02": "2º ano", "03": "3º ano", "04": "4º ano", "05": "5º ano",
     "06": "6º ano", "07": "7º ano", "08": "8º ano", "09": "9º ano",
+    "12": "1º e 2º ano", "35": "3º ao 5º ano", "15": "1º ao 5º ano",
     "67": "6º e 7º ano", "89": "8º e 9º ano", "69": "6º ao 9º ano",
 }
 GRADE_CODE_TO_ANOS = {
+    "01": ["1º ano"], "02": ["2º ano"], "03": ["3º ano"], "04": ["4º ano"], "05": ["5º ano"],
     "06": ["6º ano"], "07": ["7º ano"], "08": ["8º ano"], "09": ["9º ano"],
+    "12": ["1º ano", "2º ano"], "35": ["3º ano", "4º ano", "5º ano"],
+    "15": ["1º ano", "2º ano", "3º ano", "4º ano", "5º ano"],
     "67": ["6º ano", "7º ano"], "89": ["8º ano", "9º ano"],
     "69": ["6º ano", "7º ano", "8º ano", "9º ano"],
 }
@@ -57,7 +62,25 @@ CAMPO_LABELS = {
     "CAMPO DAS PRÁTICAS DE ESTUDO E PESQUISA": "Campo das Práticas de Estudo e Pesquisa",
     "CAMPO ARTÍSTICO-LITERÁRIO": "Campo Artístico-Literário",
     "TODOS OS CAMPOS DE ATUAÇÃO": "Todos os Campos de Atuação",
+    # Anos Iniciais uses a shorter, distinct set of campo names — confirmed by
+    # scanning every unit-column heading in that section before adding these
+    # (never assumed to match the Anos Finais wording above).
+    "CAMPO DA VIDA COTIDIANA": "Campo da Vida Cotidiana",
+    "CAMPO DA VIDA PÚBLICA": "Campo da Vida Pública",
 }
+
+
+def looks_like_pratica_label(paragraph: str) -> bool:
+    """A real prática label ("Leitura", "Oralidade", "Análise linguística/
+    semiótica (Ortografização)") is short and doesn't open with a bullet
+    dash. A campo's own multi-paragraph descriptive essay (e.g. Campo
+    Artístico-Literário's intro, confirmed on page 157: four ~200-400 char
+    bulleted paragraphs before the real "Leitura" label) is neither —
+    distinguishing the two keeps that essay from being mistaken for the
+    label itself.
+    """
+    flat = re.sub(r"\s+", " ", paragraph).strip()
+    return bool(flat) and len(flat) <= 60 and not flat.startswith("-")
 
 
 def match_campo(unit_upper: str) -> str | None:
@@ -67,7 +90,65 @@ def match_campo(unit_upper: str) -> str | None:
     return None
 
 
-def extract_pair(unit_page: pymupdf.Page, skill_page: pymupdf.Page, current_campo: str | None) -> tuple[list[dict], str | None]:
+def unit_column_paragraphs(page: pymupdf.Page, top: float, bottom: float) -> list[str]:
+    """Unit-column text for a row, split into visually separated paragraphs.
+
+    A tall row can hold a campo's multi-line intro paragraph *and* the next
+    prática de linguagem label stacked below it (confirmed on page 119: a
+    campo intro paragraph's lines run ~12.8pt apart, then a ~26.5pt gap
+    precedes "Leitura/escuta"). Treating the whole rect as one text blob
+    made the campo match swallow that trailing label. Lines are grouped by
+    vertical gap instead, so each paragraph can be checked independently.
+    """
+    lines: list[tuple[float, str]] = []
+    for block in page.get_text("dict")["blocks"]:
+        for line in block.get("lines", []):
+            x0, y0 = line["bbox"][0], line["bbox"][1]
+            if x0 < 62 or x0 >= 291.5 or not (top <= y0 <= bottom):
+                continue
+            text = "".join(span["text"] for span in line["spans"])
+            # Controlled correction: the PDF's own span data for this prática
+            # label has a stray space after the slash ("linguística/
+            # semiótica") on every occurrence — confirmed directly in the
+            # raw span text, not a line-wrap artifact of this extractor.
+            # Restricted to this exact phrase, case-insensitively.
+            text = re.sub(r"(lingu[íi]stica)/\s+(semi[óo]tica)", r"\1/\2", text, flags=re.IGNORECASE)
+            if text.strip():
+                lines.append((y0, text))
+    lines.sort(key=lambda item: item[0])
+
+    def join_lines(wrapped: list[str]) -> str:
+        # A line ending in "/" (e.g. "Análise linguística/" wrapping to
+        # "semiótica") is a mid-word break with no space in the source —
+        # confirmed against the PDF, where clean_text's usual space-joined
+        # rewrap inserted one that doesn't belong. Every other wrap still
+        # joins on its own line, same as before.
+        joined = ""
+        for line in wrapped:
+            line = line.rstrip()
+            if not joined:
+                joined = line
+            elif joined.endswith("/"):
+                joined += line.lstrip()
+            else:
+                joined += "\n" + line
+        return joined
+
+    paragraphs: list[str] = []
+    current_lines: list[str] = []
+    previous_y: float | None = None
+    for y0, text in lines:
+        if previous_y is not None and y0 - previous_y > 18:
+            paragraphs.append(join_lines(current_lines))
+            current_lines = []
+        current_lines.append(text)
+        previous_y = y0
+    if current_lines:
+        paragraphs.append(join_lines(current_lines))
+    return paragraphs
+
+
+def extract_pair(unit_page: pymupdf.Page, skill_page: pymupdf.Page, current_campo: str | None, segmento: str) -> tuple[list[dict], str | None]:
     # A campo's opening paragraph ("CAMPO X — Trata-se de...") sits above the
     # first detected row rule (confirmed on page 141: column headers at
     # y≈130, campo heading at y≈164, first rule at y≈358). Extend the first
@@ -98,32 +179,86 @@ def extract_pair(unit_page: pymupdf.Page, skill_page: pymupdf.Page, current_camp
     current_pratica: str | None = None
 
     for top, bottom in zip(boundaries, boundaries[1:]):
-        unit_text = unit_page.get_textbox(pymupdf.Rect(62, top + 1, 291.5, bottom - 1))
-        unit_upper = unit_text.upper().replace("\n", " ").strip()
-        campo = match_campo(unit_upper)
-        if campo:
-            current_campo = campo
-            current_pratica = None  # a fresh campo resets the práticas cycle
-        elif unit_upper:
-            # Not a campo header: it's the prática de linguagem label for this
-            # row (Leitura, Oralidade, Escrita, Análise Linguística/Semiótica…).
-            current_pratica = clean_text(unit_text)
+        # Checked paragraph by paragraph rather than as one blob: a row can
+        # contain a campo's intro paragraph *and* the next prática label
+        # stacked below it (see unit_column_paragraphs' docstring) — or,
+        # rarer but confirmed on page 171 (EF06LP03-06), *two* campo
+        # headers stacked in one merged row when the skills side's row
+        # boundary is coarser than the true unit-side layout. This row's
+        # own codes belong under the FIRST campo/prática pair encountered
+        # (matches the pre-paragraph code's behavior there, which found it
+        # via CAMPO_LABELS dict-iteration order rather than position — a
+        # coincidence, not a rule, so it's reproduced deliberately here).
+        # Any later campo match in the same row only updates the carried-
+        # forward state for rows after this one.
+        campo_at_row_start = current_campo
+        pratica_at_row_start = current_pratica
+        row_campo: str | None = None
+        row_pratica: str | None = None
+        running_pratica: str | None = None
+        seen_campo_in_row = False
+
+        for paragraph in unit_column_paragraphs(unit_page, top + 1, bottom - 1):
+            paragraph_upper = paragraph.upper().replace("\n", " ").strip()
+            campo = match_campo(paragraph_upper)
+            if campo:
+                if seen_campo_in_row:
+                    if row_pratica is None:
+                        row_pratica = running_pratica
+                else:
+                    row_campo = campo
+                    seen_campo_in_row = True
+                current_campo = campo
+                current_pratica = None
+                running_pratica = None
+            elif paragraph_upper:
+                # Two non-campo paragraphs can appear back to back — a
+                # prática label plus its own footnote annotation, e.g.
+                # "Oralidade" then "*Considerar todas as habilidades..."
+                # (confirmed on page 143, gap 18.4pt — just over the
+                # paragraph-break threshold). Both belong together, the
+                # same as the pre-paragraph blob-based code would have
+                # space-joined them; only a real campo match should ever
+                # discard what came before. But a campo's own descriptive
+                # essay (confirmed on page 157: four bulleted paragraphs
+                # ahead of Campo Artístico-Literário's real "Leitura" label)
+                # is prose, not a label — and prose with no label
+                # established yet in this row is dropped rather than
+                # mistaken for one.
+                cleaned = clean_text(paragraph)
+                if looks_like_pratica_label(paragraph):
+                    running_pratica = cleaned
+                elif running_pratica is not None:
+                    running_pratica = f"{running_pratica} {cleaned}"
+                if running_pratica is not None:
+                    current_pratica = running_pratica
+
+        if row_campo is None:
+            row_campo = campo_at_row_start
+        if row_pratica is None:
+            row_pratica = running_pratica if running_pratica is not None else pratica_at_row_start
 
         object_text = clean_text(
             column_text(unit_page, 292, 552.4, top + 1, bottom - 1),
             preserve_lines=True,
         )
-        if current_pratica and object_text:
-            object_text = f"{current_pratica}: {object_text}"
-        elif current_pratica:
-            object_text = current_pratica
+        if row_pratica and object_text:
+            object_text = f"{row_pratica}: {object_text}"
+        elif row_pratica:
+            object_text = row_pratica
 
         skills_text = skill_page.get_textbox(pymupdf.Rect(40, top + 1, 536, bottom - 1))
+        matches = CODE_PATTERN.findall(skills_text)
 
-        if not current_campo:
+        # Only a row that actually carries a habilidade needs a campo already
+        # established — a purely column-header row (e.g. "PRÁTICAS DE
+        # LINGUAGEM / OBJETOS DE CONHECIMENTO" landing in the synthetic
+        # lead-in row when a subsection's campo heading sits lower than usual)
+        # has no code to attach one to and shouldn't be treated as an error.
+        if matches and not row_campo:
             raise ValueError(f"No campo de atuação established before page {unit_page.number + 1}, row {top}-{bottom}")
 
-        for code, raw_text in CODE_PATTERN.findall(skills_text):
+        for code, raw_text in matches:
             grade_code = code[2:4]
             if grade_code not in GRADE_CODE_TO_LABEL:
                 raise ValueError(f"Unknown grade code {grade_code!r} in {code} on page {skill_page.number + 1}")
@@ -132,12 +267,12 @@ def extract_pair(unit_page: pymupdf.Page, skill_page: pymupdf.Page, current_camp
                 {
                     "codigo": code,
                     "etapa": "Ensino Fundamental",
-                    "segmento": "Anos Finais",
+                    "segmento": segmento,
                     "area": "Linguagens",
                     "componente": "Língua Portuguesa",
                     "ano": GRADE_CODE_TO_LABEL[grade_code],
                     "anos_aplicaveis": GRADE_CODE_TO_ANOS[grade_code],
-                    "campo_atuacao": current_campo,
+                    "campo_atuacao": row_campo,
                     "objeto_conhecimento": object_text if object_text else None,
                     "habilidade": clean_text(raw_text),
                     "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
@@ -157,6 +292,10 @@ def main() -> None:
     parser.add_argument("--pdf", type=Path, required=True, help="Path to the official MEC PDF")
     parser.add_argument("--output", type=Path, required=True, help="Output source snapshot JSON")
     parser.add_argument("--download", action="store_true", help="Download the official PDF before extracting")
+    parser.add_argument("--section-headings", default=None, help="Comma-separated subsection headings; defaults to the Anos Finais set")
+    parser.add_argument("--end-marker", default=END_MARKER)
+    parser.add_argument("--segmento", default="Anos Finais")
+    parser.add_argument("--escopo-nota", default="6º ao 9º ano")
     args = parser.parse_args()
 
     if args.download:
@@ -164,10 +303,12 @@ def main() -> None:
     if not args.pdf.exists():
         raise FileNotFoundError(f"Official PDF not found: {args.pdf}")
 
+    section_headings = args.section_headings.split("|") if args.section_headings else SECTION_HEADINGS
+
     document = pymupdf.open(args.pdf)
 
-    section_starts = [find_heading_page(document, heading) for heading in SECTION_HEADINGS]
-    end_page = find_heading_page(document, END_MARKER, start=section_starts[-1])
+    section_starts = [find_heading_page(document, heading) for heading in section_headings]
+    end_page = find_heading_page(document, args.end_marker, start=section_starts[-1])
     section_bounds = list(zip(section_starts, section_starts[1:] + [end_page]))
 
     records: list[dict] = []
@@ -177,7 +318,7 @@ def main() -> None:
             skill_index = unit_index + 1
             if skill_index >= end:
                 break
-            pair_records, current_campo = extract_pair(document[unit_index], document[skill_index], current_campo)
+            pair_records, current_campo = extract_pair(document[unit_index], document[skill_index], current_campo, args.segmento)
             records.extend(pair_records)
 
     seen = set()
@@ -197,7 +338,7 @@ def main() -> None:
             "versao_fonte": SOURCE_VERSION,
             "metodo_extracao": "PDF oficial; associação por linhas vetoriais das tabelas em páginas espelhadas (mesma técnica de Matemática); campo de atuação e prática de linguagem detectados por cabeçalho de linha com herança",
             "data_extracao": imported_at,
-            "escopo": "Ensino Fundamental — Anos Finais — Língua Portuguesa — 6º ao 9º ano",
+            "escopo": f"Ensino Fundamental — {args.segmento} — Língua Portuguesa — {args.escopo_nota}",
             "classificacao": "dado_oficial",
         },
         "habilidades": records,

@@ -183,25 +183,52 @@ async function processMatematicaAnosFinais() {
 }
 
 const LP_GRADE_TO_ANOS = {
+  "01": ["1º ano"], "02": ["2º ano"], "03": ["3º ano"], "04": ["4º ano"], "05": ["5º ano"],
   "06": ["6º ano"],
   "07": ["7º ano"],
   "08": ["8º ano"],
   "09": ["9º ano"],
+  "12": ["1º ano", "2º ano"], "35": ["3º ano", "4º ano", "5º ano"],
+  "15": ["1º ano", "2º ano", "3º ano", "4º ano", "5º ano"],
   "67": ["6º ano", "7º ano"],
   "89": ["8º ano", "9º ano"],
   "69": ["6º ano", "7º ano", "8º ano", "9º ano"],
 };
 const LP_GRADE_TO_LABEL = {
+  "01": "1º ano", "02": "2º ano", "03": "3º ano", "04": "4º ano", "05": "5º ano",
   "06": "6º ano", "07": "7º ano", "08": "8º ano", "09": "9º ano",
+  "12": "1º e 2º ano", "35": "3º ao 5º ano", "15": "1º ao 5º ano",
   "67": "6º e 7º ano", "89": "8º e 9º ano", "69": "6º ao 9º ano",
 };
+const LP_KNOWN_CAMPOS = new Set([
+  "Campo Jornalístico-Midiático",
+  "Campo de Atuação na Vida Pública",
+  "Campo das Práticas de Estudo e Pesquisa",
+  "Campo Artístico-Literário",
+  "Todos os Campos de Atuação",
+  "Campo da Vida Cotidiana",
+  "Campo da Vida Pública",
+]);
 
-// ---- Escopo: Língua Portuguesa — Ensino Fundamental, Anos Finais (6º-9º) ----
-async function processLinguaPortuguesaAnosFinais() {
-  const loteId = `${today}-lingua-portuguesa-anos-finais`;
-  const { raw, data: source, relativePath } = await readSource(
-    "data/bncc/source/official-mec-bncc-lingua-portuguesa-anos-finais.json",
-  );
+const LP_SCOPES = [
+  {
+    scopeId: "lingua-portuguesa-anos-finais",
+    sourceFile: "data/bncc/source/official-mec-bncc-lingua-portuguesa-anos-finais.json",
+    codeGrades: "06|07|08|09|67|89|69",
+    prefixes: ["EF06LP", "EF07LP", "EF08LP", "EF09LP", "EF67LP", "EF89LP", "EF69LP"],
+  },
+  {
+    scopeId: "lingua-portuguesa-anos-iniciais",
+    sourceFile: "data/bncc/source/official-mec-bncc-lingua-portuguesa-anos-iniciais.json",
+    codeGrades: "01|02|03|04|05|12|15|35",
+    prefixes: ["EF01LP", "EF02LP", "EF03LP", "EF04LP", "EF05LP", "EF12LP", "EF15LP", "EF35LP"],
+  },
+];
+
+// ---- Escopo: Língua Portuguesa — Ensino Fundamental (Anos Iniciais e Anos Finais) ----
+async function processLinguaPortuguesa({ scopeId, sourceFile, codeGrades, prefixes }) {
+  const loteId = `${today}-${scopeId}`;
+  const { raw, data: source, relativePath } = await readSource(sourceFile);
   const importedAt = new Date().toISOString();
   const requiredFields = [
     "codigo", "etapa", "segmento", "area", "componente", "ano",
@@ -212,13 +239,8 @@ async function processLinguaPortuguesaAnosFinais() {
   const warnings = [];
   const accepted = [];
   const seen = new Set();
-  const knownCampos = new Set([
-    "Campo Jornalístico-Midiático",
-    "Campo de Atuação na Vida Pública",
-    "Campo das Práticas de Estudo e Pesquisa",
-    "Campo Artístico-Literário",
-    "Todos os Campos de Atuação",
-  ]);
+  const knownCampos = LP_KNOWN_CAMPOS;
+  const codePattern = new RegExp(`^EF(${codeGrades})LP(\\d{2})$`);
 
   for (const [index, record] of source.habilidades.entries()) {
     const errors = [];
@@ -230,9 +252,9 @@ async function processLinguaPortuguesaAnosFinais() {
       }
     }
 
-    const codeMatch = code.match(/^EF(06|07|08|09|67|89|69)LP(\d{2})$/);
+    const codeMatch = code.match(codePattern);
     if (!codeMatch) {
-      errors.push("Código fora do padrão EF{06|07|08|09|67|89|69}LPxx");
+      errors.push(`Código fora do padrão EF{${codeGrades}}LPxx`);
     }
 
     const gradeKey = codeMatch?.[1];
@@ -296,7 +318,7 @@ async function processLinguaPortuguesaAnosFinais() {
   const totalsByCampo = {};
   for (const record of accepted) totalsByCampo[record.campo_atuacao] = (totalsByCampo[record.campo_atuacao] ?? 0) + 1;
 
-  for (const prefix of ["EF06LP", "EF07LP", "EF08LP", "EF09LP", "EF67LP", "EF89LP", "EF69LP"]) {
+  for (const prefix of prefixes) {
     const numbers = accepted
       .filter((record) => record.codigo.startsWith(prefix))
       .map((record) => Number(record.codigo.slice(prefix.length)))
@@ -314,7 +336,7 @@ async function processLinguaPortuguesaAnosFinais() {
     : "valido";
 
   const report = {
-    escopo: "lingua-portuguesa-anos-finais",
+    escopo: scopeId,
     data_importacao: importedAt,
     lote_importacao: loteId,
     arquivo_fonte: relativePath,
@@ -342,8 +364,8 @@ async function processLinguaPortuguesaAnosFinais() {
     registros: accepted.sort((a, b) => a.codigo.localeCompare(b.codigo, "pt-BR")),
   };
 
-  await writeReport("data/bncc/lingua-portuguesa-anos-finais.report.json", report);
-  await writeDataset("data/bncc/lingua-portuguesa-anos-finais.json", dataset, status);
+  await writeReport(`data/bncc/${scopeId}.report.json`, report);
+  await writeDataset(`data/bncc/${scopeId}.json`, dataset, status);
 
   return { report, accepted: status === "valido" ? accepted : [] };
 }
@@ -674,7 +696,7 @@ async function processCompetenciasGerais() {
 async function main() {
   const scopes = [
     await processMatematicaAnosFinais(),
-    await processLinguaPortuguesaAnosFinais(),
+    ...(await Promise.all(LP_SCOPES.map((config) => processLinguaPortuguesa(config)))),
     ...(await Promise.all(SIMPLE_COMPONENTS.map((config) => processSimpleComponent(config)))),
     await processCompetenciasGerais(),
   ];

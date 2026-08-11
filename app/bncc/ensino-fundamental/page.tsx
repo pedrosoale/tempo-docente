@@ -5,7 +5,7 @@ import { BnccIntro } from "../components/BnccIntro";
 
 export const metadata: Metadata = {
   title: "BNCC — Ensino Fundamental | Tempo Docente",
-  description: "Consulte as habilidades da BNCC do Ensino Fundamental — Anos Finais, por componente curricular.",
+  description: "Consulte as habilidades da BNCC do Ensino Fundamental, por componente curricular.",
   alternates: { canonical: "/bncc/ensino-fundamental" },
 };
 
@@ -16,7 +16,7 @@ export default function EnsinoFundamentalPage() {
     <>
       <BnccIntro
         title="BNCC — Ensino Fundamental"
-        subtitle="Escolha um componente curricular para consultar as habilidades oficiais. Sete dos nove já cobrem o 1º ao 9º ano; Língua Portuguesa ainda cobre só o 6º ao 9º (Anos Iniciais em expansão), e Língua Inglesa começa no 6º ano na própria BNCC."
+        subtitle="Escolha um componente curricular para consultar as habilidades oficiais. Oito dos nove já cobrem o 1º ao 9º ano; só Língua Inglesa cobre 6º ao 9º, porque a própria BNCC só a inclui a partir dos Anos Finais."
         scopeComponent="Ensino Fundamental"
         scopeSegmento="Anos Iniciais e Anos Finais"
         scopeTotal={`${totalHabilidades} habilidades`}

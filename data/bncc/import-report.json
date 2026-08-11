@@ -1,18 +1,18 @@
 {
-  "data_importacao": "2026-08-10T21:13:15.784Z",
+  "data_importacao": "2026-08-11T03:00:18.957Z",
   "status": "valido",
-  "total_geral": 1107,
+  "total_geral": 1313,
   "total_por_etapa": {
-    "Ensino Fundamental": 1097,
+    "Ensino Fundamental": 1303,
     "Educação Básica": 10
   },
   "total_por_tipo": {
-    "habilidade": 1097,
+    "habilidade": 1303,
     "competencia_geral": 10
   },
   "total_por_componente": {
     "Matemática": 247,
-    "Língua Portuguesa": 185,
+    "Língua Portuguesa": 391,
     "Arte": 61,
     "Educação Física": 69,
     "Língua Inglesa": 88,
@@ -31,6 +31,11 @@
       "status": "valido",
       "total": 185,
       "relatorio": "data/bncc/lingua-portuguesa-anos-finais.report.json"
+    },
+    "lingua-portuguesa-anos-iniciais": {
+      "status": "valido",
+      "total": 206,
+      "relatorio": "data/bncc/lingua-portuguesa-anos-iniciais.report.json"
     },
     "matematica-anos-iniciais": {
       "status": "valido",

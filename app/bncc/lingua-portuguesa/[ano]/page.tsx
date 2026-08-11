@@ -4,7 +4,7 @@ import { linguaPortuguesaSkills } from "@/lib/bncc/data";
 import { BnccExplorer } from "../../components/BnccExplorer";
 import { BnccIntro } from "../../components/BnccIntro";
 
-const validYears = ["6-ano", "7-ano", "8-ano", "9-ano"] as const;
+const validYears = ["1-ano", "2-ano", "3-ano", "4-ano", "5-ano", "6-ano", "7-ano", "8-ano", "9-ano"] as const;
 
 type YearPageProps = { params: Promise<{ ano: string }> };
 
@@ -34,9 +34,9 @@ export default async function LinguaPortuguesaYearPage({ params }: YearPageProps
         subtitle={`Consulte as habilidades oficiais do ${grade}, incluindo habilidades compartilhadas com anos vizinhos (ex.: códigos de par de anos).`}
         currentYear={grade}
         scopeComponent="Língua Portuguesa"
-        scopeSegmento="Ensino Fundamental — Anos Finais"
+        scopeSegmento="Ensino Fundamental — Anos Iniciais e Anos Finais"
         scopeTotal={`${linguaPortuguesaSkills.length} habilidades`}
-        scopeGrades="6º, 7º, 8º e 9º anos"
+        scopeGrades="1º ao 9º ano"
       />
       <BnccExplorer
         skills={linguaPortuguesaSkills}

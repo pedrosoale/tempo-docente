@@ -1,7 +1,7 @@
 {
   "escopo": "geografia-anos-iniciais",
-  "data_importacao": "2026-08-10T21:13:15.728Z",
-  "lote_importacao": "2026-08-10-geografia-anos-iniciais",
+  "data_importacao": "2026-08-11T03:00:18.903Z",
+  "lote_importacao": "2026-08-11-geografia-anos-iniciais",
   "arquivo_fonte": "data/bncc/source/official-mec-bncc-geografia-anos-iniciais.json",
   "hash_sha256_fonte": "09a9d42b20fd535a2b7d439b36c15ba2f433662eb3e55094eadbe215dfec6774",
   "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
