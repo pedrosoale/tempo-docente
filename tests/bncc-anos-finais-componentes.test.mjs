@@ -78,7 +78,10 @@ test("Ensino Religioso: all four Anos Finais grades are represented despite the 
 test("aggregate import report accounts for all Ensino Fundamental Anos Finais components plus Competências Gerais", async () => {
   const summary = (await import("../data/bncc/import-report.json", { with: { type: "json" } })).default;
   assert.equal(summary.status, "valido");
-  assert.equal(summary.total_geral, 1313);
+  // 1313 (Ensino Fundamental + Competências Gerais) + 204 (all 5 Ensino
+  // Médio scopes: Linguagens, Matemática, Ciências da Natureza, Ciências
+  // Humanas, Língua Portuguesa; see tests/bncc-ensino-medio.test.mjs).
+  assert.equal(summary.total_geral, 1517);
   assert.equal(summary.total_por_etapa["Ensino Fundamental"], 1303);
   assert.equal(summary.total_por_etapa["Educação Básica"], 10);
   for (const { scopeId, total } of COMPONENTES) {

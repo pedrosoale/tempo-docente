@@ -1,25 +1,31 @@
 {
-  "data_importacao": "2026-08-11T03:00:18.957Z",
+  "data_importacao": "2026-08-15T15:45:51.503Z",
   "status": "valido",
-  "total_geral": 1313,
+  "total_geral": 1517,
   "total_por_etapa": {
     "Ensino Fundamental": 1303,
+    "Ensino Médio": 204,
     "Educação Básica": 10
   },
   "total_por_tipo": {
-    "habilidade": 1303,
+    "habilidade": 1486,
+    "competencia_especifica": 21,
     "competencia_geral": 10
   },
   "total_por_componente": {
     "Matemática": 247,
-    "Língua Portuguesa": 391,
+    "Língua Portuguesa": 445,
     "Arte": 61,
     "Educação Física": 69,
     "Língua Inglesa": 88,
     "Ciências": 111,
     "Geografia": 123,
     "História": 150,
-    "Ensino Religioso": 63
+    "Ensino Religioso": 63,
+    "Linguagens e suas Tecnologias": 28,
+    "Matemática e suas Tecnologias": 43,
+    "Ciências da Natureza e suas Tecnologias": 26,
+    "Ciências Humanas e Sociais Aplicadas": 32
   },
   "escopos": {
     "matematica-anos-finais": {
@@ -106,6 +112,31 @@
       "status": "valido",
       "total": 30,
       "relatorio": "data/bncc/ensino-religioso-anos-finais.report.json"
+    },
+    "ensino-medio-linguagens": {
+      "status": "valido",
+      "total": 35,
+      "relatorio": "data/bncc/ensino-medio-linguagens.report.json"
+    },
+    "ensino-medio-matematica": {
+      "status": "valido",
+      "total": 48,
+      "relatorio": "data/bncc/ensino-medio-matematica.report.json"
+    },
+    "ensino-medio-ciencias-da-natureza": {
+      "status": "valido",
+      "total": 29,
+      "relatorio": "data/bncc/ensino-medio-ciencias-da-natureza.report.json"
+    },
+    "ensino-medio-ciencias-humanas": {
+      "status": "valido",
+      "total": 38,
+      "relatorio": "data/bncc/ensino-medio-ciencias-humanas.report.json"
+    },
+    "ensino-medio-lingua-portuguesa": {
+      "status": "valido",
+      "total": 54,
+      "relatorio": "data/bncc/ensino-medio-lingua-portuguesa.report.json"
     },
     "competencias-gerais": {
       "status": "valido",

@@ -1,0 +1,229 @@
+{
+  "metadata": {
+    "fonte": "Base Nacional Comum Curricular — Ministério da Educação",
+    "fonte_url": "https://basenacionalcomum.mec.gov.br/abase/",
+    "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
+    "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+    "metodo_extracao": "PDF oficial; tabela 'Considerações sobre a organização curricular' da área de Matemática (Ensino Médio) — reagrupa os códigos já extraídos por extract_ensino_medio_area.py por unidade temática, sem repetir o texto da habilidade",
+    "data_extracao": "2026-08-15T13:50:58.689328Z",
+    "escopo": "Ensino Médio — Matemática e suas Tecnologias — código → unidade temática",
+    "classificacao": "dado_oficial"
+  },
+  "mapeamento": [
+    {
+      "codigo": "EM13MAT101",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 544
+    },
+    {
+      "codigo": "EM13MAT102",
+      "unidade_tematica": "Probabilidade e estatística",
+      "pagina_fonte": 547
+    },
+    {
+      "codigo": "EM13MAT103",
+      "unidade_tematica": "Geometria e medidas",
+      "pagina_fonte": 546
+    },
+    {
+      "codigo": "EM13MAT104",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 544
+    },
+    {
+      "codigo": "EM13MAT105",
+      "unidade_tematica": "Geometria e medidas",
+      "pagina_fonte": 546
+    },
+    {
+      "codigo": "EM13MAT106",
+      "unidade_tematica": "Probabilidade e estatística",
+      "pagina_fonte": 547
+    },
+    {
+      "codigo": "EM13MAT201",
+      "unidade_tematica": "Geometria e medidas",
+      "pagina_fonte": 546
+    },
+    {
+      "codigo": "EM13MAT202",
+      "unidade_tematica": "Probabilidade e estatística",
+      "pagina_fonte": 547
+    },
+    {
+      "codigo": "EM13MAT203",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 544
+    },
+    {
+      "codigo": "EM13MAT301",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 545
+    },
+    {
+      "codigo": "EM13MAT302",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 544
+    },
+    {
+      "codigo": "EM13MAT303",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 545
+    },
+    {
+      "codigo": "EM13MAT304",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 545
+    },
+    {
+      "codigo": "EM13MAT305",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 545
+    },
+    {
+      "codigo": "EM13MAT306",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 545
+    },
+    {
+      "codigo": "EM13MAT307",
+      "unidade_tematica": "Geometria e medidas",
+      "pagina_fonte": 546
+    },
+    {
+      "codigo": "EM13MAT308",
+      "unidade_tematica": "Geometria e medidas",
+      "pagina_fonte": 546
+    },
+    {
+      "codigo": "EM13MAT309",
+      "unidade_tematica": "Geometria e medidas",
+      "pagina_fonte": 546
+    },
+    {
+      "codigo": "EM13MAT310",
+      "unidade_tematica": "Probabilidade e estatística",
+      "pagina_fonte": 547
+    },
+    {
+      "codigo": "EM13MAT311",
+      "unidade_tematica": "Probabilidade e estatística",
+      "pagina_fonte": 547
+    },
+    {
+      "codigo": "EM13MAT312",
+      "unidade_tematica": "Probabilidade e estatística",
+      "pagina_fonte": 547
+    },
+    {
+      "codigo": "EM13MAT313",
+      "unidade_tematica": "Geometria e medidas",
+      "pagina_fonte": 546
+    },
+    {
+      "codigo": "EM13MAT314",
+      "unidade_tematica": "Geometria e medidas",
+      "pagina_fonte": 546
+    },
+    {
+      "codigo": "EM13MAT315",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 545
+    },
+    {
+      "codigo": "EM13MAT316",
+      "unidade_tematica": "Probabilidade e estatística",
+      "pagina_fonte": 547
+    },
+    {
+      "codigo": "EM13MAT401",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 544
+    },
+    {
+      "codigo": "EM13MAT402",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 544
+    },
+    {
+      "codigo": "EM13MAT403",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 545
+    },
+    {
+      "codigo": "EM13MAT404",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 545
+    },
+    {
+      "codigo": "EM13MAT405",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 545
+    },
+    {
+      "codigo": "EM13MAT406",
+      "unidade_tematica": "Probabilidade e estatística",
+      "pagina_fonte": 547
+    },
+    {
+      "codigo": "EM13MAT407",
+      "unidade_tematica": "Probabilidade e estatística",
+      "pagina_fonte": 547
+    },
+    {
+      "codigo": "EM13MAT501",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 544
+    },
+    {
+      "codigo": "EM13MAT502",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 544
+    },
+    {
+      "codigo": "EM13MAT503",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 544
+    },
+    {
+      "codigo": "EM13MAT504",
+      "unidade_tematica": "Geometria e medidas",
+      "pagina_fonte": 546
+    },
+    {
+      "codigo": "EM13MAT505",
+      "unidade_tematica": "Geometria e medidas",
+      "pagina_fonte": 546
+    },
+    {
+      "codigo": "EM13MAT506",
+      "unidade_tematica": "Geometria e medidas",
+      "pagina_fonte": 546
+    },
+    {
+      "codigo": "EM13MAT507",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 545
+    },
+    {
+      "codigo": "EM13MAT508",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 545
+    },
+    {
+      "codigo": "EM13MAT509",
+      "unidade_tematica": "Geometria e medidas",
+      "pagina_fonte": 546
+    },
+    {
+      "codigo": "EM13MAT510",
+      "unidade_tematica": "Números e álgebra",
+      "pagina_fonte": 544
+    },
+    {
+      "codigo": "EM13MAT511",
+      "unidade_tematica": "Probabilidade e estatística",
+      "pagina_fonte": 547
+    }
+  ]
+}

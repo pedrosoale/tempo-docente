@@ -1,7 +1,7 @@
 {
   "escopo": "ensino-religioso-anos-finais",
-  "data_importacao": "2026-08-11T03:00:18.914Z",
-  "lote_importacao": "2026-08-11-ensino-religioso-anos-finais",
+  "data_importacao": "2026-08-15T15:45:51.432Z",
+  "lote_importacao": "2026-08-15-ensino-religioso-anos-finais",
   "arquivo_fonte": "data/bncc/source/official-mec-bncc-ensino-religioso-anos-finais.json",
   "hash_sha256_fonte": "1c27124aedce6d0ca70a3412c373e470917b87c401bc4be30e6459c8ca60016c",
   "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",

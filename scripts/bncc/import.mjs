@@ -693,11 +693,418 @@ async function processCompetenciasGerais() {
   return { report, accepted: status === "valido" ? accepted : [] };
 }
 
+// ---- Escopo: Ensino Médio — áreas do conhecimento com competências
+// específicas + habilidades em prosa corrida (sem tabela vetorial), ver
+// extract_ensino_medio_area.py. Compartilham a mesma validação: código no
+// padrão EM13<PREFIXO><dígito da competência><sequencial>, dígito da
+// competência no próprio código batendo com a competência sob a qual a
+// habilidade foi encontrada, sequência sem buracos por competência, todas
+// as N competências presentes. Língua Portuguesa (dentro de Linguagens) não
+// usa esta função — tem seu próprio processador porque é organizada por
+// campo de atuação, não por competência específica.
+async function processEnsinoMedioArea(config) {
+  const { scopeId, sourceFile, codePrefix, numCompetencias, area, componente, unidadeTematicaFile } = config;
+  const loteId = `${today}-ensino-medio-${scopeId}`;
+  const { raw, data: source, relativePath } = await readSource(sourceFile);
+  const importedAt = new Date().toISOString();
+  const codePattern = new RegExp(`^EM13${codePrefix}(\\d)(\\d{2})$`);
+
+  const competenciaRejected = [];
+  const competenciaWarnings = [];
+  const competenciaAccepted = [];
+  const seenCompetencia = new Set();
+
+  for (const [index, record] of source.competencias.entries()) {
+    const errors = [];
+    const numero = Number(record.numero);
+
+    if (!Number.isInteger(numero) || numero < 1 || numero > numCompetencias) {
+      errors.push(`Número fora do intervalo esperado (1-${numCompetencias})`);
+    }
+    if (typeof record.texto !== "string" || !record.texto.trim()) {
+      errors.push("Campo obrigatório vazio: texto");
+    }
+    if (hasControlChars(record)) {
+      errors.push("Registro contém caracteres de controle ou substituição");
+    }
+    if (seenCompetencia.has(numero)) {
+      errors.push("Número duplicado");
+    }
+    seenCompetencia.add(numero);
+
+    if (record.texto && !/[.!?]$/.test(record.texto.trim())) {
+      competenciaWarnings.push({ numero, alerta: "Texto da competência pode estar truncado: pontuação final ausente" });
+    }
+
+    if (errors.length) {
+      competenciaRejected.push({ index, numero: Number.isInteger(numero) ? numero : null, erros: errors });
+      continue;
+    }
+
+    competenciaAccepted.push({
+      id: `em13-${scopeId}-competencia-${numero}`,
+      codigo: null,
+      tipo: "competencia_especifica",
+      etapa: "Ensino Médio",
+      area,
+      numero,
+      texto: record.texto,
+      fonte: source.metadata.fonte,
+      fonte_url: source.metadata.fonte_url,
+      documento_url: source.metadata.documento_url,
+      versao_fonte: source.metadata.versao_fonte,
+      pagina_fonte: record.pagina_fonte,
+      classificacao: source.metadata.classificacao,
+      lote_importacao: loteId,
+      data_importacao: importedAt,
+    });
+  }
+
+  const missingCompetencias = Array.from({ length: numCompetencias }, (_, index) => index + 1).filter((number) => !seenCompetencia.has(number));
+  if (missingCompetencias.length) {
+    competenciaWarnings.push({ alerta: `Números de competência ausentes: ${missingCompetencias.join(", ")}` });
+  }
+
+  const habilidadeDuplicates = [];
+  const habilidadeRejected = [];
+  const habilidadeWarnings = [];
+  const habilidadeAccepted = [];
+  const seenCodigo = new Set();
+
+  for (const [index, record] of source.habilidades.entries()) {
+    const errors = [];
+    const code = String(record.codigo ?? "").trim().toUpperCase();
+    const codeMatch = code.match(codePattern);
+
+    for (const field of ["codigo", "etapa", "area", "componente", "habilidade", "fonte", "fonte_url", "versao_fonte", "classificacao"]) {
+      if (typeof record[field] !== "string" || !record[field].trim()) {
+        errors.push(`Campo obrigatório vazio: ${field}`);
+      }
+    }
+
+    if (!codeMatch) {
+      errors.push(`Código fora do padrão EM13${codePrefix}\\d{3}`);
+    }
+    const competenciaDoCodigo = codeMatch ? Number(codeMatch[1]) : null;
+    if (competenciaDoCodigo !== null && competenciaDoCodigo !== record.competencia_especifica) {
+      errors.push(`Competência específica ${record.competencia_especifica} não corresponde ao dígito do código ${code} (esperado ${competenciaDoCodigo})`);
+    }
+    if (record.area !== area) {
+      errors.push(`Área "${record.area}" não corresponde à área esperada do escopo ("${area}")`);
+    }
+    if (record.componente !== componente) {
+      errors.push(`Componente "${record.componente}" não corresponde ao componente esperado do escopo ("${componente}")`);
+    }
+
+    if (hasControlChars(record)) {
+      errors.push("Registro contém caracteres de controle ou substituição");
+    }
+    if (seenCodigo.has(code)) {
+      habilidadeDuplicates.push(code);
+      errors.push("Código duplicado");
+    }
+    seenCodigo.add(code);
+
+    if (record.habilidade && !/[.!?)"”]$/.test(record.habilidade.trim())) {
+      habilidadeWarnings.push({ codigo: code, alerta: "Texto da habilidade pode estar truncado: pontuação final ausente" });
+    }
+
+    if (errors.length) {
+      habilidadeRejected.push({ index, codigo: code || null, erros: errors });
+      continue;
+    }
+
+    habilidadeAccepted.push({
+      id: code.toLowerCase(),
+      codigo: code,
+      tipo: "habilidade",
+      etapa: "Ensino Médio",
+      area: record.area,
+      componente: record.componente,
+      competencias_especificas: [record.competencia_especifica],
+      texto: record.habilidade,
+      fonte: record.fonte,
+      fonte_url: record.fonte_url,
+      documento_url: record.documento_url,
+      versao_fonte: record.versao_fonte,
+      pagina_fonte: record.pagina_fonte,
+      classificacao: record.classificacao,
+      lote_importacao: loteId,
+      data_importacao: importedAt,
+    });
+  }
+
+  // Matemática only: the "Considerações sobre a organização curricular"
+  // table repeats these same codes regrouped by unidade temática (see
+  // extract_matematica_unidade_tematica.py) — it is a relabeling of
+  // already-accepted habilidades, never a source of new ones, so a mismatch
+  // in either direction is a validation error, not something to merge
+  // partially or ignore.
+  if (unidadeTematicaFile) {
+    const { data: unidadeSource } = await readSource(unidadeTematicaFile);
+    const mapping = new Map(unidadeSource.mapeamento.map((entry) => [entry.codigo, entry.unidade_tematica]));
+    const acceptedCodes = new Set(habilidadeAccepted.map((record) => record.codigo));
+    const missingFromMapping = [...acceptedCodes].filter((code) => !mapping.has(code));
+    const extraInMapping = [...mapping.keys()].filter((code) => !acceptedCodes.has(code));
+    if (missingFromMapping.length || extraInMapping.length) {
+      habilidadeWarnings.push({
+        alerta: `Mapeamento de unidade temática incompleto: faltando [${missingFromMapping.join(", ")}], extra [${extraInMapping.join(", ")}]`,
+      });
+    } else {
+      for (const record of habilidadeAccepted) {
+        record.unidade_tematica = mapping.get(record.codigo);
+      }
+    }
+  }
+
+  const totalPorCompetencia = {};
+  for (const record of habilidadeAccepted) totalPorCompetencia[record.competencias_especificas[0]] = (totalPorCompetencia[record.competencias_especificas[0]] ?? 0) + 1;
+
+  for (let competencia = 1; competencia <= numCompetencias; competencia += 1) {
+    const numbers = habilidadeAccepted
+      .filter((record) => record.competencias_especificas[0] === competencia)
+      .map((record) => Number(record.codigo.slice(-2)))
+      .sort((a, b) => a - b);
+    const missing = numbers.length
+      ? Array.from({ length: numbers.at(-1) }, (_, index) => index + 1).filter((number) => !numbers.includes(number))
+      : [];
+    if (missing.length) {
+      habilidadeWarnings.push({ competencia_especifica: competencia, alerta: `Códigos ausentes: ${missing.map((number) => String(number).padStart(2, "0")).join(", ")}` });
+    }
+  }
+
+  const status = competenciaRejected.length || habilidadeRejected.length || habilidadeDuplicates.length
+    || competenciaWarnings.some((item) => item.alerta?.startsWith("Números de competência ausentes"))
+    || habilidadeWarnings.some((item) => item.alerta?.startsWith("Códigos ausentes") || item.alerta?.startsWith("Mapeamento de unidade temática incompleto"))
+    ? "revisao_necessaria"
+    : "valido";
+
+  const report = {
+    escopo: `ensino-medio-${scopeId}`,
+    data_importacao: importedAt,
+    lote_importacao: loteId,
+    arquivo_fonte: relativePath,
+    hash_sha256_fonte: createHash("sha256").update(raw).digest("hex"),
+    versao_fonte: source.metadata.versao_fonte,
+    metodo_extracao: source.metadata.metodo_extracao,
+    total_competencias: competenciaAccepted.length,
+    total_habilidades: habilidadeAccepted.length,
+    total_geral: competenciaAccepted.length + habilidadeAccepted.length,
+    total_habilidades_por_competencia: totalPorCompetencia,
+    duplicidades: [...new Set(habilidadeDuplicates)],
+    registros_rejeitados: [...competenciaRejected, ...habilidadeRejected],
+    alertas: [...competenciaWarnings, ...habilidadeWarnings],
+    status,
+  };
+
+  const accepted = [...competenciaAccepted, ...habilidadeAccepted];
+  const dataset = {
+    metadata: {
+      ...source.metadata,
+      data_importacao: importedAt,
+      lote_importacao: loteId,
+      total_registros: accepted.length,
+      hash_sha256_fonte: report.hash_sha256_fonte,
+    },
+    registros: accepted.sort((a, b) => {
+      if (a.tipo !== b.tipo) return a.tipo === "competencia_especifica" ? -1 : 1;
+      return (a.codigo ?? "").localeCompare(b.codigo ?? "", "pt-BR") || (a.numero ?? 0) - (b.numero ?? 0);
+    }),
+  };
+
+  await writeReport(`data/bncc/ensino-medio-${scopeId}.report.json`, report);
+  await writeDataset(`data/bncc/ensino-medio-${scopeId}.json`, dataset, status);
+
+  return { report, accepted: status === "valido" ? accepted : [] };
+}
+
+// ---- Escopo: Ensino Médio — Língua Portuguesa (dentro de Linguagens e
+// suas Tecnologias). Não usa processEnsinoMedioArea: organizada por campo
+// de atuação social, não por competência específica, e cada habilidade
+// carrega uma lista própria de competências específicas (de Linguagens)
+// em vez de derivar uma única do próprio código — ver
+// extract_lingua_portuguesa_medio.py para o porquê estrutural.
+const LP_MEDIO_CAMPOS = new Set([
+  "Todos os Campos de Atuação Social",
+  "Campo da Vida Pessoal",
+  "Campo de Atuação na Vida Pública",
+  "Campo das Práticas de Estudo e Pesquisa",
+  "Campo Jornalístico-Midiático",
+  "Campo Artístico-Literário",
+]);
+
+async function processLinguaPortuguesaMedio() {
+  const scopeId = "lingua-portuguesa";
+  const loteId = `${today}-ensino-medio-${scopeId}`;
+  const { raw, data: source, relativePath } = await readSource("data/bncc/source/official-mec-bncc-ensino-medio-lingua-portuguesa.json");
+  const importedAt = new Date().toISOString();
+  const codePattern = /^EM13LP\d{2}$/;
+
+  const duplicates = [];
+  const rejected = [];
+  const warnings = [];
+  const accepted = [];
+  const seen = new Set();
+
+  for (const [index, record] of source.habilidades.entries()) {
+    const errors = [];
+    const code = String(record.codigo ?? "").trim().toUpperCase();
+
+    for (const field of ["codigo", "etapa", "area", "componente", "campo_atuacao", "habilidade", "fonte", "fonte_url", "versao_fonte", "classificacao"]) {
+      if (typeof record[field] !== "string" || !record[field].trim()) {
+        errors.push(`Campo obrigatório vazio: ${field}`);
+      }
+    }
+
+    if (!codePattern.test(code)) {
+      errors.push("Código fora do padrão EM13LPxx");
+    }
+    if (record.area !== "Linguagens e suas Tecnologias") {
+      errors.push(`Área "${record.area}" não corresponde à esperada ("Linguagens e suas Tecnologias")`);
+    }
+    if (record.componente !== "Língua Portuguesa") {
+      errors.push(`Componente "${record.componente}" não corresponde ao esperado ("Língua Portuguesa")`);
+    }
+    if (!LP_MEDIO_CAMPOS.has(record.campo_atuacao)) {
+      errors.push(`Campo de atuação desconhecido: ${record.campo_atuacao}`);
+    }
+    if (!Array.isArray(record.competencias_especificas) || record.competencias_especificas.length === 0) {
+      errors.push("competencias_especificas ausente ou vazio");
+    } else if (record.competencias_especificas.some((numero) => !Number.isInteger(numero) || numero < 1 || numero > 7)) {
+      errors.push(`competencias_especificas fora do intervalo 1-7: ${record.competencias_especificas}`);
+    }
+
+    if (hasControlChars(record)) {
+      errors.push("Registro contém caracteres de controle ou substituição");
+    }
+    if (seen.has(code)) {
+      duplicates.push(code);
+      errors.push("Código duplicado");
+    }
+    seen.add(code);
+
+    if (record.habilidade && !/[.!?)"”]$/.test(record.habilidade.trim())) {
+      warnings.push({ codigo: code, alerta: "Texto da habilidade pode estar truncado: pontuação final ausente" });
+    }
+
+    if (errors.length) {
+      rejected.push({ index, codigo: code || null, erros: errors });
+      continue;
+    }
+
+    accepted.push({
+      id: code.toLowerCase(),
+      codigo: code,
+      tipo: "habilidade",
+      etapa: "Ensino Médio",
+      area: record.area,
+      componente: record.componente,
+      campo_atuacao: record.campo_atuacao,
+      competencias_especificas: record.competencias_especificas,
+      texto: record.habilidade,
+      fonte: record.fonte,
+      fonte_url: record.fonte_url,
+      documento_url: record.documento_url,
+      versao_fonte: record.versao_fonte,
+      pagina_fonte: record.pagina_fonte,
+      classificacao: record.classificacao,
+      lote_importacao: loteId,
+      data_importacao: importedAt,
+    });
+  }
+
+  const numbers = accepted.map((record) => Number(record.codigo.slice(-2))).sort((a, b) => a - b);
+  const missing = numbers.length
+    ? Array.from({ length: numbers.at(-1) }, (_, index) => index + 1).filter((number) => !numbers.includes(number))
+    : [];
+  if (missing.length) {
+    warnings.push({ alerta: `Códigos ausentes: ${missing.map((number) => String(number).padStart(2, "0")).join(", ")}` });
+  }
+
+  const totalPorCampo = {};
+  for (const record of accepted) totalPorCampo[record.campo_atuacao] = (totalPorCampo[record.campo_atuacao] ?? 0) + 1;
+
+  const status = rejected.length || duplicates.length || warnings.some((item) => item.alerta?.startsWith("Códigos ausentes"))
+    ? "revisao_necessaria"
+    : "valido";
+
+  const report = {
+    escopo: `ensino-medio-${scopeId}`,
+    data_importacao: importedAt,
+    lote_importacao: loteId,
+    arquivo_fonte: relativePath,
+    hash_sha256_fonte: createHash("sha256").update(raw).digest("hex"),
+    versao_fonte: source.metadata.versao_fonte,
+    metodo_extracao: source.metadata.metodo_extracao,
+    total_habilidades: accepted.length,
+    total_geral: accepted.length,
+    total_por_campo_atuacao: totalPorCampo,
+    duplicidades: [...new Set(duplicates)],
+    registros_rejeitados: rejected,
+    alertas: warnings,
+    status,
+  };
+
+  const dataset = {
+    metadata: {
+      ...source.metadata,
+      data_importacao: importedAt,
+      lote_importacao: loteId,
+      total_registros: accepted.length,
+      hash_sha256_fonte: report.hash_sha256_fonte,
+    },
+    registros: accepted.sort((a, b) => a.codigo.localeCompare(b.codigo, "pt-BR")),
+  };
+
+  await writeReport(`data/bncc/ensino-medio-${scopeId}.report.json`, report);
+  await writeDataset(`data/bncc/ensino-medio-${scopeId}.json`, dataset, status);
+
+  return { report, accepted: status === "valido" ? accepted : [] };
+}
+
+const ENSINO_MEDIO_AREAS = [
+  {
+    scopeId: "linguagens",
+    sourceFile: "data/bncc/source/official-mec-bncc-ensino-medio-linguagens.json",
+    codePrefix: "LGG",
+    numCompetencias: 7,
+    area: "Linguagens e suas Tecnologias",
+    componente: "Linguagens e suas Tecnologias",
+  },
+  {
+    scopeId: "matematica",
+    sourceFile: "data/bncc/source/official-mec-bncc-ensino-medio-matematica.json",
+    codePrefix: "MAT",
+    numCompetencias: 5,
+    area: "Matemática e suas Tecnologias",
+    componente: "Matemática e suas Tecnologias",
+    unidadeTematicaFile: "data/bncc/source/official-mec-bncc-ensino-medio-matematica-unidade-tematica.json",
+  },
+  {
+    scopeId: "ciencias-da-natureza",
+    sourceFile: "data/bncc/source/official-mec-bncc-ensino-medio-ciencias-da-natureza.json",
+    codePrefix: "CNT",
+    numCompetencias: 3,
+    area: "Ciências da Natureza e suas Tecnologias",
+    componente: "Ciências da Natureza e suas Tecnologias",
+  },
+  {
+    scopeId: "ciencias-humanas",
+    sourceFile: "data/bncc/source/official-mec-bncc-ensino-medio-ciencias-humanas.json",
+    codePrefix: "CHS",
+    numCompetencias: 6,
+    area: "Ciências Humanas e Sociais Aplicadas",
+    componente: "Ciências Humanas e Sociais Aplicadas",
+  },
+];
+
 async function main() {
   const scopes = [
     await processMatematicaAnosFinais(),
     ...(await Promise.all(LP_SCOPES.map((config) => processLinguaPortuguesa(config)))),
     ...(await Promise.all(SIMPLE_COMPONENTS.map((config) => processSimpleComponent(config)))),
+    ...(await Promise.all(ENSINO_MEDIO_AREAS.map((config) => processEnsinoMedioArea(config)))),
+    await processLinguaPortuguesaMedio(),
     await processCompetenciasGerais(),
   ];
   const allAccepted = scopes.flatMap((scope) => scope.accepted);

@@ -1,0 +1,24 @@
+{
+  "escopo": "ensino-medio-ciencias-humanas",
+  "data_importacao": "2026-08-15T15:45:51.470Z",
+  "lote_importacao": "2026-08-15-ensino-medio-ciencias-humanas",
+  "arquivo_fonte": "data/bncc/source/official-mec-bncc-ensino-medio-ciencias-humanas.json",
+  "hash_sha256_fonte": "74fe080dcec5132f8c597a711c0b9d75d323ee04aceff9183dd5f23d5752903e",
+  "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+  "metodo_extracao": "PDF oficial; documento consolidado final (EI+EF+EM) — capítulo do Ensino Médio, seção da área localizada pelo próprio texto do documento; sem tabela vetorial (prosa corrida com marcadores 'COMPETÊNCIA ESPECÍFICA N' e 'HABILIDADES')",
+  "total_competencias": 6,
+  "total_habilidades": 32,
+  "total_geral": 38,
+  "total_habilidades_por_competencia": {
+    "1": 6,
+    "2": 6,
+    "3": 6,
+    "4": 4,
+    "5": 4,
+    "6": 6
+  },
+  "duplicidades": [],
+  "registros_rejeitados": [],
+  "alertas": [],
+  "status": "valido"
+}

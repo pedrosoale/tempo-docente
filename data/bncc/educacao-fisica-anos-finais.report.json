@@ -1,7 +1,7 @@
 {
   "escopo": "educacao-fisica-anos-finais",
-  "data_importacao": "2026-08-11T03:00:18.895Z",
-  "lote_importacao": "2026-08-11-educacao-fisica-anos-finais",
+  "data_importacao": "2026-08-15T15:45:51.417Z",
+  "lote_importacao": "2026-08-15-educacao-fisica-anos-finais",
   "arquivo_fonte": "data/bncc/source/official-mec-bncc-educacao-fisica-anos-finais.json",
   "hash_sha256_fonte": "d9f78a8f1fee6d6e71fcb2aa37ce783f561117d73bbd907183f71a55bb474f8a",
   "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",

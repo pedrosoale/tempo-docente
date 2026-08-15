@@ -1,0 +1,23 @@
+{
+  "escopo": "ensino-medio-lingua-portuguesa",
+  "data_importacao": "2026-08-15T15:45:51.484Z",
+  "lote_importacao": "2026-08-15-ensino-medio-lingua-portuguesa",
+  "arquivo_fonte": "data/bncc/source/official-mec-bncc-ensino-medio-lingua-portuguesa.json",
+  "hash_sha256_fonte": "a7f8f7c24c9db8ae364e37bbe0a9c3f5fdc29f8c239cacd925af2dac0af631b1",
+  "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+  "metodo_extracao": "PDF oficial; documento consolidado final (EI+EF+EM) — capítulo do Ensino Médio, Língua Portuguesa dentro de Linguagens e suas Tecnologias; cada habilidade casada com sua própria linha de competências específicas (nunca por captura até o próximo código, que atravessaria introduções de campo e parâmetros curriculares entre os campos)",
+  "total_habilidades": 54,
+  "total_geral": 54,
+  "total_por_campo_atuacao": {
+    "Todos os Campos de Atuação Social": 18,
+    "Campo da Vida Pessoal": 4,
+    "Campo de Atuação na Vida Pública": 5,
+    "Campo das Práticas de Estudo e Pesquisa": 8,
+    "Campo Jornalístico-Midiático": 10,
+    "Campo Artístico-Literário": 9
+  },
+  "duplicidades": [],
+  "registros_rejeitados": [],
+  "alertas": [],
+  "status": "valido"
+}

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { ArrowRight, ArrowUpRight, BookOpenText, Layers, School, Search, Sparkles } from "lucide-react";
-import { getAllRegistros } from "@/lib/bncc/data";
+import { AREAS_ENSINO_MEDIO, getAllRegistros } from "@/lib/bncc/data";
 import { filterSkills } from "@/lib/bncc/search.mjs";
 import type { BnccRegistro } from "@/lib/bncc/types";
+
+const AREA_MEDIO_SLUGS: Record<string, string> = Object.fromEntries(AREAS_ENSINO_MEDIO.map((area) => [area.nome, area.slug]));
 
 export const metadata: Metadata = {
   title: "Consulte a BNCC | Tempo Docente",
@@ -19,11 +21,14 @@ type BnccHubPageProps = { searchParams?: Promise<{ q?: string }> };
 
 function registroMeta(registro: BnccRegistro): string {
   if (registro.tipo === "competencia_geral") return `Competência geral · Competência ${registro.numero} de 10`;
+  if (registro.tipo === "competencia_especifica") return `Competência específica · ${registro.area} · Competência ${registro.numero}`;
+  if (registro.etapa === "Ensino Médio") return `Habilidade · Ensino Médio · ${registro.area} · ${registro.componente}`;
   return `Habilidade · ${registro.etapa} · ${registro.ano} · ${registro.componente}`;
 }
 
 function registroHref(registro: BnccRegistro): string {
   if (registro.tipo === "competencia_geral") return `/bncc/competencias-gerais#competencia-${registro.numero}`;
+  if (registro.tipo === "competencia_especifica") return `/bncc/ensino-medio/${AREA_MEDIO_SLUGS[registro.area] ?? ""}#competencia-${registro.numero}`;
   return `/bncc/${registro.codigo.toLowerCase()}`;
 }
 
@@ -152,18 +157,17 @@ export default async function BnccHubPage({ searchParams }: BnccHubPageProps) {
                 <span className="card-action">Explorar componentes <ArrowUpRight size={17} aria-hidden="true" /></span>
               </a>
 
-              <div className="access-card access-card-soon" aria-disabled="true">
+              <a className="access-card" href="/bncc/ensino-medio">
                 <div className="access-card-top">
                   <span className="access-icon"><School size={22} aria-hidden="true" /></span>
                   <span className="access-label">1ª à 3ª série</span>
-                  <span className="soon-badge">Em breve</span>
                 </div>
                 <div>
                   <h3>Ensino Médio</h3>
-                  <p>Competências e habilidades por área do conhecimento.</p>
+                  <p>Competências específicas e habilidades por área do conhecimento — Formação Geral Básica completa, sem recorte por série.</p>
                 </div>
-                <span className="card-action card-action-soon">Em breve</span>
-              </div>
+                <span className="card-action">Explorar áreas <ArrowUpRight size={17} aria-hidden="true" /></span>
+              </a>
             </div>
           </div>
         </section>

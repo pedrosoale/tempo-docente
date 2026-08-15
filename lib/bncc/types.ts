@@ -51,5 +51,41 @@ export type HabilidadeFundamental = RegistroBase & {
   campo_atuacao?: string;
 };
 
-// Educação Infantil e Ensino Médio entram aqui quando forem importados.
-export type BnccRegistro = CompetenciaGeral | HabilidadeFundamental;
+export type CompetenciaEspecificaMedio = RegistroBase & {
+  tipo: "competencia_especifica";
+  etapa: "Ensino Médio";
+  codigo: null;
+  // Uma das 4 áreas do conhecimento do Ensino Médio. Língua Portuguesa não
+  // tem competências específicas próprias — suas habilidades referenciam as
+  // de Linguagens e suas Tecnologias (ver HabilidadeMedio.competencias_especificas).
+  area: string;
+  numero: number;
+};
+
+export type HabilidadeMedio = RegistroBase & {
+  tipo: "habilidade";
+  etapa: "Ensino Médio";
+  codigo: string;
+  area: string;
+  // Igual a `area` nas 4 áreas do conhecimento; difere só para Língua
+  // Portuguesa ("Língua Portuguesa" dentro da área "Linguagens e suas
+  // Tecnologias"), mesmo padrão de área vs. componente já usado em
+  // HabilidadeFundamental.
+  componente: string;
+  // Referencia o(s) número(s) de CompetenciaEspecificaMedio da área. Nas 4
+  // áreas "simples" vem do próprio código (1 elemento); em Língua Portuguesa
+  // vem de uma coluna própria no documento oficial e pode ter mais de um
+  // valor (uma habilidade pode servir a mais de uma competência).
+  competencias_especificas: number[];
+  // Exclusivo de Língua Portuguesa (organizada por campo de atuação social,
+  // não por competência específica).
+  campo_atuacao?: string;
+  // Exclusivo de Matemática — vem de uma tabela oficial separada que
+  // reagrupa as mesmas habilidades por unidade temática (Números e Álgebra,
+  // Geometria e Medidas, Probabilidade e Estatística). Ausente nas demais
+  // áreas, que não têm essa segunda tabela no documento oficial.
+  unidade_tematica?: string;
+};
+
+// Educação Infantil entra aqui quando for importada.
+export type BnccRegistro = CompetenciaGeral | HabilidadeFundamental | CompetenciaEspecificaMedio | HabilidadeMedio;

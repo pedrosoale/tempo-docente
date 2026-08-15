@@ -19,9 +19,22 @@ com proveniência rastreada (fonte, URL, página, data de importação). **8 dos
 componentes já cobrem o Ensino Fundamental inteiro, 1º ao 9º ano** (Matemática,
 Língua Portuguesa, Arte, Educação Física, Ciências, Geografia, História, Ensino
 Religioso). Só **Língua Inglesa** permanece 6º-9º, porque a própria BNCC não tem
-Inglês nos Anos Iniciais — não é uma lacuna a preencher. Ver
-[`data/bncc/README.md`](data/bncc/README.md) para o detalhamento por componente e o
-pipeline de extração/importação.
+Inglês nos Anos Iniciais — não é uma lacuna a preencher.
+
+Módulo funcional: **BNCC — Ensino Médio**, Formação Geral Básica completa — as 4
+áreas do conhecimento (Linguagens e suas Tecnologias, Matemática e suas
+Tecnologias, Ciências da Natureza e suas Tecnologias, Ciências Humanas e Sociais
+Aplicadas) e Língua Portuguesa (componente com peso próprio dentro de
+Linguagens) — 204 registros (183 habilidades + 21 competências específicas).
+Diferente do Fundamental, a BNCC do Médio não organiza por ano/série (a própria
+lei que a instituiu prevê habilidades "sem indicação de seriação"), então a
+navegação é por área/componente + competência específica; Língua Portuguesa é a
+exceção, organizada por campo de atuação social. Os Itinerários Formativos não
+entraram: o documento oficial não codifica habilidades pra eles (é orientação em
+prosa pra redes/escolas montarem seus próprios percursos), então não há dado
+estruturado pra extrair sem inventar o que a fonte não declara. Ver
+[`data/bncc/README.md`](data/bncc/README.md) para o detalhamento por
+componente/área e o pipeline de extração/importação de ambas as etapas.
 
 Módulo funcional: **SARESP — relatório por escola**, em `/saresp`. Compara
 proficiência 2024×2025 por escola sempre dentro do mesmo componente curricular e
@@ -33,10 +46,9 @@ ser o Provão Paulista Seriado, publicado separadamente e sem uma versão
 pré-agregada por escola equivalente à proficiência usada aqui. Ver "Pipeline de
 dados do SARESP" abaixo.
 
-**Ainda não importado** (roadmap, não implementado): Educação Infantil e Ensino
-Médio (BNCC). SAEB e qualquer funcionalidade de IA/planejamento de aula/login
-**não existem ainda** — os cartões correspondentes na home aparecem como "Em
-breve".
+**Ainda não importado** (roadmap, não implementado): Educação Infantil (BNCC).
+SAEB e qualquer funcionalidade de IA/planejamento de aula/login **não existem
+ainda** — os cartões correspondentes na home aparecem como "Em breve".
 
 ## Stack
 
@@ -127,10 +139,13 @@ worker/index.ts           entry point do Cloudflare Worker (roteamento de imagem
 ```
 
 O modelo de dados (`lib/bncc/types.ts`) é um discriminated union por `tipo`
-(`"habilidade" | "competencia_geral" | ...`), pensado para caber Educação Infantil e
-Ensino Médio no futuro sem forçar a estrutura de Anos Finais sobre eles. Cada
-registro carrega proveniência completa (`fonte`, `fonte_url`, `documento_url`,
-`versao_fonte`, `pagina_fonte`, `data_importacao`).
+(`"habilidade" | "competencia_geral" | "competencia_especifica" | ...`), pensado
+para caber Educação Infantil no futuro sem forçar a estrutura de Anos Finais
+sobre ela. `HabilidadeMedio`/`CompetenciaEspecificaMedio` (Ensino Médio)
+coexistem com `HabilidadeFundamental` na mesma union — sem campo `ano`, já que a
+BNCC do Médio não é organizada por série. Cada registro carrega proveniência
+completa (`fonte`, `fonte_url`, `documento_url`, `versao_fonte`, `pagina_fonte`,
+`data_importacao`).
 
 ## Bug conhecido: não usar `next/link` para navegação
 
@@ -153,12 +168,17 @@ o DevTools console aberto.
 ## Pipeline de dados da BNCC
 
 Ver [`data/bncc/README.md`](data/bncc/README.md) para o processo completo (extração
-por componente, formato do snapshot, correções tipográficas controladas e
-documentadas, como rodar `npm run bncc:import`). Resumo rápido:
+por componente/área, formato do snapshot, correções tipográficas controladas e
+documentadas, pegadinhas reais encontradas no Ensino Médio, como rodar
+`npm run bncc:import`). Mesmo PDF oficial serve Fundamental e Médio — o
+Fundamental usa um extrator por componente (`extract_<componente>.py`), o Médio
+usa um extrator genérico por área (`extract_ensino_medio_area.py`) mais dois
+dedicados (`extract_matematica_unidade_tematica.py`,
+`extract_lingua_portuguesa_medio.py`). Resumo rápido:
 
 ```bash
 pip install -r scripts/bncc/requirements.txt
-python scripts/bncc/extract_official.py          # ou outro extract_*.py do componente
+python scripts/bncc/extract_official.py          # ou outro extract_*.py do componente/área
 npm run bncc:import                                # valida + gera datasets finais + relatórios
 npm run bncc:validate                               # checagem + teste de importação
 ```

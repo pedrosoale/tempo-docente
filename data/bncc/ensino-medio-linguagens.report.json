@@ -1,0 +1,25 @@
+{
+  "escopo": "ensino-medio-linguagens",
+  "data_importacao": "2026-08-15T15:45:51.473Z",
+  "lote_importacao": "2026-08-15-ensino-medio-linguagens",
+  "arquivo_fonte": "data/bncc/source/official-mec-bncc-ensino-medio-linguagens.json",
+  "hash_sha256_fonte": "3fe7cb2ca14da7bc05d601439356820cf195d293c424b0259b76a0d1d0fc1a61",
+  "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
+  "metodo_extracao": "PDF oficial; documento consolidado final (EI+EF+EM) — capítulo do Ensino Médio, seção da área localizada pelo próprio texto do documento; sem tabela vetorial (prosa corrida com marcadores 'COMPETÊNCIA ESPECÍFICA N' e 'HABILIDADES')",
+  "total_competencias": 7,
+  "total_habilidades": 28,
+  "total_geral": 35,
+  "total_habilidades_por_competencia": {
+    "1": 5,
+    "2": 4,
+    "3": 5,
+    "4": 3,
+    "5": 3,
+    "6": 4,
+    "7": 4
+  },
+  "duplicidades": [],
+  "registros_rejeitados": [],
+  "alertas": [],
+  "status": "valido"
+}

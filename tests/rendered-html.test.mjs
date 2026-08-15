@@ -62,7 +62,7 @@ test("server-renders the SARESP report shell", async () => {
   assert.match(html, /Carregando dados do SARESP/);
 });
 
-test("server-renders the BNCC hub with all four etapa cards", async () => {
+test("server-renders the BNCC hub with all four etapa cards, Ensino Médio now active", async () => {
   const response = await render("/bncc");
   assert.equal(response.status, 200);
   const html = await response.text();
@@ -72,6 +72,8 @@ test("server-renders the BNCC hub with all four etapa cards", async () => {
   assert.match(html, /Educação Infantil/);
   assert.match(html, /Ensino Fundamental/);
   assert.match(html, /Ensino Médio/);
+  assert.match(html, /href="\/bncc\/ensino-medio"/);
+  // Educação Infantil is still the only "Em breve" card on this hub.
   assert.match(html, /Em breve/);
 });
 
@@ -109,6 +111,113 @@ test("server-renders the Ensino Fundamental hub with all nine components", async
   for (const slug of ["matematica", "lingua-portuguesa", "arte", "educacao-fisica", "lingua-inglesa", "ciencias", "geografia", "historia", "ensino-religioso"]) {
     assert.match(html, new RegExp(`href="/bncc/${slug}"`), `missing link to ${slug}`);
   }
+});
+
+test("server-renders the Ensino Médio hub with all five imported scopes", async () => {
+  const response = await render("/bncc/ensino-medio");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /BNCC — Ensino Médio/);
+  for (const slug of ["linguagens", "lingua-portuguesa", "matematica", "ciencias-da-natureza", "ciencias-humanas"]) {
+    assert.match(html, new RegExp(`href="/bncc/ensino-medio/${slug}"`), `missing link to ${slug}`);
+  }
+  // React SSR inserts an <!-- --> comment between the {count} expression and
+  // the literal " habilidades" text since they're separate JSX children —
+  // \D* tolerates that instead of assuming they're textually adjacent.
+  assert.match(html, /28\D*habilidades/);
+  assert.match(html, /54\D*habilidades/);
+  assert.match(html, /43\D*habilidades/);
+});
+
+test("server-renders the BNCC Linguagens e suas Tecnologias (Ensino Médio) explorer and official dataset", async () => {
+  const response = await render("/bncc/ensino-medio/linguagens");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /BNCC de Linguagens e suas Tecnologias/);
+  assert.match(html, /28 habilidades/);
+  assert.match(html, /EM13LGG101/);
+  assert.match(html, /id="competencia-1"/);
+  assert.match(html, /Ministério da Educação/);
+});
+
+test("server-renders EM13LGG101 detail with Ensino Médio breadcrumb and competência específica instead of ano", async () => {
+  const response = await render("/bncc/em13lgg101");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /EM13LGG101/);
+  assert.match(html, /href="\/bncc\/ensino-medio"/);
+  assert.match(html, /href="\/bncc\/ensino-medio\/linguagens"/);
+  assert.match(html, /Competência específica/);
+  assert.doesNotMatch(html, /<dt>Ano<\/dt>/);
+});
+
+test("server-renders the BNCC Matemática (Ensino Médio) explorer with unidade temática", async () => {
+  const response = await render("/bncc/ensino-medio/matematica");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /BNCC de Matemática e suas Tecnologias/);
+  assert.match(html, /43 habilidades/);
+  assert.match(html, /EM13MAT101/);
+});
+
+test("server-renders EM13MAT101 detail with its unidade temática from the official cross-reference table", async () => {
+  const response = await render("/bncc/em13mat101");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /EM13MAT101/);
+  assert.match(html, /Unidade temática/);
+  assert.match(html, /Números e álgebra/);
+});
+
+test("server-renders the BNCC Ciências da Natureza (Ensino Médio) explorer", async () => {
+  const response = await render("/bncc/ensino-medio/ciencias-da-natureza");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /BNCC de Ciências da Natureza e suas Tecnologias/);
+  assert.match(html, /26 habilidades/);
+  assert.match(html, /EM13CNT101/);
+});
+
+test("server-renders the BNCC Ciências Humanas (Ensino Médio) explorer with the ligature typography fix applied", async () => {
+  const response = await render("/bncc/ensino-medio/ciencias-humanas");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /BNCC de Ciências Humanas e Sociais Aplicadas/);
+  assert.match(html, /32 habilidades/);
+  assert.match(html, /EM13CHS101/);
+  assert.match(html, /científicos e tecnológicos/);
+  assert.doesNotMatch(html, /ﬁ/);
+});
+
+test("server-renders the BNCC Língua Portuguesa (Ensino Médio) explorer, organized by campo de atuação", async () => {
+  const response = await render("/bncc/ensino-medio/lingua-portuguesa");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /BNCC de Língua Portuguesa/);
+  assert.match(html, /54 habilidades/);
+  assert.match(html, /EM13LP01/);
+  assert.match(html, /Campo de atuação/);
+  assert.match(html, /href="\/bncc\/ensino-medio\/linguagens#competencia-1"/);
+});
+
+test("server-renders EM13LP12 detail with its multiple competências específicas and campo de atuação", async () => {
+  const response = await render("/bncc/em13lp12");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /EM13LP12/);
+  assert.match(html, /href="\/bncc\/ensino-medio\/lingua-portuguesa"/);
+  assert.match(html, /Competências específicas/);
+  assert.match(html, /1, 7/);
+  assert.match(html, /Todos os Campos de Atuação Social/);
 });
 
 test("server-renders the BNCC Arte explorer with the consolidated EF69AR code", async () => {

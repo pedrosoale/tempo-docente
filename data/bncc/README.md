@@ -2,11 +2,12 @@
 
 Escopo importado até agora: **Competências Gerais da Educação Básica** (10/10),
 **Ensino Fundamental — Anos Finais (6º ao 9º ano)** — todos os 9 componentes
-curriculares — e **Anos Iniciais (1º ao 5º ano)** de 8 dos 9 componentes (falta
+curriculares —, **Anos Iniciais (1º ao 5º ano)** de 8 dos 9 componentes (falta
 só Língua Inglesa, que não existe nos Anos Iniciais na própria BNCC — não é uma
-lacuna a preencher). Total: 1313 registros. Ver `data/bncc/import-report.json`
-para os totais agregados por etapa/tipo/componente (gerado a cada
-`npm run bncc:import`).
+lacuna a preencher) —, e **Ensino Médio — Formação Geral Básica**, completo: as
+4 áreas do conhecimento e Língua Portuguesa. Total: 1517 registros. Ver
+`data/bncc/import-report.json` para os totais agregados por etapa/tipo/componente
+(gerado a cada `npm run bncc:import`).
 
 | Componente | Anos Iniciais (1º-5º) | Anos Finais (6º-9º) |
 | --- | --- | --- |
@@ -27,8 +28,30 @@ as duas linhas de cada componente são mescladas num único array de skills — 
 usuário é um componente só, cobrindo 1º ao 9º ano (exceto Inglês, que a própria
 BNCC só tem a partir do 6º ano).
 
-**Ainda não importado** (roadmap): Educação Infantil, Ensino Médio — ver
-`README.md` da raiz do projeto.
+| Ensino Médio — escopo | Competências específicas | Habilidades |
+| --- | --- | --- |
+| Linguagens e suas Tecnologias | 7 | 28 |
+| Língua Portuguesa (componente dentro de Linguagens) | reaproveita as 7 de Linguagens (não tem competências próprias) | 54 |
+| Matemática e suas Tecnologias | 5 | 43 |
+| Ciências da Natureza e suas Tecnologias | 3 | 26 |
+| Ciências Humanas e Sociais Aplicadas | 6 | 32 |
+
+21 competências específicas + 183 habilidades = 204 registros. Diferente do
+Fundamental, a BNCC do Médio não organiza habilidades por ano/série — o próprio
+documento diz que "as habilidades são apresentadas sem indicação de seriação"
+(Lei nº 13.415/2017) —, então não há campo `ano`/`anos_aplicaveis` nesses
+registros; a organização é por área/componente + competência específica (Língua
+Portuguesa foge disso e organiza por campo de atuação social, ver seção própria
+abaixo). Ver "Extratores — Ensino Médio" e "Pegadinhas encontradas no Ensino
+Médio" mais abaixo para o processo completo.
+
+**Ainda não importado** (roadmap): Educação Infantil, e os Itinerários
+Formativos do Ensino Médio — este último não por falta de tempo, mas porque o
+documento oficial consolidado (mesmo PDF usado aqui) não codifica habilidades
+para os itinerários com um código rastreável como `EM13...`; é orientação em
+prosa para que redes/escolas construam seus próprios percursos flexíveis, então
+não há o que extrair de forma estruturada sem inventar dado que a fonte não
+declara.
 
 ## Proveniência
 
@@ -96,6 +119,42 @@ expoentes), sempre restrita a um código e campo específicos.
   `find_heading_page`, `table_boundaries`, `column_text` (filtra texto por posição
   real da linha, evita que texto de uma coluna vizinha vaze pra outra em tabelas
   largas — ver nota abaixo).
+
+## Extratores — Ensino Médio (`scripts/bncc/`)
+
+O capítulo do Ensino Médio, dentro do mesmo PDF consolidado usado para o
+Fundamental (ver "Proveniência" acima), tem um layout completamente diferente:
+prosa corrida com marcadores de texto (`COMPETÊNCIA ESPECÍFICA N`,
+`HABILIDADES`), nunca uma tabela vetorial real — `page.get_drawings()` só acha
+réguas decorativas de cabeçalho/rodapé, não uma grade de dados como no
+Fundamental. Confirmado lendo o texto completo de cada área antes de escrever
+qualquer extrator, porque assumir que a estrutura se repetiria entre áreas já
+causou os bugs documentados na seção seguinte.
+
+- `extract_ensino_medio_area.py` — script único, parametrizado via CLI
+  (`--area-slug`, `--area`, `--componente`, `--code-prefix`,
+  `--num-competencias`, `--concise-heading`, `--end-marker`), usado para as 4
+  áreas do conhecimento (Linguagens, Matemática, Ciências da Natureza, Ciências
+  Humanas). Localiza a lista curta de competências específicas pelo próprio
+  texto do documento, depois a seção detalhada (`COMPETÊNCIA ESPECÍFICA N` +
+  bloco `HABILIDADES`), extraindo `(CÓDIGO) texto.` até a competência seguinte
+  ou o fim da área.
+- `extract_matematica_unidade_tematica.py` — script pequeno e separado só para
+  a segunda tabela de Matemática ("Considerações sobre a organização
+  curricular"), que **repete os mesmos 43 códigos já extraídos**, reagrupados
+  por unidade temática (Números e Álgebra, Geometria e Medidas, Probabilidade e
+  Estatística) em vez de por competência. Gera só um mapeamento
+  código → unidade_tematica; `import.mjs` usa isso pra enriquecer os registros
+  já aceitos, nunca pra criar registros novos — um código no mapeamento sem
+  correspondente já aceito (ou vice-versa) é erro de validação.
+- `extract_lingua_portuguesa_medio.py` — dedicado, porque Língua Portuguesa
+  (componente com peso próprio dentro de Linguagens) não segue o padrão das
+  outras 4: organizada por **campo de atuação social** (6 campos), sem
+  competências específicas próprias — cada habilidade referencia 1+ das 7
+  competências de Linguagens numa coluna própria da tabela oficial. Ver
+  "Por que Língua Portuguesa usa casamento atômico" abaixo — a parte mais
+  delicada deste pipeline, no mesmo espírito do que já exigiu cuidado extra no
+  Fundamental.
 
 ### Localizando seções de Anos Iniciais: cabeçalho não basta
 
@@ -233,6 +292,118 @@ saíram dessa auditoria:
 - Uma linha terminando em `/` (ex. `"Análise linguística/"` quebrando para
   `"semiótica"`) é rejuntada sem espaço — só para esse caractere específico;
   todo outro fim de linha continua rejuntado com espaço, como antes.
+
+## Pegadinhas encontradas no Ensino Médio
+
+Todas descobertas construindo e validando os extratores contra o PDF real —
+nenhuma foi assumida a partir do comportamento de outra área. Servem de
+lembrete pra quem for extrair os Itinerários Formativos no futuro (se o
+documento oficial vier a codificá-los): não presuma que a estrutura de uma
+área/seção se repete nas outras.
+
+### Vazamento de cabeçalho de página no fim de competência
+
+Toda página do capítulo repete um cabeçalho de 3 linhas (número da página +
+"BASE NACIONAL / COMUM CURRICULAR" ou "‹ÁREA› / ENSINO MÉDIO", dependendo de
+página par/ímpar). Sem removê-lo antes de concatenar o texto, a última
+habilidade de uma competência antes de uma virada de página engolia esse
+cabeçalho da página seguinte no próprio texto (confirmado:
+`EM13LGG105` saiu terminando em "... intervenção social. 492 BASE NACIONAL
+COMUM CURRICULAR" antes da correção). `strip_running_header()` remove essas 3
+linhas quando a primeira linha da página é só um número; uma checagem
+defensiva adicional (`assert_no_running_header_leak`) falha alto se esse
+padrão aparecer em qualquer texto aceito, mesmo que o strip por posição falhe
+numa página atípica.
+
+### "HABILIDADES" repetido como marcador de continuação (Ciências da Natureza)
+
+Uma lista de habilidades longa pode continuar numa página que **não** tem o
+cabeçalho padrão de 3 linhas — em vez disso, a própria página começa
+repetindo só a palavra "HABILIDADES" como rótulo de continuação (confirmado
+na página que continua a competência 3 de Ciências da Natureza, entre
+`EM13CNT307` e `EM13CNT308`). Sem tratar isso, `EM13CNT307` engolia o
+"HABILIDADES" da página seguinte no fim do próprio texto. Corrigido
+sanitizando toda ocorrência de "HABILIDADES" dentro do texto de uma
+competência antes de extrair os códigos (não só a primeira, usada como âncora
+de início), preservando os offsets originais pra não afetar a atribuição de
+`pagina_fonte`.
+
+### Marcador de fim errado engoliu a introdução da área seguinte (Ciências da Natureza)
+
+Erro real, não hipotético: o primeiro `--end-marker` usado pra Ciências da
+Natureza apontava pro cabeçalho da lista curta de competências de Ciências
+Humanas — mas esse cabeçalho fica ~10 páginas depois de onde a área de
+Ciências da Natureza realmente termina. Como não havia nenhum código
+`EM13CNT...` nesse intervalo, `EM13CNT310` (última habilidade da área) saiu
+com toda a introdução em prosa de Ciências Humanas grudada no próprio texto —
+milhares de caracteres. Corrigido apontando o marcador para o início real da
+próxima área ("A ÁREA DE CIÊNCIAS HUMANAS E SOCIAIS APLICADAS"), a página
+imediatamente seguinte à última habilidade. Lição: o marcador de fim precisa
+ser o **início real** da próxima seção, não qualquer cabeçalho posterior que
+pareça razoável.
+
+### Segunda tabela duplicando os mesmos códigos (Matemática)
+
+Depois das 5 competências específicas, o documento repete os mesmos 43
+códigos de Matemática inteiros (código + texto idêntico), reagrupados por
+unidade temática em vez de competência — confirmado contando: sem o
+`--end-marker` certo, a extração ingênua encontrava 86 ocorrências de código
+em vez de 43, exatas 2×. Nenhuma das outras 3 áreas simples tem essa segunda
+tabela (confirmado por contagem exata sem sobra nas 3). Tratado como escopo
+separado (`extract_matematica_unidade_tematica.py`), nunca fundido com a
+extração principal.
+
+### Ligadura tipográfica com 3 ocorrências, 2 perdidas na primeira checagem (Ciências Humanas)
+
+O PyMuPDF renderiza o glifo de ligadura `ﬁ` (U+FB01) como token próprio
+seguido de espaço espúrio, quebrando palavras. Na primeira varredura só um
+exemplo foi conferido ("cientíﬁ cos" → "científicos"), e a correção
+controlada cobriu só esse caso. Uma checagem exaustiva por todas as 3
+ocorrências reais no capítulo (não só a primeira encontrada) revelou mais
+duas na mesma página, palavras diferentes: "cientíﬁ ca" → "científica" e
+"Identiﬁ car" → "Identificar". As 3 estão documentadas em
+`CONTROLLED_TYPOGRAPHY_CORRECTIONS["ciencias-humanas"]`, restritas às strings
+exatas. Lição prática: ao auditar uma correção tipográfica, conferir *todas*
+as ocorrências do glifo problemático no escopo, não só a primeira que
+apareceu.
+
+### Cabeçalho multilinha com espaço duplo faz `find_heading_page` falhar silenciosamente
+
+Vários cabeçalhos do capítulo quebram linha assim: `"LINGUAGENS E SUAS \nTECNOLOGIAS"` — nota o espaço à direita antes da quebra. O
+`find_heading_page()` compartilhado faz só `texto.replace("\n", " ")`, o que
+produz `"...SUAS  TECNOLOGIAS"` (espaço duplo) — uma string de busca com
+espaço simples nunca bate, e a falha não é um erro claro, é simplesmente "não
+achou" silenciosamente até o loop varrer o documento inteiro e estourar
+`ValueError` de forma confusa. Os extratores do Ensino Médio usam uma versão
+própria (`find_heading_page_normalized`) que primeiro roda o texto por
+`clean_text()` (já usado pelo resto do pipeline, colapsa espaços) antes de
+comparar — não alterei o helper compartilhado pra não arriscar o
+comportamento já validado dos extratores do Fundamental.
+
+### Por que Língua Portuguesa usa casamento atômico, não "captura até o próximo código"
+
+Todo extrator das 4 áreas simples (e da maioria do Fundamental) captura o
+texto de uma habilidade como "tudo até o próximo código aparecer". Isso
+quebra para Língua Portuguesa: entre a última habilidade de um campo de
+atuação e a primeira do campo seguinte, o documento sempre insere a
+introdução em prosa do novo campo e uma lista de bullets "Parâmetros para a
+organização/progressão curricular" — texto real, sem nenhum código dentro,
+que ficaria inteiro grudado na última habilidade do campo anterior (confirmado
+entre `EM13LP18` e `EM13LP19`, a transição real de "Todos os Campos de
+Atuação Social" pra "Campo da Vida Pessoal").
+
+A correção não foi filtrar esse texto — foi mudar a forma de casar cada
+habilidade: como toda habilidade real da tabela tem sua própria linha de
+competências específicas (um ou mais dígitos, ex. `"1, 7"`) logo depois do
+parágrafo, o regex casa `(CÓDIGO) texto` **junto com** essa linha de dígitos
+num único match atômico (`\((EM13LP\d{2})\)\s*(.+?)\n(\d{1,2}(?:,\s*\d{1,2})*)\s*\n`).
+O match nunca ultrapassa uma linha de tabela, então cabeçalho de coluna
+repetido, introdução de campo e bullets de parâmetros nunca são capturados —
+não porque foram removidos, mas porque o casamento nunca chega até eles. O
+campo de atuação de cada habilidade é atribuído à parte, carregando adiante o
+cabeçalho de campo mais recente (bare heading, sem precisar do bloco de
+cabeçalho de coluna inteiro) — validado contra a distribuição oficial
+(18/4/5/8/10/9 = 54) antes de confiar no resultado.
 
 ## Atualização
 

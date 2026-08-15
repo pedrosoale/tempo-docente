@@ -1,7 +1,7 @@
 {
   "escopo": "matematica-anos-iniciais",
-  "data_importacao": "2026-08-11T03:00:18.891Z",
-  "lote_importacao": "2026-08-11-matematica-anos-iniciais",
+  "data_importacao": "2026-08-15T15:45:51.413Z",
+  "lote_importacao": "2026-08-15-matematica-anos-iniciais",
   "arquivo_fonte": "data/bncc/source/official-mec-bncc-matematica-anos-iniciais.json",
   "hash_sha256_fonte": "a54a1385bdd20b84bf68395c0c6e1e4c535cedd477232eab0d68281727ba8688",
   "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",

@@ -15,8 +15,8 @@
         "motivo": "Quebra de linha do PDF hifenizou a palavra; a extração bruta juntava as duas metades com um hífen literal em vez de recompor a palavra."
       }
     ],
-    "data_importacao": "2026-08-11T03:00:18.952Z",
-    "lote_importacao": "2026-08-11-competencias-gerais",
+    "data_importacao": "2026-08-15T15:45:51.498Z",
+    "lote_importacao": "2026-08-15-competencias-gerais",
     "total_registros": 10,
     "hash_sha256_fonte": "fb77caf42bb05f9833c4a097c4a8634982eb551901d7f6df7069c2ac56430d1a"
   },
@@ -34,8 +34,8 @@
       "versao_fonte": "Base Nacional Comum Curricular — documento consolidado final (metadados internos do arquivo: criado em 13/12/2018, modificado em 19/12/2018)",
       "pagina_fonte": 10,
       "classificacao": "dado_oficial",
-      "lote_importacao": "2026-08-11-competencias-gerais",
-      "data_importacao": "2026-08-11T03:00:18.952Z"
+      "lote_importacao": "2026-08-15-competencias-gerais",
+      "data_importacao": "2026-08-15T15:45:51.498Z"
     },
     {
       "id": "competencia-geral-2",
@@ -50,8 +50,8 @@
       "versao_fonte": "Base Nacional Comum Curricular — documento consolidado final (metadados internos do arquivo: criado em 13/12/2018, modificado em 19/12/2018)",
       "pagina_fonte": 10,
       "classificacao": "dado_oficial",
-      "lote_importacao": "2026-08-11-competencias-gerais",
-      "data_importacao": "2026-08-11T03:00:18.952Z"
+      "lote_importacao": "2026-08-15-competencias-gerais",
+      "data_importacao": "2026-08-15T15:45:51.498Z"
     },
     {
       "id": "competencia-geral-3",
@@ -66,8 +66,8 @@
       "versao_fonte": "Base Nacional Comum Curricular — documento consolidado final (metadados internos do arquivo: criado em 13/12/2018, modificado em 19/12/2018)",
       "pagina_fonte": 10,
       "classificacao": "dado_oficial",
-      "lote_importacao": "2026-08-11-competencias-gerais",
-      "data_importacao": "2026-08-11T03:00:18.952Z"
+      "lote_importacao": "2026-08-15-competencias-gerais",
+      "data_importacao": "2026-08-15T15:45:51.498Z"
     },
     {
       "id": "competencia-geral-4",
@@ -82,8 +82,8 @@
       "versao_fonte": "Base Nacional Comum Curricular — documento consolidado final (metadados internos do arquivo: criado em 13/12/2018, modificado em 19/12/2018)",
       "pagina_fonte": 10,
       "classificacao": "dado_oficial",
-      "lote_importacao": "2026-08-11-competencias-gerais",
-      "data_importacao": "2026-08-11T03:00:18.952Z"
+      "lote_importacao": "2026-08-15-competencias-gerais",
+      "data_importacao": "2026-08-15T15:45:51.498Z"
     },
     {
       "id": "competencia-geral-5",
@@ -98,8 +98,8 @@
       "versao_fonte": "Base Nacional Comum Curricular — documento consolidado final (metadados internos do arquivo: criado em 13/12/2018, modificado em 19/12/2018)",
       "pagina_fonte": 10,
       "classificacao": "dado_oficial",
-      "lote_importacao": "2026-08-11-competencias-gerais",
-      "data_importacao": "2026-08-11T03:00:18.952Z"
+      "lote_importacao": "2026-08-15-competencias-gerais",
+      "data_importacao": "2026-08-15T15:45:51.498Z"
     },
     {
       "id": "competencia-geral-6",
@@ -114,8 +114,8 @@
       "versao_fonte": "Base Nacional Comum Curricular — documento consolidado final (metadados internos do arquivo: criado em 13/12/2018, modificado em 19/12/2018)",
       "pagina_fonte": 10,
       "classificacao": "dado_oficial",
-      "lote_importacao": "2026-08-11-competencias-gerais",
-      "data_importacao": "2026-08-11T03:00:18.952Z"
+      "lote_importacao": "2026-08-15-competencias-gerais",
+      "data_importacao": "2026-08-15T15:45:51.498Z"
     },
     {
       "id": "competencia-geral-7",
@@ -130,8 +130,8 @@
       "versao_fonte": "Base Nacional Comum Curricular — documento consolidado final (metadados internos do arquivo: criado em 13/12/2018, modificado em 19/12/2018)",
       "pagina_fonte": 10,
       "classificacao": "dado_oficial",
-      "lote_importacao": "2026-08-11-competencias-gerais",
-      "data_importacao": "2026-08-11T03:00:18.952Z"
+      "lote_importacao": "2026-08-15-competencias-gerais",
+      "data_importacao": "2026-08-15T15:45:51.498Z"
     },
     {
       "id": "competencia-geral-8",
@@ -146,8 +146,8 @@
       "versao_fonte": "Base Nacional Comum Curricular — documento consolidado final (metadados internos do arquivo: criado em 13/12/2018, modificado em 19/12/2018)",
       "pagina_fonte": 11,
       "classificacao": "dado_oficial",
-      "lote_importacao": "2026-08-11-competencias-gerais",
-      "data_importacao": "2026-08-11T03:00:18.952Z"
+      "lote_importacao": "2026-08-15-competencias-gerais",
+      "data_importacao": "2026-08-15T15:45:51.498Z"
     },
     {
       "id": "competencia-geral-9",
@@ -162,8 +162,8 @@
       "versao_fonte": "Base Nacional Comum Curricular — documento consolidado final (metadados internos do arquivo: criado em 13/12/2018, modificado em 19/12/2018)",
       "pagina_fonte": 11,
       "classificacao": "dado_oficial",
-      "lote_importacao": "2026-08-11-competencias-gerais",
-      "data_importacao": "2026-08-11T03:00:18.952Z"
+      "lote_importacao": "2026-08-15-competencias-gerais",
+      "data_importacao": "2026-08-15T15:45:51.498Z"
     },
     {
       "id": "competencia-geral-10",
@@ -178,8 +178,8 @@
       "versao_fonte": "Base Nacional Comum Curricular — documento consolidado final (metadados internos do arquivo: criado em 13/12/2018, modificado em 19/12/2018)",
       "pagina_fonte": 11,
       "classificacao": "dado_oficial",
-      "lote_importacao": "2026-08-11-competencias-gerais",
-      "data_importacao": "2026-08-11T03:00:18.952Z"
+      "lote_importacao": "2026-08-15-competencias-gerais",
+      "data_importacao": "2026-08-15T15:45:51.498Z"
     }
   ]
 }
