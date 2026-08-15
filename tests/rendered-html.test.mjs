@@ -51,6 +51,17 @@ test("includes semantic navigation and source transparency", async () => {
   assert.match(html, /SARESP/);
 });
 
+test("server-renders the SARESP report shell", async () => {
+  const response = await render("/saresp");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /Relatório SARESP — 2024 x 2025/);
+  // SarespReport is a client component that fetches its dataset on mount, so the
+  // server-rendered shell only reflects the initial (loading) state, not the report content.
+  assert.match(html, /Carregando dados do SARESP/);
+});
+
 test("server-renders the BNCC hub with all four etapa cards", async () => {
   const response = await render("/bncc");
   assert.equal(response.status, 200);

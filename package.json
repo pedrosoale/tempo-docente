@@ -15,13 +15,15 @@
     "db:generate": "drizzle-kit generate",
     "bncc:extract": "python scripts/bncc/extract_official.py",
     "bncc:import": "node scripts/bncc/import.mjs",
-    "bncc:validate": "node scripts/bncc/import.mjs --check && node --test tests/bncc-import.test.mjs"
+    "bncc:validate": "node scripts/bncc/import.mjs --check && node --test tests/bncc-import.test.mjs",
+    "saresp:build-data": "node scripts/saresp/build-data.mjs"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",
     "lucide-react": "^1.29.0",
     "react": "19.2.6",
-    "react-dom": "19.2.6"
+    "react-dom": "19.2.6",
+    "recharts": "^3.0.0"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "1.37.1",

@@ -48,3 +48,8 @@ __pycache__/
 
 # personal reference file, not needed for the site to run
 /BNCC_Ensino Fundamental Completo- 1º ao  9º anos.xlsx
+
+# SARESP raw source CSVs (~15MB) — the app only ever reads the processed public/data/saresp-*.json
+# (committed), and the raw CSVs are re-downloadable from the official source documented in
+# scripts/saresp/build-data.mjs. Keeping them out of git avoids permanent repo bloat.
+/data/saresp/source/

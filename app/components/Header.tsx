@@ -5,6 +5,7 @@ import { useRef } from "react";
 
 const links = [
   ["BNCC", "/bncc"],
+  ["SARESP", "/saresp"],
   ["Avaliações", "/#avaliacoes"],
   ["Dados educacionais", "/#dados"],
   ["Ferramentas", "/#ferramentas"],

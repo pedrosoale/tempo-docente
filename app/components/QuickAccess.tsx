@@ -40,10 +40,9 @@ const items: AccessItem[] = [
     title: "SARESP",
     description: "Consulte e compare resultados educacionais do Estado de São Paulo.",
     action: "Explorar SARESP",
-    href: "#dados",
+    href: "/saresp",
     label: "Avaliação estadual",
     icon: MapPinned,
-    comingSoon: true,
   },
 ];
 
