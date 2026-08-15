@@ -1,8 +1,9 @@
 # Tempo Docente
 
 Plataforma de dados educacionais para professores da Educação Básica: consulta à
-Base Nacional Comum Curricular (BNCC) com fonte oficial rastreável, e (planejado)
-cruzamento com avaliações externas como SAEB e SARESP.
+Base Nacional Comum Curricular (BNCC) com fonte oficial rastreável, relatório de
+resultados do SARESP por escola, e (planejado) cruzamento com outras avaliações
+externas como SAEB.
 
 - **No ar em:** <https://tempodocente.com.br> (e também em
   <https://tempo-docente.pedrosoale.workers.dev>, o subdomínio `workers.dev` do
@@ -22,8 +23,18 @@ Inglês nos Anos Iniciais — não é uma lacuna a preencher. Ver
 [`data/bncc/README.md`](data/bncc/README.md) para o detalhamento por componente e o
 pipeline de extração/importação.
 
-**Ainda não importado** (roadmap, não implementado): Educação Infantil, Ensino
-Médio. SAEB, SARESP e qualquer funcionalidade de IA/planejamento de aula/login
+Módulo funcional: **SARESP — relatório por escola**, em `/saresp`. Compara
+proficiência 2024×2025 por escola sempre dentro do mesmo componente curricular e
+série (nunca uma média cruzando Língua Portuguesa e Matemática), com benchmark
+contra a média do Estado no mesmo recorte, gap e sua evolução ano a ano, e
+diagnóstico automático sem causalidade inventada. Cobre só Ensino Fundamental (2º,
+5º e 9º ano) — o SARESP não avalia mais o Ensino Médio desde 2023, isso passou a
+ser o Provão Paulista Seriado, publicado separadamente e sem uma versão
+pré-agregada por escola equivalente à proficiência usada aqui. Ver "Pipeline de
+dados do SARESP" abaixo.
+
+**Ainda não importado** (roadmap, não implementado): Educação Infantil e Ensino
+Médio (BNCC). SAEB e qualquer funcionalidade de IA/planejamento de aula/login
 **não existem ainda** — os cartões correspondentes na home aparecem como "Em
 breve".
 
@@ -95,15 +106,22 @@ precisam ser substituídos pelos que o provedor escolhido exigir.
 ```text
 app/                    rotas (App Router) e componentes de UI
   bncc/                 hub da BNCC, páginas por componente/ano, página de detalhe [codigo]
+  saresp/                relatório SARESP: layout.tsx, page.tsx, saresp.css, componentes em components/
   components/           Header, Footer, Hero, busca, etc. (compartilhados)
 lib/bncc/
   types.ts              union de tipos dos registros da BNCC (ver abaixo)
   data.ts               carrega os datasets JSON, expõe getAllRegistros/getRegistroByCode/etc.
   search.mjs            filtro de busca/ano/unidade/objeto usado pelo explorer e pela busca global
+lib/saresp/
+  types.ts               tipos dos registros/agregações do SARESP
+  analysis.ts             dedup de período, camada executiva, classificação, gap, diagnóstico
 data/bncc/               datasets finais (*.json) + relatórios de importação + README próprio
+data/saresp/source/      CSVs brutos do SARESP (gitignored — ver "Pipeline de dados do SARESP")
 scripts/bncc/
   extract_*.py           extratores por componente (PyMuPDF, leem o PDF oficial do MEC)
   import.mjs              valida os snapshots extraídos e gera os datasets finais + relatórios
+scripts/saresp/
+  build-data.mjs          lê data/saresp/source/*.csv, gera public/data/saresp-*.json
 tests/                   node --test — importação, busca, HTML renderizado por rota
 worker/index.ts           entry point do Cloudflare Worker (roteamento de imagem + handler do vinext)
 ```
@@ -150,6 +168,46 @@ Nunca edite os arquivos em `data/bncc/*.json` manualmente — eles são gerados 
 precisa ser uma correção controlada e documentada no próprio script de extração
 (ver exemplos em `scripts/bncc/extract_official.py`), nunca uma edição direta do
 dado importado.
+
+## Pipeline de dados do SARESP
+
+Diferente do BNCC, o CSV bruto do SARESP **não fica no git** (~15MB, só serve pra
+regenerar o JSON — ver `.gitignore`). Fonte oficial: ["Proficiência do SARESP por
+Escola"](https://dados.educacao.sp.gov.br/dataset/profici%C3%AAncia-do-sistema-de-avalia%C3%A7%C3%A3o-de-rendimento-escolar-do-estado-de-s%C3%A3o-paulo-saresp-60),
+Dados Abertos da Educação (SP). Pra atualizar os dados (ex.: quando sair o SARESP de
+2026): baixe `Proficiência do SARESP por escola de <ano>`, salve como
+`data/saresp/source/saresp-<ano>.csv` (mesmas colunas: `DEPADM;DEPBOL;NOMEDEPBOL;
+CODRMET;CODESC;NOMESC;SERIE_ANO;COD_PER;PERIODO;CO_COMP;DS_COMP;MEDPROF`) e rode:
+
+```bash
+npm run saresp:build-data    # lê os CSVs, gera public/data/saresp-2024.json e -2025.json
+```
+
+Os `.json` gerados **são** commitados (diferente do CSV) porque são o que o app de
+fato serve em produção — sem eles `/saresp` quebra, já que (igual ao BNCC) não há
+hook `predev`/`prebuild` regenerando automaticamente, é manual e intencional. Nunca
+edite esses `.json` à mão.
+
+**Por que `public/data/*.json` e não `data/saresp/*.json` importado estaticamente**
+(como o BNCC faz): os dois arquivos somam ~26MB. Se fossem importados estaticamente
+e passados como prop pra um client component, esse payload inteiro seria
+serializado no HTML de hidratação da página. Em vez disso,
+`app/saresp/components/SarespReport.tsx` (`"use client"`) faz `fetch()` deles no
+mount — só o suficiente pra pintar a página aparece no HTML inicial, o dado pesado
+chega depois, assíncrono.
+
+A lógica de cálculo (dedup de período — prioriza o registro `GERAL` quando existe,
+nunca soma Português+Matemática numa média só, classificação em 4 categorias contra
+o benchmark do Estado, gap e sua evolução, diagnóstico sem causalidade) está em
+`lib/saresp/analysis.ts`, tipada e sem I/O. `scripts/saresp/build-data.mjs` é
+self-contained (não importa esse arquivo) porque este repo não tem loader
+configurado pra rodar `.ts` direto com `node`.
+
+O SARESP não cobre Ensino Médio: desde 2023 o EM é avaliado pelo Provão Paulista
+Seriado, publicado junto com o SARESP só como microdados por aluno (~200MB/ano, sem
+versão pré-agregada por escola). Agregar esse microdado por conta própria arriscaria
+não bater com a proficiência oficial (que normalmente usa escala psicométrica/TRI,
+não média simples) — por isso essa fonte não foi usada.
 
 ## Sobre os arquivos herdados do template
 
