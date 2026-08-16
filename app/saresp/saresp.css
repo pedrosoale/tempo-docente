@@ -195,7 +195,8 @@
   gap: 7px;
 }
 
-.filter-field > span {
+.filter-field > span,
+.filter-field > label {
   color: var(--soft-ink);
   font-size: 11px;
   font-weight: 700;
@@ -233,6 +234,56 @@
 
 .school-filter {
   grid-column: span 2;
+}
+
+/* School combobox (WAI-ARIA APG combobox-with-listbox-popup — see SchoolCombobox.tsx). The input
+   itself reuses .filter-field input's styling (border/focus ring); only the popup is new here. */
+
+.combobox {
+  position: relative;
+}
+
+.combobox-listbox {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--white);
+  box-shadow: 0 12px 28px rgba(18, 53, 91, 0.14);
+}
+
+.combobox-listbox ul {
+  max-height: 320px;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.combobox-option {
+  padding: 9px 10px;
+  border-radius: 8px;
+  color: var(--soft-ink);
+  font-size: 13px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.combobox-option.is-active {
+  color: var(--navy);
+  background: var(--success-tint);
+}
+
+.combobox-note {
+  padding: 8px 10px 4px;
+  color: var(--muted);
+  font-size: 11.5px;
+  font-style: italic;
+  line-height: 1.4;
 }
 
 /* Result summary cards (Resumo dos resultados — one card per componente+série) */

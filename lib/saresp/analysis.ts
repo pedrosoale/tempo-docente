@@ -14,8 +14,10 @@ import type {
   PriorityLabel,
   PriorityRow,
   RawRow,
-  SchoolOption,
+  SchoolAliasesMap,
+  SchoolIdentity,
   SchoolStateRow,
+  SearchableIdentity,
   StateBenchmark,
   Tone,
   Variation,
@@ -55,7 +57,7 @@ export function toTitleCase(value: string): string {
 // school code (codesc). codesc is the only field guaranteed unique per school in the source data;
 // rede/codrmet alone do NOT reliably separate same-named schools (confirmed against the real
 // dataset: most duplicate names share the same rede, and a few even share the same codrmet).
-export function formatSchoolLabel(row: Pick<RawRow, "nomesc" | "rede" | "codrmet" | "codesc">): string {
+export function formatSchoolLabel(row: SchoolIdentity): string {
   const region = row.codrmet ? ` · Região ${row.codrmet}` : "";
   return `${row.nomesc} — ${row.rede}${region} — Cód. ${row.codesc}`;
 }
@@ -76,64 +78,84 @@ function latestIdentityByCode(rows: RawRow[]): Map<string, RawRow> {
   return latest;
 }
 
-// Resolves a single school's current (most recent year) identity from a set of rows already known
-// to be its own (e.g. filteredRows once narrowed to one codesc) — used by the "Escola selecionada"
-// confirmation so it shows the CURRENT name even when the matched set's first row is an older,
-// renamed one (see latestIdentityByCode above for why iteration order alone can't be trusted).
-export function resolveCurrentSchoolIdentity(rows: RawRow[]): Pick<RawRow, "nomesc" | "rede" | "codrmet" | "codesc"> | null {
-  if (!rows.length) return null;
-  return rows.reduce((latest, row) => (row.year > latest.year ? row : latest));
-}
-
-// One picker option per physical school, deduped by codesc (not by nomesc) — this is what lets
-// two schools with an identical name appear as two distinct, individually selectable entries.
-// Uses each school's CURRENT name (see latestIdentityByCode) so a renamed school is searchable —
-// and offered as a suggestion — by the name it has today, not only by an older, retired one.
-export function buildSchoolOptions(rows: RawRow[]): SchoolOption[] {
+// One index entry per physical school, deduped by codesc (not by nomesc) — this is what lets two
+// schools with an identical name appear as two distinct, individually selectable entries. Uses each
+// school's CURRENT name (see latestIdentityByCode) — searchability by an OLDER, retired name is
+// covered separately by buildSchoolAliases below, kept out of this shape so the common case (a
+// school that's never been renamed) doesn't carry a redundant searchKey-sized field for nothing.
+export function buildSchoolIndex(rows: RawRow[]): SchoolIdentity[] {
   const identityByCode = latestIdentityByCode(rows);
-
-  return [...identityByCode.values()]
-    .map((row) => ({ codesc: row.codesc, label: formatSchoolLabel(row) }))
-    .sort((a, b) => a.label.localeCompare(b.label, "pt-BR"));
+  return [...identityByCode.values()].map((row) => ({ codesc: row.codesc, nomesc: row.nomesc, rede: row.rede, codrmet: row.codrmet }));
 }
 
-const SCHOOL_CODE_SUFFIX = /— Cód\.\s*(\d+)\s*$/;
-
-// Resolves the school picker's free-text value back to a codesc ONLY when it exactly matches an
-// option label (i.e. the user picked a specific datalist suggestion, not just typed a partial
-// name). This is what guarantees a school can be selected individually even when another school
-// shares its name: picking the exact suggestion always resolves to one codesc, regardless of how
-// many other schools match the same name substring. A partial/free-typed query returns null and
-// falls through to the normal substring search, which still prompts "refine your search" when
-// several schools match.
-export function resolveExactSchoolCode(value: string): string | null {
-  const match = value.match(SCHOOL_CODE_SUFFIX);
-  return match ? match[1] : null;
-}
-
-// Given rows that already carry a precomputed, normalized `searchKey` (see SarespReport.tsx —
-// precomputed once at load so the school search never renormalizes ~150k rows on a keystroke),
-// returns the set of codesc among rows whose searchKey contains the (already normalized) query.
-function matchSchoolCodes<T extends { codesc: string; searchKey: string }>(rows: T[], normalizedQuery: string): Set<string> {
-  const codes = new Set<string>();
+// Historical (non-current) names, keyed by codesc — covers the confirmed 52 of 9.760 schools whose
+// nomesc differs between 2024 and 2025 (mostly whitespace/CSV-truncation noise, but a handful are
+// genuine renames — e.g. codesc 10603, "CEMEB TERRA BRASILIS" -> "CEMEB PROFESSORA ELIZABETH
+// OLIVEIRA RODRIGUES"). Deliberately NOT folded into buildSchoolIndex's output: doing that would
+// give every one of the 9.760 entries a searchKey-sized field just to cover ~50 of them, nearly
+// doubling public/data/saresp/schools-index.json for almost no benefit (measured: +140KB gzip).
+// This artifact instead stays a few KB, merged client-side via withSearchKey below — a school
+// searchable by its old name today (when the client held the full raw dataset) stays searchable by
+// it once the picker only sees the lightweight index + this small alias map.
+export function buildSchoolAliases(rows: RawRow[]): SchoolAliasesMap {
+  const identityByCode = latestIdentityByCode(rows);
+  const namesByCode = new Map<string, Set<string>>();
   rows.forEach((row) => {
-    if (row.searchKey.includes(normalizedQuery)) codes.add(row.codesc);
+    const names = namesByCode.get(row.codesc) ?? new Set<string>();
+    names.add(row.nomesc);
+    namesByCode.set(row.codesc, names);
   });
-  return codes;
+
+  const aliases: SchoolAliasesMap = {};
+  namesByCode.forEach((names, codesc) => {
+    const currentName = identityByCode.get(codesc)?.nomesc;
+    const priorNames = [...names].filter((name) => name !== currentName);
+    if (priorNames.length) aliases[codesc] = priorNames;
+  });
+  return aliases;
 }
 
-// Resolves a free-text school-name query to the FULL row history of every school it matches —
-// every year/período, not just the individual rows whose OWN nomesc happens to contain the query.
-// This matters because a school's nomesc can differ between 2024 and 2025 in the source data
-// (renamed between avaliações): matching per-row would silently drop whichever year's name doesn't
-// contain the query, breaking the 2024x2025 comparison for exactly the schools where it matters.
-// codesc is the stable identifier across years (see formatSchoolLabel), so matching happens in two
-// passes — first find which codesc have ANY matching row, then keep every row for those codesc.
-export function filterRowsBySchoolQuery<T extends { codesc: string; searchKey: string }>(rows: T[], normalizedQuery: string): T[] {
-  if (!normalizedQuery) return rows;
-  const matchedCodes = matchSchoolCodes(rows, normalizedQuery);
-  return rows.filter((row) => matchedCodes.has(row.codesc));
+// Same normalization the school search input has always used (NFD + strip diacritics + lowercase).
+// Centralized here (moved from SarespReport.tsx) because both withSearchKey below and
+// matchSchoolIndex need the identical normalization, and query matching is exactly the kind of pure
+// logic this module exists to hold.
+export function normalizeSearch(value: string): string {
+  return value
+    .toString()
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .toLocaleLowerCase("pt-BR")
+    .trim();
 }
+
+// Augments a SchoolIdentity with a normalized searchKey covering its current name AND any
+// historical aliases (see buildSchoolAliases) — run once client-side, right after both
+// schools-index.json and schools-aliases.json finish loading (see SarespReport.tsx), not per
+// keystroke.
+export function withSearchKey(entry: SchoolIdentity, aliasesByCode: SchoolAliasesMap): SearchableIdentity {
+  const names = [entry.nomesc, ...(aliasesByCode[entry.codesc] ?? [])];
+  return { ...entry, searchKey: normalizeSearch(names.join(" ")) };
+}
+
+// Matches schools in the (already-loaded, lightweight) index against a free-text query, sorted
+// alphabetically. Returns every match, unbounded — callers decide how many to render (the school
+// combobox's suggestion list) or fetch detail for (SarespReport's ambiguous-search fetch cap), so
+// there's exactly one filter implementation instead of a display-capped one and a fetch-capped one
+// silently drifting apart. Generic over any shape carrying a precomputed, normalized `searchKey`
+// (see normalizeSearch above and SarespReport.tsx's SearchableIdentity) so it never re-normalizes
+// 9.760 school names on every keystroke.
+export function matchSchoolIndex<T extends { nomesc: string; codesc: string; searchKey: string }>(index: T[], normalizedQuery: string): T[] {
+  if (!normalizedQuery) return [];
+  return index.filter((entry) => entry.searchKey.includes(normalizedQuery)).sort((a, b) => a.nomesc.localeCompare(b.nomesc, "pt-BR"));
+}
+
+// Shared cap on how many schools a free-text query resolves to before both SchoolCombobox
+// (rendered suggestions) and SarespReport (per-school detail partitions auto-fetched for an
+// ambiguous match) stop trying to show/fetch everything. Not a display nicety: an unbounded
+// substring query can match thousands of schools (measured against the real index — "prof" alone
+// matches 4.417 of 9.760), and fetching each match's detail partition without a cap would turn five
+// keystrokes into a few thousand concurrent HTTP requests.
+export const SCHOOL_MATCH_LIMIT = 30;
 
 interface Averageable {
   prof2024: number | null;
@@ -173,8 +195,13 @@ export function classifyVariation(diff: number | null): Variation {
 }
 
 // Shared by makeComparison/makeExecutiveComparison — both pair prof2024/prof2025 into the same
-// diff/percent/tone/statusLabel shape, just at a different grouping granularity.
-function withVariation<T extends { prof2024: number | null; prof2025: number | null }>(
+// diff/percent/tone/statusLabel shape, just at a different grouping granularity. Also exported for
+// SarespReport.tsx: public/data/saresp/executive*.json ships the ExecutiveRowSeed shape (prof2024/
+// prof2025 only, no derived fields — see lib/saresp/types.ts) to avoid shipping ~3MB of repeated
+// diff/percent/tone/statusLabel JSON, so the client calls this directly to rehydrate each fetched
+// row into a full ExecutiveRow instead of re-running makeExecutiveComparison over raw data it no
+// longer holds in memory.
+export function withVariation<T extends { prof2024: number | null; prof2025: number | null }>(
   item: T
 ): T & { diff: number | null; percent: number | null; tone: Tone; statusLabel: string } {
   const diff =
@@ -185,6 +212,19 @@ function withVariation<T extends { prof2024: number | null; prof2025: number | n
   const variation = classifyVariation(diff);
 
   return { ...item, diff, percent, tone: variation.tone, statusLabel: variation.label };
+}
+
+// Reproduces "as if only one year's raw data existed" on an already-hydrated ExecutiveRow. Used by
+// SarespReport.tsx's Ano filter (2024/2025/Comparativo), which used to filter raw rows before
+// makeExecutiveComparison ever ran; now that the client filters the precomputed executive layer
+// instead, restricting to one year means nulling the other side and recomputing diff/percent/tone/
+// statusLabel via withVariation (a lone year can never have a diff). Any other value (i.e. "" or
+// "Comparativo") returns the row untouched — both years are already correctly hydrated, so there's
+// nothing to recompute.
+export function restrictToYear(row: ExecutiveRow, year: string): ExecutiveRow {
+  if (year === "2024") return withVariation({ ...row, prof2025: null });
+  if (year === "2025") return withVariation({ ...row, prof2024: null });
+  return row;
 }
 
 // Detailed comparison: groups by codesc|serieAno|periodo|componente, so GERAL/MANHÃ/TARDE/NOITE

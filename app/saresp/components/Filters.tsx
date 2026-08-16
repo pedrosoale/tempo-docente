@@ -1,21 +1,6 @@
-import { memo } from "react";
 import { RotateCcw } from "lucide-react";
-import type { FilterOptions, FilterState, SchoolOption } from "@/lib/saresp/types";
-
-// Kept as its own memoized component so typing in the school input (which changes `value` on every
-// keystroke) doesn't force React to reconcile ~9.760 <option> nodes each time — `options` only
-// changes once, when the JSON finishes loading. Each option's value embeds codesc (see
-// formatSchoolLabel in lib/saresp/analysis.ts), so picking a suggestion resolves to one specific
-// school even when its name is shared with another.
-const SchoolDatalist = memo(function SchoolDatalist({ options }: { options: SchoolOption[] }) {
-  return (
-    <datalist id="school-options">
-      {options.map((option) => (
-        <option key={option.codesc} value={option.label} />
-      ))}
-    </datalist>
-  );
-});
+import SchoolCombobox from "./SchoolCombobox";
+import type { FilterOptions, FilterState, SearchableIdentity } from "@/lib/saresp/types";
 
 function SelectFilter({
   label,
@@ -43,44 +28,18 @@ function SelectFilter({
   );
 }
 
-function SchoolFilter({
-  value,
-  options,
-  onChange,
-  pending,
-}: {
-  value: string;
-  options: SchoolOption[];
-  onChange: (value: string) => void;
-  pending: boolean;
-}) {
-  return (
-    <label className="filter-field school-filter">
-      <span>Escola {pending && <em className="filter-pending">atualizando…</em>}</span>
-      <input
-        type="search"
-        value={value}
-        list="school-options"
-        placeholder="Digite o nome — escolha a sugestão para selecionar uma escola específica"
-        onChange={(event) => onChange(event.target.value)}
-      />
-      <SchoolDatalist options={options} />
-    </label>
-  );
-}
-
 export default function Filters({
   filters,
   options,
   onChange,
+  onSchoolSelect,
   onReset,
-  searchPending,
 }: {
   filters: FilterState;
   options: FilterOptions;
   onChange: (key: keyof FilterState, value: string) => void;
+  onSchoolSelect: (entry: SearchableIdentity) => void;
   onReset: () => void;
-  searchPending: boolean;
 }) {
   return (
     <section className="panel filters-panel">
@@ -95,7 +54,19 @@ export default function Filters({
         </button>
       </div>
       <div className="filters-grid">
-        <SchoolFilter value={filters.school} options={options.schools} onChange={(value) => onChange("school", value)} pending={searchPending} />
+        <div className="filter-field school-filter">
+          {/* explicit htmlFor/id (not wrapping) — SchoolCombobox's <input role="combobox"> is
+              nested behind a custom component, which static a11y analysis can't see through */}
+          <label htmlFor="school-search">Escola</label>
+          <SchoolCombobox
+            id="school-search"
+            query={filters.school}
+            onQueryChange={(value) => onChange("school", value)}
+            onSelect={onSchoolSelect}
+            index={options.schools}
+            placeholder="Digite o nome — escolha a sugestão para selecionar uma escola específica"
+          />
+        </div>
         <SelectFilter label="Série/Ano" value={filters.series} options={options.series} onChange={(value) => onChange("series", value)} />
         <SelectFilter label="Componente" value={filters.component} options={options.components} onChange={(value) => onChange("component", value)} />
         <SelectFilter label="Período" value={filters.period} options={options.periods} onChange={(value) => onChange("period", value)} />

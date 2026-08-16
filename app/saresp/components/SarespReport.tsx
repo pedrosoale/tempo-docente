@@ -1,24 +1,35 @@
 "use client";
 
-import { useDeferredValue, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { CalendarRange, Database, FileWarning, Info } from "lucide-react";
 import {
   buildDiagnosis,
   buildPriorities,
-  buildSchoolOptions,
   buildSchoolStateComparison,
   buildStateBenchmark,
   CSV_BOM,
-  filterRowsBySchoolQuery,
   formatSchoolLabel,
   makeComparison,
-  makeExecutiveComparison,
-  resolveCurrentSchoolIdentity,
-  resolveExactSchoolCode,
+  matchSchoolIndex,
+  normalizeSearch,
+  restrictToYear,
+  SCHOOL_MATCH_LIMIT,
   toCsv,
+  withSearchKey,
+  withVariation,
 } from "@/lib/saresp/analysis";
 import { BENCHMARK_LABEL_LONG, BENCHMARK_METHODOLOGY } from "@/lib/saresp/labels";
-import type { FilterOptions, FilterState, RawRow } from "@/lib/saresp/types";
+import type {
+  ExecutiveRow,
+  ExecutiveRowSeed,
+  FilterOptions,
+  FilterState,
+  RawRow,
+  SchoolAliasesMap,
+  SchoolDetailRow,
+  SchoolIdentity,
+  SearchableIdentity,
+} from "@/lib/saresp/types";
 import ComparisonTable from "./ComparisonTable";
 import Diagnosis from "./Diagnosis";
 import EvolutionChart from "./EvolutionChart";
@@ -27,8 +38,6 @@ import Rankings from "./Rankings";
 import ResultSummaryCards from "./ResultSummaryCards";
 import SchoolVsState from "./SchoolVsState";
 import StateOverview from "./StateOverview";
-
-type SearchableRow = RawRow & { searchKey: string };
 
 const INITIAL_FILTERS: FilterState = {
   school: "",
@@ -39,17 +48,22 @@ const INITIAL_FILTERS: FilterState = {
   network: "",
 };
 
-function uniqueOptions(rows: RawRow[], key: keyof RawRow): string[] {
-  return [...new Set(rows.map((row) => String(row[key])).filter(Boolean))].sort((a, b) => a.localeCompare(b, "pt-BR"));
-}
+// The source CSVs only ever contain these four (confirmed against the real data) — période can't be
+// derived from executive.json like série/componente/rede can, because it's exactly the dimension
+// makeExecutiveComparison dedupes away (see dedupeByPeriodo in lib/saresp/analysis.ts).
+const PERIODO_OPTIONS = ["GERAL", "MANHÃ", "NOITE", "TARDE"];
 
-function normalizeSearch(value: string): string {
-  return value
-    .toString()
-    .normalize("NFD")
-    .replace(/\p{Diacritic}/gu, "")
-    .toLocaleLowerCase("pt-BR")
-    .trim();
+// GERAL needs no separate file: every codesc×serieAno×componente×year group has a GERAL row (see
+// scripts/saresp/build-data.mjs), so it's numerically identical to the no-filter default
+// (executive.json) — only MANHÃ/TARDE/NOITE materially change the state-wide numbers.
+const PERIODO_VARIANT_FILES: Partial<Record<string, string>> = {
+  "MANHÃ": "executive-manha.json",
+  TARDE: "executive-tarde.json",
+  NOITE: "executive-noite.json",
+};
+
+function uniqueOptions<T>(rows: T[], key: keyof T): string[] {
+  return [...new Set(rows.map((row) => String(row[key])).filter(Boolean))].sort((a, b) => a.localeCompare(b, "pt-BR"));
 }
 
 function downloadFile(filename: string, content: string, type = "text/plain;charset=utf-8") {
@@ -62,30 +76,53 @@ function downloadFile(filename: string, content: string, type = "text/plain;char
   URL.revokeObjectURL(url);
 }
 
-async function loadJson(path: string, year: number): Promise<RawRow[]> {
+async function loadJson<T>(path: string): Promise<T> {
   const response = await fetch(path);
   if (!response.ok) {
     throw new Error(`Não foi possível carregar ${path}`);
   }
-  const rows = (await response.json()) as Omit<RawRow, "year">[];
-  return rows.map((row) => ({ ...row, year }));
+  return response.json() as Promise<T>;
+}
+
+// Every row of a matched school's detail partition, plus the executive-level and detailed-table
+// filters (série/componente/período/rede/ano) — used both for the détail/CSV layer below.
+function matchesRowFilters(row: { serieAno: string; componente: string; periodo: string; rede: string; year: number }, filters: FilterState): boolean {
+  if (filters.series && row.serieAno !== filters.series) return false;
+  if (filters.component && row.componente !== filters.component) return false;
+  if (filters.period && row.periodo !== filters.period) return false;
+  if (filters.network && row.rede !== filters.network) return false;
+  if (filters.year && filters.year !== "Comparativo" && row.year !== Number(filters.year)) return false;
+  return true;
 }
 
 export default function SarespReport() {
-  const [rows, setRows] = useState<SearchableRow[]>([]);
-  const [filters, setFilters] = useState<FilterState>(INITIAL_FILTERS);
+  // --- Always-loaded baseline: schools-index.json (~155KB gzip) + executive.json (~477KB gzip) —
+  // see README "Pipeline de dados do SARESP" for the full artifact breakdown and size measurements.
+  const [schoolIndex, setSchoolIndex] = useState<SearchableIdentity[]>([]);
+  const [defaultExecutive, setDefaultExecutive] = useState<ExecutiveRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  // --- On-demand: período variant (MANHÃ/TARDE/NOITE) executive layer, fetched only when that
+  // filter is actually selected — see PERIODO_VARIANT_FILES above.
+  const [periodoVariants, setPeriodoVariants] = useState<Partial<Record<string, ExecutiveRow[]>>>({});
+  const requestedPeriodoVariants = useRef(new Set<string>());
+
   useEffect(() => {
-    async function loadData() {
+    async function loadBaseline() {
       try {
         setLoading(true);
-        const [data2024, data2025] = await Promise.all([loadJson("/data/saresp-2024.json", 2024), loadJson("/data/saresp-2025.json", 2025)]);
-        // Precomputed once at load time — the school search filter runs on every keystroke, so it
-        // must never recompute normalizeSearch() over ~150k rows per character typed.
-        const combined = [...data2024, ...data2025].map((row) => ({ ...row, searchKey: normalizeSearch(row.nomesc) }));
-        setRows(combined);
+        const [indexData, aliasesData, executiveSeed] = await Promise.all([
+          loadJson<SchoolIdentity[]>("/data/saresp/schools-index.json"),
+          loadJson<SchoolAliasesMap>("/data/saresp/schools-aliases.json"),
+          loadJson<ExecutiveRowSeed[]>("/data/saresp/executive.json"),
+        ]);
+        // withSearchKey folds each school's historical (pre-rename) names from schools-aliases.json
+        // into its searchKey — a tiny separate fetch (~52 of 9.760 schools) instead of giving every
+        // index entry a searchKey-sized field just to cover the rare renamed case (see
+        // buildSchoolAliases in lib/saresp/analysis.ts).
+        setSchoolIndex(indexData.map((entry) => withSearchKey(entry, aliasesData)));
+        setDefaultExecutive(executiveSeed.map((seed) => withVariation(seed)));
       } catch (loadError) {
         setError(loadError instanceof Error ? loadError.message : String(loadError));
       } finally {
@@ -93,66 +130,90 @@ export default function SarespReport() {
       }
     }
 
-    loadData();
+    loadBaseline();
   }, []);
 
-  // The <input> itself always reflects filters.school immediately (see Filters below), but every
-  // derived computation reads the deferred value instead. This lets React keep the keystroke
-  // responsive and only catch the (heavier) filtering/aggregation pipeline up afterwards, instead
-  // of blocking the input on the full recompute every time a character is typed.
-  const deferredSchool = useDeferredValue(filters.school);
-  const isSearchPending = filters.school !== deferredSchool;
-  const hasSchool = deferredSchool.trim() !== "";
+  const [filters, setFilters] = useState<FilterState>(INITIAL_FILTERS);
+  // The combobox's onSelect(entry) sets this; any further edit to the query text clears it (see
+  // updateSchoolQuery below) — carrying codesc as real selection state instead of parsing it back
+  // out of a formatted label string.
+  const [exactSchool, setExactSchool] = useState<SearchableIdentity | null>(null);
 
-  // Rows matching every filter except the school search — the state-wide baseline a chosen school
-  // gets compared against, on the same series/component/period/network/year recorte.
-  const stateRows = useMemo(() => {
-    return rows.filter((row) => {
-      if (filters.series && row.serieAno !== filters.series) return false;
-      if (filters.component && row.componente !== filters.component) return false;
-      if (filters.period && row.periodo !== filters.period) return false;
-      if (filters.network && row.rede !== filters.network) return false;
-      if (filters.year && filters.year !== "Comparativo" && row.year !== Number(filters.year)) return false;
-      return true;
-    });
-  }, [rows, filters.series, filters.component, filters.period, filters.network, filters.year]);
+  useEffect(() => {
+    const filename = PERIODO_VARIANT_FILES[filters.period];
+    if (!filename || requestedPeriodoVariants.current.has(filters.period)) return;
+    requestedPeriodoVariants.current.add(filters.period);
 
-  // Picking an exact datalist suggestion (label includes " — Cód. NNNN") resolves straight to that
-  // school's codesc, so it can be selected individually even when another school shares its name —
-  // free-typed partial text still falls back to the substring search below.
-  const exactSchoolCode = useMemo(() => resolveExactSchoolCode(deferredSchool), [deferredSchool]);
+    loadJson<ExecutiveRowSeed[]>(`/data/saresp/${filename}`)
+      .then((seed) => {
+        setPeriodoVariants((current) => ({ ...current, [filters.period]: seed.map((row) => withVariation(row)) }));
+      })
+      .catch(() => {
+        // A missing/failed variant degrades to an empty state-wide view for that período (see
+        // activeExecutive below) rather than breaking the whole page — the single-school detailed
+        // table still works fine, since it reads période granularity from the raw partition, not
+        // from this precomputed layer.
+        requestedPeriodoVariants.current.delete(filters.period);
+      });
+  }, [filters.period]);
 
-  const filteredRows = useMemo(() => {
-    if (exactSchoolCode) return stateRows.filter((row) => row.codesc === exactSchoolCode);
-    return filterRowsBySchoolQuery(stateRows, normalizeSearch(deferredSchool));
-  }, [stateRows, deferredSchool, exactSchoolCode]);
+  // Resolves which precomputed executive source is active for the current Período filter — null
+  // means "variant requested but hasn't arrived yet" (GERAL and "Todos" both use the default file,
+  // since a GERAL row is present in 100% of groups — see PERIODO_VARIANT_FILES above).
+  const activeExecutive = useMemo((): ExecutiveRow[] | null => {
+    const filename = PERIODO_VARIANT_FILES[filters.period];
+    if (!filename) return defaultExecutive;
+    return periodoVariants[filters.period] ?? null;
+  }, [filters.period, defaultExecutive, periodoVariants]);
 
-  const filteredCount = filteredRows.length;
-  const matchedSchoolCodes = useMemo(() => new Set(filteredRows.map((row) => row.codesc)), [filteredRows]);
-  const hasMatches = filteredRows.length > 0;
-  const isSingleSchool = hasSchool && matchedSchoolCodes.size === 1;
-  const isAmbiguousSchool = hasSchool && matchedSchoolCodes.size > 1;
-  // Full identity (name + rede + região + código) of the resolved school — shown back to the user
-  // so they can confirm they landed on the right one when the name alone was ambiguous. Uses the
-  // school's CURRENT (most recent year) identity, not just filteredRows[0]: for a school renamed
-  // between 2024 and 2025, the first matched row is always a 2024 row (array load order), which
-  // would otherwise show a stale name even when the user searched by — or picked — the current one.
-  const selectedSchoolLabel = useMemo(() => {
-    if (!isSingleSchool) return null;
-    const identity = resolveCurrentSchoolIdentity(filteredRows);
-    return identity ? formatSchoolLabel(identity) : null;
-  }, [isSingleSchool, filteredRows]);
+  // State-wide baseline for the current recorte (all filters except the school search) — powers
+  // StateOverview's Rankings/Charts, the benchmark, AND (filtered further by codesc) every
+  // single-school executive indicator. No fetch: this is a client-side filter over already-loaded
+  // data, per componente/série/rede (all present on ExecutiveRow) and ano (restrictToYear).
+  const stateExecutiveRows = useMemo(() => {
+    if (!activeExecutive) return [];
+    return activeExecutive
+      .filter((row) => {
+        if (filters.series && row.serieAno !== filters.series) return false;
+        if (filters.component && row.componente !== filters.component) return false;
+        if (filters.network && row.rede !== filters.network) return false;
+        return true;
+      })
+      .map((row) => restrictToYear(row, filters.year))
+      .filter((row) => Number.isFinite(row.prof2024) || Number.isFinite(row.prof2025));
+  }, [activeExecutive, filters.series, filters.component, filters.network, filters.year]);
 
-  // Detailed layer (keeps período separate) — feeds only the table/export, per the analytical rule
-  // that período detail may stay visible there without leaking into executive indicators.
-  const comparison = useMemo(() => makeComparison(filteredRows), [filteredRows]);
-
-  // Executive layer (período-deduped) — feeds every summary/ranking/chart/diagnosis.
-  const stateExecutiveRows = useMemo(() => makeExecutiveComparison(stateRows), [stateRows]);
   const stateBenchmark = useMemo(() => buildStateBenchmark(stateExecutiveRows), [stateExecutiveRows]);
-  const schoolExecutiveRows = useMemo(() => makeExecutiveComparison(filteredRows), [filteredRows]);
-  // Gap/classification/diagnosis only make sense for a single resolved school — skip the work
-  // entirely while the search still matches many schools (typing a partial name).
+
+  const hasSchoolQuery = filters.school.trim() !== "";
+
+  // Exact combobox pick always wins (one entry, no ambiguity); otherwise every school whose
+  // (already-loaded, lightweight) index entry matches the free-typed query — same matcher the
+  // combobox itself uses for its suggestion list, so "what's suggested" and "what resolves" can
+  // never disagree.
+  const matchedEntries = useMemo(() => {
+    if (exactSchool) return [exactSchool];
+    const normalized = normalizeSearch(filters.school);
+    return normalized ? matchSchoolIndex(schoolIndex, normalized) : [];
+  }, [exactSchool, filters.school, schoolIndex]);
+
+  const matchedCodes = useMemo(() => matchedEntries.map((entry) => entry.codesc), [matchedEntries]);
+  const matchedCount = matchedEntries.length;
+  const hasMatches = matchedCount > 0;
+  const isSingleSchool = hasSchoolQuery && matchedCount === 1;
+  const isAmbiguousWithinCap = hasSchoolQuery && matchedCount > 1 && matchedCount <= SCHOOL_MATCH_LIMIT;
+  const isAmbiguousOverCap = hasSchoolQuery && matchedCount > SCHOOL_MATCH_LIMIT;
+  const showsDetailedView = isSingleSchool || isAmbiguousWithinCap;
+
+  // Instant — a client-side filter over the already-loaded executive layer, not a fetch. This is
+  // what lets a school's summary cards / gap / diagnosis / rankings render before its détail
+  // partition (below) even starts downloading.
+  const schoolExecutiveRows = useMemo(() => {
+    if (!matchedCodes.length) return [];
+    const codeSet = new Set(matchedCodes);
+    return stateExecutiveRows.filter((row) => codeSet.has(row.codesc));
+  }, [stateExecutiveRows, matchedCodes]);
+
   const schoolStateRows = useMemo(
     () => (isSingleSchool ? buildSchoolStateComparison(schoolExecutiveRows, stateBenchmark) : []),
     [isSingleSchool, schoolExecutiveRows, stateBenchmark]
@@ -160,19 +221,84 @@ export default function SarespReport() {
   const diagnosis = useMemo(() => buildDiagnosis(schoolStateRows), [schoolStateRows]);
   const priorities = useMemo(() => buildPriorities(schoolStateRows), [schoolStateRows]);
 
+  const selectedSchoolLabel = useMemo(() => (isSingleSchool ? formatSchoolLabel(matchedEntries[0]) : null), [isSingleSchool, matchedEntries]);
+
+  // --- Per-school detail partitions (público/data/saresp/schools/<codesc>.json, ~1-8KB each),
+  // fetched only for matched schools within the cap — an ambiguous "prof" (4.417 matches in the
+  // real data) never triggers a fetch storm; it just shows "refine sua busca" (see
+  // isAmbiguousOverCap above) with no network request at all.
+  const [schoolDetails, setSchoolDetails] = useState<Map<string, RawRow[]>>(new Map());
+  const [detailError, setDetailError] = useState("");
+  const fetchedSchoolCodes = useRef(new Set<string>());
+  const schoolIndexByCode = useMemo(() => new Map(schoolIndex.map((entry) => [entry.codesc, entry])), [schoolIndex]);
+
+  useEffect(() => {
+    if (!showsDetailedView) return;
+    const missingCodes = matchedCodes.filter((codesc) => !fetchedSchoolCodes.current.has(codesc));
+    if (!missingCodes.length) return;
+    missingCodes.forEach((codesc) => fetchedSchoolCodes.current.add(codesc));
+
+    Promise.all(
+      missingCodes.map(async (codesc) => {
+        const detailRows = await loadJson<SchoolDetailRow[]>(`/data/saresp/schools/${codesc}.json`);
+        const identity = schoolIndexByCode.get(codesc);
+        const hydrated: RawRow[] = detailRows.map((row) => ({
+          ...row,
+          codesc,
+          nomesc: identity?.nomesc ?? "",
+          rede: identity?.rede ?? "",
+          codrmet: identity?.codrmet ?? "",
+        }));
+        return [codesc, hydrated] as const;
+      })
+    )
+      .then((entries) => {
+        setSchoolDetails((current) => {
+          const next = new Map(current);
+          entries.forEach(([codesc, hydrated]) => next.set(codesc, hydrated));
+          return next;
+        });
+      })
+      .catch((loadError) => {
+        missingCodes.forEach((codesc) => fetchedSchoolCodes.current.delete(codesc));
+        setDetailError(loadError instanceof Error ? loadError.message : String(loadError));
+      });
+  }, [showsDetailedView, matchedCodes, schoolIndexByCode]);
+
+  const detailReady = matchedCodes.length > 0 && matchedCodes.every((codesc) => schoolDetails.has(codesc));
+
+  // Detailed (período-inclusive) layer — feeds only ComparisonTable and CSV export. Re-applies
+  // every filter (raw partitions retain full período/ano granularity the executive layer doesn't).
+  const comparison = useMemo(() => {
+    if (!detailReady) return [];
+    const rowsForMatched = matchedCodes.flatMap((codesc) => schoolDetails.get(codesc) ?? []);
+    return makeComparison(rowsForMatched.filter((row) => matchesRowFilters(row, filters)));
+  }, [detailReady, matchedCodes, schoolDetails, filters]);
+
   const options: FilterOptions = useMemo(
     () => ({
-      schools: buildSchoolOptions(rows),
-      series: uniqueOptions(rows, "serieAno"),
-      components: uniqueOptions(rows, "componente"),
-      periods: uniqueOptions(rows, "periodo"),
-      networks: uniqueOptions(rows, "rede"),
+      schools: schoolIndex,
+      series: uniqueOptions(defaultExecutive, "serieAno"),
+      components: uniqueOptions(defaultExecutive, "componente"),
+      periods: PERIODO_OPTIONS,
+      networks: uniqueOptions(defaultExecutive, "rede"),
     }),
-    [rows]
+    [schoolIndex, defaultExecutive]
   );
 
   function updateFilter(key: keyof FilterState, value: string) {
     setFilters((current) => ({ ...current, [key]: value }));
+    if (key === "school") setExactSchool(null);
+  }
+
+  function handleSchoolSelect(entry: SearchableIdentity) {
+    setFilters((current) => ({ ...current, school: entry.nomesc }));
+    setExactSchool(entry);
+  }
+
+  function handleReset() {
+    setFilters(INITIAL_FILTERS);
+    setExactSchool(null);
   }
 
   function exportCsv() {
@@ -182,7 +308,7 @@ export default function SarespReport() {
   function printReport() {
     const report = [
       "Relatório SARESP — Tempo Docente",
-      filters.school ? `Escola: ${filters.school}` : "Recorte atual (múltiplas escolas)",
+      isSingleSchool && selectedSchoolLabel ? `Escola: ${selectedSchoolLabel}` : "Recorte atual (múltiplas escolas)",
       "",
       "Resumo por componente e série:",
       ...schoolExecutiveRows.map((row) => `- ${row.componente} (${row.serieAno}): ${row.prof2024 ?? "-"} -> ${row.prof2025 ?? "-"} (${row.statusLabel})`),
@@ -224,7 +350,7 @@ export default function SarespReport() {
                 <Database size={19} />
               </span>
               <span>
-                <strong>{filteredCount}</strong>registros no recorte atual
+                <strong>{stateExecutiveRows.length}</strong>registros no recorte atual
               </span>
             </div>
             <div>
@@ -250,13 +376,13 @@ export default function SarespReport() {
         <section className="state-panel error">
           <FileWarning size={28} />
           <strong>{error}</strong>
-          <span>Confira se os arquivos JSON estão em public/data.</span>
+          <span>Confira se os arquivos JSON estão em public/data/saresp.</span>
         </section>
       )}
 
       {!loading && !error && (
         <>
-          <Filters filters={filters} options={options} onChange={updateFilter} onReset={() => setFilters(INITIAL_FILTERS)} searchPending={isSearchPending} />
+          <Filters filters={filters} options={options} onChange={updateFilter} onSchoolSelect={handleSchoolSelect} onReset={handleReset} />
 
           <p className="scope-note">
             <Info size={17} />
@@ -269,41 +395,60 @@ export default function SarespReport() {
             <strong>Como calculamos a {BENCHMARK_LABEL_LONG}:</strong> {BENCHMARK_METHODOLOGY}
           </p>
 
-          {!hasSchool && <StateOverview comparison={stateExecutiveRows} />}
+          {!hasSchoolQuery && <StateOverview comparison={stateExecutiveRows} />}
 
-          {hasSchool && !hasMatches && (
+          {hasSchoolQuery && !hasMatches && (
             <p className="overview-hint">
               <FileWarning size={17} />
               Nenhuma escola encontrada para &quot;{filters.school}&quot;. Verifique o nome digitado.
             </p>
           )}
 
+          {isAmbiguousOverCap && (
+            <p className="overview-hint">
+              <Database size={17} />
+              {matchedCount} escolas correspondem a &quot;{filters.school}&quot; — refine a busca para ver o relatório de uma escola específica.
+            </p>
+          )}
+
+          {isSingleSchool && selectedSchoolLabel && (
+            <p className="overview-hint">
+              <Database size={17} />
+              Escola selecionada: <strong>{selectedSchoolLabel}</strong>
+            </p>
+          )}
+
+          {isAmbiguousWithinCap && (
+            <p className="overview-hint">
+              <Database size={17} />
+              {matchedCount} escolas correspondem a &quot;{filters.school}&quot; — refine a busca para ver o relatório completo de uma única escola.
+            </p>
+          )}
+
           {isSingleSchool && (
             <>
-              {selectedSchoolLabel && (
-                <p className="overview-hint">
-                  <Database size={17} />
-                  Escola selecionada: <strong>{selectedSchoolLabel}</strong>
-                </p>
-              )}
               <ResultSummaryCards rows={schoolExecutiveRows} />
-              <SchoolVsState schoolLabel={filters.school} rows={schoolStateRows} />
+              <SchoolVsState schoolLabel={selectedSchoolLabel ?? filters.school} rows={schoolStateRows} />
               <EvolutionChart rows={schoolStateRows} />
               <Diagnosis diagnosis={diagnosis} priorities={priorities} />
               <Rankings comparison={schoolExecutiveRows} scope="escola" />
-              <ComparisonTable rows={comparison} stateBenchmark={stateBenchmark} onExport={exportCsv} onPrint={printReport} />
             </>
           )}
 
-          {isAmbiguousSchool && (
-            <>
-              <p className="overview-hint">
-                <Database size={17} />
-                Vários registros correspondem a &quot;{filters.school}&quot; — refine a busca para ver o relatório completo de uma única escola.
-              </p>
+          {showsDetailedView &&
+            (detailError ? (
+              <section className="state-panel error">
+                <FileWarning size={24} />
+                <strong>{detailError}</strong>
+              </section>
+            ) : detailReady ? (
               <ComparisonTable rows={comparison} stateBenchmark={stateBenchmark} onExport={exportCsv} onPrint={printReport} />
-            </>
-          )}
+            ) : (
+              <section className="state-panel">
+                <Database size={24} />
+                <strong>Carregando detalhes da escola...</strong>
+              </section>
+            ))}
         </>
       )}
     </>

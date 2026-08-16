@@ -3,18 +3,21 @@ import test from "node:test";
 import {
   buildDiagnosis,
   buildPriorities,
-  buildSchoolOptions,
+  buildSchoolAliases,
+  buildSchoolIndex,
   buildSchoolStateComparison,
   buildStateBenchmark,
   classifySchoolPosition,
   CSV_BOM,
-  filterRowsBySchoolQuery,
   formatSchoolLabel,
   makeComparison,
   makeExecutiveComparison,
-  resolveCurrentSchoolIdentity,
-  resolveExactSchoolCode,
+  matchSchoolIndex,
+  normalizeSearch,
+  restrictToYear,
   toCsv,
+  withSearchKey,
+  withVariation,
 } from "../lib/saresp/analysis.ts";
 import { BENCHMARK_METHODOLOGY } from "../lib/saresp/labels.ts";
 
@@ -33,14 +36,6 @@ function row(overrides = {}) {
     medprof: 200,
     ...overrides,
   };
-}
-
-// Mirrors SarespReport.tsx's SearchableRow: a raw row plus its precomputed, normalized searchKey.
-// Tests use a plain lowercase key (no accent-stripping) since filterRowsBySchoolQuery is agnostic
-// to how normalization happened — it only does substring matching on whatever key it's given.
-function searchableRow(overrides = {}) {
-  const built = row(overrides);
-  return { ...built, searchKey: built.nomesc.toLowerCase() };
 }
 
 // --- Período dedup: GERAL preference and fallback --------------------------------------------
@@ -357,67 +352,44 @@ test("two schools sharing a nomesc stay distinguishable by codesc throughout the
     ["33613", "875"]
   );
 
-  // The school picker offers one option per codesc, each with a distinct, code-suffixed label.
-  const options = buildSchoolOptions(rawRows);
-  assert.equal(options.length, 2);
-  assert.notEqual(options[0].label, options[1].label);
-  assert.ok(options.every((option) => option.label.startsWith("CASTRO ALVES — Rede Estadual")));
+  // The school index offers one entry per codesc — formatSchoolLabel renders each distinctly even
+  // though both share a nomesc, because the label always ends in the (different) codesc.
+  const index = buildSchoolIndex(rawRows);
+  assert.equal(index.length, 2);
+  const labels = index.map((entry) => formatSchoolLabel(entry));
+  assert.notEqual(labels[0], labels[1]);
+  assert.ok(labels.every((label) => label.startsWith("CASTRO ALVES — Rede Estadual")));
 
-  const option875 = options.find((option) => option.codesc === "875");
-  const option33613 = options.find((option) => option.codesc === "33613");
-  assert.equal(option875.label, formatSchoolLabel(rawRows[0]));
-  assert.equal(option33613.label, formatSchoolLabel(rawRows[1]));
+  const entry875 = index.find((entry) => entry.codesc === "875");
+  const entry33613 = index.find((entry) => entry.codesc === "33613");
+  assert.equal(formatSchoolLabel(entry875), formatSchoolLabel(rawRows[0]));
+  assert.equal(formatSchoolLabel(entry33613), formatSchoolLabel(rawRows[1]));
 
-  // Picking an exact suggestion resolves unambiguously to that one codesc...
-  assert.equal(resolveExactSchoolCode(option875.label), "875");
-  assert.equal(resolveExactSchoolCode(option33613.label), "33613");
-
-  // ...while free-typed partial text (no code suffix) does NOT silently resolve to either school —
-  // the caller is expected to fall back to a substring search that will find both and ask the user
-  // to refine, rather than picking one of the two ambiguous schools at random.
-  assert.equal(resolveExactSchoolCode("CASTRO ALVES"), null);
+  // The combobox carries codesc as its actual selection value (see SchoolCombobox.tsx's
+  // onSelect(codesc)) — no text parsing involved, so both schools are unambiguously selectable
+  // even though matchSchoolIndex (below) would return both for a bare "CASTRO ALVES" query.
+  assert.notEqual(entry875.codesc, entry33613.codesc);
 });
 
 // --- Busca textual: preserva 2024x2025 mesmo quando o nome muda entre os anos ------------------
+// The old (pre-payload-reduction) design filtered the FULL raw dataset client-side, so a school's
+// 2024 row (old name) and 2025 row (new name) were both directly searchable. Now the client only
+// ever holds the lightweight schools-index.json (one entry per codesc, current name only) plus the
+// tiny schools-aliases.json (old names for the ~43 actually-renamed schools) — these two tests
+// cover that the SAME guarantee (searchable by either name, and both years still show up once a
+// school resolves) survives that redesign end to end.
 
-test("filterRowsBySchoolQuery matches by codesc first, then keeps every year for that school — not just the row whose own nomesc matched", () => {
+test("a renamed school's raw rows both survive makeExecutiveComparison once resolved by codesc", () => {
   const rows = [
     // Same codesc, renamed between 2024 and 2025 — the school itself didn't change, only its label.
-    searchableRow({ codesc: "500", nomesc: "ESCOLA ANTIGA", year: 2024, medprof: 190 }),
-    searchableRow({ codesc: "500", nomesc: "ESCOLA NOVA", year: 2025, medprof: 210 }),
-    // Unrelated school, must not be pulled in by either query.
-    searchableRow({ codesc: "999", nomesc: "OUTRA ESCOLA", year: 2024, medprof: 300 }),
+    row({ codesc: "500", nomesc: "ESCOLA ANTIGA", year: 2024, medprof: 190 }),
+    row({ codesc: "500", nomesc: "ESCOLA NOVA", year: 2025, medprof: 210 }),
   ];
 
-  // Query matches only the 2024 name...
-  const byOldName = filterRowsBySchoolQuery(rows, "escola antiga");
-  // ...but must still return BOTH years for codesc 500, not just the matching row.
-  assert.equal(byOldName.length, 2);
-  assert.deepEqual(
-    byOldName.map((r) => r.year).sort(),
-    [2024, 2025]
-  );
-  assert.ok(byOldName.every((r) => r.codesc === "500"));
-
-  // Same guarantee querying by the 2025 name instead.
-  const byNewName = filterRowsBySchoolQuery(rows, "escola nova");
-  assert.equal(byNewName.length, 2);
-  assert.deepEqual(
-    byNewName.map((r) => r.year).sort(),
-    [2024, 2025]
-  );
-
-  // The executive comparison built from that expanded set actually pairs both years.
-  const executive = makeExecutiveComparison(byOldName);
+  const executive = makeExecutiveComparison(rows);
   assert.equal(executive.length, 1);
   assert.equal(executive[0].prof2024, 190);
   assert.equal(executive[0].prof2025, 210);
-
-  // An empty query is a no-op passthrough (equivalent to no school filter applied).
-  assert.equal(filterRowsBySchoolQuery(rows, "").length, 3);
-
-  // A query matching nothing returns nothing (not a fallback to all rows).
-  assert.equal(filterRowsBySchoolQuery(rows, "escola inexistente").length, 0);
 });
 
 // --- Escola renomeada: identidade exibida deve ser a mais recente, em toda a pipeline -----------
@@ -431,16 +403,93 @@ test("filterRowsBySchoolQuery matches by codesc first, then keeps every year for
 const RENAMED_SCHOOL_2024 = row({ codesc: "10603", nomesc: "CEMEB TERRA BRASILIS", rede: "Rede Municipal", codrmet: "5", year: 2024, medprof: 191.9 });
 const RENAMED_SCHOOL_2025 = row({ codesc: "10603", nomesc: "CEMEB PROFESSORA ELIZABETH OLIVEIRA RODRIGUES", rede: "Rede Municipal", codrmet: "5", year: 2025, medprof: 160.9 });
 
-test("buildSchoolOptions shows a renamed school's CURRENT (2025) name, and is findable by either name", () => {
-  const options = buildSchoolOptions([RENAMED_SCHOOL_2024, RENAMED_SCHOOL_2025]);
-  assert.equal(options.length, 1);
-  assert.equal(options[0].label, "CEMEB PROFESSORA ELIZABETH OLIVEIRA RODRIGUES — Rede Municipal · Região 5 — Cód. 10603");
-  assert.equal(options[0].codesc, "10603");
+test("buildSchoolIndex shows a renamed school's CURRENT (2025) name, one entry per codesc", () => {
+  const index = buildSchoolIndex([RENAMED_SCHOOL_2024, RENAMED_SCHOOL_2025]);
+  assert.equal(index.length, 1);
+  assert.equal(index[0].nomesc, "CEMEB PROFESSORA ELIZABETH OLIVEIRA RODRIGUES");
+  assert.equal(formatSchoolLabel(index[0]), "CEMEB PROFESSORA ELIZABETH OLIVEIRA RODRIGUES — Rede Municipal · Região 5 — Cód. 10603");
+  assert.equal(index[0].codesc, "10603");
 });
 
-test("buildSchoolOptions falls back to the only available name when a school hasn't been renamed (single year)", () => {
-  const options = buildSchoolOptions([RENAMED_SCHOOL_2024]);
-  assert.equal(options[0].label, "CEMEB TERRA BRASILIS — Rede Municipal · Região 5 — Cód. 10603");
+test("buildSchoolIndex falls back to the only available name when a school hasn't been renamed (single year)", () => {
+  const index = buildSchoolIndex([RENAMED_SCHOOL_2024]);
+  assert.equal(formatSchoolLabel(index[0]), "CEMEB TERRA BRASILIS — Rede Municipal · Região 5 — Cód. 10603");
+});
+
+// --- normalizeSearch + matchSchoolIndex: the school combobox's matching logic -------------------
+
+test("normalizeSearch strips accents, trims, and lowercases", () => {
+  assert.equal(normalizeSearch("  ESCOLA MUNICÍPAL   "), "escola municipal");
+  assert.equal(normalizeSearch("São Paulo"), "sao paulo");
+  assert.equal(normalizeSearch(""), "");
+});
+
+test("matchSchoolIndex returns every match sorted alphabetically by nomesc, unbounded", () => {
+  const index = [
+    { codesc: "3", nomesc: "ZETA ESCOLA", searchKey: normalizeSearch("ZETA ESCOLA") },
+    { codesc: "1", nomesc: "ALFA ESCOLA", searchKey: normalizeSearch("ALFA ESCOLA") },
+    { codesc: "2", nomesc: "BETA COLEGIO", searchKey: normalizeSearch("BETA COLEGIO") },
+  ];
+
+  const matches = matchSchoolIndex(index, "escola");
+  assert.deepEqual(matches.map((m) => m.codesc), ["1", "3"]); // ALFA before ZETA; BETA has no "escola" substring
+
+  assert.deepEqual(matchSchoolIndex(index, ""), []);
+  assert.deepEqual(matchSchoolIndex(index, "inexistente"), []);
+});
+
+test("matchSchoolIndex returns both homonyms for a name-only query, leaving disambiguation to the caller", () => {
+  const index = [
+    { codesc: "875", nomesc: "CASTRO ALVES", searchKey: normalizeSearch("CASTRO ALVES") },
+    { codesc: "33613", nomesc: "CASTRO ALVES", searchKey: normalizeSearch("CASTRO ALVES") },
+  ];
+
+  const matches = matchSchoolIndex(index, normalizeSearch("castro alves"));
+  assert.equal(matches.length, 2);
+  assert.deepEqual(
+    matches.map((m) => m.codesc).sort(),
+    ["33613", "875"]
+  );
+});
+
+// --- withVariation: client-side hydration of the executive*.json wire shape ---------------------
+
+test("withVariation computes diff/percent/tone/statusLabel from prof2024/prof2025 alone", () => {
+  // Mirrors how SarespReport.tsx rehydrates a fetched ExecutiveRowSeed (see lib/saresp/types.ts)
+  // back into a full ExecutiveRow, without re-running makeExecutiveComparison over raw data it no
+  // longer holds in memory.
+  const hydrated = withVariation({ codesc: "1", prof2024: 200, prof2025: 215 });
+  assert.equal(hydrated.diff, 15);
+  assert.equal(hydrated.tone, "positive");
+  assert.equal(hydrated.statusLabel, "Evolução positiva");
+  assert.equal(hydrated.percent, 7.5);
+
+  const missingYear = withVariation({ codesc: "2", prof2024: 200, prof2025: null });
+  assert.equal(missingYear.diff, null);
+  assert.equal(missingYear.tone, "neutral");
+  assert.equal(missingYear.statusLabel, "Sem comparação");
+});
+
+test("restrictToYear nulls the other year and recomputes diff, matching what filtering raw rows to one year used to produce", () => {
+  const hydrated = withVariation({ codesc: "1", prof2024: 200, prof2025: 215 });
+
+  const only2024 = restrictToYear(hydrated, "2024");
+  assert.equal(only2024.prof2024, 200);
+  assert.equal(only2024.prof2025, null);
+  assert.equal(only2024.diff, null);
+  assert.equal(only2024.statusLabel, "Sem comparação");
+
+  const only2025 = restrictToYear(hydrated, "2025");
+  assert.equal(only2025.prof2024, null);
+  assert.equal(only2025.prof2025, 215);
+  assert.equal(only2025.diff, null);
+});
+
+test("restrictToYear leaves both years intact for '' and 'Comparativo'", () => {
+  const hydrated = withVariation({ codesc: "1", prof2024: 200, prof2025: 215 });
+
+  assert.deepEqual(restrictToYear(hydrated, ""), hydrated);
+  assert.deepEqual(restrictToYear(hydrated, "Comparativo"), hydrated);
 });
 
 test("makeExecutiveComparison and makeComparison show the renamed school's CURRENT name for every row, not just the ones with 2025 data", () => {
@@ -456,27 +505,39 @@ test("makeExecutiveComparison and makeComparison show the renamed school's CURRE
   assert.equal(detailed.codesc, "10603");
 });
 
-test("resolveCurrentSchoolIdentity picks the most recent (2025) row's identity, regardless of array order", () => {
-  const newestFirst = resolveCurrentSchoolIdentity([RENAMED_SCHOOL_2025, RENAMED_SCHOOL_2024]);
-  const oldestFirst = resolveCurrentSchoolIdentity([RENAMED_SCHOOL_2024, RENAMED_SCHOOL_2025]);
+// --- schools-aliases.json: keeps a renamed school findable by its OLD name too -------------------
+// The index (schools-index.json) only ever displays a school's CURRENT name — searchability by an
+// older, retired one is covered separately (see buildSchoolAliases in lib/saresp/analysis.ts) so
+// the ~9.717 never-renamed schools don't each carry a searchKey-sized field just to cover the rare
+// renamed case. These tests cover the real codesc 10603 case end-to-end through that pipeline.
 
-  assert.equal(newestFirst.nomesc, "CEMEB PROFESSORA ELIZABETH OLIVEIRA RODRIGUES");
-  assert.equal(oldestFirst.nomesc, "CEMEB PROFESSORA ELIZABETH OLIVEIRA RODRIGUES");
-  assert.equal(resolveCurrentSchoolIdentity([]), null);
+test("buildSchoolAliases captures only the non-current name(s) for a renamed school, and omits unrenamed ones entirely", () => {
+  const aliases = buildSchoolAliases([RENAMED_SCHOOL_2024, RENAMED_SCHOOL_2025]);
+  assert.deepEqual(aliases, { "10603": ["CEMEB TERRA BRASILIS"] });
+
+  const unrenamed = [row({ codesc: "1", nomesc: "ESCOLA X", year: 2024 }), row({ codesc: "1", nomesc: "ESCOLA X", year: 2025 })];
+  assert.deepEqual(buildSchoolAliases(unrenamed), {});
 });
 
-test("searching a renamed school by its OLD name still resolves to its CURRENT identity end-to-end", () => {
-  // Mirrors SarespReport.tsx: filterRowsBySchoolQuery expands the OLD-name match to both years,
-  // then resolveCurrentSchoolIdentity picks the 2025 identity for display — the same pipeline the
-  // "Escola selecionada" confirmation runs.
-  const rows = [
-    { ...RENAMED_SCHOOL_2024, searchKey: RENAMED_SCHOOL_2024.nomesc.toLowerCase() },
-    { ...RENAMED_SCHOOL_2025, searchKey: RENAMED_SCHOOL_2025.nomesc.toLowerCase() },
-  ];
+test("withSearchKey leaves an unrenamed school's searchKey as just its own normalized name", () => {
+  const entry = { codesc: "1", nomesc: "ESCOLA SEM RENOMEACAO", rede: "Rede Estadual", codrmet: "1" };
+  const searchable = withSearchKey(entry, {}); // no alias entry for this codesc
+  assert.equal(searchable.searchKey, normalizeSearch("ESCOLA SEM RENOMEACAO"));
+});
 
-  const matched = filterRowsBySchoolQuery(rows, "cemeb terra brasilis");
-  assert.equal(matched.length, 2); // both years survive the query, per the test above
+test("a renamed school is findable by its OLD name via matchSchoolIndex, even though the index only displays the current one", () => {
+  const rawRows = [RENAMED_SCHOOL_2024, RENAMED_SCHOOL_2025];
+  const index = buildSchoolIndex(rawRows);
+  const aliases = buildSchoolAliases(rawRows);
+  const searchable = index.map((entry) => withSearchKey(entry, aliases));
 
-  const identity = resolveCurrentSchoolIdentity(matched);
-  assert.equal(identity.nomesc, "CEMEB PROFESSORA ELIZABETH OLIVEIRA RODRIGUES");
+  assert.equal(searchable[0].nomesc, "CEMEB PROFESSORA ELIZABETH OLIVEIRA RODRIGUES"); // display: current name only
+
+  const byOldName = matchSchoolIndex(searchable, normalizeSearch("terra brasilis"));
+  assert.equal(byOldName.length, 1);
+  assert.equal(byOldName[0].codesc, "10603");
+
+  const byNewName = matchSchoolIndex(searchable, normalizeSearch("elizabeth"));
+  assert.equal(byNewName.length, 1);
+  assert.equal(byNewName[0].codesc, "10603");
 });

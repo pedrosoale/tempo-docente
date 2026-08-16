@@ -1,7 +1,11 @@
 export type Componente = string;
 export type SerieAno = string;
 
-// Row shape as it comes out of public/data/saresp-YYYY.json (see scripts/saresp/build-data.mjs).
+// Canonical in-memory row shape used throughout lib/saresp/analysis.ts. On the wire this is now
+// split across three partitioned artifacts (see scripts/saresp/build-data.mjs and
+// public/data/saresp/): SchoolIdentity (codesc/nomesc/rede/codrmet) + SchoolDetailRow
+// (year/serieAno/periodo/componente/medprof) per school, joined back into a full RawRow client-side
+// when a school's detail partition is fetched.
 export interface RawRow {
   year: number;
   rede: string;
@@ -124,18 +128,54 @@ export interface FilterState {
   network: string;
 }
 
-// One picker entry per physical school (deduped by codesc — see buildSchoolOptions in
-// lib/saresp/analysis.ts). `label` embeds codesc so two schools sharing a nomesc still resolve to
-// distinct, individually selectable entries.
-export interface SchoolOption {
+// One entry per physical school (deduped by codesc, most-recent-year identity — see
+// buildSchoolIndex in lib/saresp/analysis.ts). This is the wire shape of
+// public/data/saresp/schools-index.json, and also what formatSchoolLabel/SchoolCombobox consume
+// directly — no separate pre-formatted "label" field, callers format on demand.
+export interface SchoolIdentity {
   codesc: string;
-  label: string;
+  nomesc: string;
+  rede: string;
+  codrmet: string;
 }
 
+// SchoolIdentity plus a precomputed, normalized searchKey (see normalizeSearch/withSearchKey in
+// lib/saresp/analysis.ts) — SarespReport.tsx builds this array once when schools-index.json (and
+// schools-aliases.json) finish loading, so SchoolCombobox's matching runs on every keystroke
+// without re-normalizing ~9.760 school names each time.
+export interface SearchableIdentity extends SchoolIdentity {
+  searchKey: string;
+}
+
+// Wire shape of public/data/saresp/schools-aliases.json — codesc -> that school's historical
+// (non-current) names, present only for the ~52 of 9.760 schools whose nomesc actually differs
+// between years (see buildSchoolAliases in lib/saresp/analysis.ts). Kept separate from
+// SchoolIdentity/schools-index.json so the ~9.708 never-renamed schools don't each carry a
+// searchKey-sized field just to cover the rare case.
+export type SchoolAliasesMap = Record<string, string[]>;
+
 export interface FilterOptions {
-  schools: SchoolOption[];
+  schools: SearchableIdentity[];
   series: string[];
   components: string[];
   periods: string[];
   networks: string[];
+}
+
+// Wire shape of public/data/saresp/executive*.json — the ExecutiveRow shape minus the fields
+// withVariation derives (diff/percent/tone/statusLabel), which the client recomputes after fetch.
+// Precomputed at build time by calling makeExecutiveComparison for real (see
+// scripts/saresp/build-data.mjs), so the client never has to run it over the raw 150k+ rows again.
+export type ExecutiveRowSeed = Omit<ExecutiveRow, "diff" | "percent" | "tone" | "statusLabel">;
+
+// Wire shape of public/data/saresp/schools/<codesc>.json — one school's raw rows (both years, every
+// período), trimmed to only what's not already recoverable from the codesc (the fetch key) and the
+// already-loaded SchoolIdentity (nomesc/rede/codrmet). Rehydrated back into RawRow client-side by
+// joining those two back in (see the detail-fetch effect in SarespReport.tsx).
+export interface SchoolDetailRow {
+  year: number;
+  serieAno: SerieAno;
+  periodo: string;
+  componente: Componente;
+  medprof: number;
 }

@@ -120,24 +120,28 @@ precisam ser substituídos pelos que o provedor escolhido exigir.
 ```text
 app/                    rotas (App Router) e componentes de UI
   bncc/                 hub da BNCC, páginas por componente/ano, página de detalhe [codigo]
-  saresp/                relatório SARESP: layout.tsx, page.tsx, saresp.css, componentes em components/
+  saresp/                relatório SARESP: layout.tsx, page.tsx, saresp.css, componentes em
+                          components/ (Filters.tsx, SchoolCombobox.tsx — busca de escola
+                          acessível —, etc.)
   components/           Header, Footer, Hero, busca, etc. (compartilhados)
 lib/bncc/
   types.ts              union de tipos dos registros da BNCC (ver abaixo)
   data.ts               carrega os datasets JSON, expõe getAllRegistros/getRegistroByCode/etc.
   search.mjs            filtro de busca/ano/unidade/objeto usado pelo explorer e pela busca global
 lib/saresp/
-  types.ts               tipos dos registros/agregações do SARESP
+  types.ts               tipos dos registros/agregações/artefatos do SARESP
   labels.ts               nomenclatura centralizada do benchmark ("média das escolas do recorte")
   analysis.ts             dedup de período, camada executiva, classificação, gap, diagnóstico,
-                           identificação de escola (codesc/formatSchoolLabel)
+                           identificação/busca de escola (índice, aliases, formatSchoolLabel)
 data/bncc/               datasets finais (*.json) + relatórios de importação + README próprio
 data/saresp/source/      CSVs brutos do SARESP (gitignored — ver "Pipeline de dados do SARESP")
+public/data/saresp/      artefatos gerados servidos ao navegador — índice, camada executiva e
+                          partições por escola (ver "Pipeline de dados do SARESP")
 scripts/bncc/
   extract_*.py           extratores por componente (PyMuPDF, leem o PDF oficial do MEC)
   import.mjs              valida os snapshots extraídos e gera os datasets finais + relatórios
 scripts/saresp/
-  build-data.mjs          lê data/saresp/source/*.csv, gera public/data/saresp-*.json
+  build-data.mjs          lê data/saresp/source/*.csv, gera os artefatos em public/data/saresp/
 tests/                   node --test — importação, busca, HTML renderizado por rota, análise SARESP
 worker/index.ts           entry point do Cloudflare Worker (roteamento de imagem + handler do vinext)
 ```
@@ -204,37 +208,115 @@ Dados Abertos da Educação (SP). Pra atualizar os dados (ex.: quando sair o SAR
 CODRMET;CODESC;NOMESC;SERIE_ANO;COD_PER;PERIODO;CO_COMP;DS_COMP;MEDPROF`) e rode:
 
 ```bash
-npm run saresp:build-data    # lê os CSVs, gera public/data/saresp-2024.json e -2025.json
+npm run saresp:build-data    # lê os CSVs, gera os artefatos em public/data/saresp/
 ```
 
-Os `.json` gerados **são** commitados (diferente do CSV) porque são o que o app de
-fato serve em produção — sem eles `/saresp` quebra, já que (igual ao BNCC) não há
-hook `predev`/`prebuild` regenerando automaticamente, é manual e intencional. Nunca
-edite esses `.json` à mão — para incluir/remover um campo, edite
+Os artefatos gerados **são** commitados (diferente do CSV) porque são o que o app
+de fato serve em produção — sem eles `/saresp` quebra, já que (igual ao BNCC) não
+há hook `predev`/`prebuild` regenerando automaticamente, é manual e intencional.
+Nunca edite esses arquivos à mão — para incluir/remover um campo, edite
 `scripts/saresp/build-data.mjs` e rode `npm run saresp:build-data` de novo.
 
-**Por que `public/data/*.json` e não `data/saresp/*.json` importado estaticamente**
-(como o BNCC faz): os dois arquivos somam ~28MB (74.264 + 76.356 registros). Se
-fossem importados estaticamente e passados como prop pra um client component, esse
-payload inteiro seria serializado no HTML de hidratação da página. Em vez disso,
-`app/saresp/components/SarespReport.tsx` (`"use client"`) faz `fetch()` deles no
-mount — só o suficiente pra pintar a página aparece no HTML inicial, o dado pesado
-chega depois, assíncrono. Isso já evita a duplicação payload-no-HTML-+-payload-no-
--fetch, mas o navegador ainda baixa os ~28MB inteiros mesmo quando o usuário só
-quer uma escola — é uma limitação arquitetural conhecida, documentada e não
-resolvida nesta rodada de mudanças (ver "Pendências" abaixo); resolvê-la envolve
-particionar os dados ou servir um índice leve + consulta sob demanda, o que muda a
-forma como `/saresp` busca dado e merece sua própria revisão antes de entrar.
+**Por que `public/data/saresp/*.json` e não `data/saresp/*.json` importado
+estaticamente** (como o BNCC faz): se fossem importados estaticamente e passados
+como prop pra um client component, esse payload seria serializado no HTML de
+hidratação da página. Em vez disso, `app/saresp/components/SarespReport.tsx`
+(`"use client"`) faz `fetch()` deles no mount — só o suficiente pra pintar a página
+aparece no HTML inicial, o dado pesado chega depois, assíncrono, evitando a
+duplicação payload-no-HTML-+-payload-no-fetch. Quais arquivos são buscados, quando
+e por quê é o que a seção seguinte descreve.
+
+### Artefatos em `public/data/saresp/` (índice + camada executiva + partições)
+
+Até a rodada anterior o pipeline gerava só dois arquivos combinados
+(`saresp-2024.json`/`saresp-2025.json`, ~27,11MB crus / ~1.360KB gzip somados), e o
+navegador baixava os dois inteiros em toda visita a `/saresp`, mesmo pra consultar
+uma única escola — limitação arquitetural documentada desde o commit `c97ca16` e
+deliberadamente adiada até esta rodada. Foi substituído por um índice leve sempre
+carregado + dados particionados sob demanda:
+
+- **`schools-index.json`** (967.015 bytes / ~159KB gzip, 9.760 entradas) —
+  identidade leve por escola (`codesc, nomesc, rede, codrmet`). Uma entrada por
+  `codesc`, com o nome mais recente quando a escola foi renomeada entre 2024 e
+  2025 (`buildSchoolIndex`, que reusa a mesma `latestIdentityByCode` já usada na
+  identificação de escola — ver abaixo).
+- **`schools-aliases.json`** (1.973 bytes / ~954 bytes gzip) — só as escolas que
+  mudaram de nome entre 2024 e 2025 (43 das 9.760, medido por
+  `buildSchoolAliases`): `codesc` → lista dos nomes antigos. Fica separado do
+  índice porque embutir a busca-por-nome-antigo em toda entrada do índice saiu
+  caro numa primeira versão testada (`searchKey` com todos os apelidos embutido
+  nas 9.760 entradas: +140KB gzip pra um benefício que afeta só 43 escolas) —
+  descartada em favor deste arquivo pequeno, mesclado ao índice no cliente
+  (`withSearchKey`) só para montar a chave de busca.
+- **`executive.json`** (6.292.308 bytes / ~514KB gzip) — a camada executiva (uma
+  linha por `codesc × serieAno × componente`, prof2024/prof2025 já casados),
+  gerada chamando a mesma `makeExecutiveComparison` de `analysis.ts` usada nos
+  testes, na forma enxuta `ExecutiveRowSeed` (sem `diff`/`percent`/`tone`/
+  `statusLabel` — esses campos derivados são recomputados no cliente via
+  `withVariation`, hoje exportada). É essa camada que alimenta os cartões-resumo,
+  o comparativo Escola × Recorte, o gráfico de evolução, o diagnóstico e os
+  rankings — pra uma escola já resolvida, tudo isso pinta a partir do que já está
+  em memória, sem fetch adicional.
+- **`executive-manha.json`** (4.971.164 bytes / ~426KB gzip), **`executive-
+  tarde.json`** (3.598.841 bytes / ~303KB gzip) e **`executive-noite.json`**
+  (1.114 bytes / 311 bytes gzip) — variantes da camada executiva pré-filtradas
+  por período, buscadas sob demanda só quando o filtro Período é MANHÃ/TARDE/
+  NOITE. Existem porque o filtro de período é aplicado **antes** de
+  `makeExecutiveComparison` rodar — sem essas variantes, escolher MANHÃ/TARDE
+  pararia de afetar Rankings/gráficos/benchmark assim que a página passasse a
+  depender só do `executive.json` padrão (que colapsa por `GERAL`). Não é caso
+  raro: medido nos dados reais, 79% dos grupos `codesc×serieAno×componente` têm
+  linha MANHÃ e 57% têm TARDE, contra 100% com `GERAL` — por isso `GERAL` não
+  precisa de variante própria, mas MANHÃ/TARDE precisam.
+- **`schools/<codesc>.json`** (9.760 arquivos, mediana 1.641 bytes, média 1.585
+  bytes, de 403 a 3.701 bytes) — as linhas cruas de uma escola (os dois anos,
+  todos os períodos), na forma enxuta `{year, serieAno, periodo, componente,
+  medprof}` (sem `codesc`/`rede`/`codrmet`/`nomesc` — recuperáveis do índice já
+  carregado). Buscado sob demanda só pras escolas efetivamente resolvidas pela
+  busca atual, e só alimenta a tabela detalhada por período (`ComparisonTable`) e
+  a exportação CSV — o resto da página, como listado acima, não depende dessas
+  partições.
+
+**Cap de busca ambígua (`SCHOOL_MATCH_LIMIT = 30`, em `lib/saresp/analysis.ts`):**
+um termo comum ("prof", por exemplo) bate em milhares de escolas (4.417 das
+9.760, medido) — sem limite, resolver cada uma delas em paralelo dispararia
+milhares de fetches de partição a partir de poucas teclas digitadas. Acima do
+cap, a página só informa quantas escolas correspondem e pede pra refinar a
+busca, sem buscar nenhuma partição; abaixo do cap — incluindo o caso comum de
+uma escola só — busca em paralelo normalmente. O mesmo cap limita quantas
+sugestões o combobox de busca (`SchoolCombobox.tsx`) renderiza de uma vez; ver
+"Identificação de escolas" abaixo.
+
+**Medido nesta rodada** (bytes crus / gzip): o baseline sempre carregado
+(`schools-index.json` + `schools-aliases.json` + `executive.json`) caiu de
+~27,11MB / ~1.360KB gzip (os dois arquivos antigos combinados) para ~6,92MB /
+~653KB gzip — **74,5% de redução em bytes crus, 52,0% em gzip**. Gzip é a
+métrica que importa de verdade: o Cloudflare já comprime `/data/*.json`
+automaticamente em produção (confirmado via
+`curl -I -H "Accept-Encoding: gzip, br"` mostrando `Content-Encoding: br`,
+porque esses arquivos são servidos direto pelo pipeline de assets estáticos,
+nunca passam por `worker/index.ts`), e os JSONs antigos já comprimiam bem,
+porque cada escola repetia `nomesc`/`rede`/`codrmet` em 15-36 linhas cruas —
+exatamente o que compressão por dicionário aproveita. Por isso a redução real
+de tráfego é ~52%, não os ~75% que os bytes crus sozinhos sugerem — ainda uma
+vitória real, só que com o número honesto. As variantes de período e as
+partições por escola só entram quando de fato usadas: a maioria das visitas
+que consulta uma escola específica nunca baixa mais que o baseline mais uma
+partição de poucos KB.
 
 A lógica de cálculo (dedup de período — prioriza o registro `GERAL` quando existe,
 nunca soma Português+Matemática numa média só, classificação em 4 categorias contra
-o benchmark do recorte, gap e sua evolução, diagnóstico sem causalidade) está em
-`lib/saresp/analysis.ts`, tipada e sem I/O. `scripts/saresp/build-data.mjs` é
-self-contained (não importa esse arquivo) porque ele roda como script Node "puro"
-antes do build; `lib/saresp/analysis.ts` e `lib/saresp/types.ts`, por sua vez,
-importam um do outro com extensão `.ts` explícita (`allowImportingTsExtensions` no
-`tsconfig.json`) justamente para que `node --experimental-strip-types` consiga
-carregá-los direto em `tests/saresp-analysis.test.mjs`, sem passar pelo bundler.
+o benchmark do recorte, gap e sua evolução, diagnóstico sem causalidade, índice e
+aliases de escola) está em `lib/saresp/analysis.ts`, tipada e sem I/O.
+`scripts/saresp/build-data.mjs` importa `buildSchoolIndex`/`buildSchoolAliases`/
+`makeExecutiveComparison` direto desse arquivo (extensão `.ts` explícita) em vez de
+duplicar a lógica — só a metade de parsing de CSV (`splitCsvLine`, `decodeCsv`,
+`cleanText`, `mojibakeFixes`) continua exclusiva do script. Isso funciona porque
+`node --experimental-strip-types` (flag explícita no script `saresp:build-data` do
+`package.json`, mesma defesa que o script `test` já usa) carrega `.ts` direto sem
+bundler — o mesmo mecanismo que já permitia `tests/saresp-analysis.test.mjs`
+importar `lib/saresp/analysis.ts`/`types.ts`, que por sua vez importam um do outro
+com extensão `.ts` explícita (`allowImportingTsExtensions` no `tsconfig.json`).
 
 O SARESP não cobre Ensino Médio: desde 2023 o EM é avaliado pelo Provão Paulista
 Seriado, publicado junto com o SARESP só como microdados por aluno (~200MB/ano, sem
@@ -272,19 +354,30 @@ dos nomes duplicados está na mesma rede, e alguns até compartilham o mesmo
 
 Por isso:
 
-- O pipeline (`scripts/saresp/build-data.mjs` → `public/data/saresp-*.json`)
-  preserva `codrmet` ("Código da Região Metropolitana" segundo o [dicionário de
-  dados oficial](https://dados.educacao.sp.gov.br/dicionario-de-dados-proficiencia-saresp),
+- O pipeline (`scripts/saresp/build-data.mjs` → `schools-index.json`) preserva
+  `codrmet` ("Código da Região Metropolitana" segundo o [dicionário de dados
+  oficial](https://dados.educacao.sp.gov.br/dicionario-de-dados-proficiencia-saresp),
   um agrupamento numérico opaco sem nome público nesta base) além de `codesc`,
-  `nomesc` e `rede`.
-- A busca de escola em `/saresp` (`Filters.tsx` + `SarespReport.tsx`) monta cada
-  sugestão do `<datalist>` como `"Nome — Rede · Região N — Cód. CODESC"`
-  (`formatSchoolLabel` em `lib/saresp/analysis.ts`), uma por `codesc` — nunca uma
-  por `nomesc`. Escolher uma sugestão exata resolve direto para aquele `codesc`
-  (`resolveExactSchoolCode`), então duas escolas com nome igual continuam
-  individualmente selecionáveis. Texto livre parcial (sem o sufixo `Cód.`) cai no
-  fallback de busca por substring de sempre, que já avisa "refine a busca" quando
-  mais de uma escola bate.
+  `nomesc` e `rede` — confirmado 100% invariante por `codesc` nos dados reais, por
+  isso o filtro de rede é aplicado no cliente, sem variante pré-computada por rede.
+- A busca de escola em `/saresp` (`SchoolCombobox.tsx`) é um combobox acessível
+  (padrão WAI-ARIA APG — `role="combobox"` + `role="listbox"`,
+  `aria-activedescendant`, navegação completa por teclado) que monta cada sugestão
+  como `"Nome — Rede · Região N — Cód. CODESC"` (`formatSchoolLabel` em
+  `lib/saresp/analysis.ts`), uma por `codesc` — nunca uma por `nomesc`. Isso
+  substitui o antigo `<datalist>` nativo, que sempre renderiza um `<option>` por
+  escola no DOM (as 9.760) independente do que foi digitado, porque o navegador só
+  filtra visualmente; o combobox novo renderiza só os `SCHOOL_MATCH_LIMIT` (30)
+  primeiros resultados (ver "Cap de busca ambígua" acima). Escolher uma sugestão
+  passa o `codesc` direto pro estado — sem parsear sufixo de texto —, então duas
+  escolas com nome igual continuam individualmente selecionáveis. Texto livre que
+  bate em várias escolas dentro do cap mostra o comparativo combinado das escolas
+  casadas, com a coluna "Código" (abaixo) pra distinguir cada linha; acima do cap,
+  a página só informa quantas escolas correspondem e pede pra refinar a busca.
+- Escolas renomeadas entre 2024 e 2025 (43 das 9.760 — ver `schools-aliases.json`
+  acima) continuam buscáveis pelo nome antigo: o cliente mescla índice e aliases
+  (`withSearchKey`) pra montar a chave de busca de cada escola, embora a sugestão
+  exibida sempre mostre o nome atual.
 - Com uma escola resolvida, a página mostra "Escola selecionada: Nome — Rede ·
   Região N — Cód. CODESC" acima dos indicadores, e a tabela detalhada ganhou uma
   coluna "Código", para confirmar visualmente qual escola física está em tela.
@@ -300,11 +393,6 @@ numérico cru ("Região 5"), não um nome de região. Se um export mais novo do
 dataset oficial vier com essas colunas, dá pra enriquecer o rótulo com
 município/diretoria de verdade — até lá, `codesc` é o identificador confiável e
 `codrmet` é só um desempate geográfico aproximado.
-
-**Efeito no payload:** incluir `codrmet` aumentou os JSONs gerados de ~12,4MB/
-12,7MB para ~13,4MB/13,7MB (2024/2025 respectivamente, medido nesta rodada) — cerca
-de +8% cada, pelo custo de mais um campo curto por registro. Isso soma ao tamanho
-total já discutido em "Por que `public/data/*.json`..." acima.
 
 ## Sobre os arquivos herdados do template
 
@@ -333,14 +421,6 @@ escolas, TypeScript e testes do SARESP, mas deliberadamente **não** implementad
 nesta rodada — cada um envolve uma mudança de escopo maior que merece sua própria
 revisão:
 
-- **Payload do SARESP no navegador** (~28MB/150 mil registros baixados mesmo para
-  consultar uma escola): a correção é arquitetural — particionar `public/data/
-  saresp-*.json` (por exemplo, por `codesc` ou por série) e/ou servir um índice
-  leve de escolas separado dos dados completos, carregados sob demanda. Isso muda
-  como `SarespReport.tsx` busca dado (hoje é um único `fetch()` de cada ano
-  inteiro) e como `scripts/saresp/build-data.mjs` particiona a saída — não é uma
-  troca de nomenclatura ou tipo, é redesenho de pipeline, então fica para uma etapa
-  própria.
 - **Sitemap** (`app/sitemap.ts`): hoje só lista rotas da BNCC — Ensino Fundamental,
   Competências Gerais e cada componente. Não inclui `/saresp`, `/bncc/ensino-medio`
   nem as áreas/componentes do Ensino Médio, e não tem teste de regressão.
