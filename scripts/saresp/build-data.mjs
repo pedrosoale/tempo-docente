@@ -20,10 +20,14 @@ const sourceDir = path.join(root, "data", "saresp", "source");
 const outputDir = path.join(root, "public", "data");
 const years = [2024, 2025];
 
-// Only the columns the app actually reads — depadm/depbol/codrmet/cod_per/co_comp exist in the
-// source CSVs but nothing downstream consumes them.
+// Only the columns the app actually reads — depadm/depbol/cod_per/co_comp exist in the source
+// CSVs but nothing downstream consumes them. codrmet ("Código da Região Metropolitana" per the
+// official data dictionary at dados.educacao.sp.gov.br) is kept: it's the only geographic
+// disambiguator present in this CSV export for schools that share a name — the export has no
+// município/diretoria name columns to fall back on (see README "Identificação de escolas").
 const FIELD_BY_HEADER = {
   nomedepbol: "rede",
+  codrmet: "codrmet",
   codesc: "codesc",
   nomesc: "nomesc",
   serie_ano: "serieAno",

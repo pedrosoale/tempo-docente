@@ -1,15 +1,17 @@
 import { memo } from "react";
 import { RotateCcw } from "lucide-react";
-import type { FilterOptions, FilterState } from "@/lib/saresp/types";
+import type { FilterOptions, FilterState, SchoolOption } from "@/lib/saresp/types";
 
 // Kept as its own memoized component so typing in the school input (which changes `value` on every
 // keystroke) doesn't force React to reconcile ~9.760 <option> nodes each time — `options` only
-// changes once, when the JSON finishes loading.
-const SchoolDatalist = memo(function SchoolDatalist({ options }: { options: string[] }) {
+// changes once, when the JSON finishes loading. Each option's value embeds codesc (see
+// formatSchoolLabel in lib/saresp/analysis.ts), so picking a suggestion resolves to one specific
+// school even when its name is shared with another.
+const SchoolDatalist = memo(function SchoolDatalist({ options }: { options: SchoolOption[] }) {
   return (
     <datalist id="school-options">
       {options.map((option) => (
-        <option key={option} value={option} />
+        <option key={option.codesc} value={option.label} />
       ))}
     </datalist>
   );
@@ -48,7 +50,7 @@ function SchoolFilter({
   pending,
 }: {
   value: string;
-  options: string[];
+  options: SchoolOption[];
   onChange: (value: string) => void;
   pending: boolean;
 }) {
@@ -59,7 +61,7 @@ function SchoolFilter({
         type="search"
         value={value}
         list="school-options"
-        placeholder="Digite o nome ou parte do nome"
+        placeholder="Digite o nome — escolha a sugestão para selecionar uma escola específica"
         onChange={(event) => onChange(event.target.value)}
       />
       <SchoolDatalist options={options} />

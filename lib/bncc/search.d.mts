@@ -15,6 +15,7 @@ export type SkillFilters = {
   year?: string;
   unit?: string;
   object?: string;
+  competencia?: string;
 };
 
 export function normalizeSearchText(value?: string): string;

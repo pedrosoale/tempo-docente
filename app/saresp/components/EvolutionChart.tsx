@@ -1,4 +1,5 @@
 import { formatNumber, formatSigned } from "@/lib/saresp/analysis";
+import { BENCHMARK_LABEL } from "@/lib/saresp/labels";
 import type { SchoolStateRow, Tone } from "@/lib/saresp/types";
 
 const WIDTH = 560;
@@ -82,7 +83,7 @@ function ComponentSlope({ componente, rows }: { componente: string; rows: School
           height={HEIGHT}
           viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
           role="img"
-          aria-label={`Evolução de ${componente}, escola e Estado, 2024 a 2025`}
+          aria-label={`Evolução de ${componente}, escola e ${BENCHMARK_LABEL.toLowerCase()}, 2024 a 2025`}
         >
           <text x={xLeft} y={20} textAnchor="middle" className="slope-axis-title">
             2024
@@ -152,10 +153,10 @@ function ComponentSlope({ componente, rows }: { componente: string; rows: School
           <i className="slope-dot negative" /> Evolução negativa
         </span>
         <span className="slope-legend-item">
-          <i className="slope-dot state" /> Estado (referência)
+          <i className="slope-dot state" /> {BENCHMARK_LABEL} (referência)
         </span>
       </div>
-      {!hasAnyStateReference && <p className="table-note">Referência estadual não disponível para este recorte.</p>}
+      {!hasAnyStateReference && <p className="table-note">Referência do recorte não disponível para esta seleção.</p>}
     </article>
   );
 }
@@ -170,7 +171,7 @@ export default function EvolutionChart({ rows }: { rows: SchoolStateRow[] }) {
           <div className="panel-heading">
             <div>
               <p className="eyebrow">Evolução</p>
-              <h2>Escola × Estado</h2>
+              <h2>Escola × {BENCHMARK_LABEL}</h2>
             </div>
           </div>
           <p className="table-note">Sem dados suficientes para montar o gráfico com os filtros atuais.</p>

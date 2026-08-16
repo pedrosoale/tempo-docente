@@ -55,7 +55,11 @@ export default function Rankings({ comparison, scope = "estado" }: { comparison:
 
   const isSchoolScope = scope === "escola";
   const primaryLabel = isSchoolScope ? (row: ExecutiveRow) => `${row.componente} — ${row.serieAno}` : (row: ExecutiveRow) => row.nomesc;
-  const secondaryLabel = isSchoolScope ? (row: ExecutiveRow) => row.rede : (row: ExecutiveRow) => `${row.serieAno} | ${row.componente}`;
+  // Cód. suffix matters here: this ranking spans every school in the recorte, and two of them can
+  // share a nomesc (see lib/saresp/analysis.ts formatSchoolLabel) — the code is what tells them apart.
+  const secondaryLabel = isSchoolScope
+    ? (row: ExecutiveRow) => row.rede
+    : (row: ExecutiveRow) => `${row.serieAno} | ${row.componente} · Cód. ${row.codesc}`;
 
   return (
     <section className="ranking-grid">

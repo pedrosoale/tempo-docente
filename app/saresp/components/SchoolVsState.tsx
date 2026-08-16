@@ -1,4 +1,5 @@
 import { POSITION_BADGE_CLASS, formatNumber, formatSigned } from "@/lib/saresp/analysis";
+import { BENCHMARK_LABEL } from "@/lib/saresp/labels";
 import type { SchoolStateRow } from "@/lib/saresp/types";
 
 function GapCell({ value }: { value: number | null }) {
@@ -13,7 +14,7 @@ export default function SchoolVsState({ schoolLabel, rows }: { schoolLabel: stri
       <div className="panel-heading">
         <div>
           <p className="eyebrow">Comparação</p>
-          <h2>Escola × Estado</h2>
+          <h2>Escola × {BENCHMARK_LABEL}</h2>
         </div>
       </div>
 
@@ -27,9 +28,9 @@ export default function SchoolVsState({ schoolLabel, rows }: { schoolLabel: stri
                 <th>Escola 2024</th>
                 <th>Escola 2025</th>
                 <th>Var. escola</th>
-                <th>Estado 2024</th>
-                <th>Estado 2025</th>
-                <th>Var. Estado</th>
+                <th>{BENCHMARK_LABEL} 2024</th>
+                <th>{BENCHMARK_LABEL} 2025</th>
+                <th>Var. {BENCHMARK_LABEL.toLowerCase()}</th>
                 <th>Gap 2024</th>
                 <th>Gap 2025</th>
                 <th>Δ Gap</th>
@@ -61,7 +62,7 @@ export default function SchoolVsState({ schoolLabel, rows }: { schoolLabel: stri
           </table>
         </div>
       ) : (
-        <p className="table-note">Sem dados suficientes para comparar {schoolLabel || "esta seleção"} com o Estado.</p>
+        <p className="table-note">Sem dados suficientes para comparar {schoolLabel || "esta seleção"} com o recorte.</p>
       )}
     </section>
   );

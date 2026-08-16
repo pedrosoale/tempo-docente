@@ -3,11 +3,11 @@ import SarespReport from "./components/SarespReport";
 
 export const metadata: Metadata = {
   title: "Relatório SARESP | Tempo Docente",
-  description: "Compare resultados de proficiência do SARESP por escola, com benchmark contra o Estado, gap e diagnóstico automático.",
+  description: "Compare resultados de proficiência do SARESP por escola, com benchmark contra a média das escolas do recorte, gap e diagnóstico automático.",
   alternates: { canonical: "/saresp" },
   openGraph: {
     title: "Relatório SARESP | Tempo Docente",
-    description: "Compare resultados de proficiência do SARESP por escola, com benchmark contra o Estado, gap e diagnóstico automático.",
+    description: "Compare resultados de proficiência do SARESP por escola, com benchmark contra a média das escolas do recorte, gap e diagnóstico automático.",
     url: "/saresp",
   },
 };

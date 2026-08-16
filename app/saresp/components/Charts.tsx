@@ -2,11 +2,12 @@
 
 import { ArrowRight } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import type { TooltipValueType } from "recharts";
 import { average, formatNumber, formatSigned, groupAverage } from "@/lib/saresp/analysis";
 import type { ExecutiveRow } from "@/lib/saresp/types";
 
-function tooltipFormatter(value: number) {
-  return formatNumber(value);
+function tooltipFormatter(value: TooltipValueType | undefined) {
+  return formatNumber(typeof value === "number" ? value : undefined);
 }
 
 const tooltipContentStyle = {

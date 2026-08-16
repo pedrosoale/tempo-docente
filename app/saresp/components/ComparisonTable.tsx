@@ -1,5 +1,6 @@
 import { ArrowDownRight, ArrowUpRight, Download, Minus, Printer, type LucideIcon } from "lucide-react";
 import { formatNumber, formatSigned } from "@/lib/saresp/analysis";
+import { BENCHMARK_LABEL } from "@/lib/saresp/labels";
 import type { DetailedRow, StateBenchmark, Tone } from "@/lib/saresp/types";
 
 const TONE_ICON: Record<Tone, LucideIcon> = { positive: ArrowUpRight, negative: ArrowDownRight, neutral: Minus };
@@ -50,6 +51,7 @@ export default function ComparisonTable({
           <thead>
             <tr>
               <th>Escola</th>
+              <th>Código</th>
               <th>Série</th>
               <th>Componente</th>
               <th>Período</th>
@@ -57,7 +59,7 @@ export default function ComparisonTable({
               <th>2025</th>
               <th>Diferença</th>
               <th>Status</th>
-              <th>Estado 2025</th>
+              <th>{BENCHMARK_LABEL} 2025</th>
               <th>Gap</th>
             </tr>
           </thead>
@@ -69,6 +71,7 @@ export default function ComparisonTable({
               return (
                 <tr key={`${row.codesc}-${row.serieAno}-${row.periodo}-${row.componente}`}>
                   <td>{row.nomesc}</td>
+                  <td className="numeric">{row.codesc}</td>
                   <td>{row.serieAno}</td>
                   <td>{row.componente}</td>
                   <td>{row.periodo}</td>

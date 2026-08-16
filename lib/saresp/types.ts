@@ -5,6 +5,11 @@ export type SerieAno = string;
 export interface RawRow {
   year: number;
   rede: string;
+  // "Código da Região Metropolitana" per the official SEDUC-SP data dictionary — a coarse
+  // geographic grouping (opaque numeric code, no public name lookup shipped with this CSV
+  // export). Used only to help disambiguate schools that share a name; codesc is the real
+  // unique identifier.
+  codrmet: string;
   codesc: string;
   nomesc: string;
   serieAno: SerieAno;
@@ -22,6 +27,9 @@ export interface Variation {
 
 interface ComparisonBase {
   codesc: string;
+  // See RawRow.codrmet — carried through so exports (toCsv) and the UI can show it alongside
+  // codesc without a separate lookup back into the raw rows.
+  codrmet: string;
   nomesc: string;
   serieAno: SerieAno;
   componente: Componente;
@@ -116,8 +124,16 @@ export interface FilterState {
   network: string;
 }
 
+// One picker entry per physical school (deduped by codesc — see buildSchoolOptions in
+// lib/saresp/analysis.ts). `label` embeds codesc so two schools sharing a nomesc still resolve to
+// distinct, individually selectable entries.
+export interface SchoolOption {
+  codesc: string;
+  label: string;
+}
+
 export interface FilterOptions {
-  schools: string[];
+  schools: SchoolOption[];
   series: string[];
   components: string[];
   periods: string[];

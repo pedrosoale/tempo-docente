@@ -18,7 +18,7 @@ function PriorityTable({ rows }: { rows: PriorityRow[] }) {
   if (!rows.length) {
     return (
       <p className="ranking-empty">
-        Nenhuma prioridade pôde ser calculada com os dados e filtros atuais (referência estadual ou evolução ano a ano indisponível).
+        Nenhuma prioridade pôde ser calculada com os dados e filtros atuais (referência do recorte ou evolução ano a ano indisponível).
       </p>
     );
   }

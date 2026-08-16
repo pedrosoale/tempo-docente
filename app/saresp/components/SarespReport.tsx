@@ -5,12 +5,19 @@ import { CalendarRange, Database, FileWarning, Info } from "lucide-react";
 import {
   buildDiagnosis,
   buildPriorities,
+  buildSchoolOptions,
   buildSchoolStateComparison,
   buildStateBenchmark,
+  CSV_BOM,
+  filterRowsBySchoolQuery,
+  formatSchoolLabel,
   makeComparison,
   makeExecutiveComparison,
+  resolveCurrentSchoolIdentity,
+  resolveExactSchoolCode,
   toCsv,
 } from "@/lib/saresp/analysis";
+import { BENCHMARK_LABEL_LONG, BENCHMARK_METHODOLOGY } from "@/lib/saresp/labels";
 import type { FilterOptions, FilterState, RawRow } from "@/lib/saresp/types";
 import ComparisonTable from "./ComparisonTable";
 import Diagnosis from "./Diagnosis";
@@ -110,17 +117,31 @@ export default function SarespReport() {
     });
   }, [rows, filters.series, filters.component, filters.period, filters.network, filters.year]);
 
+  // Picking an exact datalist suggestion (label includes " — Cód. NNNN") resolves straight to that
+  // school's codesc, so it can be selected individually even when another school shares its name —
+  // free-typed partial text still falls back to the substring search below.
+  const exactSchoolCode = useMemo(() => resolveExactSchoolCode(deferredSchool), [deferredSchool]);
+
   const filteredRows = useMemo(() => {
-    const schoolQuery = normalizeSearch(deferredSchool);
-    if (!schoolQuery) return stateRows;
-    return stateRows.filter((row) => row.searchKey.includes(schoolQuery));
-  }, [stateRows, deferredSchool]);
+    if (exactSchoolCode) return stateRows.filter((row) => row.codesc === exactSchoolCode);
+    return filterRowsBySchoolQuery(stateRows, normalizeSearch(deferredSchool));
+  }, [stateRows, deferredSchool, exactSchoolCode]);
 
   const filteredCount = filteredRows.length;
   const matchedSchoolCodes = useMemo(() => new Set(filteredRows.map((row) => row.codesc)), [filteredRows]);
   const hasMatches = filteredRows.length > 0;
   const isSingleSchool = hasSchool && matchedSchoolCodes.size === 1;
   const isAmbiguousSchool = hasSchool && matchedSchoolCodes.size > 1;
+  // Full identity (name + rede + região + código) of the resolved school — shown back to the user
+  // so they can confirm they landed on the right one when the name alone was ambiguous. Uses the
+  // school's CURRENT (most recent year) identity, not just filteredRows[0]: for a school renamed
+  // between 2024 and 2025, the first matched row is always a 2024 row (array load order), which
+  // would otherwise show a stale name even when the user searched by — or picked — the current one.
+  const selectedSchoolLabel = useMemo(() => {
+    if (!isSingleSchool) return null;
+    const identity = resolveCurrentSchoolIdentity(filteredRows);
+    return identity ? formatSchoolLabel(identity) : null;
+  }, [isSingleSchool, filteredRows]);
 
   // Detailed layer (keeps período separate) — feeds only the table/export, per the analytical rule
   // that período detail may stay visible there without leaking into executive indicators.
@@ -141,7 +162,7 @@ export default function SarespReport() {
 
   const options: FilterOptions = useMemo(
     () => ({
-      schools: uniqueOptions(rows, "nomesc"),
+      schools: buildSchoolOptions(rows),
       series: uniqueOptions(rows, "serieAno"),
       components: uniqueOptions(rows, "componente"),
       periods: uniqueOptions(rows, "periodo"),
@@ -155,7 +176,7 @@ export default function SarespReport() {
   }
 
   function exportCsv() {
-    downloadFile("comparativo-saresp-filtrado.csv", toCsv(comparison), "text/csv;charset=utf-8");
+    downloadFile("comparativo-saresp-filtrado.csv", `${CSV_BOM}${toCsv(comparison)}`, "text/csv;charset=utf-8");
   }
 
   function printReport() {
@@ -193,8 +214,8 @@ export default function SarespReport() {
             </span>
             <h1>Relatório SARESP — 2024 x 2025</h1>
             <p>
-              Analise cada componente curricular separadamente, compare a escola com a média estadual no mesmo recorte de série e componente, e
-              acompanhe a distância para o Estado ano a ano.
+              Analise cada componente curricular separadamente, compare a escola com a {BENCHMARK_LABEL_LONG} no mesmo recorte de série e
+              componente, e acompanhe a distância ano a ano.
             </p>
           </div>
           <div className="intro-stats">
@@ -243,6 +264,11 @@ export default function SarespReport() {
             avaliado pelo Provão Paulista Seriado, publicado separadamente e sem versão pré-agregada por escola equivalente à proficiência usada aqui.
           </p>
 
+          <p className="scope-note">
+            <Info size={17} />
+            <strong>Como calculamos a {BENCHMARK_LABEL_LONG}:</strong> {BENCHMARK_METHODOLOGY}
+          </p>
+
           {!hasSchool && <StateOverview comparison={stateExecutiveRows} />}
 
           {hasSchool && !hasMatches && (
@@ -254,6 +280,12 @@ export default function SarespReport() {
 
           {isSingleSchool && (
             <>
+              {selectedSchoolLabel && (
+                <p className="overview-hint">
+                  <Database size={17} />
+                  Escola selecionada: <strong>{selectedSchoolLabel}</strong>
+                </p>
+              )}
               <ResultSummaryCards rows={schoolExecutiveRows} />
               <SchoolVsState schoolLabel={filters.school} rows={schoolStateRows} />
               <EvolutionChart rows={schoolStateRows} />

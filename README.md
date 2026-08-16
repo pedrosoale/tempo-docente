@@ -39,12 +39,13 @@ componente/área e o pipeline de extração/importação de ambas as etapas.
 Módulo funcional: **SARESP — relatório por escola**, em `/saresp`. Compara
 proficiência 2024×2025 por escola sempre dentro do mesmo componente curricular e
 série (nunca uma média cruzando Língua Portuguesa e Matemática), com benchmark
-contra a média do Estado no mesmo recorte, gap e sua evolução ano a ano, e
-diagnóstico automático sem causalidade inventada. Cobre só Ensino Fundamental (2º,
-5º e 9º ano) — o SARESP não avalia mais o Ensino Médio desde 2023, isso passou a
-ser o Provão Paulista Seriado, publicado separadamente e sem uma versão
-pré-agregada por escola equivalente à proficiência usada aqui. Ver "Pipeline de
-dados do SARESP" abaixo.
+contra a **média das escolas do recorte** (mesma série, componente, rede e demais
+filtros aplicados — ver "Metodologia do benchmark" abaixo, não é a média oficial da
+SEDUC-SP), gap e sua evolução ano a ano, e diagnóstico automático sem causalidade
+inventada. Cobre só Ensino Fundamental (2º, 5º e 9º ano) — o SARESP não avalia mais
+o Ensino Médio desde 2023, isso passou a ser o Provão Paulista Seriado, publicado
+separadamente e sem uma versão pré-agregada por escola equivalente à proficiência
+usada aqui. Ver "Pipeline de dados do SARESP" abaixo.
 
 **Ainda não importado** (roadmap, não implementado): Educação Infantil (BNCC).
 SAEB e qualquer funcionalidade de IA/planejamento de aula/login **não existem
@@ -66,11 +67,12 @@ ainda** — os cartões correspondentes na home aparecem como "Em breve".
 
 ```bash
 npm install
-npm run dev      # servidor de desenvolvimento (Vite + Wrangler local)
-npm run build    # gera o build de produção em dist/
-npm start        # roda o build de produção localmente
-npm test         # build + suíte de testes (node --test)
+npm run dev        # servidor de desenvolvimento (Vite + Wrangler local)
+npm run build      # gera o build de produção em dist/
+npm start          # roda o build de produção localmente
+npm test           # build + suíte de testes (node --test)
 npm run lint
+npm run typecheck  # tsc --noEmit --incremental false
 ```
 
 Requer Node `>=22.13.0`.
@@ -126,7 +128,9 @@ lib/bncc/
   search.mjs            filtro de busca/ano/unidade/objeto usado pelo explorer e pela busca global
 lib/saresp/
   types.ts               tipos dos registros/agregações do SARESP
-  analysis.ts             dedup de período, camada executiva, classificação, gap, diagnóstico
+  labels.ts               nomenclatura centralizada do benchmark ("média das escolas do recorte")
+  analysis.ts             dedup de período, camada executiva, classificação, gap, diagnóstico,
+                           identificação de escola (codesc/formatSchoolLabel)
 data/bncc/               datasets finais (*.json) + relatórios de importação + README próprio
 data/saresp/source/      CSVs brutos do SARESP (gitignored — ver "Pipeline de dados do SARESP")
 scripts/bncc/
@@ -134,7 +138,7 @@ scripts/bncc/
   import.mjs              valida os snapshots extraídos e gera os datasets finais + relatórios
 scripts/saresp/
   build-data.mjs          lê data/saresp/source/*.csv, gera public/data/saresp-*.json
-tests/                   node --test — importação, busca, HTML renderizado por rota
+tests/                   node --test — importação, busca, HTML renderizado por rota, análise SARESP
 worker/index.ts           entry point do Cloudflare Worker (roteamento de imagem + handler do vinext)
 ```
 
@@ -206,22 +210,31 @@ npm run saresp:build-data    # lê os CSVs, gera public/data/saresp-2024.json e 
 Os `.json` gerados **são** commitados (diferente do CSV) porque são o que o app de
 fato serve em produção — sem eles `/saresp` quebra, já que (igual ao BNCC) não há
 hook `predev`/`prebuild` regenerando automaticamente, é manual e intencional. Nunca
-edite esses `.json` à mão.
+edite esses `.json` à mão — para incluir/remover um campo, edite
+`scripts/saresp/build-data.mjs` e rode `npm run saresp:build-data` de novo.
 
 **Por que `public/data/*.json` e não `data/saresp/*.json` importado estaticamente**
-(como o BNCC faz): os dois arquivos somam ~26MB. Se fossem importados estaticamente
-e passados como prop pra um client component, esse payload inteiro seria
-serializado no HTML de hidratação da página. Em vez disso,
+(como o BNCC faz): os dois arquivos somam ~28MB (74.264 + 76.356 registros). Se
+fossem importados estaticamente e passados como prop pra um client component, esse
+payload inteiro seria serializado no HTML de hidratação da página. Em vez disso,
 `app/saresp/components/SarespReport.tsx` (`"use client"`) faz `fetch()` deles no
 mount — só o suficiente pra pintar a página aparece no HTML inicial, o dado pesado
-chega depois, assíncrono.
+chega depois, assíncrono. Isso já evita a duplicação payload-no-HTML-+-payload-no-
+-fetch, mas o navegador ainda baixa os ~28MB inteiros mesmo quando o usuário só
+quer uma escola — é uma limitação arquitetural conhecida, documentada e não
+resolvida nesta rodada de mudanças (ver "Pendências" abaixo); resolvê-la envolve
+particionar os dados ou servir um índice leve + consulta sob demanda, o que muda a
+forma como `/saresp` busca dado e merece sua própria revisão antes de entrar.
 
 A lógica de cálculo (dedup de período — prioriza o registro `GERAL` quando existe,
 nunca soma Português+Matemática numa média só, classificação em 4 categorias contra
-o benchmark do Estado, gap e sua evolução, diagnóstico sem causalidade) está em
+o benchmark do recorte, gap e sua evolução, diagnóstico sem causalidade) está em
 `lib/saresp/analysis.ts`, tipada e sem I/O. `scripts/saresp/build-data.mjs` é
-self-contained (não importa esse arquivo) porque este repo não tem loader
-configurado pra rodar `.ts` direto com `node`.
+self-contained (não importa esse arquivo) porque ele roda como script Node "puro"
+antes do build; `lib/saresp/analysis.ts` e `lib/saresp/types.ts`, por sua vez,
+importam um do outro com extensão `.ts` explícita (`allowImportingTsExtensions` no
+`tsconfig.json`) justamente para que `node --experimental-strip-types` consiga
+carregá-los direto em `tests/saresp-analysis.test.mjs`, sem passar pelo bundler.
 
 O SARESP não cobre Ensino Médio: desde 2023 o EM é avaliado pelo Provão Paulista
 Seriado, publicado junto com o SARESP só como microdados por aluno (~200MB/ano, sem
@@ -229,12 +242,113 @@ versão pré-agregada por escola). Agregar esse microdado por conta própria arr
 não bater com a proficiência oficial (que normalmente usa escala psicométrica/TRI,
 não média simples) — por isso essa fonte não foi usada.
 
+### Metodologia do benchmark ("média das escolas do recorte")
+
+O número comparado contra cada escola em `/saresp` **não é a média oficial da rede
+estadual** divulgada pela SEDUC-SP. É a média simples (não ponderada por matrícula)
+da proficiência de todas as escolas que atendem aos filtros aplicados no momento —
+mesma série/ano, componente curricular, rede e demais filtros ativos
+(`buildStateBenchmark` em `lib/saresp/analysis.ts`, agrupada estritamente por
+`serieAno|componente`, nunca misturando série ou componente diferentes). A UI
+chama esse valor de "média das escolas do recorte" (não "média do Estado") e expõe
+essa explicação diretamente na página — ver o texto centralizado em
+`lib/saresp/labels.ts`, que é a única fonte da palavra usada em toda a interface e
+nas frases do diagnóstico, para o texto nunca divergir entre componentes.
+
+Por que não pesar por matrícula: o CSV oficial de proficiência por escola não traz
+o número de alunos avaliados por registro — só a proficiência agregada. Ponderar
+sem esse dado exigiria estimar/inventar um peso, o que é exatamente o tipo de dado
+fabricado que este projeto evita. Se a SEDUC-SP publicar matrícula por registro no
+futuro, uma média ponderada real passa a ser possível.
+
+### Identificação de escolas
+
+O CSV oficial tem escolas homônimas com `CODESC` (código escolar) diferente — ex.:
+duas escolas chamadas "CASTRO ALVES" (códigos `875` e `33613`), 36 nomes duplicados
+nas ~9.500 escolas do arquivo de 2024. `CODESC` é o único campo garantidamente
+único por escola nessa base; nome, rede e `CODRMET` sozinhos não bastam (a maioria
+dos nomes duplicados está na mesma rede, e alguns até compartilham o mesmo
+`CODRMET`).
+
+Por isso:
+
+- O pipeline (`scripts/saresp/build-data.mjs` → `public/data/saresp-*.json`)
+  preserva `codrmet` ("Código da Região Metropolitana" segundo o [dicionário de
+  dados oficial](https://dados.educacao.sp.gov.br/dicionario-de-dados-proficiencia-saresp),
+  um agrupamento numérico opaco sem nome público nesta base) além de `codesc`,
+  `nomesc` e `rede`.
+- A busca de escola em `/saresp` (`Filters.tsx` + `SarespReport.tsx`) monta cada
+  sugestão do `<datalist>` como `"Nome — Rede · Região N — Cód. CODESC"`
+  (`formatSchoolLabel` em `lib/saresp/analysis.ts`), uma por `codesc` — nunca uma
+  por `nomesc`. Escolher uma sugestão exata resolve direto para aquele `codesc`
+  (`resolveExactSchoolCode`), então duas escolas com nome igual continuam
+  individualmente selecionáveis. Texto livre parcial (sem o sufixo `Cód.`) cai no
+  fallback de busca por substring de sempre, que já avisa "refine a busca" quando
+  mais de uma escola bate.
+- Com uma escola resolvida, a página mostra "Escola selecionada: Nome — Rede ·
+  Região N — Cód. CODESC" acima dos indicadores, e a tabela detalhada ganhou uma
+  coluna "Código", para confirmar visualmente qual escola física está em tela.
+
+**Limitação conhecida:** o [dicionário de dados oficial da SEDUC-SP](https://dados.educacao.sp.gov.br/dicionario-de-dados-proficiencia-saresp)
+lista campos de município (`codmun`/`mun`) e diretoria de ensino (`DE`, em texto)
+que **não existem** nas colunas do CSV atualmente salvo em
+`data/saresp/source/*.csv` (`DEPADM;DEPBOL;NOMEDEPBOL;CODRMET;CODESC;NOMESC;
+SERIE_ANO;COD_PER;PERIODO;CO_COMP;DS_COMP;MEDPROF` — confirmado batendo com o
+cabeçalho real do arquivo). Não foi inventado um nome para os 7 valores de
+`codrmet` (1-7) nem uma diretoria/município fabricados: o rótulo mostra o código
+numérico cru ("Região 5"), não um nome de região. Se um export mais novo do
+dataset oficial vier com essas colunas, dá pra enriquecer o rótulo com
+município/diretoria de verdade — até lá, `codesc` é o identificador confiável e
+`codrmet` é só um desempate geográfico aproximado.
+
+**Efeito no payload:** incluir `codrmet` aumentou os JSONs gerados de ~12,4MB/
+12,7MB para ~13,4MB/13,7MB (2024/2025 respectivamente, medido nesta rodada) — cerca
+de +8% cada, pelo custo de mais um campo curto por registro. Isso soma ao tamanho
+total já discutido em "Por que `public/data/*.json`..." acima.
+
 ## Sobre os arquivos herdados do template
 
 Este projeto começou a partir do starter oficial do vinext (`vinext-starter`), que
-foi desenhado para rodar na hospedagem interna da OpenAI ("Sites"). Os seguintes
-arquivos são resquícios desse starter e **não estão em uso** nesta aplicação:
-`.openai/hosting.json` (declara bindings D1/R2 opcionais, ambos `null` hoje),
-`app/chatgpt-auth.ts` e as rotas `/signin-with-chatgpt` (login via ChatGPT — nenhuma
-página do site usa isso). Podem ser removidos com segurança se algum dia
-atrapalharem; foram deixados por não interferirem em nada do funcionamento atual.
+foi desenhado para rodar na hospedagem interna da OpenAI ("Sites"). `app/
+chatgpt-auth.ts` (helpers de login via ChatGPT — nenhuma página do site importava
+esse arquivo) era um resquício confirmado sem uso e foi removido.
+
+`.openai/hosting.json` **não é resíduo removível**, apesar de declarar bindings D1/
+R2 hoje `null`: `vite.config.ts` faz `import hostingConfig from "./.openai/
+hosting.json"` e usa `{ d1, r2 }` pra montar a config local do Wrangler — removê-lo
+quebra `npm run dev`/`npm run build`. Fica documentado aqui porque essa afirmação
+("é resíduo do starter, sem uso") estava incorreta numa versão anterior deste
+README.
+
+`db/` (Drizzle + D1, ver "Stack" acima) e `examples/d1/` seguem sem uso confirmado,
+mas não foram removidos nesta rodada — só a remoção de `app/chatgpt-auth.ts` foi
+verificada (zero importadores em todo o repo) com segurança suficiente para agir
+sem checar cada consumidor em profundidade. `db/` continua compilando corretamente
+(ver `worker/cloudflare-env.d.ts`) como scaffold opcional, não como erro pendente.
+
+## Pendências conhecidas
+
+Itens identificados numa revisão de confiabilidade estatística, identificação de
+escolas, TypeScript e testes do SARESP, mas deliberadamente **não** implementados
+nesta rodada — cada um envolve uma mudança de escopo maior que merece sua própria
+revisão:
+
+- **Payload do SARESP no navegador** (~28MB/150 mil registros baixados mesmo para
+  consultar uma escola): a correção é arquitetural — particionar `public/data/
+  saresp-*.json` (por exemplo, por `codesc` ou por série) e/ou servir um índice
+  leve de escolas separado dos dados completos, carregados sob demanda. Isso muda
+  como `SarespReport.tsx` busca dado (hoje é um único `fetch()` de cada ano
+  inteiro) e como `scripts/saresp/build-data.mjs` particiona a saída — não é uma
+  troca de nomenclatura ou tipo, é redesenho de pipeline, então fica para uma etapa
+  própria.
+- **Sitemap** (`app/sitemap.ts`): hoje só lista rotas da BNCC — Ensino Fundamental,
+  Competências Gerais e cada componente. Não inclui `/saresp`, `/bncc/ensino-medio`
+  nem as áreas/componentes do Ensino Médio, e não tem teste de regressão.
+- **CI**: não há workflow configurado rodando lint/typecheck/testes/build a cada
+  mudança — as verificações desta rodada foram todas rodadas manualmente.
+- **Avisos de imagem do ESLint** (`@next/next/no-img-element` em `Header.tsx`/
+  `Footer.tsx`): trocar `<img>` por `next/image` não foi feito porque o próprio
+  `<Link>` do vinext já quebra em produção como Worker (ver "Bug conhecido" acima)
+  — antes de reintroduzir outro componente do `next/*` em produção real, vale
+  confirmar num deploy de teste que `next/image` funciona nesse runtime, o que
+  este trabalho não cobriu.
