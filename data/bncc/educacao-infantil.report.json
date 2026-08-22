@@ -1,9 +1,9 @@
 {
   "escopo": "educacao-infantil",
-  "data_importacao": "2026-08-22T20:08:56.276Z",
+  "data_importacao": "2026-08-22T20:51:52.468Z",
   "lote_importacao": "2026-08-22-educacao-infantil",
   "arquivo_fonte": "data/bncc/source/official-mec-bncc-educacao-infantil.json",
-  "hash_sha256_fonte": "52166757116b62e59a7dbdc782a909a6eb164bd38620cfb0b104ba46e8e7aca0",
+  "hash_sha256_fonte": "6600d1432fb80cd69ac6efe7ca1cd4f895420b9d2635d844637b1f1bc7908690",
   "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
   "metodo_extracao": "PDF oficial; direitos localizados pelo próprio texto do documento (marcador de lista '•'); objetivos extraídos por associação posicional entre coordenadas vetoriais reais de linha/coluna de cada página (uma página por campo de experiências, 3 colunas por faixa etária) e o próprio código embutido no texto de cada célula — nunca só a ordem do texto corrido nem um regex global sobre a página.",
   "total_direitos": 6,
@@ -28,7 +28,7 @@
     "fonte_tentada": "https://downloadbncc.mec.gov.br/ (backend: bnccapi.mec.gov.br)",
     "resultado": "indisponivel",
     "detalhe": "bnccapi.mec.gov.br resolve via DNS mas não aceita conexão TCP (timeout em HTTP e HTTPS); reconfirma o achado já registrado para o Fundamental em data/bncc/README.md.",
-    "tentado_em": "2026-08-22T19:57:19.382838Z"
+    "tentado_em": "2026-08-22T20:51:25.411262Z"
   },
   "status": "valido"
 }

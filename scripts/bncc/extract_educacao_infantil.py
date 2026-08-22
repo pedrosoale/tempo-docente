@@ -380,7 +380,15 @@ def write_if_changed(output: Path, payload: dict) -> bool:
             return False
 
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    # newline="" disables Python's universal-newline translation, which on
+    # Windows would otherwise turn every "\n" below into "\r\n" — producing a
+    # file whose bytes (and therefore whose sha256, as recorded in
+    # hash_sha256_fonte by scripts/bncc/import.mjs) differ from the LF bytes
+    # Git actually stores and checks out everywhere else (confirmed: this is
+    # exactly what broke CI, where a CRLF-hashed local file didn't match the
+    # LF blob Linux runners see). Node's fs.writeFile never does this
+    # translation, so this only needed fixing on the Python side.
+    output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="")
     return True
 
 

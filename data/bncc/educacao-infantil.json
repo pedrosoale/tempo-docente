@@ -5,7 +5,7 @@
     "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
     "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
     "metodo_extracao": "PDF oficial; direitos localizados pelo próprio texto do documento (marcador de lista '•'); objetivos extraídos por associação posicional entre coordenadas vetoriais reais de linha/coluna de cada página (uma página por campo de experiências, 3 colunas por faixa etária) e o próprio código embutido no texto de cada célula — nunca só a ordem do texto corrido nem um regex global sobre a página.",
-    "data_extracao": "2026-08-22T19:57:19.382838Z",
+    "data_extracao": "2026-08-22T20:51:25.411262Z",
     "escopo": "Educação Infantil — Direitos de Aprendizagem e Desenvolvimento, Campos de Experiências e Objetivos de Aprendizagem e Desenvolvimento, por grupo/faixa etária",
     "classificacao": "dado_oficial",
     "correcoes_tipograficas_controladas": [
@@ -34,12 +34,12 @@
       "fonte_tentada": "https://downloadbncc.mec.gov.br/ (backend: bnccapi.mec.gov.br)",
       "resultado": "indisponivel",
       "detalhe": "bnccapi.mec.gov.br resolve via DNS mas não aceita conexão TCP (timeout em HTTP e HTTPS); reconfirma o achado já registrado para o Fundamental em data/bncc/README.md.",
-      "tentado_em": "2026-08-22T19:57:19.382838Z"
+      "tentado_em": "2026-08-22T20:51:25.411262Z"
     },
-    "data_importacao": "2026-08-22T20:08:56.276Z",
+    "data_importacao": "2026-08-22T20:51:52.468Z",
     "lote_importacao": "2026-08-22-educacao-infantil",
     "total_registros": 99,
-    "hash_sha256_fonte": "52166757116b62e59a7dbdc782a909a6eb164bd38620cfb0b104ba46e8e7aca0"
+    "hash_sha256_fonte": "6600d1432fb80cd69ac6efe7ca1cd4f895420b9d2635d844637b1f1bc7908690"
   },
   "registros": [
     {
@@ -57,7 +57,7 @@
       "pagina_fonte": 38,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "direito-aprendizagem-conhecer-se",
@@ -74,7 +74,7 @@
       "pagina_fonte": 38,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "direito-aprendizagem-conviver",
@@ -91,7 +91,7 @@
       "pagina_fonte": 38,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "direito-aprendizagem-explorar",
@@ -108,7 +108,7 @@
       "pagina_fonte": 38,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "direito-aprendizagem-expressar",
@@ -125,7 +125,7 @@
       "pagina_fonte": 38,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "direito-aprendizagem-participar",
@@ -142,7 +142,7 @@
       "pagina_fonte": 38,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01cg01",
@@ -162,7 +162,7 @@
       "pagina_fonte": 47,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01cg02",
@@ -182,7 +182,7 @@
       "pagina_fonte": 47,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01cg03",
@@ -202,7 +202,7 @@
       "pagina_fonte": 47,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01cg04",
@@ -222,7 +222,7 @@
       "pagina_fonte": 47,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01cg05",
@@ -242,7 +242,7 @@
       "pagina_fonte": 47,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01ef01",
@@ -262,7 +262,7 @@
       "pagina_fonte": 49,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01ef02",
@@ -282,7 +282,7 @@
       "pagina_fonte": 49,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01ef03",
@@ -302,7 +302,7 @@
       "pagina_fonte": 49,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01ef04",
@@ -322,7 +322,7 @@
       "pagina_fonte": 49,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01ef05",
@@ -342,7 +342,7 @@
       "pagina_fonte": 49,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01ef06",
@@ -362,7 +362,7 @@
       "pagina_fonte": 50,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01ef07",
@@ -382,7 +382,7 @@
       "pagina_fonte": 50,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01ef08",
@@ -402,7 +402,7 @@
       "pagina_fonte": 50,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01ef09",
@@ -422,7 +422,7 @@
       "pagina_fonte": 50,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01eo01",
@@ -442,7 +442,7 @@
       "pagina_fonte": 45,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01eo02",
@@ -462,7 +462,7 @@
       "pagina_fonte": 45,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01eo03",
@@ -482,7 +482,7 @@
       "pagina_fonte": 45,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01eo04",
@@ -502,7 +502,7 @@
       "pagina_fonte": 45,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01eo05",
@@ -522,7 +522,7 @@
       "pagina_fonte": 45,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01eo06",
@@ -542,7 +542,7 @@
       "pagina_fonte": 46,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01et01",
@@ -562,7 +562,7 @@
       "pagina_fonte": 51,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01et02",
@@ -582,7 +582,7 @@
       "pagina_fonte": 51,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01et03",
@@ -602,7 +602,7 @@
       "pagina_fonte": 51,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01et04",
@@ -622,7 +622,7 @@
       "pagina_fonte": 51,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01et05",
@@ -642,7 +642,7 @@
       "pagina_fonte": 51,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01et06",
@@ -662,7 +662,7 @@
       "pagina_fonte": 51,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01ts01",
@@ -682,7 +682,7 @@
       "pagina_fonte": 48,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01ts02",
@@ -702,7 +702,7 @@
       "pagina_fonte": 48,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei01ts03",
@@ -722,7 +722,7 @@
       "pagina_fonte": 48,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02cg01",
@@ -742,7 +742,7 @@
       "pagina_fonte": 47,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02cg02",
@@ -762,7 +762,7 @@
       "pagina_fonte": 47,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02cg03",
@@ -782,7 +782,7 @@
       "pagina_fonte": 47,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02cg04",
@@ -802,7 +802,7 @@
       "pagina_fonte": 47,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02cg05",
@@ -822,7 +822,7 @@
       "pagina_fonte": 47,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02ef01",
@@ -842,7 +842,7 @@
       "pagina_fonte": 49,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02ef02",
@@ -862,7 +862,7 @@
       "pagina_fonte": 49,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02ef03",
@@ -882,7 +882,7 @@
       "pagina_fonte": 49,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02ef04",
@@ -902,7 +902,7 @@
       "pagina_fonte": 49,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02ef05",
@@ -922,7 +922,7 @@
       "pagina_fonte": 49,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02ef06",
@@ -942,7 +942,7 @@
       "pagina_fonte": 50,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02ef07",
@@ -962,7 +962,7 @@
       "pagina_fonte": 50,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02ef08",
@@ -982,7 +982,7 @@
       "pagina_fonte": 50,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02ef09",
@@ -1002,7 +1002,7 @@
       "pagina_fonte": 50,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02eo01",
@@ -1022,7 +1022,7 @@
       "pagina_fonte": 45,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02eo02",
@@ -1042,7 +1042,7 @@
       "pagina_fonte": 45,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02eo03",
@@ -1062,7 +1062,7 @@
       "pagina_fonte": 45,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02eo04",
@@ -1082,7 +1082,7 @@
       "pagina_fonte": 45,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02eo05",
@@ -1102,7 +1102,7 @@
       "pagina_fonte": 45,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02eo06",
@@ -1122,7 +1122,7 @@
       "pagina_fonte": 46,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02eo07",
@@ -1142,7 +1142,7 @@
       "pagina_fonte": 46,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02et01",
@@ -1162,7 +1162,7 @@
       "pagina_fonte": 51,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02et02",
@@ -1182,7 +1182,7 @@
       "pagina_fonte": 51,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02et03",
@@ -1202,7 +1202,7 @@
       "pagina_fonte": 51,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02et04",
@@ -1222,7 +1222,7 @@
       "pagina_fonte": 51,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02et05",
@@ -1242,7 +1242,7 @@
       "pagina_fonte": 51,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02et06",
@@ -1262,7 +1262,7 @@
       "pagina_fonte": 51,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02et07",
@@ -1282,7 +1282,7 @@
       "pagina_fonte": 52,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02et08",
@@ -1302,7 +1302,7 @@
       "pagina_fonte": 52,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02ts01",
@@ -1322,7 +1322,7 @@
       "pagina_fonte": 48,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02ts02",
@@ -1342,7 +1342,7 @@
       "pagina_fonte": 48,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei02ts03",
@@ -1362,7 +1362,7 @@
       "pagina_fonte": 48,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03cg01",
@@ -1382,7 +1382,7 @@
       "pagina_fonte": 47,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03cg02",
@@ -1402,7 +1402,7 @@
       "pagina_fonte": 47,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03cg03",
@@ -1422,7 +1422,7 @@
       "pagina_fonte": 47,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03cg04",
@@ -1442,7 +1442,7 @@
       "pagina_fonte": 47,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03cg05",
@@ -1462,7 +1462,7 @@
       "pagina_fonte": 47,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03ef01",
@@ -1482,7 +1482,7 @@
       "pagina_fonte": 49,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03ef02",
@@ -1502,7 +1502,7 @@
       "pagina_fonte": 49,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03ef03",
@@ -1522,7 +1522,7 @@
       "pagina_fonte": 49,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03ef04",
@@ -1542,7 +1542,7 @@
       "pagina_fonte": 49,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03ef05",
@@ -1562,7 +1562,7 @@
       "pagina_fonte": 49,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03ef06",
@@ -1582,7 +1582,7 @@
       "pagina_fonte": 50,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03ef07",
@@ -1602,7 +1602,7 @@
       "pagina_fonte": 50,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03ef08",
@@ -1622,7 +1622,7 @@
       "pagina_fonte": 50,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03ef09",
@@ -1642,7 +1642,7 @@
       "pagina_fonte": 50,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03eo01",
@@ -1662,7 +1662,7 @@
       "pagina_fonte": 45,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03eo02",
@@ -1682,7 +1682,7 @@
       "pagina_fonte": 45,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03eo03",
@@ -1702,7 +1702,7 @@
       "pagina_fonte": 45,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03eo04",
@@ -1722,7 +1722,7 @@
       "pagina_fonte": 45,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03eo05",
@@ -1742,7 +1742,7 @@
       "pagina_fonte": 45,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03eo06",
@@ -1762,7 +1762,7 @@
       "pagina_fonte": 46,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03eo07",
@@ -1782,7 +1782,7 @@
       "pagina_fonte": 46,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03et01",
@@ -1802,7 +1802,7 @@
       "pagina_fonte": 51,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03et02",
@@ -1822,7 +1822,7 @@
       "pagina_fonte": 51,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03et03",
@@ -1842,7 +1842,7 @@
       "pagina_fonte": 51,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03et04",
@@ -1862,7 +1862,7 @@
       "pagina_fonte": 51,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03et05",
@@ -1882,7 +1882,7 @@
       "pagina_fonte": 51,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03et06",
@@ -1902,7 +1902,7 @@
       "pagina_fonte": 51,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03et07",
@@ -1922,7 +1922,7 @@
       "pagina_fonte": 52,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03et08",
@@ -1942,7 +1942,7 @@
       "pagina_fonte": 52,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03ts01",
@@ -1962,7 +1962,7 @@
       "pagina_fonte": 48,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03ts02",
@@ -1982,7 +1982,7 @@
       "pagina_fonte": 48,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     },
     {
       "id": "ei03ts03",
@@ -2002,7 +2002,7 @@
       "pagina_fonte": 48,
       "classificacao": "dado_oficial",
       "lote_importacao": "2026-08-22-educacao-infantil",
-      "data_importacao": "2026-08-22T20:08:56.276Z"
+      "data_importacao": "2026-08-22T20:51:52.468Z"
     }
   ]
 }

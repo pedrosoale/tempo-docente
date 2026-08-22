@@ -5,7 +5,7 @@
     "documento_url": "https://basenacionalcomum.mec.gov.br/images/BNCC_EI_EF_110518_versaofinal_site.pdf",
     "versao_fonte": "BNCC Educação Infantil e Ensino Fundamental — versão final de 11/05/2018",
     "metodo_extracao": "PDF oficial; direitos localizados pelo próprio texto do documento (marcador de lista '•'); objetivos extraídos por associação posicional entre coordenadas vetoriais reais de linha/coluna de cada página (uma página por campo de experiências, 3 colunas por faixa etária) e o próprio código embutido no texto de cada célula — nunca só a ordem do texto corrido nem um regex global sobre a página.",
-    "data_extracao": "2026-08-22T19:57:19.382838Z",
+    "data_extracao": "2026-08-22T20:51:25.411262Z",
     "escopo": "Educação Infantil — Direitos de Aprendizagem e Desenvolvimento, Campos de Experiências e Objetivos de Aprendizagem e Desenvolvimento, por grupo/faixa etária",
     "classificacao": "dado_oficial",
     "correcoes_tipograficas_controladas": [
@@ -34,7 +34,7 @@
       "fonte_tentada": "https://downloadbncc.mec.gov.br/ (backend: bnccapi.mec.gov.br)",
       "resultado": "indisponivel",
       "detalhe": "bnccapi.mec.gov.br resolve via DNS mas não aceita conexão TCP (timeout em HTTP e HTTPS); reconfirma o achado já registrado para o Fundamental em data/bncc/README.md.",
-      "tentado_em": "2026-08-22T19:57:19.382838Z"
+      "tentado_em": "2026-08-22T20:51:25.411262Z"
     }
   },
   "direitos": [
