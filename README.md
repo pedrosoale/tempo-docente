@@ -421,11 +421,20 @@ escolas, TypeScript e testes do SARESP, mas deliberadamente **não** implementad
 nesta rodada — cada um envolve uma mudança de escopo maior que merece sua própria
 revisão:
 
-- **Sitemap** (`app/sitemap.ts`): hoje só lista rotas da BNCC — Ensino Fundamental,
-  Competências Gerais e cada componente. Não inclui `/saresp`, `/bncc/ensino-medio`
-  nem as áreas/componentes do Ensino Médio, e não tem teste de regressão.
-- **CI**: não há workflow configurado rodando lint/typecheck/testes/build a cada
-  mudança — as verificações desta rodada foram todas rodadas manualmente.
+- **Sitemap** (`app/sitemap.ts`) — **resolvido**: agora inclui `/saresp`,
+  `/bncc/ensino-medio` e as 5 áreas do Ensino Médio, além das rotas que já existiam
+  (home, `/bncc`, Competências Gerais, Ensino Fundamental, os 9 componentes e suas
+  páginas por ano, e a página `/bncc/<código>` de cada registro com código). Coberto
+  por `tests/sitemap.test.mjs` (11 testes): presença das rotas principais, do Ensino
+  Médio e do SARESP; ausência de URLs duplicadas, com parâmetro/fragmento ou de
+  funcionalidades "Em breve"; domínio canônico em toda URL; e uma contagem total
+  exata, recalculada a partir dos datasets brutos da BNCC, que pega qualquer rota
+  perdida ou adicionada por engano.
+- **CI** — **resolvido**: `.github/workflows/ci.yml` roda `npm ci`, `npm run lint`,
+  `npm run typecheck` e `npm test` (que inclui `npm run build`) a cada pull request e
+  a cada push em `main`, com permissões mínimas (`contents: read`), timeout de 15
+  minutos e cancelamento automático de execuções antigas da mesma branch. Não faz
+  deploy nem usa segredos.
 - **Avisos de imagem do ESLint** (`@next/next/no-img-element` em `Header.tsx`/
   `Footer.tsx`): trocar `<img>` por `next/image` não foi feito porque o próprio
   `<Link>` do vinext já quebra em produção como Worker (ver "Bug conhecido" acima)
