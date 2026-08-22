@@ -1,16 +1,19 @@
 {
-  "data_importacao": "2026-08-15T15:45:51.503Z",
+  "data_importacao": "2026-08-22T20:08:56.283Z",
   "status": "valido",
-  "total_geral": 1517,
+  "total_geral": 1616,
   "total_por_etapa": {
     "Ensino Fundamental": 1303,
     "Ensino Médio": 204,
-    "Educação Básica": 10
+    "Educação Básica": 10,
+    "Educação Infantil": 99
   },
   "total_por_tipo": {
     "habilidade": 1486,
     "competencia_especifica": 21,
-    "competencia_geral": 10
+    "competencia_geral": 10,
+    "direito_aprendizagem": 6,
+    "objetivo_aprendizagem": 93
   },
   "total_por_componente": {
     "Matemática": 247,
@@ -142,6 +145,11 @@
       "status": "valido",
       "total": 10,
       "relatorio": "data/bncc/competencias-gerais.report.json"
+    },
+    "educacao-infantil": {
+      "status": "valido",
+      "total": 99,
+      "relatorio": "data/bncc/educacao-infantil.report.json"
     }
   }
 }

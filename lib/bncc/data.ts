@@ -3,6 +3,7 @@ import arteAnosIniciaisDataset from "@/data/bncc/arte-anos-iniciais.json";
 import cienciasAnosFinaisDataset from "@/data/bncc/ciencias-anos-finais.json";
 import cienciasAnosIniciaisDataset from "@/data/bncc/ciencias-anos-iniciais.json";
 import competenciasDataset from "@/data/bncc/competencias-gerais.json";
+import educacaoInfantilDataset from "@/data/bncc/educacao-infantil.json";
 import educacaoFisicaAnosFinaisDataset from "@/data/bncc/educacao-fisica-anos-finais.json";
 import educacaoFisicaAnosIniciaisDataset from "@/data/bncc/educacao-fisica-anos-iniciais.json";
 import ensinoMedioCienciasDaNaturezaDataset from "@/data/bncc/ensino-medio-ciencias-da-natureza.json";
@@ -21,7 +22,7 @@ import linguaPortuguesaAnosFinaisDataset from "@/data/bncc/lingua-portuguesa-ano
 import linguaPortuguesaAnosIniciaisDataset from "@/data/bncc/lingua-portuguesa-anos-iniciais.json";
 import matematicaAnosFinaisDataset from "@/data/bncc/matematica-anos-finais.json";
 import matematicaAnosIniciaisDataset from "@/data/bncc/matematica-anos-iniciais.json";
-import type { BnccRegistro, CompetenciaEspecificaMedio, CompetenciaGeral, HabilidadeFundamental, HabilidadeMedio } from "./types";
+import type { BnccRegistro, CompetenciaEspecificaMedio, CompetenciaGeral, DireitoAprendizagem, HabilidadeFundamental, HabilidadeMedio, ObjetivoInfantil } from "./types";
 
 export const bnccMetadata = matematicaAnosFinaisDataset.metadata;
 export const bnccSkills = [...matematicaAnosIniciaisDataset.registros, ...matematicaAnosFinaisDataset.registros] as HabilidadeFundamental[];
@@ -226,4 +227,19 @@ export function getRelatedSkillsMedio(skill: HabilidadeMedio, limit = 4) {
     .slice(0, limit);
 }
 
-export type { BnccRegistro, CompetenciaEspecificaMedio, CompetenciaGeral, HabilidadeFundamental, HabilidadeMedio } from "./types";
+// Educação Infantil — dataset gerado por scripts/bncc/import.mjs
+// (processEducacaoInfantil) a partir de data/bncc/source/official-mec-bncc-
+// educacao-infantil.json. Exportado à parte de getAllRegistros() por
+// enquanto — ver o comentário sobre BnccRegistro em ./types para o motivo: a
+// integração à busca global e a `/bncc/[codigo]` fica para a etapa de
+// interface, que ainda não existe nesta rodada.
+const educacaoInfantilRegistros = educacaoInfantilDataset.registros as (DireitoAprendizagem | ObjetivoInfantil)[];
+export const educacaoInfantilMetadata = educacaoInfantilDataset.metadata;
+export const educacaoInfantilDireitos = educacaoInfantilRegistros.filter(
+  (registro): registro is DireitoAprendizagem => registro.tipo === "direito_aprendizagem",
+);
+export const educacaoInfantilObjetivos = educacaoInfantilRegistros.filter(
+  (registro): registro is ObjetivoInfantil => registro.tipo === "objetivo_aprendizagem",
+);
+
+export type { BnccRegistro, CompetenciaEspecificaMedio, CompetenciaGeral, DireitoAprendizagem, HabilidadeFundamental, HabilidadeMedio, ObjetivoInfantil } from "./types";

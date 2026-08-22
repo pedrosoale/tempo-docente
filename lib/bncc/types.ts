@@ -87,5 +87,42 @@ export type HabilidadeMedio = RegistroBase & {
   unidade_tematica?: string;
 };
 
-// Educação Infantil entra aqui quando for importada.
+// Educação Infantil — a BNCC nunca chama estes registros de "habilidade": o
+// rótulo oficial é "objetivo de aprendizagem e desenvolvimento" para os 93
+// itens codificados (código EI...) e "direito de aprendizagem e
+// desenvolvimento" para os 6 sem código. Nenhum dos dois tem "ano"/
+// "anos_aplicaveis" (a Educação Infantil não é seriada), nem "componente"/
+// "área"/"unidade_tematica"/"objeto_conhecimento" (não organiza por
+// componente curricular) — a chave própria é campo de experiências × grupo
+// por faixa etária.
+export type ObjetivoInfantil = RegistroBase & {
+  tipo: "objetivo_aprendizagem";
+  etapa: "Educação Infantil";
+  codigo: string;
+  campo_experiencia: string;
+  campo_experiencia_sigla: "EO" | "CG" | "TS" | "EF" | "ET";
+  faixa_etaria: "Bebês" | "Crianças bem pequenas" | "Crianças pequenas";
+  faixa_etaria_codigo: "01" | "02" | "03";
+  // Texto oficial por extenso ("1 ano e 7 meses a 3 anos e 11 meses") — nunca
+  // um formato aproximado inventado (ex.: "0–1,5 anos").
+  faixa_etaria_descricao: string;
+};
+
+export type DireitoAprendizagem = RegistroBase & {
+  tipo: "direito_aprendizagem";
+  etapa: "Educação Infantil";
+  // A fonte não atribui código nem número de ordem aos 6 direitos — nunca
+  // inventar um para caber no padrão de HabilidadeFundamental/HabilidadeMedio.
+  codigo: null;
+  nome: string;
+  slug: string;
+};
+
+// ObjetivoInfantil/DireitoAprendizagem existem como tipos concretos, mas
+// ainda NÃO entram em BnccRegistro nem em getAllRegistros() (ver
+// lib/bncc/data.ts) — integrá-los agora faria a busca global e
+// `/bncc/[codigo]` produzirem resultados/links para páginas que essa rodada
+// não implementa (app/bncc/[codigo]/page.tsx ainda faz
+// `notFound()` para qualquer tipo != "habilidade"). A integração fica para a
+// etapa de interface, junto com o novo branch de renderização.
 export type BnccRegistro = CompetenciaGeral | HabilidadeFundamental | CompetenciaEspecificaMedio | HabilidadeMedio;

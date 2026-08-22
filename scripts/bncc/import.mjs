@@ -26,18 +26,77 @@ async function readSource(relativePath) {
   return { raw, data: JSON.parse(raw), relativePath: relativePath.replaceAll("\\", "/") };
 }
 
-async function writeJsonRaw(relativePath, value) {
+// data_importacao (every scope) and lote_importacao (every scope except the
+// aggregate summary) are wall-clock/date labels that legitimately differ on
+// every run even when the source file driving that scope hasn't changed at
+// all — they are metadata about *when* the importer ran, not about what it
+// found. Stripped only for the write-comparison below, never from what
+// actually gets written to disk.
+const VOLATILE_JSON_KEYS = new Set(["data_importacao", "lote_importacao"]);
+
+function stripVolatileFields(value) {
+  if (Array.isArray(value)) return value.map(stripVolatileFields);
+  if (value && typeof value === "object") {
+    const result = {};
+    for (const [key, nested] of Object.entries(value)) {
+      if (VOLATILE_JSON_KEYS.has(key)) continue;
+      result[key] = stripVolatileFields(nested);
+    }
+    return result;
+  }
+  return value;
+}
+
+function deepEqual(a, b) {
+  if (a === b) return true;
+  if (a === null || b === null || typeof a !== typeof b) return false;
+  if (Array.isArray(a) || Array.isArray(b)) {
+    return Array.isArray(a) && Array.isArray(b) && a.length === b.length && a.every((item, index) => deepEqual(item, b[index]));
+  }
+  if (typeof a === "object") {
+    const keysA = Object.keys(a).sort();
+    const keysB = Object.keys(b).sort();
+    return keysA.length === keysB.length && keysA.every((key, index) => key === keysB[index]) && keysA.every((key) => deepEqual(a[key], b[key]));
+  }
+  return false;
+}
+
+// Central write path for every generated report/dataset. Skips the write
+// entirely when a file already exists at `relativePath` and is semantically
+// identical to `value` once data_importacao/lote_importacao are stripped
+// from both sides — this is what keeps re-running the importer against
+// unchanged sources a true no-op on disk for every *other* scope (no
+// rewritten mtimes, no timestamp-only diffs), while any real change (source
+// hash, text, counts, provenance, status, or anything else) still writes
+// normally because it survives the strip. A scope with no existing file
+// (brand new, or first successful run) always writes. Intentionally
+// centralized here rather than duplicated inside each process*() — every
+// scope gets this behavior for free through writeReport/writeDataset below.
+async function writeJsonIfChanged(relativePath, value) {
   const target = path.join(root, relativePath);
+  let existing;
+  try {
+    existing = JSON.parse(await readFile(target, "utf8"));
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+    existing = undefined;
+  }
+
+  if (existing !== undefined && deepEqual(stripVolatileFields(existing), stripVolatileFields(value))) {
+    return false;
+  }
+
   await mkdir(path.dirname(target), { recursive: true });
   await writeFile(target, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+  return true;
 }
 
 async function writeReport(relativePath, report) {
-  if (!isCheck) await writeJsonRaw(relativePath, report);
+  if (!isCheck) await writeJsonIfChanged(relativePath, report);
 }
 
 async function writeDataset(relativePath, dataset, status) {
-  if (!isCheck && status === "valido") await writeJsonRaw(relativePath, dataset);
+  if (!isCheck && status === "valido") await writeJsonIfChanged(relativePath, dataset);
 }
 
 // ---- Escopo: Matemática — Ensino Fundamental, Anos Finais (6º-9º) ----
@@ -1098,6 +1157,322 @@ const ENSINO_MEDIO_AREAS = [
   },
 ];
 
+// ---- Escopo: Educação Infantil — Direitos de Aprendizagem e Desenvolvimento
+// (6, sem código oficial) + Objetivos de Aprendizagem e Desenvolvimento (93,
+// código EI...) por campo de experiências e grupo por faixa etária. Layout
+// de extração inédito nos demais escopos — ver
+// scripts/bncc/extract_educacao_infantil.py para a extração posicional por
+// coluna. A BNCC nunca chama esses registros de "habilidade": o rótulo
+// oficial é "objetivo de aprendizagem e desenvolvimento" (para os
+// codificados) e "direito de aprendizagem e desenvolvimento" (para os 6 sem
+// código) — nenhum dos dois usa "habilidade" em nenhum campo aqui.
+const EI_CAMPOS = {
+  EO: "O eu, o outro e o nós",
+  CG: "Corpo, gestos e movimentos",
+  TS: "Traços, sons, cores e formas",
+  EF: "Escuta, fala, pensamento e imaginação",
+  ET: "Espaços, tempos, quantidades, relações e transformações",
+};
+const EI_FAIXAS = {
+  "01": { nome: "Bebês", descricao: "zero a 1 ano e 6 meses" },
+  "02": { nome: "Crianças bem pequenas", descricao: "1 ano e 7 meses a 3 anos e 11 meses" },
+  "03": { nome: "Crianças pequenas", descricao: "4 anos a 5 anos e 11 meses" },
+};
+const EI_DIREITOS_OFICIAIS = new Set(["Conviver", "Brincar", "Participar", "Explorar", "Expressar", "Conhecer-se"]);
+// Contagens oficiais (BNCC p. 45-52) — assimétricas por definição da própria
+// fonte: Bebês nunca tem um 7º objetivo em "O eu, o outro e o nós" nem um
+// 7º/8º em "Espaços, tempos...". EI01EO07/EI01ET07/EI01ET08 não existem no
+// documento oficial; não são lacunas de extração.
+const EI_CONTAGENS_ESPERADAS = {
+  EO: { "01": 6, "02": 7, "03": 7 },
+  CG: { "01": 5, "02": 5, "03": 5 },
+  TS: { "01": 3, "02": 3, "03": 3 },
+  EF: { "01": 9, "02": 9, "03": 9 },
+  ET: { "01": 6, "02": 8, "03": 8 },
+};
+const EI_TOTAL_OBJETIVOS = 93;
+const EI_TOTAL_DIREITOS = 6;
+const OFFICIAL_DOCUMENT_URL_PATTERN = /^https:\/\/basenacionalcomum\.mec\.gov\.br\//;
+
+// Shared provenance validation for Educação Infantil — used once against
+// source.metadata for direitos (which share a single copy of fonte/fonte_url/
+// documento_url/versao_fonte/classificacao across all 6, the same pattern
+// processCompetenciasGerais already uses) and once per record for objetivos
+// (which carry their own copy each, the "habilidade-style" scopes' pattern).
+// Centralized so the importer itself — not only a later test against the
+// generated dataset — rejects a snapshot with a missing/blank documento_url,
+// fonte, fonte_url, versao_fonte or classificacao before it can ever reach
+// "valido".
+function validateOfficialProvenance(source, errors) {
+  for (const field of ["fonte", "fonte_url", "versao_fonte", "classificacao"]) {
+    if (typeof source[field] !== "string" || !source[field].trim()) {
+      errors.push(`Campo obrigatório vazio: ${field}`);
+    }
+  }
+  if (typeof source.documento_url !== "string" || !source.documento_url.trim()) {
+    errors.push("Campo obrigatório vazio: documento_url");
+  } else if (!OFFICIAL_DOCUMENT_URL_PATTERN.test(source.documento_url)) {
+    errors.push(`documento_url não corresponde à fonte oficial esperada (basenacionalcomum.mec.gov.br): "${source.documento_url}"`);
+  }
+}
+
+// pagina_fonte varies per record even where the rest of provenance is
+// shared (each direito/objetivo sits on its own PDF page), so it is always
+// checked per record rather than folded into validateOfficialProvenance.
+function validatePaginaFonte(paginaFonte, errors) {
+  if (!Number.isInteger(paginaFonte) || paginaFonte <= 0) {
+    errors.push(`pagina_fonte inválida (deve ser um número inteiro positivo): ${JSON.stringify(paginaFonte)}`);
+  }
+}
+
+async function processEducacaoInfantil() {
+  const scopeId = "educacao-infantil";
+  const loteId = `${today}-${scopeId}`;
+  const { raw, data: source, relativePath } = await readSource(
+    "data/bncc/source/official-mec-bncc-educacao-infantil.json",
+  );
+  const importedAt = new Date().toISOString();
+
+  // ---- Direitos de aprendizagem e desenvolvimento ----
+  // Proveniência compartilhada de source.metadata (mesmo padrão de
+  // processCompetenciasGerais) — só pagina_fonte varia por item, e nenhum
+  // direito tem código oficial: nunca inventar um número ou ordem que a
+  // fonte não declara.
+  const direitosRejected = [];
+  const direitosWarnings = [];
+  const direitosAccepted = [];
+  const seenDireitoNome = new Set();
+
+  // Validated once (shared across all 6 direitos, since they all draw
+  // fonte/fonte_url/documento_url/versao_fonte/classificacao from the same
+  // source.metadata) — a broken value here invalidates every direito, not
+  // silently only the first one encountered.
+  const direitosProvenanceErrors = [];
+  validateOfficialProvenance(source.metadata, direitosProvenanceErrors);
+
+  for (const [index, record] of source.direitos.entries()) {
+    const errors = [...direitosProvenanceErrors];
+    for (const field of ["nome", "slug", "texto"]) {
+      if (typeof record[field] !== "string" || !record[field].trim()) {
+        errors.push(`Campo obrigatório vazio: ${field}`);
+      }
+    }
+    validatePaginaFonte(record.pagina_fonte, errors);
+    if (record.nome && !EI_DIREITOS_OFICIAIS.has(record.nome)) {
+      errors.push(`Nome de direito desconhecido: ${record.nome}`);
+    }
+    if (hasControlChars(record)) {
+      errors.push("Registro contém caracteres de controle ou substituição");
+    }
+    if (record.nome && seenDireitoNome.has(record.nome)) {
+      errors.push("Direito duplicado");
+    }
+    if (record.nome) seenDireitoNome.add(record.nome);
+
+    if (record.texto && !/[.!?]$/.test(record.texto.trim())) {
+      direitosWarnings.push({ nome: record.nome, alerta: "Texto do direito pode estar truncado: pontuação final ausente" });
+    }
+
+    if (errors.length) {
+      direitosRejected.push({ index, nome: record.nome ?? null, erros: errors });
+      continue;
+    }
+
+    direitosAccepted.push({
+      id: `direito-aprendizagem-${record.slug}`,
+      codigo: null,
+      tipo: "direito_aprendizagem",
+      etapa: "Educação Infantil",
+      nome: record.nome,
+      slug: record.slug,
+      texto: record.texto,
+      fonte: source.metadata.fonte,
+      fonte_url: source.metadata.fonte_url,
+      documento_url: source.metadata.documento_url,
+      versao_fonte: source.metadata.versao_fonte,
+      pagina_fonte: record.pagina_fonte,
+      classificacao: source.metadata.classificacao,
+      lote_importacao: loteId,
+      data_importacao: importedAt,
+    });
+  }
+
+  const missingDireitos = [...EI_DIREITOS_OFICIAIS].filter((nome) => !seenDireitoNome.has(nome));
+  if (missingDireitos.length) {
+    direitosWarnings.push({ alerta: `Direitos ausentes: ${missingDireitos.join(", ")}` });
+  }
+  if (direitosAccepted.length !== EI_TOTAL_DIREITOS) {
+    direitosWarnings.push({ alerta: `Total de direitos (${direitosAccepted.length}) diferente do esperado (${EI_TOTAL_DIREITOS})` });
+  }
+
+  // ---- Objetivos de aprendizagem e desenvolvimento ----
+  const objetivosDuplicates = [];
+  const objetivosRejected = [];
+  const objetivosWarnings = [];
+  const objetivosAccepted = [];
+  const seenCodigo = new Set();
+  const codePattern = /^EI0([1-3])(EO|CG|TS|EF|ET)(\d{2})$/;
+
+  for (const [index, record] of source.objetivos.entries()) {
+    const errors = [];
+    const code = String(record.codigo ?? "").trim().toUpperCase();
+
+    for (const field of [
+      "codigo", "campo_experiencia", "campo_experiencia_sigla", "faixa_etaria",
+      "faixa_etaria_codigo", "faixa_etaria_descricao", "texto",
+    ]) {
+      if (typeof record[field] !== "string" || !record[field].trim()) {
+        errors.push(`Campo obrigatório vazio: ${field}`);
+      }
+    }
+    validateOfficialProvenance(record, errors);
+    validatePaginaFonte(record.pagina_fonte, errors);
+
+    const codeMatch = code.match(codePattern);
+    if (!codeMatch) {
+      errors.push("Código fora do padrão EI0[1-3](EO|CG|TS|EF|ET)[0-9]{2}");
+    }
+    const [, faixaDigito, campoSiglaDoCodigo] = codeMatch ?? [];
+    const faixaCodigoDoCodigo = faixaDigito ? `0${faixaDigito}` : null;
+
+    if (faixaCodigoDoCodigo && record.faixa_etaria_codigo !== faixaCodigoDoCodigo) {
+      errors.push(`faixa_etaria_codigo "${record.faixa_etaria_codigo}" não corresponde ao código ${code} (esperado "${faixaCodigoDoCodigo}")`);
+    }
+    if (campoSiglaDoCodigo && record.campo_experiencia_sigla !== campoSiglaDoCodigo) {
+      errors.push(`campo_experiencia_sigla "${record.campo_experiencia_sigla}" não corresponde ao código ${code} (esperado "${campoSiglaDoCodigo}")`);
+    }
+    const faixaEsperada = faixaCodigoDoCodigo ? EI_FAIXAS[faixaCodigoDoCodigo] : null;
+    if (faixaEsperada && record.faixa_etaria !== faixaEsperada.nome) {
+      errors.push(`faixa_etaria "${record.faixa_etaria}" não corresponde ao esperado para ${faixaCodigoDoCodigo} ("${faixaEsperada.nome}")`);
+    }
+    if (faixaEsperada && record.faixa_etaria_descricao !== faixaEsperada.descricao) {
+      errors.push(`faixa_etaria_descricao de ${code} não corresponde ao texto oficial esperado para ${faixaCodigoDoCodigo}`);
+    }
+    if (campoSiglaDoCodigo && record.campo_experiencia !== EI_CAMPOS[campoSiglaDoCodigo]) {
+      errors.push(`campo_experiencia "${record.campo_experiencia}" não corresponde ao esperado para ${campoSiglaDoCodigo}`);
+    }
+
+    if (hasControlChars(record)) {
+      errors.push("Registro contém caracteres de controle ou substituição");
+    }
+    if (seenCodigo.has(code)) {
+      objetivosDuplicates.push(code);
+      errors.push("Código duplicado");
+    }
+    seenCodigo.add(code);
+
+    if (record.texto && !/[.!?)]$/.test(record.texto.trim())) {
+      objetivosWarnings.push({ codigo: code, alerta: "Texto do objetivo pode estar truncado: pontuação final ausente" });
+    }
+
+    if (errors.length) {
+      objetivosRejected.push({ index, codigo: code || null, erros: errors });
+      continue;
+    }
+
+    objetivosAccepted.push({
+      id: code.toLowerCase(),
+      codigo: code,
+      tipo: "objetivo_aprendizagem",
+      etapa: "Educação Infantil",
+      campo_experiencia: record.campo_experiencia,
+      campo_experiencia_sigla: record.campo_experiencia_sigla,
+      faixa_etaria: record.faixa_etaria,
+      faixa_etaria_codigo: record.faixa_etaria_codigo,
+      faixa_etaria_descricao: record.faixa_etaria_descricao,
+      texto: record.texto,
+      fonte: record.fonte,
+      fonte_url: record.fonte_url,
+      documento_url: record.documento_url,
+      versao_fonte: record.versao_fonte,
+      pagina_fonte: record.pagina_fonte,
+      classificacao: record.classificacao,
+      lote_importacao: loteId,
+      data_importacao: importedAt,
+    });
+  }
+
+  const totalPorCampo = {};
+  const totalPorFaixa = {};
+  for (const record of objetivosAccepted) {
+    totalPorCampo[record.campo_experiencia_sigla] = (totalPorCampo[record.campo_experiencia_sigla] ?? 0) + 1;
+    totalPorFaixa[record.faixa_etaria_codigo] = (totalPorFaixa[record.faixa_etaria_codigo] ?? 0) + 1;
+  }
+
+  // Contagens por campo × faixa nunca inferidas do que foi extraído — sempre
+  // comparadas contra a tabela oficial, para pegar tanto falta quanto
+  // sequência inventada (ex.: um EI01EO07 que não deveria existir).
+  const countMismatches = [];
+  for (const [sigla, porFaixa] of Object.entries(EI_CONTAGENS_ESPERADAS)) {
+    for (const [faixaCodigo, esperado] of Object.entries(porFaixa)) {
+      const encontrado = totalPorCampo[sigla] === undefined ? 0 : objetivosAccepted.filter(
+        (r) => r.campo_experiencia_sigla === sigla && r.faixa_etaria_codigo === faixaCodigo,
+      ).length;
+      if (encontrado !== esperado) {
+        countMismatches.push({ campo_experiencia_sigla: sigla, faixa_etaria_codigo: faixaCodigo, esperado, encontrado });
+      }
+    }
+  }
+  if (countMismatches.length) {
+    objetivosWarnings.push({ alerta: `Contagens por campo×faixa fora do esperado: ${JSON.stringify(countMismatches)}` });
+  }
+  if (objetivosAccepted.length !== EI_TOTAL_OBJETIVOS) {
+    objetivosWarnings.push({ alerta: `Total de objetivos (${objetivosAccepted.length}) diferente do esperado (${EI_TOTAL_OBJETIVOS})` });
+  }
+
+  const status = direitosRejected.length || objetivosRejected.length || objetivosDuplicates.length
+    || direitosWarnings.some((item) => item.alerta?.startsWith("Direitos ausentes") || item.alerta?.startsWith("Total de direitos"))
+    || objetivosWarnings.some((item) => item.alerta?.startsWith("Contagens") || item.alerta?.startsWith("Total de objetivos"))
+    ? "revisao_necessaria"
+    : "valido";
+
+  const report = {
+    escopo: scopeId,
+    data_importacao: importedAt,
+    lote_importacao: loteId,
+    arquivo_fonte: relativePath,
+    hash_sha256_fonte: createHash("sha256").update(raw).digest("hex"),
+    versao_fonte: source.metadata.versao_fonte,
+    metodo_extracao: source.metadata.metodo_extracao,
+    total_direitos: direitosAccepted.length,
+    total_objetivos: objetivosAccepted.length,
+    total_geral: direitosAccepted.length + objetivosAccepted.length,
+    total_objetivos_por_campo: totalPorCampo,
+    total_objetivos_por_faixa: totalPorFaixa,
+    duplicidades: [...new Set(objetivosDuplicates)],
+    registros_rejeitados: [...direitosRejected, ...objetivosRejected],
+    alertas: [...direitosWarnings, ...objetivosWarnings],
+    // Tentativa de validação cruzada contra a ferramenta oficial editável do
+    // MEC (downloadbncc.mec.gov.br / bnccapi.mec.gov.br), registrada pelo
+    // extrator no momento da extração — não é uma checagem de dado (nenhuma
+    // divergência foi encontrada porque não havia com o que comparar), é o
+    // registro de que a fonte de comparação está indisponível. Ver o campo
+    // para o resultado exato.
+    validacao_cruzada: source.metadata.validacao_cruzada ?? null,
+    status,
+  };
+
+  const accepted = [...direitosAccepted, ...objetivosAccepted];
+  const dataset = {
+    metadata: {
+      ...source.metadata,
+      data_importacao: importedAt,
+      lote_importacao: loteId,
+      total_registros: accepted.length,
+      hash_sha256_fonte: report.hash_sha256_fonte,
+    },
+    registros: accepted.sort((a, b) => {
+      if (a.tipo !== b.tipo) return a.tipo === "direito_aprendizagem" ? -1 : 1;
+      return (a.codigo ?? a.nome).localeCompare(b.codigo ?? b.nome, "pt-BR");
+    }),
+  };
+
+  await writeReport(`data/bncc/${scopeId}.report.json`, report);
+  await writeDataset(`data/bncc/${scopeId}.json`, dataset, status);
+
+  return { report, accepted: status === "valido" ? accepted : [] };
+}
+
 async function main() {
   const scopes = [
     await processMatematicaAnosFinais(),
@@ -1106,6 +1481,7 @@ async function main() {
     ...(await Promise.all(ENSINO_MEDIO_AREAS.map((config) => processEnsinoMedioArea(config)))),
     await processLinguaPortuguesaMedio(),
     await processCompetenciasGerais(),
+    await processEducacaoInfantil(),
   ];
   const allAccepted = scopes.flatMap((scope) => scope.accepted);
   const importedAt = new Date().toISOString();
