@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { AREAS_ENSINO_MEDIO, COMPONENTES_ANOS_FINAIS, getAllRegistros } from "@/lib/bncc/data";
+import { AREAS_ENSINO_MEDIO, CAMPOS_EXPERIENCIA_INFANTIL, COMPONENTES_ANOS_FINAIS, getAllRegistros } from "@/lib/bncc/data";
 import { uniqueSorted } from "@/lib/bncc/search.mjs";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -18,6 +18,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
     "/bncc/ensino-medio",
     ...AREAS_ENSINO_MEDIO.map((area) => `/bncc/ensino-medio/${area.slug}`),
+    "/bncc/educacao-infantil",
+    ...CAMPOS_EXPERIENCIA_INFANTIL.map((campo) => `/bncc/educacao-infantil/${campo.slug}`),
     "/saresp",
   ];
   return [

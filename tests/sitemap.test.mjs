@@ -21,10 +21,23 @@ const FUNDAMENTAL_COMPONENTES = [
 
 const ENSINO_MEDIO_AREAS = ["linguagens", "lingua-portuguesa", "matematica", "ciencias-da-natureza", "ciencias-humanas"];
 
+// Slugs mirror lib/bncc/data.ts's CAMPO_SLUGS — the only hand-authored mapping
+// for this etapa (the official source doesn't declare slugs), read here
+// independently so this test doesn't just re-assert the implementation's own
+// mapping back at itself.
+const CAMPOS_EXPERIENCIA_INFANTIL = [
+  { sigla: "EO", slug: "o-eu-o-outro-e-o-nos" },
+  { sigla: "CG", slug: "corpo-gestos-e-movimentos" },
+  { sigla: "TS", slug: "tracos-sons-cores-e-formas" },
+  { sigla: "EF", slug: "escuta-fala-pensamento-e-imaginacao" },
+  { sigla: "ET", slug: "espacos-tempos-quantidades-relacoes-e-transformacoes" },
+];
+
 const ALL_DATASET_FILES = [
   ...FUNDAMENTAL_COMPONENTES.flatMap((componente) => componente.datasets),
   ...ENSINO_MEDIO_AREAS.map((slug) => `ensino-medio-${slug}`),
   "competencias-gerais",
+  "educacao-infantil",
 ];
 
 async function loadDataset(name) {
@@ -79,7 +92,7 @@ test("sitemap.xml is served with a 200 and an XML content type", () => {
 });
 
 test("includes the core public routes", () => {
-  const expected = ["", "/bncc", "/bncc/competencias-gerais", "/bncc/ensino-fundamental", "/bncc/ensino-medio", "/saresp"];
+  const expected = ["", "/bncc", "/bncc/competencias-gerais", "/bncc/ensino-fundamental", "/bncc/ensino-medio", "/bncc/educacao-infantil", "/saresp"];
   for (const route of expected) {
     assert.ok(locs.includes(`${BASE_URL}${route}`), `missing ${route}`);
   }
@@ -94,6 +107,12 @@ test("includes every Ensino Fundamental componente hub page", () => {
 test("includes every Ensino Médio área page", () => {
   for (const slug of ENSINO_MEDIO_AREAS) {
     assert.ok(locs.includes(`${BASE_URL}/bncc/ensino-medio/${slug}`), `missing /bncc/ensino-medio/${slug}`);
+  }
+});
+
+test("includes every Educação Infantil campo de experiências page", () => {
+  for (const { slug } of CAMPOS_EXPERIENCIA_INFANTIL) {
+    assert.ok(locs.includes(`${BASE_URL}/bncc/educacao-infantil/${slug}`), `missing /bncc/educacao-infantil/${slug}`);
   }
 });
 
@@ -114,15 +133,39 @@ test("does not include year pages a componente doesn't cover (Língua Inglesa ha
   }
 });
 
-test("includes a detail page for every BNCC registro (Fundamental and Médio) that has a código", async () => {
+test("includes a detail page for every BNCC registro (Fundamental, Médio and Educação Infantil) that has a código", async () => {
   const expectedCodes = await expectedCodeSet();
   assert.ok(expectedCodes.size > 0);
   for (const code of expectedCodes) {
     assert.ok(locs.includes(`${BASE_URL}/bncc/${code}`), `missing /bncc/${code}`);
   }
 
-  const sitemapCodeUrls = locs.filter((loc) => /^https:\/\/tempodocente\.com\.br\/bncc\/(ef|em13)[a-z0-9]+$/.test(loc));
+  const sitemapCodeUrls = locs.filter((loc) => /^https:\/\/tempodocente\.com\.br\/bncc\/(ef|em13|ei0)[a-z0-9]+$/.test(loc));
   assert.equal(sitemapCodeUrls.length, expectedCodes.size);
+});
+
+test("includes exactly the 93 official Educação Infantil objetivo codes, matching EI0[1-3](EO|CG|TS|EF|ET)[0-9]{2}", async () => {
+  const dataset = await loadDataset("educacao-infantil");
+  const objetivoCodes = dataset.registros
+    .filter((registro) => registro.tipo === "objetivo_aprendizagem")
+    .map((registro) => registro.codigo.toLowerCase());
+  assert.equal(objetivoCodes.length, 93);
+  for (const code of objetivoCodes) {
+    assert.ok(locs.includes(`${BASE_URL}/bncc/${code}`), `missing /bncc/${code}`);
+    assert.match(code, /^ei0[1-3](eo|cg|ts|ef|et)\d{2}$/);
+  }
+});
+
+test("does not include individual routes for the 6 direitos de aprendizagem (they have no código)", async () => {
+  const dataset = await loadDataset("educacao-infantil");
+  const direitos = dataset.registros.filter((registro) => registro.tipo === "direito_aprendizagem");
+  assert.equal(direitos.length, 6);
+  for (const direito of direitos) {
+    assert.equal(direito.codigo, null);
+    // Sitemap URLs are bare paths (no fragments), so a direito's slug should
+    // never appear as its own path segment anywhere in the sitemap.
+    assert.ok(!locs.some((loc) => loc.endsWith(`/${direito.slug}`)), `unexpected standalone route for direito ${direito.nome}`);
+  }
 });
 
 test("has no duplicate URLs", () => {
@@ -139,9 +182,13 @@ test("every URL uses the canonical domain, a valid path, no query string and no 
   }
 });
 
-test("does not include routes for unimplemented ('Em breve') or non-page functionality", () => {
+test("no Educação Infantil route carries a #direito- anchor or a ?faixa= query string", () => {
+  assert.ok(!locs.some((loc) => loc.includes("#direito-")));
+  assert.ok(!locs.some((loc) => loc.includes("faixa=")));
+});
+
+test("does not include routes for unimplemented or non-page functionality", () => {
   const disallowedFragments = [
-    "/bncc/educacao-infantil",
     "/saeb",
     "/ia",
     "/login",
@@ -157,7 +204,7 @@ test("does not include routes for unimplemented ('Em breve') or non-page functio
   }
 });
 
-test("total URL count matches exactly what the current BNCC/SARESP data supports", async () => {
+test("total URL count matches exactly what the current BNCC/SARESP data supports — 1681 (1582 previous + 6 Educação Infantil structural + 93 objetivo details)", async () => {
   const staticRouteCount =
     1 + // home
     1 + // /bncc
@@ -165,7 +212,9 @@ test("total URL count matches exactly what the current BNCC/SARESP data supports
     1 + // /bncc/ensino-fundamental
     1 + // /bncc/ensino-medio
     1 + // /saresp
-    FUNDAMENTAL_COMPONENTES.length; // one hub page per componente
+    1 + // /bncc/educacao-infantil
+    FUNDAMENTAL_COMPONENTES.length + // one hub page per componente
+    CAMPOS_EXPERIENCIA_INFANTIL.length; // one page per campo de experiências
 
   let yearPageCount = 0;
   for (const componente of FUNDAMENTAL_COMPONENTES) {
@@ -175,5 +224,6 @@ test("total URL count matches exactly what the current BNCC/SARESP data supports
   const expectedCodes = await expectedCodeSet();
   const expectedTotal = staticRouteCount + yearPageCount + ENSINO_MEDIO_AREAS.length + expectedCodes.size;
 
+  assert.equal(expectedTotal, 1681, "the independently-derived expectation itself should land on 1681");
   assert.equal(locs.length, expectedTotal);
 });

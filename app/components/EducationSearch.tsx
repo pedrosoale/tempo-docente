@@ -28,7 +28,7 @@ export function EducationSearch() {
               <a key={example} href={`/bncc?q=${encodeURIComponent(example)}`}>{example}</a>
             ))}
           </div>
-          <small>Busca na base oficial da BNCC — Ensino Fundamental, todos os componentes curriculares.</small>
+          <small>Busca na base oficial da BNCC — Educação Infantil, Ensino Fundamental e Ensino Médio.</small>
         </div>
       </div>
     </section>

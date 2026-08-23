@@ -44,6 +44,10 @@ test("includes semantic navigation and source transparency", async () => {
   assert.match(html, /aria-label="Navegação principal"/);
   assert.match(html, /role="search"/);
   assert.match(html, /Busca na base oficial da BNCC/i);
+  // The homepage search blurb must reflect that Educação Infantil is now
+  // searchable too — not just Ensino Fundamental, as it claimed before.
+  assert.match(html, /Busca na base oficial da BNCC — Educação Infantil, Ensino Fundamental e Ensino Médio\./);
+  assert.doesNotMatch(html, /Busca na base oficial da BNCC — Ensino Fundamental, todos os componentes curriculares\./);
   assert.match(html, /Informação educacional com fonte identificada\./);
   assert.match(html, /BNCC/);
   assert.match(html, /INEP/);
@@ -62,7 +66,7 @@ test("server-renders the SARESP report shell", async () => {
   assert.match(html, /Carregando dados do SARESP/);
 });
 
-test("server-renders the BNCC hub with all four etapa cards, Ensino Médio now active", async () => {
+test("server-renders the BNCC hub with all four etapa cards, all active", async () => {
   const response = await render("/bncc");
   assert.equal(response.status, 200);
   const html = await response.text();
@@ -73,8 +77,11 @@ test("server-renders the BNCC hub with all four etapa cards, Ensino Médio now a
   assert.match(html, /Ensino Fundamental/);
   assert.match(html, /Ensino Médio/);
   assert.match(html, /href="\/bncc\/ensino-medio"/);
-  // Educação Infantil is still the only "Em breve" card on this hub.
-  assert.match(html, /Em breve/);
+  assert.match(html, /href="\/bncc\/educacao-infantil"/);
+  // Educação Infantil's card is active now — no etapa card should be disabled.
+  assert.doesNotMatch(html, /Em breve/);
+  assert.doesNotMatch(html, /access-card-soon/);
+  assert.doesNotMatch(html, /aria-disabled/);
 });
 
 test("server-renders the Competências Gerais page with official text", async () => {
@@ -318,4 +325,289 @@ test("returns 404 for a nonexistent BNCC code", async () => {
   const response = await render("/bncc/ef00xx00");
   assert.equal(response.status, 404);
   assert.match(await response.text(), /Página não encontrada/);
+});
+
+// ---- Educação Infantil ----
+
+test("server-renders the Educação Infantil hub with the six direitos, three faixas and five campos", async () => {
+  const response = await render("/bncc/educacao-infantil");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /BNCC — Educação Infantil/);
+  assert.match(html, /93\D*objetivos/);
+
+  for (const nome of ["Conviver", "Brincar", "Participar", "Explorar", "Expressar", "Conhecer-se"]) {
+    assert.match(html, new RegExp(`id="direito-${nome.toLowerCase()}"`), `missing anchor for direito ${nome}`);
+    assert.match(html, new RegExp(nome), `missing direito name ${nome}`);
+  }
+  assert.match(html, /Brincar cotidianamente de diversas formas/);
+
+  for (const [nome, descricao] of [
+    ["Bebês", "zero a 1 ano e 6 meses"],
+    ["Crianças bem pequenas", "1 ano e 7 meses a 3 anos e 11 meses"],
+    ["Crianças pequenas", "4 anos a 5 anos e 11 meses"],
+  ]) {
+    assert.match(html, new RegExp(nome));
+    assert.match(html, new RegExp(descricao));
+  }
+  assert.match(html, /não podem ser considerados de forma rígida/);
+  assert.match(html, /Nota oficial da BNCC/);
+
+  for (const [slug, count] of [
+    ["o-eu-o-outro-e-o-nos", 20],
+    ["corpo-gestos-e-movimentos", 15],
+    ["tracos-sons-cores-e-formas", 9],
+    ["escuta-fala-pensamento-e-imaginacao", 27],
+    ["espacos-tempos-quantidades-relacoes-e-transformacoes", 22],
+  ]) {
+    assert.match(html, new RegExp(`href="/bncc/educacao-infantil/${slug}"`), `missing link to ${slug}`);
+    assert.match(html, new RegExp(`${count}\\D*objetivos`), `missing count ${count} for ${slug}`);
+  }
+
+  assert.match(html, /Fonte oficial/);
+  assert.match(html, /BNCC Educação Infantil e Ensino Fundamental/);
+  assert.doesNotMatch(html, /Habilidade/);
+});
+
+test("the six direitos are presented as a non-hierarchical bullet list (<ul>), never a numbered one (<ol>)", async () => {
+  const response = await render("/bncc/educacao-infantil");
+  const html = await response.text();
+
+  assert.match(html, /<ul class="bncc-direitos-list">/, "expected the direitos list to be a <ul>");
+  assert.doesNotMatch(html, /<ol class="bncc-direitos-list">/, "the direitos list must not be an <ol> — the BNCC presents them unordered, with no hierarchy");
+
+  const listBlock = html.match(/<ul class="bncc-direitos-list">[^]*?<\/ul>/)?.[0] ?? "";
+  assert.ok(listBlock, "could not find the closed <ul> block");
+  for (const nome of ["Conviver", "Brincar", "Participar", "Explorar", "Expressar", "Conhecer-se"]) {
+    assert.match(listBlock, new RegExp(`id="direito-${nome.toLowerCase()}"`), `missing anchor for direito ${nome} inside the <ul>`);
+  }
+});
+
+test("server-renders each of the five Educação Infantil campo pages with the official name, sigla and count", async () => {
+  const campos = [
+    { slug: "o-eu-o-outro-e-o-nos", nome: "O eu, o outro e o nós", sigla: "EO", total: 20 },
+    { slug: "corpo-gestos-e-movimentos", nome: "Corpo, gestos e movimentos", sigla: "CG", total: 15 },
+    { slug: "tracos-sons-cores-e-formas", nome: "Traços, sons, cores e formas", sigla: "TS", total: 9 },
+    { slug: "escuta-fala-pensamento-e-imaginacao", nome: "Escuta, fala, pensamento e imaginação", sigla: "EF", total: 27 },
+    { slug: "espacos-tempos-quantidades-relacoes-e-transformacoes", nome: "Espaços, tempos, quantidades, relações e transformações", sigla: "ET", total: 22 },
+  ];
+
+  for (const campo of campos) {
+    const response = await render(`/bncc/educacao-infantil/${campo.slug}`);
+    assert.equal(response.status, 200, `${campo.slug} should render`);
+    const html = await response.text();
+
+    assert.match(html, new RegExp(campo.nome.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), `missing nome for ${campo.slug}`);
+    assert.match(html, new RegExp(`sigla ${campo.sigla}`, "i"), `missing sigla for ${campo.slug}`);
+    assert.match(html, new RegExp(`${campo.total}\\D*objetivos`), `missing total for ${campo.slug}`);
+    assert.match(html, /Todos/, `missing "Todos" filter state for ${campo.slug}`);
+    assert.match(html, /Bebês/);
+    assert.match(html, /Crianças bem pequenas/);
+    assert.match(html, /Crianças pequenas/);
+    assert.doesNotMatch(html, /Habilidade/, `${campo.slug} should never say "Habilidade"`);
+  }
+});
+
+test("every campo page shows the full four-level breadcrumb (Início / BNCC / Educação Infantil / campo)", async () => {
+  const campos = [
+    { slug: "o-eu-o-outro-e-o-nos", nome: "O eu, o outro e o nós" },
+    { slug: "corpo-gestos-e-movimentos", nome: "Corpo, gestos e movimentos" },
+    { slug: "tracos-sons-cores-e-formas", nome: "Traços, sons, cores e formas" },
+    { slug: "escuta-fala-pensamento-e-imaginacao", nome: "Escuta, fala, pensamento e imaginação" },
+    { slug: "espacos-tempos-quantidades-relacoes-e-transformacoes", nome: "Espaços, tempos, quantidades, relações e transformações" },
+  ];
+
+  for (const campo of campos) {
+    const response = await render(`/bncc/educacao-infantil/${campo.slug}`);
+    const html = await response.text();
+    const breadcrumb = html.match(/<nav class="bncc-breadcrumb"[^]*?<\/nav>/)?.[0] ?? "";
+    assert.ok(breadcrumb, `${campo.slug} is missing a breadcrumb nav`);
+    assert.match(breadcrumb, /<a href="\/">Início<\/a>/, `${campo.slug} breadcrumb missing Início`);
+    assert.match(breadcrumb, /<a href="\/bncc">BNCC<\/a>/, `${campo.slug} breadcrumb missing BNCC`);
+    assert.match(breadcrumb, /<a href="\/bncc\/educacao-infantil">Educação Infantil<\/a>/, `${campo.slug} breadcrumb missing Educação Infantil link`);
+    const nomePattern = campo.nome.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    assert.match(breadcrumb, new RegExp(`<span aria-current="page">${nomePattern}</span>`), `${campo.slug} breadcrumb current crumb wrong`);
+  }
+
+  // Fundamental/Médio and the hub itself keep their existing (shorter) breadcrumb — unaffected by the optional parent level.
+  const fundamentalHtml = await (await render("/bncc/matematica")).text();
+  const fundamentalBreadcrumb = fundamentalHtml.match(/<nav class="bncc-breadcrumb"[^]*?<\/nav>/)?.[0] ?? "";
+  assert.doesNotMatch(fundamentalBreadcrumb, /Educação Infantil/);
+
+  const hubHtml = await (await render("/bncc/educacao-infantil")).text();
+  const hubBreadcrumb = hubHtml.match(/<nav class="bncc-breadcrumb"[^]*?<\/nav>/)?.[0] ?? "";
+  assert.match(hubBreadcrumb, /<span aria-current="page">Educação Infantil<\/span>/);
+  assert.equal((hubBreadcrumb.match(/<a /g) ?? []).length, 2, "hub breadcrumb should stay at 3 levels (Início, BNCC, current)");
+});
+
+test("a campo page opened with a direct URL keeps its query-string filters through the first render (no clobbering on hydration)", async () => {
+  const base = "/bncc/educacao-infantil/tracos-sons-cores-e-formas"; // TS: 3 Bebês / 3 Crianças bem pequenas / 3 Crianças pequenas = 9
+
+  // ?faixa=01 shows Bebês active and only its 3 objetivos.
+  {
+    const html = await (await render(`${base}?faixa=01`)).text();
+    assert.match(html, /class="active" aria-pressed="true"[^>]*>Bebês/);
+    assert.match(html, /<strong>3<\/strong>/);
+  }
+
+  // ?faixa=02 shows Crianças bem pequenas active.
+  {
+    const html = await (await render(`${base}?faixa=02`)).text();
+    assert.match(html, /class="active" aria-pressed="true"[^>]*>Crianças bem pequenas/);
+    assert.match(html, /<strong>3<\/strong>/);
+  }
+
+  // ?faixa=03 shows Crianças pequenas active.
+  {
+    const html = await (await render(`${base}?faixa=03`)).text();
+    assert.match(html, /class="active" aria-pressed="true"[^>]*>Crianças pequenas/);
+    assert.match(html, /<strong>3<\/strong>/);
+  }
+
+  // ?q=sons applies the search (every TS objetivo matches, since "sons" is part of the campo's own official name).
+  {
+    const html = await (await render(`${base}?q=sons`)).text();
+    assert.match(html, /id="bncc-search"[^>]*value="sons"/);
+    assert.match(html, /<strong>9<\/strong>/);
+    assert.match(html, /class="active" aria-pressed="true">Todos/);
+  }
+
+  // ?faixa=02&q=sons combines both filters.
+  {
+    const html = await (await render(`${base}?faixa=02&q=sons`)).text();
+    assert.match(html, /id="bncc-search"[^>]*value="sons"/);
+    assert.match(html, /class="active" aria-pressed="true"[^>]*>Crianças bem pequenas/);
+    assert.match(html, /<strong>3<\/strong>/);
+  }
+
+  // ?faixa=99 (invalid) is discarded safely — falls back to "Todos" with no error.
+  {
+    const response = await render(`${base}?faixa=99`);
+    assert.equal(response.status, 200);
+    const html = await response.text();
+    assert.match(html, /class="active" aria-pressed="true">Todos/);
+    assert.match(html, /<strong>9<\/strong>/);
+  }
+
+  // The canonical link never carries the query string, regardless of what was requested.
+  {
+    const html = await (await render(`${base}?faixa=01&q=sons`)).text();
+    const canonical = html.match(/rel="canonical" href="([^"]+)"/)?.[1];
+    assert.ok(canonical, "missing canonical link");
+    assert.equal(canonical, "https://tempodocente.com.br/bncc/educacao-infantil/tracos-sons-cores-e-formas");
+  }
+});
+
+test("returns 404 for an invalid Educação Infantil campo slug", async () => {
+  const response = await render("/bncc/educacao-infantil/campo-inexistente");
+  assert.equal(response.status, 404);
+  assert.match(await response.text(), /Página não encontrada/);
+});
+
+test("server-renders EI02TS01 (the BNCC's own worked example for the code format) with full detail", async () => {
+  const response = await render("/bncc/ei02ts01");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /EI02TS01/);
+  assert.match(html, /Objetivo de aprendizagem e desenvolvimento/);
+  assert.match(html, /Criar sons com materiais, objetos e instrumentos musicais/);
+  assert.match(html, /Traços, sons, cores e formas/);
+  assert.match(html, /Crianças bem pequenas/);
+  assert.match(html, /1 ano e 7 meses a 3 anos e 11 meses/);
+  assert.match(html, /href="\/"/);
+  assert.match(html, /href="\/bncc"/);
+  assert.match(html, /href="\/bncc\/educacao-infantil"/);
+  assert.match(html, /href="\/bncc\/educacao-infantil\/tracos-sons-cores-e-formas"/);
+  assert.match(html, /Ministério da Educação/);
+  assert.match(html, /basenacionalcomum\.mec\.gov\.br/);
+  assert.match(html, /Ordem de apresentação no documento/);
+  assert.doesNotMatch(html, /Habilidade/);
+});
+
+test("EI02TS01 has a next objetivo link within the same campo and faixa, since it's the first of its group", async () => {
+  const response = await render("/bncc/ei02ts01");
+  const html = await response.text();
+  assert.match(html, /href="\/bncc\/ei02ts02"/);
+});
+
+test("a middle-of-group objetivo (EI02EO04) shows both previous and next within the same campo and faixa", async () => {
+  const response = await render("/bncc/ei02eo04");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /href="\/bncc\/ei02eo03"/);
+  assert.match(html, /href="\/bncc\/ei02eo05"/);
+});
+
+test("spot-checks objetivo detail pages across the five campos and three faixas", async () => {
+  const samples = [
+    { code: "ei01eo01", campo: "O eu, o outro e o nós", faixa: "Bebês", texto: "Perceber que suas ações têm efeitos nas outras crianças e nos adultos." },
+    { code: "ei02cg01", campo: "Corpo, gestos e movimentos", faixa: "Crianças bem pequenas", texto: "Apropriar-se de gestos e movimentos de sua cultura no cuidado de si e nos jogos e brincadeiras." },
+    { code: "ei03ts01", campo: "Traços, sons, cores e formas", faixa: "Crianças pequenas", texto: "Utilizar sons produzidos por materiais, objetos e instrumentos musicais durante brincadeiras de faz de conta" },
+    { code: "ei02ef05", campo: "Escuta, fala, pensamento e imaginação", faixa: "Crianças bem pequenas", texto: "Relatar experiências e fatos acontecidos, histórias ouvidas, filmes ou peças teatrais assistidos" },
+    { code: "ei01et01", campo: "Espaços, tempos, quantidades, relações e transformações", faixa: "Bebês", texto: "Explorar e descobrir as propriedades de objetos e materiais" },
+  ];
+
+  for (const sample of samples) {
+    const response = await render(`/bncc/${sample.code}`);
+    assert.equal(response.status, 200, `${sample.code} should render`);
+    const html = await response.text();
+    assert.match(html, new RegExp(sample.code.toUpperCase()), sample.code);
+    assert.match(html, new RegExp(sample.faixa), `${sample.code} faixa`);
+    assert.match(html, new RegExp(sample.texto.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), `${sample.code} texto`);
+    assert.doesNotMatch(html, /Habilidade/, `${sample.code} should never say "Habilidade"`);
+  }
+});
+
+test("returns 404 for a well-formed but nonexistent Educação Infantil code (EI01EO07 was never invented)", async () => {
+  const response = await render("/bncc/ei01eo07");
+  assert.equal(response.status, 404);
+  assert.match(await response.text(), /Página não encontrada/);
+});
+
+test("a direito de aprendizagem never resolves at /bncc/[codigo] — it has no código", async () => {
+  for (const attempted of ["/bncc/brincar", "/bncc/conhecer-se", "/bncc/direito-brincar"]) {
+    const response = await render(attempted);
+    assert.equal(response.status, 404, attempted);
+  }
+});
+
+test("global BNCC search finds Educação Infantil objetivos and direitos with the correct labels", async () => {
+  const byCode = await render("/bncc?q=EI02TS01");
+  const htmlByCode = await byCode.text();
+  assert.match(htmlByCode, /Objetivo de aprendizagem e desenvolvimento/);
+  assert.match(htmlByCode, /href="\/bncc\/ei02ts01"/);
+  assert.doesNotMatch(htmlByCode, /Nenhum registro encontrado/);
+
+  const byDireito = await render("/bncc?q=Conhecer-se");
+  const htmlByDireito = await byDireito.text();
+  assert.match(htmlByDireito, /Direito de aprendizagem e desenvolvimento/);
+  assert.match(htmlByDireito, /href="\/bncc\/educacao-infantil#direito-conhecer-se"/);
+
+  const byBrincar = await render("/bncc?q=Brincar");
+  const htmlByBrincar = await byBrincar.text();
+  assert.doesNotMatch(htmlByBrincar, /Nenhum registro encontrado/);
+  assert.match(htmlByBrincar, /Direito de aprendizagem e desenvolvimento/);
+
+  const byCampo = await render("/bncc?q=" + encodeURIComponent("Corpo, gestos e movimentos"));
+  const htmlByCampo = await byCampo.text();
+  assert.doesNotMatch(htmlByCampo, /Nenhum registro encontrado/);
+
+  const byFaixa = await render("/bncc?q=" + encodeURIComponent("Bebês"));
+  const htmlByFaixa = await byFaixa.text();
+  assert.doesNotMatch(htmlByFaixa, /Nenhum registro encontrado/);
+
+  // None of the above search-result HTML ever labels an Educação Infantil
+  // result as "Habilidade".
+  for (const html of [htmlByCode, htmlByDireito, htmlByBrincar]) {
+    assert.doesNotMatch(html, /Habilidade[^<]*Educação Infantil/);
+  }
+});
+
+test("Fundamental and Médio searches still work unaffected by the Educação Infantil integration", async () => {
+  const response = await render("/bncc?q=EF07MA18");
+  const html = await response.text();
+  assert.match(html, /EF07MA18/);
+  assert.doesNotMatch(html, /Nenhum registro encontrado/);
 });

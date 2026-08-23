@@ -22,6 +22,11 @@ type BnccHubPageProps = { searchParams?: Promise<{ q?: string }> };
 function registroMeta(registro: BnccRegistro): string {
   if (registro.tipo === "competencia_geral") return `Competência geral · Competência ${registro.numero} de 10`;
   if (registro.tipo === "competencia_especifica") return `Competência específica · ${registro.area} · Competência ${registro.numero}`;
+  // Nunca "Habilidade" para Educação Infantil — a BNCC reserva esse rótulo
+  // para Fundamental/Médio; aqui os rótulos oficiais são "objetivo" e
+  // "direito de aprendizagem e desenvolvimento".
+  if (registro.tipo === "direito_aprendizagem") return "Direito de aprendizagem e desenvolvimento · Educação Infantil";
+  if (registro.tipo === "objetivo_aprendizagem") return `Objetivo de aprendizagem e desenvolvimento · Educação Infantil · ${registro.campo_experiencia} · ${registro.faixa_etaria}`;
   if (registro.etapa === "Ensino Médio") return `Habilidade · Ensino Médio · ${registro.area} · ${registro.componente}`;
   return `Habilidade · ${registro.etapa} · ${registro.ano} · ${registro.componente}`;
 }
@@ -29,6 +34,9 @@ function registroMeta(registro: BnccRegistro): string {
 function registroHref(registro: BnccRegistro): string {
   if (registro.tipo === "competencia_geral") return `/bncc/competencias-gerais#competencia-${registro.numero}`;
   if (registro.tipo === "competencia_especifica") return `/bncc/ensino-medio/${AREA_MEDIO_SLUGS[registro.area] ?? ""}#competencia-${registro.numero}`;
+  // Direitos não têm código oficial nem página própria — âncora estável no
+  // hub da Educação Infantil, nunca uma rota /bncc/[codigo] inventada.
+  if (registro.tipo === "direito_aprendizagem") return `/bncc/educacao-infantil#direito-${registro.slug}`;
   return `/bncc/${registro.codigo.toLowerCase()}`;
 }
 
@@ -132,18 +140,17 @@ export default async function BnccHubPage({ searchParams }: BnccHubPageProps) {
                 <span className="card-action">Ver competências <ArrowUpRight size={17} aria-hidden="true" /></span>
               </a>
 
-              <div className="access-card access-card-soon" aria-disabled="true">
+              <a className="access-card" href="/bncc/educacao-infantil">
                 <div className="access-card-top">
                   <span className="access-icon"><Layers size={22} aria-hidden="true" /></span>
                   <span className="access-label">Bebês a crianças pequenas</span>
-                  <span className="soon-badge">Em breve</span>
                 </div>
                 <div>
                   <h3>Educação Infantil</h3>
                   <p>Campos de experiências e objetivos de aprendizagem e desenvolvimento.</p>
                 </div>
-                <span className="card-action card-action-soon">Em breve</span>
-              </div>
+                <span className="card-action">Explorar campos <ArrowUpRight size={17} aria-hidden="true" /></span>
+              </a>
 
               <a className="access-card" href="/bncc/ensino-fundamental">
                 <div className="access-card-top">

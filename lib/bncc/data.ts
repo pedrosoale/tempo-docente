@@ -177,7 +177,7 @@ export const medioCompetencias: CompetenciaEspecificaMedio[] = [
 ];
 
 export function getAllRegistros(): BnccRegistro[] {
-  return [...fundamentalSkills, ...competenciasGerais, ...medioSkills, ...medioCompetencias];
+  return [...fundamentalSkills, ...competenciasGerais, ...medioSkills, ...medioCompetencias, ...educacaoInfantilObjetivos, ...educacaoInfantilDireitos];
 }
 
 export function getRegistroByCode(code: string): BnccRegistro | undefined {
@@ -229,10 +229,10 @@ export function getRelatedSkillsMedio(skill: HabilidadeMedio, limit = 4) {
 
 // Educação Infantil — dataset gerado por scripts/bncc/import.mjs
 // (processEducacaoInfantil) a partir de data/bncc/source/official-mec-bncc-
-// educacao-infantil.json. Exportado à parte de getAllRegistros() por
-// enquanto — ver o comentário sobre BnccRegistro em ./types para o motivo: a
-// integração à busca global e a `/bncc/[codigo]` fica para a etapa de
-// interface, que ainda não existe nesta rodada.
+// educacao-infantil.json. A BNCC não organiza a Educação Infantil por
+// componente/ano — a chave própria é campo de experiências × grupo por
+// faixa etária — por isso os tipos/campos abaixo não reaproveitam
+// HabilidadeFundamental/HabilidadeMedio.
 const educacaoInfantilRegistros = educacaoInfantilDataset.registros as (DireitoAprendizagem | ObjetivoInfantil)[];
 export const educacaoInfantilMetadata = educacaoInfantilDataset.metadata;
 export const educacaoInfantilDireitos = educacaoInfantilRegistros.filter(
@@ -241,5 +241,70 @@ export const educacaoInfantilDireitos = educacaoInfantilRegistros.filter(
 export const educacaoInfantilObjetivos = educacaoInfantilRegistros.filter(
   (registro): registro is ObjetivoInfantil => registro.tipo === "objetivo_aprendizagem",
 );
+
+export type CampoExperienciaInfo = {
+  sigla: "EO" | "CG" | "TS" | "EF" | "ET";
+  nome: string;
+  slug: string;
+  objetivos: ObjetivoInfantil[];
+};
+
+// Slugs não vêm do dataset (a fonte oficial não os declara) — única
+// hand-authored mapping desta etapa, reaproveitada por igual pelas páginas de
+// campo e pelo sitemap (nunca duplicada em cada um). Ordem fixa reproduz a
+// própria ordem de apresentação da BNCC (p. 40-44), não é alfabética.
+const CAMPO_SLUGS: Record<CampoExperienciaInfo["sigla"], string> = {
+  EO: "o-eu-o-outro-e-o-nos",
+  CG: "corpo-gestos-e-movimentos",
+  TS: "tracos-sons-cores-e-formas",
+  EF: "escuta-fala-pensamento-e-imaginacao",
+  ET: "espacos-tempos-quantidades-relacoes-e-transformacoes",
+};
+const CAMPO_SIGLA_ORDER: CampoExperienciaInfo["sigla"][] = ["EO", "CG", "TS", "EF", "ET"];
+
+// nome e a lista de objetivos vêm sempre do dataset já validado — nunca
+// hand-typed aqui, para que uma contagem errada não possa divergir
+// silenciosamente entre o modelo de dados, as páginas e o sitemap.
+export const CAMPOS_EXPERIENCIA_INFANTIL: CampoExperienciaInfo[] = CAMPO_SIGLA_ORDER.map((sigla) => {
+  const objetivos = educacaoInfantilObjetivos.filter((objetivo) => objetivo.campo_experiencia_sigla === sigla);
+  return { sigla, nome: objetivos[0]?.campo_experiencia ?? sigla, slug: CAMPO_SLUGS[sigla], objetivos };
+});
+
+export type FaixaEtariaInfo = {
+  codigo: "01" | "02" | "03";
+  nome: string;
+  descricao: string;
+};
+
+// Também derivado do dataset (nome e texto oficial por extenso), não
+// hand-typed — evita repetir a mesma faixa etária em três lugares diferentes
+// com o risco de um deles ficar desatualizado.
+const faixasPorCodigo = new Map<string, FaixaEtariaInfo>();
+for (const objetivo of educacaoInfantilObjetivos) {
+  if (!faixasPorCodigo.has(objetivo.faixa_etaria_codigo)) {
+    faixasPorCodigo.set(objetivo.faixa_etaria_codigo, {
+      codigo: objetivo.faixa_etaria_codigo,
+      nome: objetivo.faixa_etaria,
+      descricao: objetivo.faixa_etaria_descricao,
+    });
+  }
+}
+export const FAIXAS_ETARIAS_INFANTIL: FaixaEtariaInfo[] = [...faixasPorCodigo.values()].sort((a, b) => a.codigo.localeCompare(b.codigo));
+
+// A BNCC apresenta os objetivos sequencialmente dentro de cada campo e
+// faixa, mas o próprio documento avisa que essa numeração "não sugere ordem
+// ou hierarquia" — por isso a vizinhança aqui é descrita como ordem de
+// apresentação no documento, nunca como progressão pedagógica (ver
+// app/bncc/[codigo]/page.tsx).
+export function getAdjacentObjetivoInfantil(code: string) {
+  const index = educacaoInfantilObjetivos.findIndex((objetivo) => objetivo.codigo.toLowerCase() === code.toLowerCase());
+  if (index < 0) return { previous: undefined, next: undefined };
+  const current = educacaoInfantilObjetivos[index];
+  const sameGroup = educacaoInfantilObjetivos.filter(
+    (objetivo) => objetivo.campo_experiencia_sigla === current.campo_experiencia_sigla && objetivo.faixa_etaria_codigo === current.faixa_etaria_codigo,
+  );
+  const groupIndex = sameGroup.findIndex((objetivo) => objetivo.codigo === current.codigo);
+  return { previous: sameGroup[groupIndex - 1], next: sameGroup[groupIndex + 1] };
+}
 
 export type { BnccRegistro, CompetenciaEspecificaMedio, CompetenciaGeral, DireitoAprendizagem, HabilidadeFundamental, HabilidadeMedio, ObjetivoInfantil } from "./types";

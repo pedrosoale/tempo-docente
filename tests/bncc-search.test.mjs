@@ -1,12 +1,15 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import competencias from "../data/bncc/competencias-gerais.json" with { type: "json" };
+import educacaoInfantil from "../data/bncc/educacao-infantil.json" with { type: "json" };
 import portugues from "../data/bncc/lingua-portuguesa-anos-finais.json" with { type: "json" };
 import dataset from "../data/bncc/matematica-anos-finais.json" with { type: "json" };
 import { filterSkills, normalizeSearchText, parseSearchQuery } from "../lib/bncc/search.mjs";
 
 const skills = dataset.registros;
-const allRegistros = [...dataset.registros, ...portugues.registros, ...competencias.registros];
+const allRegistros = [...dataset.registros, ...portugues.registros, ...competencias.registros, ...educacaoInfantil.registros];
+const objetivosInfantil = educacaoInfantil.registros.filter((registro) => registro.tipo === "objetivo_aprendizagem");
+const direitosInfantil = educacaoInfantil.registros.filter((registro) => registro.tipo === "direito_aprendizagem");
 
 test("normalizes accents, whitespace, and case", () => {
   assert.equal(normalizeSearchText("  EQUAÇÕES   Polinomiais  "), "equacoes polinomiais");
@@ -69,4 +72,68 @@ test("finds a Língua Portuguesa habilidade by campo de atuação across the mer
   const results = filterSkills(allRegistros, { query: "campo artístico-literário" });
   assert.ok(results.length > 0);
   assert.ok(results.every((item) => item.campo_atuacao === "Campo Artístico-Literário"));
+});
+
+// ---- Educação Infantil ----
+
+test("finds an Educação Infantil objetivo by its EI code case-insensitively", () => {
+  const results = filterSkills(objetivosInfantil, { query: "ei02ts01" });
+  assert.deepEqual(results.map((objetivo) => objetivo.codigo), ["EI02TS01"]);
+});
+
+test("finds an objetivo by a fragment of its official text, without requiring accents", () => {
+  const results = filterSkills(objetivosInfantil, { query: "para acompanhar diversos ritmos de musica" });
+  assert.ok(results.some((objetivo) => objetivo.codigo === "EI02TS01"));
+});
+
+test("finds every objetivo of a campo de experiências by its official name", () => {
+  const results = filterSkills(objetivosInfantil, { query: "corpo, gestos e movimentos" });
+  assert.equal(results.length, 15);
+  assert.ok(results.every((objetivo) => objetivo.campo_experiencia_sigla === "CG"));
+});
+
+test("finds every objetivo of a grupo por faixa etária by its official name", () => {
+  const results = filterSkills(objetivosInfantil, { query: "crianças bem pequenas" });
+  assert.equal(results.length, 32);
+  assert.ok(results.every((objetivo) => objetivo.faixa_etaria_codigo === "02"));
+});
+
+test("the faixa filter param narrows objetivos to exactly that grupo por faixa etária", () => {
+  const results = filterSkills(objetivosInfantil, { faixa: "01" });
+  assert.equal(results.length, 29);
+  assert.ok(results.every((objetivo) => objetivo.faixa_etaria_codigo === "01"));
+});
+
+test("finds the direito 'Brincar' by its official name", () => {
+  const results = filterSkills(direitosInfantil, { query: "brincar" });
+  assert.deepEqual(results.map((direito) => direito.nome), ["Brincar"]);
+});
+
+test("finds the direito 'Conhecer-se' by its official name, including the hyphen", () => {
+  const results = filterSkills(direitosInfantil, { query: "conhecer-se" });
+  assert.deepEqual(results.map((direito) => direito.nome), ["Conhecer-se"]);
+});
+
+test("finds a direito by a fragment of its own official text", () => {
+  const results = filterSkills(direitosInfantil, { query: "planejamento da gestão da escola" });
+  assert.deepEqual(results.map((direito) => direito.nome), ["Participar"]);
+});
+
+test("searching across all merged scopes still surfaces Educação Infantil objetivos and direitos without losing Fundamental/Médio/Competências results", () => {
+  const objetivoResults = filterSkills(allRegistros, { query: "EI02TS01" });
+  assert.deepEqual(objetivoResults.map((item) => item.codigo), ["EI02TS01"]);
+
+  const direitoResults = filterSkills(allRegistros, { query: "conhecer-se" });
+  assert.ok(direitoResults.some((item) => item.tipo === "direito_aprendizagem" && item.nome === "Conhecer-se"));
+
+  // Fundamental (Matemática) and Competências Gerais searches from earlier
+  // tests still resolve correctly with Educação Infantil merged in.
+  assert.ok(filterSkills(allRegistros, { query: "ef07ma18" }).some((item) => item.codigo === "EF07MA18"));
+  assert.ok(filterSkills(allRegistros, { query: "consciência socioambiental" }).some((item) => item.tipo === "competencia_geral" && item.numero === 7));
+});
+
+test("no Educação Infantil registro is ever labeled 'habilidade'", () => {
+  for (const registro of [...objetivosInfantil, ...direitosInfantil]) {
+    assert.notEqual(registro.tipo, "habilidade");
+  }
 });

@@ -47,7 +47,32 @@ o Ensino Médio desde 2023, isso passou a ser o Provão Paulista Seriado, public
 separadamente e sem uma versão pré-agregada por escola equivalente à proficiência
 usada aqui. Ver "Pipeline de dados do SARESP" abaixo.
 
-**Ainda não importado** (roadmap, não implementado): Educação Infantil (BNCC).
+Módulo funcional: **BNCC — Educação Infantil**, em `/bncc/educacao-infantil`. Seis
+**direitos de aprendizagem e desenvolvimento** (Conviver, Brincar, Participar,
+Explorar, Expressar, Conhecer-se — sem código oficial, apresentados como âncoras
+no hub) e 93 **objetivos de aprendizagem e desenvolvimento** (código `EI...`),
+organizados pelos cinco **campos de experiências** oficiais (O eu, o outro e o
+nós; Corpo, gestos e movimentos; Traços, sons, cores e formas; Escuta, fala,
+pensamento e imaginação; Espaços, tempos, quantidades, relações e
+transformações) e pelos três **grupos por faixa etária** (Bebês; Crianças bem
+pequenas; Crianças pequenas) — 99 registros, elevando o total geral da BNCC
+importada para **1616 registros**. Diferente do Fundamental e do Médio, a BNCC
+nunca chama esses registros de "habilidade" — a terminologia oficial ("objetivo
+de aprendizagem e desenvolvimento" / "direito de aprendizagem e
+desenvolvimento") é preservada em toda a interface — e a etapa não é seriada: a
+própria BNCC apresenta os objetivos sequencialmente dentro de cada campo e
+faixa, sem recorte por ano, e destaca explicitamente que os três grupos "não
+podem ser considerados de forma rígida". Extraído do mesmo PDF oficial usado
+pelo Fundamental/Médio, por associação posicional entre as coordenadas
+vetoriais de cada célula da tabela (layout de 3 colunas, uma por faixa etária,
+inédito nos demais escopos) e o código embutido no próprio texto — nunca só a
+ordem do texto corrido. A validação cruzada contra a ferramenta oficial
+editável do MEC (`downloadbncc.mec.gov.br`) foi tentada e está registrada nos
+metadados do dataset como indisponível (o backend `bnccapi.mec.gov.br` não
+responde), não como divergência de dado. Ver
+[`data/bncc/README.md`](data/bncc/README.md) para o detalhamento completo do
+pipeline.
+
 SAEB e qualquer funcionalidade de IA/planejamento de aula/login **não existem
 ainda** — os cartões correspondentes na home aparecem como "Em breve".
 
@@ -119,7 +144,8 @@ precisam ser substituídos pelos que o provedor escolhido exigir.
 
 ```text
 app/                    rotas (App Router) e componentes de UI
-  bncc/                 hub da BNCC, páginas por componente/ano, página de detalhe [codigo]
+  bncc/                 hub da BNCC, páginas por componente/ano, educacao-infantil/ (hub +
+                          5 campos de experiências), página de detalhe [codigo]
   saresp/                relatório SARESP: layout.tsx, page.tsx, saresp.css, componentes em
                           components/ (Filters.tsx, SchoolCombobox.tsx — busca de escola
                           acessível —, etc.)
@@ -147,13 +173,16 @@ worker/index.ts           entry point do Cloudflare Worker (roteamento de imagem
 ```
 
 O modelo de dados (`lib/bncc/types.ts`) é um discriminated union por `tipo`
-(`"habilidade" | "competencia_geral" | "competencia_especifica" | ...`), pensado
-para caber Educação Infantil no futuro sem forçar a estrutura de Anos Finais
-sobre ela. `HabilidadeMedio`/`CompetenciaEspecificaMedio` (Ensino Médio)
-coexistem com `HabilidadeFundamental` na mesma union — sem campo `ano`, já que a
-BNCC do Médio não é organizada por série. Cada registro carrega proveniência
-completa (`fonte`, `fonte_url`, `documento_url`, `versao_fonte`, `pagina_fonte`,
-`data_importacao`).
+(`"habilidade" | "competencia_geral" | "competencia_especifica" |
+"objetivo_aprendizagem" | "direito_aprendizagem"`). `HabilidadeMedio`/
+`CompetenciaEspecificaMedio` (Ensino Médio) coexistem com `HabilidadeFundamental`
+na mesma union — sem campo `ano`, já que a BNCC do Médio não é organizada por
+série. `ObjetivoInfantil`/`DireitoAprendizagem` (Educação Infantil) seguem o
+mesmo princípio: sem `ano`/`componente`/`unidade_tematica` (conceitos que não
+existem nessa etapa), com `campo_experiencia`/`faixa_etaria` própria em vez
+disso — nenhum campo do Fundamental ou do Médio foi tornado opcional para
+acomodá-los. Cada registro carrega proveniência completa (`fonte`, `fonte_url`,
+`documento_url`, `versao_fonte`, `pagina_fonte`, `data_importacao`).
 
 ## Bug conhecido: não usar `next/link` para navegação
 

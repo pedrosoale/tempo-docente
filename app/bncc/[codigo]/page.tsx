@@ -3,7 +3,9 @@ import { ArrowLeft, ArrowRight, BookOpenText, Sparkles } from "lucide-react";
 import { notFound } from "next/navigation";
 import {
   AREAS_ENSINO_MEDIO,
+  CAMPOS_EXPERIENCIA_INFANTIL,
   COMPONENTES_ANOS_FINAIS,
+  getAdjacentObjetivoInfantil,
   getAdjacentSkills,
   getAdjacentSkillsMedio,
   getAllRegistros,
@@ -11,7 +13,7 @@ import {
   getRelatedSkills,
   getRelatedSkillsMedio,
 } from "@/lib/bncc/data";
-import type { HabilidadeFundamental, HabilidadeMedio } from "@/lib/bncc/types";
+import type { HabilidadeFundamental, HabilidadeMedio, ObjetivoInfantil } from "@/lib/bncc/types";
 
 type SkillPageProps = { params: Promise<{ codigo: string }> };
 
@@ -47,7 +49,23 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: SkillPageProps): Promise<Metadata> {
   const { codigo } = await params;
   const registro = getRegistroByCode(codigo);
-  if (!registro || registro.tipo !== "habilidade") return { title: "Habilidade não encontrada | Tempo Docente" };
+  if (!registro || (registro.tipo !== "habilidade" && registro.tipo !== "objetivo_aprendizagem")) {
+    return { title: "Registro não encontrado | Tempo Docente" };
+  }
+
+  if (registro.tipo === "objetivo_aprendizagem") {
+    const objetivo = registro;
+    return {
+      title: `${objetivo.codigo} — Objetivo de aprendizagem e desenvolvimento da BNCC (Educação Infantil) | Tempo Docente`,
+      description: `Consulte o objetivo de aprendizagem e desenvolvimento ${objetivo.codigo} da BNCC — Educação Infantil, campo de experiências "${objetivo.campo_experiencia}", grupo ${objetivo.faixa_etaria}.`,
+      alternates: { canonical: `/bncc/${objetivo.codigo.toLowerCase()}` },
+      openGraph: {
+        title: `${objetivo.codigo} — BNCC Educação Infantil (${objetivo.campo_experiencia})`,
+        description: `Objetivo de aprendizagem e desenvolvimento oficial da BNCC — ${objetivo.faixa_etaria}.`,
+        url: `/bncc/${objetivo.codigo.toLowerCase()}`,
+      },
+    };
+  }
 
   if (registro.etapa === "Ensino Médio") {
     const skill = registro;
@@ -84,14 +102,84 @@ function displayObject(value: string) {
 export default async function SkillPage({ params }: SkillPageProps) {
   const { codigo } = await params;
   const registro = getRegistroByCode(codigo);
-  // Only "habilidade" records (Fundamental or Médio) resolve here today.
-  // Other tipos in the union will get their own render branch when they
-  // gain a codigo-bearing route; until then, treat them as not-found rather
-  // than rendering a mismatched page.
-  if (!registro || registro.tipo !== "habilidade") notFound();
+  // "habilidade" (Fundamental/Médio) and "objetivo_aprendizagem" (Educação
+  // Infantil) are the only tipos with a codigo-bearing detail route.
+  // "direito_aprendizagem" has codigo: null and is never looked up here —
+  // getRegistroByCode already can't match it by code, so it never reaches
+  // this guard at all; it lives only at /bncc/educacao-infantil#direito-*.
+  if (!registro || (registro.tipo !== "habilidade" && registro.tipo !== "objetivo_aprendizagem")) notFound();
 
+  if (registro.tipo === "objetivo_aprendizagem") return <ObjetivoDetailInfantil objetivo={registro} />;
   if (registro.etapa === "Ensino Médio") return <SkillDetailMedio skill={registro} />;
   return <SkillDetailFundamental skill={registro} />;
+}
+
+function ObjetivoDetailInfantil({ objetivo }: { objetivo: ObjetivoInfantil }) {
+  const { previous, next } = getAdjacentObjetivoInfantil(objetivo.codigo);
+  const campoInfo = CAMPOS_EXPERIENCIA_INFANTIL.find((campo) => campo.sigla === objetivo.campo_experiencia_sigla);
+  const basePath = `/bncc/educacao-infantil/${campoInfo?.slug ?? ""}`;
+
+  return (
+    <article className="bncc-skill-page">
+      <div className="container">
+        <nav className="bncc-breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Início</a><span aria-hidden="true">/</span>
+          <a href="/bncc">BNCC</a><span aria-hidden="true">/</span>
+          <a href="/bncc/educacao-infantil">Educação Infantil</a><span aria-hidden="true">/</span>
+          <a href={basePath}>{objetivo.campo_experiencia}</a><span aria-hidden="true">/</span>
+          <span aria-current="page">{objetivo.codigo}</span>
+        </nav>
+
+        <header className="bncc-skill-header">
+          <div>
+            <span className="bncc-official-label">Dado oficial · BNCC/MEC</span>
+            <code>{objetivo.codigo}</code>
+            <h1>{objetivo.texto}</h1>
+            <p className="bncc-registro-tipo">Objetivo de aprendizagem e desenvolvimento</p>
+          </div>
+          <aside className="bncc-skill-context">
+            <span>Campo de experiências</span><strong>{objetivo.campo_experiencia} ({objetivo.campo_experiencia_sigla})</strong>
+            <span>Grupo por faixa etária</span><strong>{objetivo.faixa_etaria}</strong>
+          </aside>
+        </header>
+
+        <div className="bncc-detail-grid">
+          <section className="bncc-curriculum-card" aria-labelledby="curriculum-title">
+            <div className="bncc-card-heading"><BookOpenText size={20} aria-hidden="true" /><h2 id="curriculum-title">Informações curriculares</h2></div>
+            <dl>
+              <div><dt>Etapa</dt><dd>{objetivo.etapa}</dd></div>
+              <div><dt>Campo de experiências</dt><dd>{objetivo.campo_experiencia}</dd></div>
+              <div><dt>Sigla</dt><dd>{objetivo.campo_experiencia_sigla}</dd></div>
+              <div><dt>Grupo por faixa etária</dt><dd>{objetivo.faixa_etaria}</dd></div>
+              <div className="full"><dt>Faixa etária oficial</dt><dd>{objetivo.faixa_etaria_descricao}</dd></div>
+            </dl>
+          </section>
+
+          <aside className="bncc-source-panel" id="fonte">
+            <span>Fonte primária</span>
+            <h2>Base Nacional Comum Curricular</h2>
+            <p>Ministério da Educação · {objetivo.versao_fonte}</p>
+            <dl>
+              <div><dt>Página</dt><dd>{objetivo.pagina_fonte}</dd></div>
+              <div><dt>Classificação</dt><dd>Dado oficial</dd></div>
+            </dl>
+            <a href={objetivo.documento_url} target="_blank" rel="noopener noreferrer">Ver documento oficial (PDF) <ArrowRight size={15} aria-hidden="true" /></a>
+          </aside>
+        </div>
+
+        <nav className="bncc-adjacent" aria-label="Navegação entre objetivos">
+          {previous ? <a href={`/bncc/${previous.codigo.toLowerCase()}`}><ArrowLeft size={18} /><span>Objetivo anterior<strong>{previous.codigo}</strong></span></a> : <span />}
+          {next ? <a href={`/bncc/${next.codigo.toLowerCase()}`}><span>Próximo objetivo<strong>{next.codigo}</strong></span><ArrowRight size={18} /></a> : <span />}
+        </nav>
+        <p className="bncc-adjacent-note">
+          Ordem de apresentação no documento oficial, dentro do mesmo campo de experiências e grupo por faixa etária —
+          a numeração dos códigos não representa progressão pedagógica ou hierarquia entre os objetivos.
+        </p>
+
+        <a className="button button-secondary bncc-back-to-campo" href={basePath}>Voltar para {objetivo.campo_experiencia}</a>
+      </div>
+    </article>
+  );
 }
 
 function SkillDetailFundamental({ skill }: { skill: HabilidadeFundamental }) {

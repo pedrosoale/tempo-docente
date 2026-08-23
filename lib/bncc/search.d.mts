@@ -8,6 +8,13 @@ export type SearchableSkill = {
   campo_atuacao?: string;
   componente?: string;
   area?: string;
+  // Educação Infantil only — objetivos (campo de experiências + faixa
+  // etária) e direitos (nome oficial, sem código).
+  campo_experiencia?: string;
+  faixa_etaria?: string;
+  faixa_etaria_codigo?: string;
+  faixa_etaria_descricao?: string;
+  nome?: string;
 };
 
 export type SkillFilters = {
@@ -16,6 +23,7 @@ export type SkillFilters = {
   unit?: string;
   object?: string;
   competencia?: string;
+  faixa?: string;
 };
 
 export function normalizeSearchText(value?: string): string;

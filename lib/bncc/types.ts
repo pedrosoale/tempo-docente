@@ -118,11 +118,4 @@ export type DireitoAprendizagem = RegistroBase & {
   slug: string;
 };
 
-// ObjetivoInfantil/DireitoAprendizagem existem como tipos concretos, mas
-// ainda NÃO entram em BnccRegistro nem em getAllRegistros() (ver
-// lib/bncc/data.ts) — integrá-los agora faria a busca global e
-// `/bncc/[codigo]` produzirem resultados/links para páginas que essa rodada
-// não implementa (app/bncc/[codigo]/page.tsx ainda faz
-// `notFound()` para qualquer tipo != "habilidade"). A integração fica para a
-// etapa de interface, junto com o novo branch de renderização.
-export type BnccRegistro = CompetenciaGeral | HabilidadeFundamental | CompetenciaEspecificaMedio | HabilidadeMedio;
+export type BnccRegistro = CompetenciaGeral | HabilidadeFundamental | CompetenciaEspecificaMedio | HabilidadeMedio | ObjetivoInfantil | DireitoAprendizagem;

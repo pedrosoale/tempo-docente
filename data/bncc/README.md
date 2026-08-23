@@ -4,8 +4,10 @@ Escopo importado até agora: **Competências Gerais da Educação Básica** (10/
 **Ensino Fundamental — Anos Finais (6º ao 9º ano)** — todos os 9 componentes
 curriculares —, **Anos Iniciais (1º ao 5º ano)** de 8 dos 9 componentes (falta
 só Língua Inglesa, que não existe nos Anos Iniciais na própria BNCC — não é uma
-lacuna a preencher) —, e **Ensino Médio — Formação Geral Básica**, completo: as
-4 áreas do conhecimento e Língua Portuguesa. Total: 1517 registros. Ver
+lacuna a preencher) —, **Ensino Médio — Formação Geral Básica**, completo: as
+4 áreas do conhecimento e Língua Portuguesa —, e **Educação Infantil**, completa:
+6 direitos de aprendizagem e desenvolvimento + 93 objetivos de aprendizagem e
+desenvolvimento (ver seção própria abaixo). Total: 1616 registros. Ver
 `data/bncc/import-report.json` para os totais agregados por etapa/tipo/componente
 (gerado a cada `npm run bncc:import`).
 
@@ -45,13 +47,96 @@ Portuguesa foge disso e organiza por campo de atuação social, ver seção pró
 abaixo). Ver "Extratores — Ensino Médio" e "Pegadinhas encontradas no Ensino
 Médio" mais abaixo para o processo completo.
 
-**Ainda não importado** (roadmap): Educação Infantil, e os Itinerários
-Formativos do Ensino Médio — este último não por falta de tempo, mas porque o
-documento oficial consolidado (mesmo PDF usado aqui) não codifica habilidades
-para os itinerários com um código rastreável como `EM13...`; é orientação em
-prosa para que redes/escolas construam seus próprios percursos flexíveis, então
-não há o que extrair de forma estruturada sem inventar dado que a fonte não
-declara.
+**Ainda não importado** (roadmap): os Itinerários Formativos do Ensino Médio —
+não por falta de tempo, mas porque o documento oficial consolidado (mesmo PDF
+usado aqui) não codifica habilidades para os itinerários com um código
+rastreável como `EM13...`; é orientação em prosa para que redes/escolas
+construam seus próprios percursos flexíveis, então não há o que extrair de
+forma estruturada sem inventar dado que a fonte não declara.
+
+## Educação Infantil
+
+Diferente do Fundamental e do Médio, a Educação Infantil não é organizada por
+componente curricular nem por ano/série — a BNCC a organiza por **campo de
+experiências** × **grupo por faixa etária**, e nunca chama seus registros de
+"habilidade": os rótulos oficiais são **objetivo de aprendizagem e
+desenvolvimento** (93 registros, código `EI...`) e **direito de aprendizagem e
+desenvolvimento** (6 registros, sem código oficial). Essa terminologia é
+preservada literalmente em todo o pipeline e em toda a interface.
+
+**Os 6 direitos** (apresentados como marcadores, não numerados 1-10 como as
+Competências Gerais): Conviver, Brincar, Participar, Explorar, Expressar,
+Conhecer-se.
+
+**As 3 faixas etárias** (texto oficial por extenso, nunca um formato
+aproximado): Bebês (zero a 1 ano e 6 meses); Crianças bem pequenas (1 ano e 7
+meses a 3 anos e 11 meses); Crianças pequenas (4 anos a 5 anos e 11 meses). A
+própria BNCC avisa que esses grupos "não podem ser considerados de forma
+rígida".
+
+**Os 5 campos de experiências**, com a contagem oficial de objetivos por campo
+× faixa (confirmada por extração direta do PDF, sem estimativa):
+
+| Campo (sigla) | Bebês (01) | Crianças bem pequenas (02) | Crianças pequenas (03) | Total |
+| --- | --: | --: | --: | --: |
+| O eu, o outro e o nós (EO) | 6 | 7 | 7 | 20 |
+| Corpo, gestos e movimentos (CG) | 5 | 5 | 5 | 15 |
+| Traços, sons, cores e formas (TS) | 3 | 3 | 3 | 9 |
+| Escuta, fala, pensamento e imaginação (EF) | 9 | 9 | 9 | 27 |
+| Espaços, tempos, quantidades, relações e transformações (ET) | 6 | 8 | 8 | 22 |
+| **Total** | **29** | **32** | **32** | **93** |
+
+As contagens são deliberadamente assimétricas — Bebês nunca tem um 7º objetivo
+em "O eu, o outro e o nós" nem um 7º/8º em "Espaços, tempos...": `EI01EO07`,
+`EI01ET07` e `EI01ET08` simplesmente não existem no documento oficial, e o
+importador (`processEducacaoInfantil` em `scripts/bncc/import.mjs`) falha alto
+se algum desses códigos aparecer.
+
+**Formato do código**: `EI` + grupo por faixa etária (`01`/`02`/`03`) + sigla do
+campo (`EO`/`CG`/`TS`/`EF`/`ET`) + posição sequencial no campo/faixa — explicado
+textualmente pelo próprio documento (com o exemplo oficial `EI02TS01`), nunca
+inferido.
+
+**Extração**: `scripts/bncc/extract_educacao_infantil.py`, extrator dedicado
+(o layout de tabela — uma página por campo, 3 colunas lado a lado, uma por
+faixa etária — não existe em nenhum outro escopo). A associação entre código e
+texto é sempre posicional: os limites de linha/coluna vêm das próprias linhas
+vetoriais da página (`page.get_drawings()`, nunca assumidas de outro escopo),
+e cada célula extraída tem seu código cruzado nos dois sentidos — a coluna lida
+precisa bater com a faixa do próprio código, e a página/campo processado
+precisa bater com o campo do próprio código — nunca só a ordem do texto corrido
+ou um regex global sobre a página inteira. Páginas de continuação são
+detectadas ativamente (`assert "(Continuação)"` presente), nunca assumidas pela
+posição.
+
+**Validação cruzada**: além do PDF (fonte normativa primária), foi tentada uma
+comparação independente contra a ferramenta oficial editável do MEC
+(`downloadbncc.mec.gov.br`, cujo frontend chama `bnccapi.mec.gov.br`). O
+endpoint segue indisponível — resolve por DNS mas não aceita conexão TCP, em
+HTTP e HTTPS —, o mesmo achado já registrado nesta seção para o Fundamental,
+reconfirmado de forma independente para a Educação Infantil. Isso **não** é
+tratado como divergência de dado (não havia com o que comparar); é registrado
+como tal em `metadata.validacao_cruzada`, tanto no snapshot quanto no
+relatório, para uma rodada futura retentar quando o endpoint voltar.
+
+**Modelo de dados**: tipos `ObjetivoInfantil`/`DireitoAprendizagem` em
+`lib/bncc/types.ts`, integrados a `BnccRegistro`/`getAllRegistros()`. Nenhum
+campo do Fundamental ou do Médio foi tornado opcional para acomodá-los —
+`ObjetivoInfantil` não tem `ano`/`componente`/`unidade_tematica` (conceitos que
+não existem nessa etapa); usa `campo_experiencia`/`campo_experiencia_sigla`/
+`faixa_etaria`/`faixa_etaria_codigo`/`faixa_etaria_descricao` em vez disso.
+Direitos têm `codigo: null` — nunca é inventado um código, número ou ordem que
+a fonte não declara — e por isso não têm página de detalhe própria: são
+pesquisáveis (entram em `getAllRegistros()`), mas resolvidos por âncora estável
+no hub (`/bncc/educacao-infantil#direito-<slug>`), não por rota individual.
+
+**Arquitetura de URLs**: `/bncc/educacao-infantil` (hub, com os 6 direitos
+ancorados e os 3 grupos por faixa etária explicados) → `/bncc/educacao-infantil/
+<slug-do-campo>` (5 páginas, uma por campo, com filtro por faixa etária) →
+`/bncc/<código>` (detalhe de cada um dos 93 objetivos, reaproveitando a mesma
+rota dinâmica já usada por Fundamental e Médio). Faixa etária é filtro de URL
+(`?faixa=`), nunca um segmento de rota nem uma entrada de sitemap — evita
+duplicar os mesmos 93 objetivos sob um segundo caminho canônico.
 
 ## Proveniência
 

@@ -5,6 +5,12 @@ type BnccIntroProps = {
   title?: string;
   subtitle?: string;
   currentYear?: string;
+  // Nível intermediário opcional do breadcrumb (ex.: "Educação Infantil"
+  // entre "BNCC" e o campo de experiências atual). Ambos precisam ser
+  // informados juntos — sem afetar o breadcrumb de 3 níveis já usado por
+  // Fundamental/Médio, que não passa nenhum dos dois.
+  parentLabel?: string;
+  parentHref?: string;
   scopeComponent?: string;
   scopeSegmento?: string;
   scopeTotal?: string;
@@ -16,6 +22,8 @@ export function BnccIntro({
   title = "Consulte a BNCC",
   subtitle = "Encontre habilidades da Base Nacional Comum Curricular por código, ano ou conteúdo.",
   currentYear,
+  parentLabel,
+  parentHref,
   scopeComponent = "Matemática",
   scopeSegmento = "Ensino Fundamental — Anos Iniciais e Anos Finais",
   scopeTotal = `${bnccSkills.length} habilidades`,
@@ -28,6 +36,7 @@ export function BnccIntro({
         <nav className="bncc-breadcrumb" aria-label="Breadcrumb">
           <a href="/">Início</a><span aria-hidden="true">/</span>
           <a href="/bncc">BNCC</a>
+          {parentLabel && parentHref && <><span aria-hidden="true">/</span><a href={parentHref}>{parentLabel}</a></>}
           {currentYear && <><span aria-hidden="true">/</span><span aria-current="page">{currentYear}</span></>}
         </nav>
 
