@@ -10,14 +10,14 @@ export function DashboardPreview() {
     <section className="section dashboard-section" id="dados">
       <div className="container dashboard-layout">
         <div className="dashboard-copy">
-          <span className="section-kicker">Leitura dos dados</span>
+          <span className="section-kicker">No roteiro</span>
           <h2>Dados mais fáceis de interpretar.</h2>
-          <p>Transforme resultados de avaliações externas em informações visuais que ajudam a identificar evolução, diferenças e pontos de atenção.</p>
+          <p>Visão de produto para leitura de avaliações externas além do SARESP — ainda não é uma funcionalidade disponível. A prévia abaixo ilustra a direção, não uma tela real.</p>
           <div className="mock-notice"><Info size={17} /><span>Todos os valores desta prévia são <strong>demonstrativos</strong> e não representam dados oficiais.</span></div>
           <a href="#fontes" className="text-link">Entender as fontes <ArrowUpRight size={17} /></a>
         </div>
 
-        <div className="dashboard-window" aria-label="Prévia de dashboard com dados demonstrativos">
+        <div className="dashboard-window" aria-label="Prévia ilustrativa de produto, com dados demonstrativos">
           <div className="dashboard-toolbar">
             <div><span className="window-dot" /><span className="window-dot" /><span className="window-dot" /></div>
             <span>Visão de resultados</span>

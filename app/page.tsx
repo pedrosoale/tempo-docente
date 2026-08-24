@@ -11,13 +11,13 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content">
         <Hero />
-        <QuickAccess />
         <EducationSearch />
+        <QuickAccess />
+        <SourceTrust />
         <DataFlow />
         <DashboardPreview />
-        <SourceTrust />
       </main>
       <Footer />
     </>

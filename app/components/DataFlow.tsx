@@ -13,10 +13,10 @@ export function DataFlow() {
       <div className="container">
         <div className="section-heading flow-heading">
           <div>
-            <span className="section-kicker">Visão integrada</span>
+            <span className="section-kicker">No roteiro</span>
             <h2>Da habilidade ao resultado.</h2>
           </div>
-          <p>A informação certa, organizada para apoiar decisões pedagógicas melhores.</p>
+          <p>Para onde o produto está indo: conectar BNCC, avaliações externas e dados de planejamento numa visão só. Ainda não é uma funcionalidade disponível — a BNCC e o SARESP, hoje, funcionam como consultas independentes.</p>
         </div>
         <div className="flow-grid">
           {steps.map(([number, title, text], index) => (

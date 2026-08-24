@@ -7,6 +7,14 @@
   --danger-tint: #fbeae8;
   --success-tint: #eaf7f3;
   --neutral-tint: rgba(18, 53, 91, 0.07);
+  /* Âmbar de "atenção" — única cor nova aprovada nesta etapa (não deriva de
+     um tom já usado no site). Substitui o reaproveitamento de --danger-dark
+     em .tone-atencao, que deixava "Atenção" com o mesmo texto vermelho de
+     "Prioridade" (erro), difíceis de distinguir numa tabela de diagnóstico.
+     Contraste calculado: #a6570f sobre #fbf0e2 = 4.68:1; sobre #ffffff =
+     5.26:1; sobre #fafaf7 = 5.03:1 — todos acima do mínimo AA de 4.5:1. */
+  --warning: #a6570f;
+  --warning-tint: #fbf0e2;
 }
 
 /* Intro band */
@@ -677,7 +685,9 @@
 }
 
 .diagnostic-list.attention svg {
-  color: var(--danger-dark);
+  /* Mesmo âmbar de .tone-atencao — "Pontos de atenção" não deve usar o mesmo
+     vermelho de "Prioridades"/erro (ver comentário nos tokens no topo deste arquivo). */
+  color: var(--warning);
 }
 
 .table-note {
@@ -700,8 +710,8 @@
 }
 
 .tone-atencao {
-  color: var(--danger-dark);
-  background: var(--mist);
+  color: var(--warning);
+  background: var(--warning-tint);
 }
 
 .tone-prioridade {

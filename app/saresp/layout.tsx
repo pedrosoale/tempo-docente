@@ -6,7 +6,7 @@ export default function SarespLayout({ children }: Readonly<{ children: React.Re
   return (
     <>
       <Header />
-      <main className="saresp-main">{children}</main>
+      <main className="saresp-main" id="main-content">{children}</main>
       <Footer />
     </>
   );

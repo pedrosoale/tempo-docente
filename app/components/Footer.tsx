@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="footer" id="sobre">
+    <footer className="footer">
       <div className="container footer-main">
         <div>
           <a className="wordmark footer-wordmark" href="/">
@@ -10,10 +10,13 @@ export function Footer() {
           <p>Dados, planejamento e inteligência para a educação.</p>
         </div>
         <nav aria-label="Navegação do rodapé">
+          <a href="/">Início</a>
           <a href="/bncc">BNCC</a>
-          <a href="/#avaliacoes">Avaliações</a>
-          <a href="/#dados">Dados Educacionais</a>
-          <a href="/#sobre">Sobre</a>
+          <a href="/bncc/educacao-infantil">Educação Infantil</a>
+          <a href="/bncc/ensino-fundamental">Ensino Fundamental</a>
+          <a href="/bncc/ensino-medio">Ensino Médio</a>
+          <a href="/bncc/competencias-gerais">Competências Gerais</a>
+          <a href="/saresp">SARESP</a>
           <a href="mailto:contato@tempodocente.com.br">Contato</a>
         </nav>
       </div>

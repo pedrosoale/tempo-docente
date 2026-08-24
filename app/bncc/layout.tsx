@@ -6,7 +6,7 @@ export default function BnccLayout({ children }: Readonly<{ children: React.Reac
   return (
     <>
       <Header />
-      <main className="bncc-main">{children}</main>
+      <main className="bncc-main" id="main-content">{children}</main>
       <Footer />
     </>
   );
