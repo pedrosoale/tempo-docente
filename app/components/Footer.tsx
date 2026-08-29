@@ -17,7 +17,8 @@ export function Footer() {
           <a href="/bncc/ensino-medio">Ensino Médio</a>
           <a href="/bncc/competencias-gerais">Competências Gerais</a>
           <a href="/saresp">SARESP</a>
-          <a href="mailto:contato@tempodocente.com.br">Contato</a>
+          <a href="/sobre">Sobre</a>
+          <a href="mailto:tempodocente@gmail.com">Contato</a>
         </nav>
       </div>
       <div className="container footer-bottom">

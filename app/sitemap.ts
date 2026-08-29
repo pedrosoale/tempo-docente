@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/bncc/educacao-infantil",
     ...CAMPOS_EXPERIENCIA_INFANTIL.map((campo) => `/bncc/educacao-infantil/${campo.slug}`),
     "/saresp",
+    "/sobre",
   ];
   return [
     ...staticRoutes.map((route) => ({ url: `${baseUrl}${route}`, changeFrequency: "monthly" as const, priority: route === "" ? 1 : 0.8 })),

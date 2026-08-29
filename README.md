@@ -133,12 +133,16 @@ com certificado SSL provisionado automaticamente pela Cloudflare.
 
 Os registros de e-mail existentes no domínio (`MX` vazio, `TXT` SPF `-all`, `TXT`
 DMARC `p=reject`) são intencionais — dizem "este domínio não envia e-mail" e foram
-mantidos como estavam na zona da Cloudflare. **Isso significa que
-`contato@tempodocente.com.br` (link no rodapé do site) não é funcional hoje** —
-não há nenhum serviço de e-mail configurado para o domínio. Se isso for
-configurado no futuro (Cloudflare Email Routing para encaminhamento gratuito, ou
-Google Workspace/Zoho Mail para caixas de e-mail completas), os registros acima
-precisam ser substituídos pelos que o provedor escolhido exigir.
+mantidos como estavam na zona da Cloudflare. **Isso significa que um endereço no
+próprio domínio (ex.: `contato@tempodocente.com.br`) não seria funcional hoje** —
+não há nenhum serviço de e-mail configurado para o domínio. Por isso, os links
+públicos de contato do site (rodapé e página `/sobre`) usam um endereço
+provisório em outro provedor (`tempodocente@gmail.com`) até que o roteamento de
+e-mail do domínio seja configurado. Se isso for configurado no futuro
+(Cloudflare Email Routing para encaminhamento gratuito, ou Google Workspace/Zoho
+Mail para caixas de e-mail completas), os registros acima precisam ser
+substituídos pelos que o provedor escolhido exigir, e os links públicos podem
+voltar a apontar para um endereço no domínio próprio.
 
 ## Estrutura do projeto
 

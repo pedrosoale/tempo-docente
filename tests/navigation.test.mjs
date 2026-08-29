@@ -42,7 +42,7 @@ test("no old anchor link (#avaliacoes, #dados, #ferramentas, #sobre) appears any
   }
 });
 
-test("Header and Footer only link to real destinations (/, /bncc, /saresp, and the four BNCC submenu pages)", () => {
+test("Header and Footer only link to real destinations (/, /bncc, /saresp, /sobre, and the four BNCC submenu pages)", () => {
   const headerBlock = homeHtml.match(/<header class="site-header">[^]*?<\/header>/)?.[0] ?? "";
   const footerBlock = homeHtml.match(/<footer class="footer">[^]*?<\/footer>/)?.[0] ?? "";
   assert.ok(headerBlock, "missing <header>");
@@ -52,8 +52,10 @@ test("Header and Footer only link to real destinations (/, /bncc, /saresp, and t
     assert.ok(!headerBlock.includes(href), `header still links to ${href}`);
     assert.ok(!footerBlock.includes(href), `footer still links to ${href}`);
   }
-  assert.ok(!headerBlock.includes(">Sobre<"), "header still shows a Sobre label");
-  assert.ok(!footerBlock.includes(">Sobre<"), "footer still shows a Sobre label");
+
+  // "Sobre" now exists as a real page — it must link to /sobre, never to the old #sobre anchor.
+  assert.match(headerBlock, /href="\/sobre"[^>]*>Sobre</, "header should link 'Sobre' to the real /sobre page");
+  assert.match(footerBlock, /href="\/sobre">Sobre</, "footer should link 'Sobre' to the real /sobre page");
 
   assert.match(headerBlock, /href="\/saresp"/);
   assert.match(footerBlock, /href="\/saresp"/);
