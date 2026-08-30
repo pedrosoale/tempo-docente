@@ -18,6 +18,7 @@ export function Footer() {
           <a href="/bncc/competencias-gerais">Competências Gerais</a>
           <a href="/saresp">SARESP</a>
           <a href="/sobre">Sobre</a>
+          <a href="/privacidade">Privacidade</a>
           <a href="mailto:tempodocente@gmail.com">Contato</a>
         </nav>
       </div>

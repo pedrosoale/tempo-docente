@@ -92,7 +92,7 @@ test("sitemap.xml is served with a 200 and an XML content type", () => {
 });
 
 test("includes the core public routes", () => {
-  const expected = ["", "/bncc", "/bncc/competencias-gerais", "/bncc/ensino-fundamental", "/bncc/ensino-medio", "/bncc/educacao-infantil", "/saresp", "/sobre"];
+  const expected = ["", "/bncc", "/bncc/competencias-gerais", "/bncc/ensino-fundamental", "/bncc/ensino-medio", "/bncc/educacao-infantil", "/saresp", "/sobre", "/privacidade"];
   for (const route of expected) {
     assert.ok(locs.includes(`${BASE_URL}${route}`), `missing ${route}`);
   }
@@ -101,6 +101,11 @@ test("includes the core public routes", () => {
 test("includes /sobre exactly once", () => {
   const matches = locs.filter((loc) => loc === `${BASE_URL}/sobre`);
   assert.equal(matches.length, 1, `expected /sobre exactly once, found ${matches.length}`);
+});
+
+test("includes /privacidade exactly once", () => {
+  const matches = locs.filter((loc) => loc === `${BASE_URL}/privacidade`);
+  assert.equal(matches.length, 1, `expected /privacidade exactly once, found ${matches.length}`);
 });
 
 test("includes every Ensino Fundamental componente hub page", () => {
@@ -209,7 +214,7 @@ test("does not include routes for unimplemented or non-page functionality", () =
   }
 });
 
-test("total URL count matches exactly what the current BNCC/SARESP/institutional data supports — 1682 (1681 previous + 1 /sobre)", async () => {
+test("total URL count matches exactly what the current BNCC/SARESP/institutional data supports — 1683 (1682 previous + 1 /privacidade)", async () => {
   const staticRouteCount =
     1 + // home
     1 + // /bncc
@@ -219,6 +224,7 @@ test("total URL count matches exactly what the current BNCC/SARESP/institutional
     1 + // /saresp
     1 + // /bncc/educacao-infantil
     1 + // /sobre
+    1 + // /privacidade
     FUNDAMENTAL_COMPONENTES.length + // one hub page per componente
     CAMPOS_EXPERIENCIA_INFANTIL.length; // one page per campo de experiências
 
@@ -230,6 +236,6 @@ test("total URL count matches exactly what the current BNCC/SARESP/institutional
   const expectedCodes = await expectedCodeSet();
   const expectedTotal = staticRouteCount + yearPageCount + ENSINO_MEDIO_AREAS.length + expectedCodes.size;
 
-  assert.equal(expectedTotal, 1682, "the independently-derived expectation itself should land on 1682");
+  assert.equal(expectedTotal, 1683, "the independently-derived expectation itself should land on 1683");
   assert.equal(locs.length, expectedTotal);
 });

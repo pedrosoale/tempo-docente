@@ -61,6 +61,15 @@ test("Header and Footer only link to real destinations (/, /bncc, /saresp, /sobr
   assert.match(footerBlock, /href="\/saresp"/);
 });
 
+// ---- Privacidade: Footer only, never the main Header menu ----
+
+test("'Privacidade' is a Footer-only link — never added to the main Header menu", () => {
+  const headerBlock = homeHtml.match(/<header class="site-header">[^]*?<\/header>/)?.[0] ?? "";
+  const footerBlock = homeHtml.match(/<footer class="footer">[^]*?<\/footer>/)?.[0] ?? "";
+  assert.match(footerBlock, /href="\/privacidade">Privacidade</, "footer should link 'Privacidade' to the real /privacidade page");
+  assert.ok(!headerBlock.includes("/privacidade"), "the main Header menu should never link to /privacidade");
+});
+
 // ---- 2. Submenu BNCC contém exatamente os quatro destinos previstos ----
 
 test("the BNCC submenu contains exactly the four expected destinations, in both the desktop dropdown and the mobile accordion", () => {
@@ -261,7 +270,7 @@ test("a skip link to #main-content is the first link rendered on every page", ()
 // ---- 10. Exatamente um #main-content por família de página ----
 
 test("every page family has exactly one #main-content landmark, and the skip link is present on each", async () => {
-  const paths = ["/", "/bncc/matematica", "/saresp", "/rota-inexistente-para-o-404"];
+  const paths = ["/", "/bncc/matematica", "/saresp", "/privacidade", "/rota-inexistente-para-o-404"];
   for (const path of paths) {
     const response = await render(path);
     const html = await response.text();

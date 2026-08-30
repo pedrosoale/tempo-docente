@@ -1,0 +1,103 @@
+/* Tokens do design system global (app/globals.css) reutilizados como estão:
+   --navy, --teal, --teal-dark, --paper, --soft-ink, --line, --muted, --radius-md,
+   .container, .section, .section-kicker, .section-heading — igual a
+   app/sobre/sobre.css e app/bncc/bncc.css. Este arquivo só cobre o que é
+   específico desta página. */
+
+.privacidade-main {
+  min-height: 70vh;
+  background: var(--paper);
+}
+
+.privacidade-intro {
+  padding: 44px 0 56px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(115deg, #fafaf7 0%, #f7faf8 62%, #eef7f4 100%);
+}
+
+.privacidade-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 32px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.privacidade-breadcrumb a:hover {
+  color: var(--teal-dark);
+}
+
+.privacidade-breadcrumb span[aria-current="page"] {
+  color: var(--soft-ink);
+  font-weight: 620;
+}
+
+.privacidade-intro h1 {
+  max-width: 640px;
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(34px, 4.2vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.privacidade-lede {
+  max-width: 68ch;
+  margin: 20px 0 0;
+  color: var(--soft-ink);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.privacidade-prose p {
+  max-width: 72ch;
+  margin: 0 0 16px;
+  color: var(--soft-ink);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.privacidade-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.privacidade-prose .text-link {
+  margin-top: 4px;
+}
+
+.privacidade-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  max-width: 72ch;
+}
+
+.privacidade-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  color: var(--soft-ink);
+  font-size: 15.5px;
+  line-height: 1.6;
+}
+
+.privacidade-list svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--teal-dark);
+}
+
+.privacidade-updated {
+  color: var(--muted);
+  font-size: 13.5px;
+}
+
+@media (max-width: 640px) {
+  .privacidade-intro {
+    padding: 32px 0 40px;
+  }
+}

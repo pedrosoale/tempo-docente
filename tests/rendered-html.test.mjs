@@ -37,6 +37,53 @@ test("server-renders the Tempo Docente homepage", async () => {
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
 
+test("the homepage has exactly one canonical link, pointing to the domain root", async () => {
+  const response = await render();
+  const html = await response.text();
+  const matches = [...html.matchAll(/<link rel="canonical" href="([^"]+)"/g)];
+  assert.equal(matches.length, 1, `expected exactly one canonical link, found ${matches.length}`);
+  assert.equal(matches[0][1], "https://tempodocente.com.br");
+});
+
+test("the homepage JSON-LD is a single, valid WebSite entry with the approved Person as creator", async () => {
+  const response = await render();
+  const html = await response.text();
+
+  const scriptMatches = [...html.matchAll(/<script type="application\/ld\+json">([^]*?)<\/script>/g)];
+  assert.equal(scriptMatches.length, 1, `expected exactly one JSON-LD script tag, found ${scriptMatches.length}`);
+
+  let data;
+  assert.doesNotThrow(() => { data = JSON.parse(scriptMatches[0][1]); }, "homepage JSON-LD must be valid, parseable JSON");
+
+  assert.equal(data["@context"], "https://schema.org");
+  assert.equal(data["@type"], "WebSite");
+  assert.equal(data.name, "Tempo Docente");
+  assert.equal(data.url, "https://tempodocente.com.br");
+  assert.equal(data.inLanguage, "pt-BR");
+  assert.equal(typeof data.description, "string");
+  assert.ok(data.description.length > 0);
+
+  const person = data.creator;
+  assert.equal(person["@type"], "Person");
+  assert.equal(person.name, "Alexandre Pedroso");
+  assert.equal(person.jobTitle, "Professor de Matemática");
+  assert.equal(person.url, "https://tempodocente.com.br/sobre");
+  assert.deepEqual(person.sameAs, ["https://lattes.cnpq.br/9478556199676330"]);
+
+  // Nothing beyond the approved fields: no Organization, no alternateName, no full
+  // legal name, no email/phone/address, no logo, no nonexistent social profile.
+  const serialized = JSON.stringify(data);
+  assert.doesNotMatch(serialized, /"@type":"Organization"/);
+  assert.doesNotMatch(serialized, /alternateName/i);
+  assert.doesNotMatch(serialized, /Alexandre da Silva Pedroso/);
+  assert.doesNotMatch(serialized, /telefone|phone|address|endereco|endereço|logo/i);
+  assert.doesNotMatch(serialized, /@gmail|@hotmail|@yahoo|mailto/i);
+  assert.doesNotMatch(serialized, /linkedin|instagram|facebook|twitter|x\.com/i);
+
+  // The script tag itself must not be prematurely closed by an unescaped "<".
+  assert.doesNotMatch(scriptMatches[0][1], /<\/script/i);
+});
+
 test("includes semantic navigation and source transparency", async () => {
   const response = await render();
   const html = await response.text();
