@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
+import { readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 
 async function render(path = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -27,15 +30,17 @@ test("/privacidade renders with status 200", () => {
 
 test("metadata: title, description and canonical are correct", () => {
   assert.match(html, /<title>Privacidade \| Tempo Docente<\/title>/);
-  assert.match(html, /<meta name="description" content="Como o Tempo Docente protege a privacidade e pretende utilizar métricas agregadas/);
+  assert.match(html, /<meta name="description" content="Como o Tempo Docente utiliza métricas agregadas da Cloudflare/);
   assert.match(html, /<link rel="canonical" href="https:\/\/tempodocente\.com\.br\/privacidade"/);
 });
 
-test("metadata never claims the site already measures usage, nor promises no personal data collection at all", () => {
+test("metadata describes metric use in the present tense, without a blanket no-personal-data promise", () => {
   const metaDescriptions = [...html.matchAll(/<meta (?:name="description"|property="og:description") content="([^"]*)"/g)].map((m) => m[1]);
   assert.ok(metaDescriptions.length >= 2, "expected both a description and an og:description");
   for (const description of metaDescriptions) {
-    assert.doesNotMatch(description, /\bmede o uso\b|\bmedimos\b|\bcoleta(mos)? dados de uso\b/i, `metadata should not claim measurement is active: ${description}`);
+    // Present tense: Web Analytics IS active, so "pretende utilizar" would now be wrong.
+    assert.match(description, /utiliza métricas agregadas da Cloudflare/i, `metadata should describe metric use in the present: ${description}`);
+    assert.doesNotMatch(description, /pretende utilizar/i, `metadata should not frame metrics as merely planned: ${description}`);
     assert.doesNotMatch(description, /sem coleta de dados pessoais/i, `metadata should not make a blanket no-personal-data promise: ${description}`);
   }
 });
@@ -62,71 +67,75 @@ test("states the absence of analytics cookies", () => {
   assert.match(html, /Não usa nem pretende usar cookies de analytics/);
 });
 
-test("names Cloudflare as the planned metrics provider, with an HTTPS link to its privacy policy", () => {
-  assert.match(html, /fornecedor de métricas planejado para o Tempo Docente é a Cloudflare/i);
+test("names Cloudflare as the party that processes the metrics, in the present, with an HTTPS link to its policy", () => {
+  assert.match(html, /Quem processa essas métricas é a Cloudflare/i);
+  assert.match(html, /<h2>Quem processa essas métricas<\/h2>/);
+  assert.doesNotMatch(html, /fornecedor de métricas planejado/i, "Cloudflare is no longer merely 'planned' — Web Analytics is active");
   const hrefPattern = new RegExp(`href="${CLOUDFLARE_PRIVACY_URL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`);
   assert.match(html, hrefPattern);
   assert.match(html, /href="https:\/\/www\.cloudflare\.com\/privacypolicy\/"/, "Cloudflare link must use HTTPS");
 });
 
-test("explains that only aggregated access, usage and performance information is planned", () => {
-  assert.match(html, /pretende utilizar\s+métricas agregadas de uso do site/);
-  assert.match(html, /números de acesso, páginas visitadas e indicadores de desempenho\s+técnico/);
-});
+// ---- Estado atual: Web Analytics ATIVO, eventos próprios ainda não ----
 
-// ---- Estado atual: métricas ainda NÃO habilitadas ----
-
-test("states unambiguously, near the top of the page, exactly WHAT is not enabled yet", () => {
-  // The status must be specific: the Web Analytics beacon and the project's own product events —
-  // not a blanket claim that no measurement of any kind exists.
-  assert.match(html, /o beacon do Cloudflare Web Analytics e os eventos próprios de métricas do Tempo Docente\s+ainda não estão habilitados/);
+test("declares unambiguously, near the top, that Cloudflare Web Analytics IS active on the domain", () => {
+  assert.match(html, /No domínio tempodocente\.com\.br, o Cloudflare Web Analytics está ativo por injeção automática da\s+infraestrutura da Cloudflare/);
+  assert.match(html, /Os eventos próprios de métricas do Tempo Docente ainda não existem/);
 
   // "Near the top": the status must appear before the first <h2>, i.e. still in the intro section.
-  const statusIndex = html.indexOf("ainda não estão habilitados");
+  const statusIndex = html.indexOf("está ativo por injeção automática");
   const firstH2Index = html.indexOf("<h2>");
   assert.ok(statusIndex > -1, "status sentence not found");
   assert.ok(firstH2Index > -1, "no <h2> found");
-  assert.ok(statusIndex < firstH2Index, "the 'not enabled yet' status must appear before the first section heading");
+  assert.ok(statusIndex < firstH2Index, "the status must appear before the first section heading");
 });
 
-test("never makes the over-broad claim that no measurement at all exists", () => {
-  // The domain is proxied through Cloudflare, which can produce edge/operational traffic metrics
-  // regardless of the Web Analytics beacon — so these blanket sentences would be inaccurate.
-  assert.doesNotMatch(html, /Nenhuma ferramenta de\s+medição está ativa/);
+test("no longer claims the beacon is disabled, planned, or merely upcoming", () => {
+  // Web Analytics is demonstrably active in production (beacon.min.js + POSTs to /cdn-cgi/rum),
+  // so every "not enabled yet / planned" formulation would now be false.
+  assert.doesNotMatch(html, /beacon[^.]{0,80}ainda não está habilitado/i);
+  assert.doesNotMatch(html, /ainda não estão habilitados/i);
+  assert.doesNotMatch(html, /Cloudflare Web Analytics planejado/i);
+  assert.doesNotMatch(html, /fornecedor de métricas planejado/i);
   assert.doesNotMatch(html, /Nenhuma métrica está sendo processada hoje/);
-  assert.doesNotMatch(html, /nenhuma contagem de acessos?/i);
+  assert.doesNotMatch(html, /Nenhuma ferramenta de\s+medição está ativa/);
 });
 
-test("acknowledges that Cloudflare's infrastructure can already produce aggregated operational metrics", () => {
-  assert.match(html, /pode produzir métricas operacionais agregadas\s+sobre requisições e tráfego/);
-  assert.match(html, /diferente do Cloudflare Web Analytics planejado e dos futuros\s+eventos próprios de produto/);
+test("keeps the three measurement layers clearly distinguished", () => {
+  // 1) infrastructure operational metrics
+  assert.match(html, /Métricas operacionais da infraestrutura\./);
+  assert.match(html, /pode produzir métricas agregadas sobre requisições e tráfego/);
+  // 2) Cloudflare Web Analytics — active
+  assert.match(html, /Cloudflare Web Analytics — ativo\./);
+  // 3) own product events — do not exist yet
+  assert.match(html, /Eventos próprios do Tempo Docente — ainda não existem\./);
+  assert.match(html, /não devem ser confundidas com o\s+Cloudflare Web Analytics/);
 });
 
-test("describes future metric use in conditional/planned language, never as already happening", () => {
-  assert.match(html, /pretende utilizar/i);
-  assert.match(html, /Quando habilitadas/i);
-  assert.match(html, /poderão ser utilizadas/i);
+test("explains how the beacon works: edge-injected, not in the code, measuring pageviews and performance via /cdn-cgi/rum", () => {
+  assert.match(html, /insere automaticamente, na borda da rede dela, um pequeno script de medição/);
+  assert.match(html, /não foi adicionado manualmente ao código do site/);
+  assert.match(html, /mede visualizações de páginas e indicadores de desempenho/);
+  assert.match(html, /\/cdn-cgi\/rum/);
+  assert.match(html, /não existe no\s+repositório do\s+projeto e não aparece nas versões de teste/);
 });
 
-test("never asserts in the present tense that the site already measures usage", () => {
-  assert.doesNotMatch(html, /o Tempo Docente mede o uso do site/i);
-  assert.doesNotMatch(html, /informações são medidas sobre o uso/i);
-  assert.doesNotMatch(html, /Essas medições descrevem/i);
-  assert.doesNotMatch(html, /<h2>O que medimos<\/h2>/);
+test("keeps only the project's OWN future events in conditional language", () => {
+  assert.match(html, /ainda não existem/i);
+  assert.match(html, /possibilidade futura/i);
+  // The active layers must be described in the present, not as something planned.
+  assert.match(html, /<h2>O que é medido<\/h2>/);
+  assert.match(html, /<h2>Para que essas informações são usadas<\/h2>/);
 });
 
-test("never presents Web Analytics, Analytics Engine or own events as already active", () => {
-  // "Cloudflare Web Analytics" may now be named — but only as the thing that is NOT yet enabled.
-  assert.match(html, /O beacon do Cloudflare Web Analytics ainda não está habilitado, e os eventos próprios de\s+produto ainda não existem/);
+test("never presents the Analytics Engine or own product events as already active", () => {
   assert.doesNotMatch(html, /Analytics Engine/i);
-  // An "is enabled/active" claim only counts as a violation when it is NOT negated before the
-  // sentence ends — otherwise "os eventos próprios ainda não estão habilitados" would trip it.
-  assert.doesNotMatch(html, /Web Analytics(?![^.]*não)[^.]{0,40}(está|estão) (ativo|habilitado)/i);
   assert.doesNotMatch(html, /eventos próprios(?![^.]*não)[^.]{0,40}(está|estão) (ativos?|habilitados?)/i);
 });
 
-test("records that the status will be updated when measurement is actually enabled", () => {
-  assert.match(html, /será atualizado no mesmo momento em que a medição for efetivamente ativada/);
+test("promises to update the page before OWN events start, not when the beacon gets enabled", () => {
+  assert.match(html, /se\s+o Tempo Docente passar a coletar eventos próprios de produto, esta página será atualizada antes de\s+isso entrar em vigor/);
+  assert.doesNotMatch(html, /será atualizado no mesmo momento em que a medição for efetivamente ativada/);
 });
 
 test("scopes the search-text, school and persistent-identifier commitments to the project's OWN product events", () => {
@@ -145,9 +154,9 @@ test("never promises, in absolute terms, that search text or school identity are
   assert.doesNotMatch(html, /Não registrará nome ou código de escola nas informações de uso/);
 });
 
-test("frames the limits as the project's own decisions, valid today and after metrics are enabled", () => {
+test("frames the limits as the project's own decisions, valid today and if own events ever exist", () => {
   assert.match(html, /compromissos que dependem de decisões do próprio Tempo Docente/);
-  assert.match(html, /Valem hoje e continuarão\s+valendo quando as métricas forem habilitadas/);
+  assert.match(html, /Valem hoje e\s+continuarão valendo caso os eventos próprios de produto venham a existir/);
 });
 
 // ---- URLs e caminhos: processados tecnicamente pela infraestrutura ----
@@ -164,7 +173,7 @@ test("explains concretely why that matters: BNCC search is a URL parameter and S
 
 test("locates the project's real commitment in what it chooses to send, not in what infrastructure processes", () => {
   assert.match(html, /O compromisso do projeto está no que ele decide enviar/);
-  assert.match(html, /os eventos próprios de\s+métricas não incluirão o texto livre de busca, nem nome ou código de escola, nem identificador\s+persistente/);
+  assert.match(html, /caso esses eventos passem a\s+existir, não incluirão o texto livre de busca, nem nome ou código de escola, nem identificador\s+persistente/);
 });
 
 test("states metrics could only be used to improve content, navigation, performance and tools", () => {
@@ -190,8 +199,8 @@ test("states the project does not intend to use IP for individual profiles or to
   assert.match(html, /não pretende usar o endereço IP para criar perfis individuais nem para\s+identificar professores/);
 });
 
-test("keeps the distinction between infrastructure processing and the planned product metrics", () => {
-  assert.match(html, /processamento técnico de infraestrutura é diferente das métricas de produto/);
+test("keeps the distinction between infrastructure processing and the not-yet-existing own product events", () => {
+  assert.match(html, /processamento técnico de infraestrutura é diferente dos eventos próprios de produto, que ainda\s+não existem/);
 });
 
 // ---- Nenhuma promessa ampla de "sem coleta de dados pessoais" ----
@@ -225,13 +234,43 @@ test("never mentions GA4, Google Analytics, Google Tag Manager, Zaraz or Plausib
 
 // ---- Ausência de scripts/beacons de analytics e de tokens ----
 
-test("has no third-party analytics script, beacon, or token of any kind", () => {
-  assert.doesNotMatch(html, /cloudflareinsights\.com/i);
+// IMPORTANT — what this test does and does NOT assert.
+//
+// It asserts only that THE PROJECT does not embed any analytics script, token or beacon
+// attribute of its own into the HTML it produces. That is the part the codebase controls.
+//
+// It deliberately does NOT assert that no beacon reaches the visitor's browser in production.
+// On tempodocente.com.br the Cloudflare Web Analytics beacon IS active: Cloudflare injects it
+// automatically at the edge of its zone, as the HTML response passes through, and the browser
+// then POSTs to /cdn-cgi/rum. That injection happens after this HTML leaves the Worker, so it
+// is invisible both to this render and to the workers.dev preview, which sits outside the zone.
+// Asserting "no beacon in production" here would therefore be false — see the page copy, which
+// documents the active beacon explicitly.
+test("the project itself embeds no analytics script, token or beacon attribute in the HTML it produces", () => {
+  assert.doesNotMatch(html, /cloudflareinsights\.com/i, "the project must not hardcode the Cloudflare beacon script");
   assert.doesNotMatch(html, /gtag\(|googletagmanager\.com|google-analytics\.com/i);
-  assert.doesNotMatch(html, /data-cf-beacon|data-token/i);
+  assert.doesNotMatch(html, /data-cf-beacon|data-token/i, "the project must not hardcode a beacon token/attribute");
+  assert.doesNotMatch(html, /\bZaraz\b|\bPlausible\b/i);
   // No JSON-LD or other inline <script> block either — this page deliberately ships none
   // (the app's own /_next/static/chunks/*.js module scripts are the framework runtime, not analytics).
   assert.doesNotMatch(html, /<script type="application\/ld\+json">/i);
+});
+
+test("the repository contains no manual analytics implementation anywhere in app/ or worker/", () => {
+  // Complements the render-level check above: guards the source itself, so a beacon can never be
+  // added by hand without this test failing. Edge injection by Cloudflare is out of scope here.
+  const offenders = [];
+  for (const root of ["app", "worker"]) {
+    const rootDir = fileURLToPath(new URL(`../${root}`, import.meta.url));
+    for (const entry of readdirSync(rootDir, { recursive: true, withFileTypes: true })) {
+      if (!entry.isFile() || !/\.(tsx?|jsx?|mjs|css)$/.test(entry.name)) continue;
+      const full = join(entry.parentPath ?? entry.path, entry.name);
+      if (/cloudflareinsights\.com|data-cf-beacon|googletagmanager|google-analytics\.com|gtag\(/i.test(readFileSync(full, "utf-8"))) {
+        offenders.push(full);
+      }
+    }
+  }
+  assert.deepEqual(offenders, [], `unexpected analytics implementation found in: ${offenders.join(", ")}`);
 });
 
 // ---- Link no Footer ----
