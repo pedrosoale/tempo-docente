@@ -139,7 +139,7 @@ test("JSON-LD ProfilePage/Person is present, valid, and contains only approved f
   const person = data.mainEntity;
   assert.equal(person["@type"], "Person");
   assert.equal(person.name, "Alexandre Pedroso");
-  assert.equal(person.alternateName, "Alexandre da Silva Pedroso");
+  assert.equal(person.alternateName, undefined, "alternateName should not be published — only the approved professional name is used");
   assert.equal(person.jobTitle, "Professor de Matemática");
   assert.deepEqual(person.sameAs, [LATTES_URL]);
 
@@ -151,10 +151,15 @@ test("JSON-LD ProfilePage/Person is present, valid, and contains only approved f
   assert.doesNotMatch(serialized, /linkedin|instagram|facebook|twitter|x\.com/i);
   assert.doesNotMatch(serialized, /\bEscola\b|\bColégio\b/);
   assert.doesNotMatch(serialized, /prêmio|premiação|award/i);
+  assert.doesNotMatch(serialized, /Alexandre da Silva Pedroso/);
 
   // The script tag itself must not be prematurely closed by an unescaped "<" — the
   // page escapes "<" to < specifically to guarantee this.
   assert.doesNotMatch(scriptMatch[1], /<\/script/i);
+});
+
+test("the full legal name never appears anywhere on /sobre — only 'Alexandre Pedroso' is published", () => {
+  assert.doesNotMatch(html, /Alexandre da Silva Pedroso/);
 });
 
 // ---- Navegação: Sobre no menu mobile também ----

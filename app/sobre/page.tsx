@@ -33,7 +33,6 @@ const profileJsonLd = {
   mainEntity: {
     "@type": "Person",
     name: "Alexandre Pedroso",
-    alternateName: "Alexandre da Silva Pedroso",
     jobTitle: "Professor de Matemática",
     description: "Professor de Matemática, mestre em Matemática e criador do Tempo Docente.",
     url: "https://tempodocente.com.br/sobre",
