@@ -112,12 +112,24 @@ test("keeps the three measurement layers clearly distinguished", () => {
   assert.match(html, /não devem ser confundidas com o\s+Cloudflare Web Analytics/);
 });
 
-test("explains how the beacon works: edge-injected, not in the code, measuring pageviews and performance via /cdn-cgi/rum", () => {
-  assert.match(html, /insere automaticamente, na borda da rede dela, um pequeno script de medição/);
-  assert.match(html, /não foi adicionado manualmente ao código do site/);
-  assert.match(html, /mede visualizações de páginas e indicadores de desempenho/);
+test("explains how the beacon works: edge-injected by the zone config, not in the repo, measuring pageviews and performance via /cdn-cgi/rum", () => {
+  assert.match(html, /inserido automaticamente na borda da rede da Cloudflare, pela configuração da\s+zona/);
+  assert.match(html, /não está incorporado manualmente ao repositório do projeto/);
+  assert.match(html, /mede visualizações de páginas e indicadores de\s+desempenho/);
   assert.match(html, /\/cdn-cgi\/rum/);
-  assert.match(html, /não existe no\s+repositório do\s+projeto e não aparece nas versões de teste/);
+  assert.match(html, /não aparece\s+nas versões de teste/);
+});
+
+test("does not claim the project lacks control over Web Analytics — only that it is not embedded in the repo", () => {
+  // The zone owner can enable, disable and configure Web Analytics in the Cloudflare dashboard,
+  // so framing it as outside the project's control would be inaccurate.
+  assert.doesNotMatch(html, /só a terceira\s+depende de uma decisão do Tempo Docente/);
+  assert.doesNotMatch(html, /não depende(m)? (de uma decisão|do controle) do Tempo Docente/i);
+  assert.doesNotMatch(html, /fora do controle do Tempo Docente/i);
+});
+
+test("separates the three layers by origin, purpose and level of control", () => {
+  assert.match(html, /Vale separá-las porque possuem origens,\s+finalidades e níveis de controle diferentes/);
 });
 
 test("keeps only the project's OWN future events in conditional language", () => {
@@ -176,8 +188,22 @@ test("locates the project's real commitment in what it chooses to send, not in w
   assert.match(html, /caso esses eventos passem a\s+existir, não incluirão o texto livre de busca, nem nome ou código de escola, nem identificador\s+persistente/);
 });
 
-test("states metrics could only be used to improve content, navigation, performance and tools", () => {
-  assert.match(html, /orientar melhorias no\s+conteúdo, na navegação, no desempenho e nas ferramentas/);
+test("attributes the 'improvement' purpose specifically to the Web Analytics reports available to the project", () => {
+  assert.match(html, /As métricas agregadas disponibilizadas ao Tempo Docente pelo Cloudflare Web Analytics são usadas pelo\s+projeto para orientar melhorias no conteúdo, na navegação, no desempenho e nas ferramentas/);
+});
+
+test("keeps the infrastructure's own purposes (delivery, security, operation, abuse prevention) distinct from product improvement", () => {
+  assert.match(html, /O processamento técnico realizado pela infraestrutura da Cloudflare também atende à entrega das\s+páginas, à segurança, à operação do serviço e à prevenção de abusos/);
+});
+
+test("keeps the no-advertising / no-resale / no-individual-identification commitment", () => {
+  assert.match(html, /Nada disso é usado pelo Tempo Docente para publicidade, venda a terceiros ou qualquer forma de\s+identificação individual/);
+});
+
+test("limits the 'collective use' claim to the Web Analytics reports, not to operational metrics generally", () => {
+  assert.match(html, /Os relatórios agregados do Cloudflare Web Analytics descrevem o uso coletivo do site e não têm a\s+finalidade de identificar uma pessoa específica/);
+  assert.doesNotMatch(html, /As métricas das duas primeiras camadas descrevem o comportamento coletivo/);
+  assert.doesNotMatch(html, /métricas operacionais[^.]{0,60}comportamento coletivo/i);
 });
 
 // ---- Explicação sobre endereço IP e infraestrutura ----

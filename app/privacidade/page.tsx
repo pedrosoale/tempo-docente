@@ -52,8 +52,8 @@ export default function PrivacidadePage() {
             </div>
           </div>
           <p>
-            Há três camadas distintas de medição envolvidas neste site. Vale separá-las, porque só a terceira
-            depende de uma decisão do Tempo Docente:
+            Há três camadas distintas de medição envolvidas neste site. Vale separá-las porque possuem origens,
+            finalidades e níveis de controle diferentes:
           </p>
           <ul className="privacidade-list">
             <li>
@@ -67,12 +67,13 @@ export default function PrivacidadePage() {
             <li>
               <ShieldCheck size={18} aria-hidden="true" />
               <span>
-                <strong>Cloudflare Web Analytics — ativo.</strong> No domínio tempodocente.com.br, a Cloudflare
-                insere automaticamente, na borda da rede dela, um pequeno script de medição quando a página é
-                entregue ao navegador. Ele mede visualizações de páginas e indicadores de desempenho (como a
-                velocidade de carregamento) e envia esses dados ao endereço /cdn-cgi/rum, no próprio domínio.
-                Esse script <strong>não foi adicionado manualmente ao código do site</strong>: ele não existe no
-                repositório do projeto e não aparece nas versões de teste, que ficam fora da zona da Cloudflare.
+                <strong>Cloudflare Web Analytics — ativo.</strong> No domínio tempodocente.com.br, um pequeno
+                script de medição é inserido automaticamente na borda da rede da Cloudflare, pela configuração da
+                zona, quando a página é entregue ao navegador. Ele mede visualizações de páginas e indicadores de
+                desempenho (como a velocidade de carregamento) e envia esses dados ao endereço /cdn-cgi/rum, no
+                próprio domínio. Esse script{" "}
+                <strong>não está incorporado manualmente ao repositório do projeto</strong>: por isso não aparece
+                nas versões de teste, que ficam fora da zona da Cloudflare.
               </span>
             </li>
             <li>
@@ -86,8 +87,8 @@ export default function PrivacidadePage() {
             </li>
           </ul>
           <p>
-            As métricas das duas primeiras camadas descrevem o comportamento coletivo de quem visita o site, não o
-            de uma pessoa específica.
+            Os relatórios agregados do Cloudflare Web Analytics descrevem o uso coletivo do site e não têm a
+            finalidade de identificar uma pessoa específica.
           </p>
         </div>
       </section>
@@ -163,10 +164,17 @@ export default function PrivacidadePage() {
             </div>
           </div>
           <p>
-            As métricas agregadas de acesso e desempenho servem exclusivamente para orientar melhorias no
-            conteúdo, na navegação, no desempenho e nas ferramentas do Tempo Docente — por exemplo, entender
-            quais páginas merecem mais atenção. Elas não são usadas para publicidade, venda a terceiros ou
-            qualquer forma de identificação individual.
+            As métricas agregadas disponibilizadas ao Tempo Docente pelo Cloudflare Web Analytics são usadas pelo
+            projeto para orientar melhorias no conteúdo, na navegação, no desempenho e nas ferramentas — por
+            exemplo, entender quais páginas merecem mais atenção.
+          </p>
+          <p>
+            O processamento técnico realizado pela infraestrutura da Cloudflare também atende à entrega das
+            páginas, à segurança, à operação do serviço e à prevenção de abusos, conforme explicado acima.
+          </p>
+          <p>
+            Nada disso é usado pelo Tempo Docente para publicidade, venda a terceiros ou qualquer forma de
+            identificação individual.
           </p>
           <p>
             Se, no futuro, o Tempo Docente passar a medir também interações específicas dentro das ferramentas
