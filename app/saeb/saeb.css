@@ -1,0 +1,297 @@
+/* Tokens do design system global (app/globals.css) reutilizados como estão:
+   --navy, --teal, --teal-dark, --paper, --white, --line, --muted, --soft-ink,
+   --radius-md, --shadow-sm, --font-geist-mono, .container, .section,
+   .section-kicker, .section-heading, .text-link, .button — igual a
+   app/sobre/sobre.css e app/privacidade/privacidade.css. Este arquivo cobre só
+   o que é específico da área SAEB. Nenhuma identidade visual paralela: a
+   abertura, o breadcrumb e a prosa repetem deliberadamente as medidas de
+   /privacidade e /sobre. */
+
+.saeb-main {
+  min-height: 70vh;
+  background: var(--paper);
+}
+
+/* ---- Abertura ---- */
+
+.saeb-intro {
+  padding: 44px 0 56px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(115deg, #fafaf7 0%, #f7faf8 62%, #eef7f4 100%);
+}
+
+.saeb-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 32px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.saeb-breadcrumb a:hover {
+  color: var(--teal-dark);
+}
+
+.saeb-breadcrumb span[aria-current="page"] {
+  color: var(--soft-ink);
+  font-weight: 620;
+}
+
+.saeb-intro h1 {
+  max-width: 700px;
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(34px, 4.2vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.saeb-lede {
+  max-width: 68ch;
+  margin: 20px 0 0;
+  color: var(--soft-ink);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+/* Aviso de estado da ferramenta. Não é um "badge de novidade": existe para
+   impedir que a página seja lida como se a consulta já estivesse no ar. */
+.saeb-status {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 68ch;
+  margin: 28px 0 0;
+  padding: 16px 18px;
+  border: 1px solid #cfe3dd;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--soft-ink);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.saeb-status svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--teal-dark);
+}
+
+/* ---- Prosa ---- */
+
+.saeb-prose p {
+  max-width: 72ch;
+  margin: 0 0 16px;
+  color: var(--soft-ink);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.saeb-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.saeb-prose .text-link {
+  margin-top: 4px;
+}
+
+/* Bloco de prosa que fecha uma seção depois de uma grade ou lista. */
+.saeb-prose-follow {
+  margin-top: 28px;
+}
+
+/* ---- Três definições lado a lado (SAEB / Censo Escolar / Ideb) ----
+   Grade de conceitos paralelos, não uma sequência: sem numeração e sem seta
+   de "próximo passo", pelo mesmo motivo documentado em sobre.css. */
+
+.saeb-concepts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.saeb-concept {
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--white);
+}
+
+.saeb-concept svg {
+  color: var(--teal-dark);
+}
+
+.saeb-concept h3 {
+  margin: 14px 0 8px;
+  color: var(--navy);
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+.saeb-concept p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.saeb-concept-role {
+  display: block;
+  margin-top: 12px;
+  color: var(--teal-dark);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+/* ---- Listas de itens com ícone (mesma anatomia de .privacidade-list) ---- */
+
+.saeb-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  max-width: 72ch;
+}
+
+.saeb-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  color: var(--soft-ink);
+  font-size: 15.5px;
+  line-height: 1.6;
+}
+
+.saeb-list svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--teal-dark);
+}
+
+/* ---- Motivos de ausência de resultado ---- */
+
+.saeb-reasons {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 940px;
+}
+
+.saeb-reasons li {
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--white);
+}
+
+.saeb-reasons strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--navy);
+  font-size: 15.5px;
+}
+
+.saeb-reasons span {
+  display: block;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+/* ---- Painel de fontes ---- */
+
+.saeb-sources {
+  display: grid;
+  gap: 1px;
+  max-width: 940px;
+  overflow: hidden;
+  border: 1px solid #d8e3e0;
+  border-radius: 18px;
+  background: #d8e3e0;
+  box-shadow: var(--shadow-sm);
+}
+
+.saeb-sources a {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 19px 22px;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.saeb-sources a:hover {
+  background: #f5faf8;
+}
+
+.saeb-sources svg {
+  flex: none;
+  color: var(--teal-dark);
+}
+
+/* O texto vive em .saeb-source-text para que a regra da descrição não alcance
+   também o próprio invólucro — um seletor `.saeb-sources span` casaria com os
+   dois e aplicaria a margem duas vezes. */
+.saeb-source-text {
+  display: block;
+}
+
+.saeb-source-text strong {
+  display: block;
+  color: var(--navy);
+  font-size: 15.5px;
+  font-weight: 700;
+}
+
+.saeb-source-text > span {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.saeb-attribution {
+  max-width: 72ch;
+  margin: 24px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+@media (max-width: 980px) {
+  .saeb-concepts {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .saeb-reasons {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .saeb-intro {
+    padding: 32px 0 40px;
+  }
+
+  .saeb-concept,
+  .saeb-reasons li {
+    padding: 20px;
+  }
+
+  .saeb-sources a {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
