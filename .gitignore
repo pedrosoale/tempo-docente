@@ -53,3 +53,11 @@ __pycache__/
 # (committed), and the raw CSVs are re-downloadable from the official source documented in
 # scripts/saresp/build-data.mjs. Keeping them out of git avoids permanent repo bloat.
 /data/saresp/source/
+
+# SAEB: pacotes oficiais do Inep (~211MB em 3 ZIPs) baixados por
+# `npm run saeb:download`, e o log da última execução do importador. Os ZIPs são
+# re-baixáveis das URLs registradas em scripts/saeb/lib/sources.mjs, e o log
+# guarda o horário do run — justamente o que o manifesto versionado não pode
+# conter para permanecer determinístico.
+/data/saeb/source/
+/data/saeb/last-run.log

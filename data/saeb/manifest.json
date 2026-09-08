@@ -1,0 +1,278 @@
+{
+  "criterios": {
+    "ausencia": "marcadores oficiais preservados como estado nomeado; ausência nunca vira zero nem null genérico",
+    "exclusao": [
+      "taxas de aprovação por ano escolar (VL_APROVACAO_*): insumo do indicador de rendimento, já preservado em 'p'",
+      "linhas de rodapé editorial, identificadas pela ausência de ID_ESCOLA",
+      "planilha agregada do SAEB 2025: o Inep não publica MD5 oficial para ela"
+    ],
+    "inclusao": [
+      "toda escola presente na planilha oficial de divulgação por escola da edição 2025",
+      "todas as edições disponíveis em cada pacote, conforme a cobertura específica registrada por etapa"
+    ]
+  },
+  "dataset": {
+    "ausencias_por_estado": {
+      "ausente": 2788379,
+      "nao_divulgado_a_pedido": 12,
+      "nao_divulgado_material_extraviado": 168,
+      "nao_divulgado_por_norma": 920,
+      "participacao_insuficiente": 187478
+    },
+    "edicoes": [
+      "2005",
+      "2007",
+      "2009",
+      "2011",
+      "2013",
+      "2015",
+      "2017",
+      "2019",
+      "2021",
+      "2023",
+      "2025"
+    ],
+    "escolas": 86098,
+    "escolas_por_particao_maior": 1794,
+    "estados_de_ausencia": [
+      {
+        "estado": "nao_divulgado_material_extraviado",
+        "marcador": "ND***",
+        "motivo": "Escola com pelo menos 20% do material extraviado, com participação insuficiente para divulgação dos resultados"
+      },
+      {
+        "estado": "nao_divulgado_a_pedido",
+        "marcador": "ND**",
+        "motivo": "Não divulgado por solicitação da Secretaria ou da escola, por situações adversas no momento da aplicação"
+      },
+      {
+        "estado": "nao_divulgado_por_norma",
+        "marcador": "ND*",
+        "motivo": "Solicitação de não divulgação conforme Portaria Inep nº 410, de 3 de novembro de 2011, ou Portaria Inep nº 304, de 24 de junho de 2013"
+      },
+      {
+        "estado": "participacao_insuficiente",
+        "marcador": "ND",
+        "motivo": "Número de participantes no SAEB insuficiente para que os resultados sejam divulgados"
+      },
+      {
+        "estado": "ausente",
+        "marcador": "-",
+        "motivo": "Sem resultado nesta edição: etapa não avaliada, ou escola inexistente ou sem a etapa na ocasião"
+      }
+    ],
+    "indicadores": [
+      {
+        "campo": "lp",
+        "coluna_origem": "VL_NOTA_PORTUGUES",
+        "descricao": "Proficiência média em Língua Portuguesa, na escala do SAEB"
+      },
+      {
+        "campo": "mt",
+        "coluna_origem": "VL_NOTA_MATEMATICA",
+        "descricao": "Proficiência média em Matemática, na escala do SAEB"
+      },
+      {
+        "campo": "n",
+        "coluna_origem": "VL_NOTA_MEDIA",
+        "descricao": "Nota padronizada N, base SAEB 1997, escala 0 a 10"
+      },
+      {
+        "campo": "p",
+        "coluna_origem": "VL_INDICADOR_REND",
+        "descricao": "Indicador de rendimento P, derivado do Censo Escolar"
+      },
+      {
+        "campo": "ideb",
+        "coluna_origem": "VL_OBSERVADO",
+        "descricao": "Ideb observado, igual a N x P"
+      },
+      {
+        "campo": "meta",
+        "coluna_origem": "VL_PROJECAO",
+        "descricao": "Meta projetada para a escola; existe apenas até 2021"
+      }
+    ],
+    "indice_municipios": 5571,
+    "municipios": 5571,
+    "observacoes": {
+      "avaliacao_estadual": "Média calculada a partir dos resultados dos alunos nas avaliações estaduais, em decorrência do extravio de provas e impossibilidade do cálculo da proficiência para o SAEB"
+    },
+    "schema_indice": "saeb-municipios-indice/1",
+    "schema_particao": "saeb-escolas-municipio/1"
+  },
+  "edicao": "2025",
+  "fonte": {
+    "atribuicao": "Ministério da Educação — Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (MEC/Inep)",
+    "metas_projetadas_ate": "2021",
+    "observacoes_metodologicas": {
+      "2009": {
+        "origem": "rodape da planilha oficial de divulgacao",
+        "restricao": "medias do SAEB e Ideb calculadas somente com escolas urbanas"
+      },
+      "2021": {
+        "origem": "nota_informativa_ideb_2021.pdf",
+        "restricao": "edicao afetada pela pandemia; ler a nota informativa antes de comparar"
+      }
+    },
+    "pagina_oficial": "https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/ideb/resultados/2005-2025"
+  },
+  "ordenacao": {
+    "chaves_json": "todas as chaves de objeto ordenadas lexicograficamente antes da serialização",
+    "escolas": "código INEP da escola, ordem lexicográfica crescente",
+    "particoes": "código IBGE do município, ordem lexicográfica crescente"
+  },
+  "pacotes": [
+    {
+      "arquivo": "divulgacao_anos_iniciais_escolas_2025.zip",
+      "arquivos_internos_utilizados": [
+        "divulgacao_anos_iniciais_escolas_2025/divulgacao_anos_iniciais_escolas_2025.xlsx",
+        "divulgacao_anos_iniciais_escolas_2025/md5_divulgacao_anos_iniciais_escolas_2025.txt"
+      ],
+      "edicoes_cobertas": [
+        "2005",
+        "2007",
+        "2009",
+        "2011",
+        "2013",
+        "2015",
+        "2017",
+        "2019",
+        "2021",
+        "2023",
+        "2025"
+      ],
+      "edicoes_com_meta": [
+        "2007",
+        "2009",
+        "2011",
+        "2013",
+        "2015",
+        "2017",
+        "2019",
+        "2021"
+      ],
+      "escolas": 66138,
+      "etapa": "anosIniciais",
+      "etapa_label": "Ensino Fundamental — Anos Iniciais",
+      "id": "ideb-2025-anos-iniciais",
+      "integridade": {
+        "entradas_do_pacote": [
+          "divulgacao_anos_iniciais_escolas_2025/",
+          "divulgacao_anos_iniciais_escolas_2025/divulgacao_anos_iniciais_escolas_2025.ods",
+          "divulgacao_anos_iniciais_escolas_2025/divulgacao_anos_iniciais_escolas_2025.xlsx",
+          "divulgacao_anos_iniciais_escolas_2025/md5_divulgacao_anos_iniciais_escolas_2025.txt"
+        ],
+        "fingerprints_locais_conferidos": true,
+        "md5_oficial_conferido": true,
+        "xlsx_bytes": 55951332,
+        "xlsx_md5_oficial": "6b4ce48ddcc02b1d4daf08428427342b",
+        "xlsx_md5_recalculado": "6b4ce48ddcc02b1d4daf08428427342b",
+        "xlsx_sha256_local": "61ba8bed4eea34b016ac25219c6d2869802eceb8c83f9d50d4ecded583779cb2",
+        "zip_bytes": 112185922,
+        "zip_sha256_local": "6addade230d4e6419abee5d1f5177f26abaf7f6d80e7f986a08faac931b35080"
+      },
+      "url": "https://download.inep.gov.br/ideb/resultados/divulgacao_anos_iniciais_escolas_2025.zip"
+    },
+    {
+      "arquivo": "divulgacao_anos_finais_escolas_2025.zip",
+      "arquivos_internos_utilizados": [
+        "divulgacao_anos_finais_escolas_2025/divulgacao_anos_finais_escolas_2025.xlsx",
+        "divulgacao_anos_finais_escolas_2025/md5_divulgacao_anos_finais_escolas_2025.txt"
+      ],
+      "edicoes_cobertas": [
+        "2005",
+        "2007",
+        "2009",
+        "2011",
+        "2013",
+        "2015",
+        "2017",
+        "2019",
+        "2021",
+        "2023",
+        "2025"
+      ],
+      "edicoes_com_meta": [
+        "2007",
+        "2009",
+        "2011",
+        "2013",
+        "2015",
+        "2017",
+        "2019",
+        "2021"
+      ],
+      "escolas": 48005,
+      "etapa": "anosFinais",
+      "etapa_label": "Ensino Fundamental — Anos Finais",
+      "id": "ideb-2025-anos-finais",
+      "integridade": {
+        "entradas_do_pacote": [
+          "divulgacao_anos_finais_escolas_2025/",
+          "divulgacao_anos_finais_escolas_2025/divulgacao_anos_finais_escolas_2025.ods",
+          "divulgacao_anos_finais_escolas_2025/divulgacao_anos_finais_escolas_2025.xlsx",
+          "divulgacao_anos_finais_escolas_2025/md5_divulgacao_anos_finais_escolas_2025.txt"
+        ],
+        "fingerprints_locais_conferidos": true,
+        "md5_oficial_conferido": true,
+        "xlsx_bytes": 38492355,
+        "xlsx_md5_oficial": "47eb0dc191844aec1d90d207dc940e40",
+        "xlsx_md5_recalculado": "47eb0dc191844aec1d90d207dc940e40",
+        "xlsx_sha256_local": "d4391932b956d69ebdb65acafcf8b537b071c9257dbafdc2b579dedfdf2ca5e1",
+        "zip_bytes": 80112586,
+        "zip_sha256_local": "4115b81a02f05c908b27eab838e99978b8970b0fcadbf803ee3e69f296ccbc2d"
+      },
+      "url": "https://download.inep.gov.br/ideb/resultados/divulgacao_anos_finais_escolas_2025.zip"
+    },
+    {
+      "arquivo": "divulgacao_ensino_medio_escolas_2025.zip",
+      "arquivos_internos_utilizados": [
+        "divulgacao_ensino_medio_escolas_2025/divulgacao_ensino_medio_escolas_2025.xlsx",
+        "divulgacao_ensino_medio_escolas_2025/md5_divulgacao_ensino_medio_escolas_2025.txt"
+      ],
+      "edicoes_cobertas": [
+        "2017",
+        "2019",
+        "2021",
+        "2023",
+        "2025"
+      ],
+      "edicoes_com_meta": [
+        "2019",
+        "2021"
+      ],
+      "escolas": 22171,
+      "etapa": "ensinoMedio",
+      "etapa_label": "Ensino Médio",
+      "id": "ideb-2025-ensino-medio",
+      "integridade": {
+        "entradas_do_pacote": [
+          "divulgacao_ensino_medio_escolas_2025/",
+          "divulgacao_ensino_medio_escolas_2025/divulgacao_ensino_medio_escolas_2025.ods",
+          "divulgacao_ensino_medio_escolas_2025/divulgacao_ensino_medio_escolas_2025.xlsx",
+          "divulgacao_ensino_medio_escolas_2025/md5_divulgacao_ensino_medio_escolas_2025.txt"
+        ],
+        "fingerprints_locais_conferidos": true,
+        "md5_oficial_conferido": true,
+        "xlsx_bytes": 8809605,
+        "xlsx_md5_oficial": "a6e7cb51332b85ba95fe6fc7a218dddf",
+        "xlsx_md5_recalculado": "a6e7cb51332b85ba95fe6fc7a218dddf",
+        "xlsx_sha256_local": "bedb3e7155f9736e6ecfdbb6ec8be7f36d8a6bc8a3906e1f156c50c6293eb250",
+        "zip_bytes": 18989748,
+        "zip_sha256_local": "85e923b3bcc5b2799b176abb8a611e03716d119b269e6cf3288e07959d29c299"
+      },
+      "url": "https://download.inep.gov.br/ideb/resultados/divulgacao_ensino_medio_escolas_2025.zip"
+    }
+  ],
+  "proveniencia": {
+    "campos_volateis": "nenhum: o manifesto não registra horário de execução, caminho local nem usuário",
+    "identificadores_preservados_como_texto": [
+      "codigoIbge (7 dígitos)",
+      "codigoInep (8 dígitos)"
+    ],
+    "quebra_de_linha": "LF",
+    "separador_decimal": "ponto ou vírgula aceitos como separador decimal na origem; o artefato usa ponto"
+  },
+  "schema_manifesto": 1
+}
