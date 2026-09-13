@@ -56,7 +56,7 @@
   z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
-  align-items: start;
+  align-items: center;
   gap: 64px;
 }
 
@@ -77,44 +77,42 @@
   line-height: 1.7;
 }
 
-/* Painel de credenciais — deliberadamente tipográfico, sem avatar/silhueta/foto.
-   Pensado para ser substituído no futuro por uma fotografia profissional (com
-   legenda) sem precisar mudar o grid de 2 colunas em que já vive. */
-.sobre-profile-card {
-  display: grid;
-  gap: 1px;
-  overflow: hidden;
-  border: 1px solid #d8e3e0;
-  border-radius: 18px;
-  background: #d8e3e0;
-  box-shadow: var(--shadow-sm);
+/* Cópias otimizadas, sem recorte: altura natural preserva inclusive a assinatura. */
+.sobre-photo {
+  margin: 0;
+  min-width: 0;
 }
 
-.sobre-profile-card > div {
-  display: grid;
-  grid-template-columns: 36px 1fr;
-  align-items: center;
-  gap: 14px;
-  padding: 17px 19px;
-  background: rgba(255, 255, 255, 0.94);
-}
-
-.sobre-profile-card svg {
-  color: var(--teal-dark);
-}
-
-.sobre-profile-card span {
+.sobre-photo img {
   display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.sobre-photo figcaption {
+  margin-top: 9px;
   color: var(--soft-ink);
-  font-size: 13.5px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
-.sobre-profile-card strong {
-  display: block;
-  color: var(--navy);
-  font-size: 15px;
-  font-weight: 700;
+.sobre-credentials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 29px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--soft-ink);
+  font-size: 12px;
+}
+
+.sobre-story-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 40px;
 }
 
 /* ---- Prosa (Por que criei / Transparência) ---- */
@@ -227,6 +225,20 @@
   .sobre-intro-grid {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+
+  .sobre-portrait {
+    width: min(100%, 420px);
+    margin-inline: auto;
+  }
+
+  .sobre-story-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .sobre-story-photo {
+    order: 2;
   }
 
   .sobre-research-grid {

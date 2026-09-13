@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowRight, ArrowUpRight, BookOpenCheck, Database, Mail, ShieldCheck } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail } from "lucide-react";
 
 const LATTES_URL = "https://lattes.cnpq.br/9478556199676330";
 const CONTACT_EMAIL = "tempodocente@gmail.com";
@@ -73,30 +73,35 @@ export default function SobrePage() {
                   Entrar em contato <Mail size={16} aria-hidden="true" />
                 </a>
               </div>
+              <div className="sobre-credentials" aria-label="Credenciais">
+                <span>Mestre em Matemática · PROFMAT</span>
+                <span>Licenciado em Matemática e Física</span>
+              </div>
             </div>
 
-            {/* Painel de credenciais — ver comentário em sobre.css sobre a
-                substituição futura por uma fotografia profissional. */}
-            <aside className="sobre-profile-card" aria-label="Credenciais">
-              <div>
-                <ShieldCheck size={20} aria-hidden="true" />
-                <span><strong>Mestre em Matemática</strong>PROFMAT — Universidade Federal do Triângulo Mineiro</span>
-              </div>
-              <div>
-                <BookOpenCheck size={20} aria-hidden="true" />
-                <span><strong>Licenciado</strong>Matemática e Física</span>
-              </div>
-              <div>
-                <Database size={20} aria-hidden="true" />
-                <span><strong>Currículo Lattes</strong>Produção acadêmica completa</span>
-              </div>
-            </aside>
+            <figure className="sobre-photo sobre-portrait">
+              {/* Asset já otimizado, servido diretamente pelo Worker sem endpoint de transformação. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/sobre/alexandre-pedroso-131.webp" width={960} height={1440}
+                alt="Professor Alexandre Pedroso sorrindo, de camisa azul clara, à mesa com livros de Matemática."
+                fetchPriority="high" decoding="async" />
+              <figcaption>Professor Alexandre Pedroso</figcaption>
+            </figure>
           </div>
         </div>
       </section>
 
       <section className="section">
-        <div className="container sobre-prose">
+        <div className="container sobre-story-grid">
+          <figure className="sobre-photo sobre-story-photo">
+            {/* Asset já otimizado; manter enquadramento integral e assinatura do fotógrafo. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/sobre/alexandre-pedroso-74.webp" width={1200} height={800}
+              alt="Alexandre Pedroso com um notebook e livros, sorrindo à mesa."
+              loading="lazy" decoding="async" />
+            <figcaption>Educação, dados e tecnologia.</figcaption>
+          </figure>
+          <div className="sobre-prose">
           <div className="section-heading">
             <div>
               <span className="section-kicker">Motivação</span>
@@ -113,6 +118,7 @@ export default function SobrePage() {
             ajudando professores a encontrar referências curriculares, compreender resultados e tomar decisões
             pedagógicas com mais segurança.
           </p>
+          </div>
         </div>
       </section>
 

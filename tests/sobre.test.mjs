@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { readFileSync } from "node:fs";
 
 async function render(path = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -22,6 +23,33 @@ const html = await response.text();
 
 test("/sobre renders with status 200", () => {
   assert.equal(response.status, 200);
+});
+
+test("approved photographs have descriptive alternatives, dimensions and loading policies", () => {
+  const portrait = html.match(/<img[^>]*src="\/images\/sobre\/alexandre-pedroso-131.webp"[^>]*>/)?.[0];
+  const secondary = html.match(/<img[^>]*src="\/images\/sobre\/alexandre-pedroso-74.webp"[^>]*>/)?.[0];
+  assert.ok(portrait);
+  assert.ok(secondary);
+  assert.match(portrait, /width="960"/);
+  assert.match(portrait, /height="1440"/);
+  assert.match(portrait, /fetchPriority="high"/i);
+  assert.doesNotMatch(portrait, /loading="lazy"/);
+  assert.match(portrait, /alt="Professor Alexandre Pedroso sorrindo/);
+  assert.match(secondary, /width="1200"/);
+  assert.match(secondary, /height="800"/);
+  assert.match(secondary, /loading="lazy"/);
+  assert.match(secondary, /alt="Alexandre Pedroso com um notebook/);
+  assert.match(html, /class="sobre-credentials"/);
+  assert.match(html, /<figcaption>Educação, dados e tecnologia\.<\/figcaption>/);
+});
+
+test("photographs are small local WebP assets, not original full-resolution files", () => {
+  for (const number of [131, 74]) {
+    const bytes = readFileSync(new URL(`../public/images/sobre/alexandre-pedroso-${number}.webp`, import.meta.url));
+    assert.equal(bytes.toString("ascii", 0, 4), "RIFF");
+    assert.equal(bytes.toString("ascii", 8, 12), "WEBP");
+    assert.ok(bytes.length < 250_000);
+  }
 });
 
 // ---- Título e apresentação profissional ----
