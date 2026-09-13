@@ -21,7 +21,8 @@
     "saeb:download": "node --use-system-ca scripts/saeb/import.mjs --download",
     "saeb:import": "node scripts/saeb/import.mjs",
     "saeb:check": "node scripts/saeb/import.mjs --check",
-    "saeb:verify": "node scripts/saeb/import.mjs --verify-source"
+    "saeb:verify": "node scripts/saeb/import.mjs --verify-source",
+    "saeb:publish-local": "node scripts/saeb-query-prototype/publish-local.mjs"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",

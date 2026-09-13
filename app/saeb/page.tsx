@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   TrendingUp,
 } from "lucide-react";
+import SaebConsulta from "./components/SaebConsulta";
 
 const SAEB_RESULTS_URL = "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/saeb/resultados/";
 const IDEB_RESULTS_URL = "https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/ideb/resultados";
@@ -18,7 +19,7 @@ const SAEB_MICRODATA_URL = "https://www.gov.br/inep/pt-br/acesso-a-informacao/da
 
 const PAGE_TITLE = "SAEB e Ideb: como interpretar os indicadores | Tempo Docente";
 const PAGE_DESCRIPTION =
-  "Página explicativa sobre o SAEB, o Ideb, o Censo Escolar e o que significa proficiência, com os cuidados necessários para interpretar esses indicadores. A consulta interativa está em construção.";
+  "Página explicativa sobre o SAEB, o Ideb, o Censo Escolar e o que significa proficiência, com os cuidados necessários para interpretar esses indicadores — e uma consulta interativa por escola, com evolução histórica opcional.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -81,11 +82,30 @@ export default function SaebPage() {
           <p className="saeb-status">
             <Info size={19} aria-hidden="true" />
             <span>
-              A ferramenta de consulta por escola ainda está sendo construída e não está disponível. Esta página
-              é a camada explicativa que virá antes dela — e é útil por si só, para quem precisa interpretar
-              resultados já publicados pelo Inep.
+              A consulta por escola está disponível logo abaixo, com um painel opcional de evolução histórica por
+              indicador e etapa. Esta página continua sendo a camada explicativa que dá contexto a ela, e é útil
+              por si só para quem precisa interpretar resultados já publicados pelo Inep.
             </span>
           </p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-heading">
+            <div>
+              <span className="section-kicker">Consulta</span>
+              <h2>Consulte uma escola</h2>
+            </div>
+          </div>
+          <div className="saeb-prose">
+            <p>
+              Busque pelo município e depois pela escola. Os resultados mostram só as etapas e edições em que a
+              escola de fato tem dado divulgado pelo Inep — e separam a proficiência do SAEB do Ideb e de seus
+              componentes, sem ranking e sem comparação entre escolas.
+            </p>
+          </div>
+          <SaebConsulta />
         </div>
       </section>
 
@@ -262,8 +282,11 @@ export default function SaebPage() {
           </div>
           <div className="saeb-prose">
             <p>
-              A ferramenta de consulta ainda está em construção. Quando existir, ela deverá seguir os compromissos
-              abaixo — registrados aqui antes da implementação, e não depois dela:
+              A ferramenta de consulta, acima, já cobre parte destes compromissos — seleção de município e escola,
+              fonte identificada por indicador, ausências explicadas em vez de silenciadas, e um painel de
+              evolução histórica por escola (gráfico e tabela, sem escalas de proficiência nem distribuição por
+              nível). As três referências de comparação territorial e a exportação continuam pendentes para uma
+              etapa futura. A lista abaixo foi registrada antes da implementação, e não depois dela:
             </p>
           </div>
           <ul className="saeb-list">

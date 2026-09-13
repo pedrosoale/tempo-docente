@@ -295,3 +295,600 @@
     gap: 10px;
   }
 }
+
+/* ---- Ferramenta de consulta (SaebConsulta.tsx) ------------------------------
+   Tokens que a paleta global ainda não define — mesmos valores de app/saresp/saresp.css,
+   para consistência visual entre as duas áreas de dados do site, sem depender daquele
+   arquivo (ele não é importado aqui, e o comportamento do SARESP não é tocado). */
+:root {
+  --danger: #c2463b;
+  --danger-dark: #a53a30;
+  --danger-tint: #fbeae8;
+  --teal-tint: #eaf7f3;
+}
+
+.saeb-tool {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 720px;
+  margin-top: 8px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.saeb-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.saeb-field label {
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 620;
+}
+
+.saeb-field-row {
+  position: relative;
+}
+
+.saeb-combobox {
+  position: relative;
+}
+
+.saeb-combobox input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  color: var(--soft-ink);
+  font-size: 15px;
+}
+
+.saeb-combobox input:disabled {
+  opacity: 0.6;
+}
+
+.saeb-combobox-listbox {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--white);
+  box-shadow: 0 12px 28px rgba(18, 53, 91, 0.14);
+}
+
+.saeb-combobox-listbox ul {
+  max-height: 320px;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.saeb-combobox-option {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  color: var(--soft-ink);
+  font-size: 13.5px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.saeb-combobox-option small {
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11.5px;
+}
+
+.saeb-combobox-option.is-active {
+  color: var(--navy);
+  background: var(--teal-tint);
+}
+
+.saeb-combobox-note {
+  padding: 8px 10px 4px;
+  color: var(--muted);
+  font-size: 11.5px;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.saeb-selected-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px 9px 14px;
+  border: 1px solid #cfe3dd;
+  border-radius: var(--radius-sm);
+  background: var(--teal-tint);
+  color: var(--navy);
+  font-size: 15px;
+}
+
+.saeb-selected-chip small {
+  margin-left: 6px;
+  color: var(--teal-dark);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12px;
+}
+
+.saeb-selected-chip button {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--teal-dark);
+  cursor: pointer;
+}
+
+.saeb-selected-chip button:hover {
+  background: rgba(13, 143, 118, 0.14);
+}
+
+.saeb-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.saeb-state-panel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--soft-ink);
+  font-size: 14px;
+}
+
+.saeb-state-panel svg {
+  flex: none;
+  color: var(--teal-dark);
+}
+
+.saeb-state-panel.error {
+  color: var(--danger-dark);
+  background: var(--danger-tint);
+  border-color: #eccac5;
+}
+
+.saeb-state-panel.error svg {
+  color: var(--danger);
+}
+
+@keyframes saeb-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.saeb-spin {
+  animation: saeb-spin 0.9s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .saeb-spin {
+    animation-duration: 3s;
+  }
+}
+
+.saeb-retry {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  padding: 9px 16px;
+  border: 1px solid var(--teal-dark);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--teal-dark);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.saeb-retry:hover {
+  background: var(--teal-tint);
+}
+
+.saeb-resultado {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.saeb-escola-id {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.saeb-escola-id svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--teal-dark);
+}
+
+.saeb-escola-id strong {
+  display: block;
+  color: var(--navy);
+  font-size: 16px;
+}
+
+.saeb-escola-id span {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12.5px;
+}
+
+.saeb-selects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.saeb-selects label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 620;
+}
+
+.saeb-selects select {
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  color: var(--soft-ink);
+  font-size: 14px;
+}
+
+.saeb-indicadores-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.saeb-indicador-grupo {
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+}
+
+.saeb-indicador-grupo h4 {
+  margin: 0 0 12px;
+  color: var(--navy);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.saeb-indicador-grupo dl {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+}
+
+.saeb-indicador-linha {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.saeb-indicador-linha dt {
+  color: var(--soft-ink);
+  font-size: 13.5px;
+}
+
+.saeb-indicador-linha dd {
+  margin: 0;
+  text-align: right;
+}
+
+.saeb-valor {
+  color: var(--navy);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+
+.saeb-indicador-linha small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 11px;
+  font-style: italic;
+}
+
+.saeb-ausente {
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+.saeb-nao-informado {
+  color: var(--muted);
+  font-size: 13px;
+  font-style: italic;
+}
+
+.saeb-fonte {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+@media (max-width: 560px) {
+  .saeb-tool {
+    padding: 18px;
+  }
+
+  .saeb-indicadores-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .saeb-indicador-linha {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .saeb-indicador-linha dd {
+    text-align: left;
+  }
+}
+
+/* ---- Painel de evolução histórica (HistoricoEscola.tsx) ---- */
+
+.saeb-historico-abrir {
+  margin-top: 4px;
+}
+
+.saeb-historico {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 4px;
+  padding: 20px;
+  border: 1px solid #cfe3dd;
+  border-radius: var(--radius-md);
+  background: var(--teal-tint);
+}
+
+.saeb-historico-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.saeb-historico-head h4 {
+  margin: 0;
+  color: var(--navy);
+  font-size: 15.5px;
+}
+
+.saeb-historico-close {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--teal-dark);
+  cursor: pointer;
+}
+
+.saeb-historico-close:hover {
+  background: rgba(13, 143, 118, 0.14);
+}
+
+.saeb-historico-id {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12px;
+}
+
+.saeb-historico-controls {
+  padding-bottom: 4px;
+  border-bottom: 1px solid #cfe3dd;
+}
+
+.saeb-historico-toggle {
+  display: inline-flex;
+  gap: 2px;
+  align-self: flex-start;
+  padding: 3px;
+  border: 1px solid #cfe3dd;
+  border-radius: 999px;
+  background: var(--white);
+}
+
+.saeb-historico-toggle button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.saeb-historico-toggle button[aria-pressed="true"] {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.saeb-historico-chart {
+  padding: 14px 10px 6px;
+  border: 1px solid #cfe3dd;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+}
+
+.saeb-historico-legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 6px 4px 0;
+  color: var(--muted);
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.saeb-historico-legenda-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.saeb-historico-marcador {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.saeb-historico-marcador-valor {
+  background: #0d8f76;
+}
+
+.saeb-historico-marcador-obs {
+  background: #ffffff;
+  border: 2px solid #12355b;
+}
+
+.saeb-historico-tooltip {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 10px 24px rgba(18, 53, 91, 0.14);
+  font-size: 12px;
+}
+
+.saeb-historico-tooltip strong {
+  color: var(--navy);
+}
+
+.saeb-historico-tooltip small {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.saeb-historico-tooltip-lacuna {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.saeb-historico-tabela-wrap {
+  overflow-x: auto;
+  border: 1px solid #cfe3dd;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+}
+
+.saeb-historico-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.saeb-historico-tabela th,
+.saeb-historico-tabela td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.saeb-historico-tabela th {
+  color: var(--navy);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--paper);
+}
+
+.saeb-historico-tabela tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.saeb-historico-resumo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+}
+
+.saeb-historico-resumo p {
+  margin: 0;
+  color: var(--soft-ink);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.saeb-historico-observacao {
+  color: var(--muted) !important;
+  font-size: 12.5px !important;
+  font-style: italic;
+}
+
+.saeb-historico-contagem {
+  color: var(--muted) !important;
+  font-size: 12.5px !important;
+}
+
+@media (max-width: 560px) {
+  .saeb-historico {
+    padding: 16px;
+  }
+
+  .saeb-historico-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

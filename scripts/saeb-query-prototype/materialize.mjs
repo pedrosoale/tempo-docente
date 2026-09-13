@@ -22,6 +22,7 @@
 //
 // Escreve só onde o chamador manda explicitamente. Nunca em public/data/saeb,
 // nunca no cache oficial (data/saeb/source), nunca no manifesto (data/saeb/manifest.json).
+import { createHash } from "node:crypto";
 import { gzipSync } from "node:zlib";
 import { lstat, mkdir, readdir, readFile, stat } from "node:fs/promises";
 import os from "node:os";
@@ -46,11 +47,17 @@ const REPO_ROOT = path.resolve(import.meta.dirname, "..", "..");
 const SCHEMA_PARTICAO_PROTOTIPO = "saeb-escolas-particao/1-prototipo";
 const SCHEMA_INDICE_MUNICIPIO_PROTOTIPO = "saeb-escolas-indice-municipio/1-prototipo";
 const SCHEMA_INDICE_NACIONAL_PROTOTIPO = "saeb-municipios-indice/1-prototipo";
+const SCHEMA_VERSAO_ATUAL_PROTOTIPO = "saeb-versao-atual/1-prototipo";
 
 export const gzipBytes = (texto) => gzipSync(Buffer.from(texto, "utf8")).length;
 
-function montarConteudoParticao(municipio, escolas) {
-  return { schema: SCHEMA_PARTICAO_PROTOTIPO, municipio, escolas };
+// `versao` é opcional e propositalmente OMITIDO (nunca `versao: undefined`)
+// quando ausente: ordenarProfundo/JSON.stringify descartam chaves com valor
+// undefined da mesma forma, mas manter a chave fora do objeto deixa explícito
+// que os 56 testes existentes — nenhum deles passa versão — continuam
+// produzindo exatamente o mesmo envelope de sempre, byte a byte.
+function montarConteudoParticao(municipio, escolas, versao) {
+  return { schema: SCHEMA_PARTICAO_PROTOTIPO, ...(versao ? { versao } : {}), municipio, escolas };
 }
 
 /**
@@ -150,11 +157,15 @@ export function agruparPorTamanho(escolasOrdenadas, limiteBytesGzip, montarConte
  *   - uma ou mais partições de resultados, cada uma com os dados completos
  *     (todas as etapas e edições) das escolas que ela contém.
  */
-export function materializarMunicipio(particaoMunicipio, limiteBytesGzip) {
+export function materializarMunicipio(particaoMunicipio, limiteBytesGzip, { versao } = {}) {
   const { codigoIbge, conteudo } = particaoMunicipio;
   const { municipio, escolas } = conteudo;
 
-  const montar = (lista) => montarConteudoParticao(municipio, lista);
+  // `versao` entra na medição de tamanho desde a primeira passada (dentro de
+  // `montar`, usado por agruparPorTamanho) — nunca é acrescentada DEPOIS de já
+  // ter decidido os grupos. Acrescentar um campo a um envelope já fechado no
+  // limite poderia empurrá-lo para além do limite de 50 KiB gzip aprovado.
+  const montar = (lista) => montarConteudoParticao(municipio, lista, versao);
   const { grupos, excecoes } = agruparPorTamanho(escolas, limiteBytesGzip, montar);
 
   const particoes = grupos.map((lista, indice) => {
@@ -174,6 +185,7 @@ export function materializarMunicipio(particaoMunicipio, limiteBytesGzip) {
   const escolasIndice = {
     schema: SCHEMA_INDICE_MUNICIPIO_PROTOTIPO,
     codigoIbge,
+    ...(versao ? { versao } : {}),
     municipio: { codigoIbge: municipio.codigoIbge, nome: municipio.nome, uf: municipio.uf },
     escolas: particoes.flatMap((particao) =>
       particao.escolas.map((escola) => ({
@@ -211,7 +223,56 @@ export function materializarMunicipio(particaoMunicipio, limiteBytesGzip) {
  * comparação semântica em compararComReferencia(); nunca deve ser obtido a
  * partir do resultado já subdividido/materializado.
  */
-export async function construirPrototipo({ registro = PACOTES, cacheDir, limiteBytesGzip }) {
+/**
+ * Versão determinística dos dados publicados — usada para impedir que um
+ * cliente combine, mesmo sem querer, um índice de uma geração com uma
+ * partição de outra.
+ *
+ * Depende de tudo que pode mudar o CONTEÚDO final, não só do índice nacional
+ * (que só registra nome/UF/contagens, e por isso pode ficar bit-a-bit igual
+ * mesmo que uma proficiência tenha mudado numa reedição dos pacotes oficiais):
+ *
+ *  - a identidade de cada pacote fonte (fingerprints SHA-256 locais, já
+ *    conferidos por verificarPacote() antes de chegar aqui);
+ *  - a configuração de particionamento (o limite de KiB gzip aprovado —
+ *    50 KiB e 100 KiB produzem árvores de arquivos diferentes);
+ *  - os três schemas do protótipo (uma mudança de formato precisa invalidar
+ *    qualquer coisa em cache, mesmo com os mesmos dados de origem);
+ *  - o conteúdo INTEIRO normalizado (`referencia`: os registros por município
+ *    produzidos por montarArtefatos(), ANTES de qualquer subdivisão) — isto é
+ *    o que garante que um indicador alterado muda a versão mesmo que a
+ *    contagem de escolas e de partições permaneça idêntica.
+ */
+export function calcularVersaoDados({ registro, limiteBytesGzip, referencia }) {
+  const pacotesFingerprint = [...registro]
+    .map((p) => `${p.id}:${p.xlsxSha256}:${p.zipSha256}`)
+    .sort()
+    .join("|");
+  // referencia já vem ordenada por codigoIbge (montarArtefatos ordena os
+  // códigos antes de montar `particoes`), e serializarCompacto ordena as
+  // chaves de cada objeto — o hash sai determinístico independentemente de
+  // qualquer ordem de iteração incidental deste processo.
+  const referenciaHash = createHash("sha256")
+    .update(serializarCompacto(referencia.map((p) => p.conteudo)))
+    .digest("hex");
+  const material = [
+    `schemaParticao=${SCHEMA_PARTICAO_PROTOTIPO}`,
+    `schemaIndiceMunicipio=${SCHEMA_INDICE_MUNICIPIO_PROTOTIPO}`,
+    `schemaIndiceNacional=${SCHEMA_INDICE_NACIONAL_PROTOTIPO}`,
+    `limiteBytesGzip=${limiteBytesGzip}`,
+    `pacotes=${pacotesFingerprint}`,
+    `referencia=${referenciaHash}`,
+  ].join("\n");
+  return createHash("sha256").update(material).digest("hex");
+}
+
+/**
+ * `comVersao: true` calcula e embute `versao` (ver calcularVersaoDados) no
+ * índice nacional, em cada índice municipal e no envelope de cada partição —
+ * sempre opt-in. Nenhum teste ou chamador anterior a esta rodada passa essa
+ * opção, então o formato produzido por padrão não muda em nada.
+ */
+export async function construirPrototipo({ registro = PACOTES, cacheDir, limiteBytesGzip, comVersao = false }) {
   const porEtapa = [];
   for (const pacote of registro) {
     const { xlsxBytes } = await verificarPacote(pacote, cacheDir);
@@ -222,11 +283,13 @@ export async function construirPrototipo({ registro = PACOTES, cacheDir, limiteB
 
   const { particoes } = montarArtefatos(porEtapa);
   const referencia = particoes;
-  const municipios = particoes.map((particao) => materializarMunicipio(particao, limiteBytesGzip));
+  const versao = comVersao ? calcularVersaoDados({ registro, limiteBytesGzip, referencia }) : undefined;
+  const municipios = particoes.map((particao) => materializarMunicipio(particao, limiteBytesGzip, { versao }));
 
   const indiceNacional = {
     schema: SCHEMA_INDICE_NACIONAL_PROTOTIPO,
     limiteBytesGzip,
+    ...(versao ? { versao } : {}),
     municipios: municipios.map((m) => ({
       codigoIbge: m.codigoIbge,
       nome: m.municipio.nome,
@@ -237,7 +300,7 @@ export async function construirPrototipo({ registro = PACOTES, cacheDir, limiteB
   };
   const indiceNacionalTexto = serializarCompacto(indiceNacional);
 
-  return { municipios, indiceNacionalTexto, limiteBytesGzip, referencia };
+  return { municipios, indiceNacionalTexto, limiteBytesGzip, referencia, versao };
 }
 
 async function listarArquivosRecursivo(dir) {
@@ -418,6 +481,98 @@ export async function materializar({ outDir: outDirBruto, prototipo }) {
   return { arquivos: plano.size, escritos, caminhos: [...plano.keys()].sort() };
 }
 
+// ---- Política de destino público (public/data/saeb) -------------------------
+//
+// Escrita separada de materializar()/validarDestinoTemporario() de propósito:
+// o protótipo continua restrito à área temporária (não removido, não
+// contornado); a publicação local em public/data/saeb usa sua PRÓPRIA função
+// de validação e sua PRÓPRIA função de escrita, para que um bug numa nunca
+// tenha caminho para afetar a outra. A única coisa reaproveitada é a
+// checagem genérica de link/junction no caminho (recusarLinksNoCaminho),
+// que não tem nada de específico a diretório temporário.
+//
+// Só um destino é aceito: exatamente <raiz do repositório>/public/data/saeb
+// — nunca um subdiretório dela, nunca um caminho parecido. Isso, por si só,
+// já elimina qualquer forma de escape por ".." ou por caminho relativo malformado:
+// não há "quase certo" que passe, só o caminho exato ou a recusa.
+
+/** Caminho absoluto do único destino público aceito. */
+function diretorioPublicoSaeb(raizRepositorio) {
+  return path.resolve(raizRepositorio, "public", "data", "saeb");
+}
+
+export async function validarDestinoPublico({ raizRepositorio = REPO_ROOT } = {}) {
+  const destino = diretorioPublicoSaeb(raizRepositorio);
+  await recusarLinksNoCaminho(destino, path.resolve(raizRepositorio));
+  return destino;
+}
+
+/**
+ * Grava o protótipo em public/data/saeb — e SOMENTE em public/data/saeb (ver
+ * validarDestinoPublico). Mesma disciplina de materializar(): plano fechado
+ * antes de qualquer escrita, cada caminho reconferido como estritamente
+ * dentro do destino validado, qualquer arquivo alheio já presente aborta a
+ * escrita inteira sem tocar em nada (nunca uma limpeza recursiva genérica, e
+ * nunca uma remoção automática de uma geração anterior), e escreve só o que
+ * de fato mudou.
+ *
+ * `current.json` — o ponteiro de versão que o cliente lê primeiro — entra por
+ * último no plano (Map preserva ordem de inserção) para ser o último arquivo
+ * escrito: um cliente que já tenha lido a versão anterior nunca vê o ponteiro
+ * apontar para uma árvore ainda incompleta.
+ *
+ * Espera-se que quem chama já tenha validado o MESMO `prototipo` inteiro numa
+ * área temporária (materializar + compararComReferencia com ok:true) antes de
+ * chamar esta função — ver scripts/saeb-query-prototype/publish-local.mjs.
+ * Esta função não repete essa validação; só grava com segurança.
+ */
+export async function materializarPublico({ prototipo, raizRepositorio = REPO_ROOT }) {
+  const outDir = await validarDestinoPublico({ raizRepositorio });
+
+  const plano = new Map();
+  plano.set(path.join(outDir, "municipios-index.json"), prototipo.indiceNacionalTexto);
+  for (const m of prototipo.municipios) {
+    const baseMunicipio = path.join(outDir, "municipios", m.codigoIbge);
+    if (m.particoes.length > 1) {
+      plano.set(path.join(baseMunicipio, "escolas-index.json"), m.escolasIndiceTexto);
+    }
+    for (const particao of m.particoes) {
+      plano.set(path.join(baseMunicipio, "particoes", particao.arquivo), particao.texto);
+    }
+  }
+  const versaoAtualTexto = serializarCompacto({
+    schema: SCHEMA_VERSAO_ATUAL_PROTOTIPO,
+    versao: prototipo.versao,
+    limiteBytesGzip: prototipo.limiteBytesGzip,
+    municipios: prototipo.municipios.length,
+  });
+  plano.set(path.join(outDir, "current.json"), versaoAtualTexto);
+
+  for (const caminho of plano.keys()) {
+    if (!ehAncestro(outDir, caminho)) {
+      throw new PrototypeError(`plano de arquivos públicos contém caminho fora do destino validado — abortando sem escrever nada: ${caminho}`);
+    }
+  }
+
+  const existentes = await listarArquivosRecursivo(outDir);
+  const estranhos = existentes.filter((caminho) => !plano.has(caminho));
+  if (estranhos.length > 0) {
+    throw new PrototypeError(
+      `public/data/saeb já tem arquivo(s) que esta geração não previu — abortando sem escrever nada. ` +
+        `Nenhuma geração anterior é apagada automaticamente; remova manualmente depois de confirmar que não é ` +
+        `trabalho de outra pessoa: ${estranhos.slice(0, 5).join(", ")}${estranhos.length > 5 ? ` (+${estranhos.length - 5})` : ""}`,
+    );
+  }
+
+  await mkdir(outDir, { recursive: true });
+  let escritos = 0;
+  for (const [caminho, texto] of plano) {
+    if (await escreverSeMudou(caminho, texto)) escritos += 1;
+  }
+
+  return { outDir, arquivos: plano.size, escritos, caminhos: [...plano.keys()].sort() };
+}
+
 // ---- Comparação semântica ---------------------------------------------------
 //
 // Determinismo (duas execuções produzem os mesmos bytes) e preservação
@@ -487,6 +642,12 @@ export async function compararComReferencia({ referencia, outDir }) {
   if (indiceNacional.schema !== SCHEMA_INDICE_NACIONAL_PROTOTIPO) {
     registrar("indice_nacional_schema_invalido", { esperado: SCHEMA_INDICE_NACIONAL_PROTOTIPO, encontrado: indiceNacional.schema });
   }
+  // Quando a geração embute `versao` (ver calcularVersaoDados), todo índice
+  // municipal e toda partição precisa declarar EXATAMENTE a mesma versão do
+  // índice nacional — nunca combinar silenciosamente arquivos de gerações
+  // diferentes. `undefined` (geração sem versionamento, como todo o resto
+  // desta suíte) desliga a checagem inteira: não há nada a comparar.
+  const versaoEsperada = indiceNacional.versao;
   for (const { chave: codigoIbge, ocorrencias } of detectarChavesDuplicadas(indiceNacional.municipios ?? [], (m) => m.codigoIbge)) {
     registrar("indice_nacional_municipio_duplicado", { codigoIbge, ocorrencias });
   }
@@ -574,6 +735,9 @@ export async function compararComReferencia({ referencia, outDir }) {
       if (indiceMunicipal.schema !== SCHEMA_INDICE_MUNICIPIO_PROTOTIPO) {
         registrar("indice_municipal_schema_invalido", { codigoIbge, esperado: SCHEMA_INDICE_MUNICIPIO_PROTOTIPO, encontrado: indiceMunicipal.schema });
       }
+      if (versaoEsperada !== undefined && indiceMunicipal.versao !== versaoEsperada) {
+        registrar("versao_inconsistente", { codigoIbge, origem: "indice_municipal", esperado: versaoEsperada, encontrado: indiceMunicipal.versao });
+      }
       const identificacao = indiceMunicipal.municipio ?? {};
       if (
         indiceMunicipal.codigoIbge !== codigoIbge ||
@@ -631,6 +795,9 @@ export async function compararComReferencia({ referencia, outDir }) {
 
       if (conteudo.schema !== SCHEMA_PARTICAO_PROTOTIPO) {
         registrar("particao_schema_invalido", { codigoIbge, arquivo, esperado: SCHEMA_PARTICAO_PROTOTIPO, encontrado: conteudo.schema });
+      }
+      if (versaoEsperada !== undefined && conteudo.versao !== versaoEsperada) {
+        registrar("versao_inconsistente", { codigoIbge, arquivo, origem: "particao", esperado: versaoEsperada, encontrado: conteudo.versao });
       }
       // Achado 2: o nome do município no ENVELOPE de cada partição — não só
       // no índice nacional — precisa bater com a referência. Antes, nada lia

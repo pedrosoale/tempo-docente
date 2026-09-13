@@ -57,12 +57,15 @@ test("metadata: title, description, canonical and Open Graph point at /saeb", ()
   assert.match(html, /<meta property="og:url" content="https:\/\/tempodocente\.com\.br\/saeb"/);
 });
 
-test("the title and description never claim the interactive lookup already exists", () => {
+test("the title and description accurately reflect that the interactive lookup now exists, without promotional language", () => {
+  // A consulta e o histórico foram publicados nesta etapa — o metadado precisa dizer a verdade
+  // (a ferramenta existe), sem cair em linguagem promocional ("consulte agora!", "exclusivo").
   const head = html.match(/<head>[^]*?<\/head>/)?.[0] ?? "";
   assert.ok(head, "missing <head>");
-  assert.match(head, /em construção/, "the description should say the tool is still being built");
-  assert.doesNotMatch(head, /consulte (agora|já|sua escola)/i);
-  assert.doesNotMatch(head, /disponível agora|já disponível/i);
+  assert.doesNotMatch(head, /em construção/);
+  assert.match(head, /consulta interativa por escola/);
+  assert.doesNotMatch(head, /consulte (agora|já) (sua escola|a sua escola)/i);
+  assert.doesNotMatch(head, /revolucionári|inovador|imperdível|exclusivo/i);
 });
 
 // ---- Estrutura semântica ----
@@ -268,9 +271,29 @@ test("the no-ranking policy is stated explicitly and framed as a project decisio
   assert.match(saebText, /decisão de projeto, não uma limitação técnica/);
 });
 
-test("the lookup tool is consistently described as not yet available", () => {
-  assert.match(saebText, /ainda está sendo construída e não está disponível/);
-  assert.match(saebText, /A ferramenta de consulta ainda está em construção/);
+test("the lookup tool is described as available now, with no leftover development-round language", () => {
+  // A consulta e o painel histórico foram publicados nesta etapa — a redação de rodadas
+  // anteriores ("primeira versão local", "esta rodada", "ainda não publicada") ficaria falsa a
+  // partir de agora e precisou mudar. Este teste protege contra os dois erros possíveis: a página
+  // nunca deve dizer que a ferramenta não existe (ver o outro teste, "ainda está sendo
+  // construída"), e nunca deve carregar linguagem de rascunho/rodada de trabalho interno.
+  assert.doesNotMatch(saebText, /ainda está sendo construída e não está disponível/);
+  assert.doesNotMatch(saebText, /primeira versão local/i);
+  assert.doesNotMatch(saebText, /ainda não publicada/);
+  assert.doesNotMatch(saebText, /esta rodada/i);
+  assert.match(saebText, /A consulta por escola está disponível logo abaixo/);
+  assert.match(saebText, /A ferramenta de consulta, acima, já cobre parte destes compromissos/);
+});
+
+test("the tool's page never promises descriptors, proficiency levels, territorial comparisons or export as already implemented", () => {
+  // As quatro referências/recursos abaixo continuam no roteiro (aspiracional, ver o teste de
+  // compromissos futuros) — o que este teste garante é que a página nunca os apresente como algo
+  // que a ferramenta JÁ faz hoje.
+  assert.doesNotMatch(saebText, /já compara(m)? (a|essa) trajetória com o município/i);
+  assert.doesNotMatch(saebText, /já permite exportar/i);
+  assert.doesNotMatch(saebText, /descritor(es)? (já )?(disponív|implementad)/i);
+  assert.doesNotMatch(saebText, /n[íi]vel(is)? de proficiência (já )?(disponív|implementad)/i);
+  assert.match(saebText, /continuam pendentes/);
 });
 
 // ---- Uso responsável ----
@@ -330,9 +353,11 @@ test("the page avoids promotional and competitive vocabulary", () => {
   assert.doesNotMatch(saebText, /revolucionári/i);
   assert.doesNotMatch(saebText, /melhores escolas/i);
   assert.doesNotMatch(saebText, /a plataforma definitiva|inovador|imperdível|exclusivo/i);
-  // "ranking" só pode aparecer na frase que o recusa, nunca como funcionalidade.
+  // "ranking" só pode aparecer numa frase que o recusa/descarta, nunca como funcionalidade —
+  // seja na promessa do roteiro ("Não produzir ranking...") ou na descrição da própria
+  // ferramenta implementada ("sem ranking e sem comparação entre escolas").
   for (const match of saebText.matchAll(/.{40}ranking/gi)) {
-    assert.match(match[0], /Não produzir/, `"ranking" used outside the refusal: …${match[0]}`);
+    assert.match(match[0], /Não produzir|sem ranking/, `"ranking" used outside the refusal: …${match[0]}`);
   }
 });
 

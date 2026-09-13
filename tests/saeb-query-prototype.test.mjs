@@ -13,13 +13,16 @@ import path from "node:path";
 
 import {
   agruparPorTamanho,
+  calcularVersaoDados,
   compararComReferencia,
   construirPrototipo,
   encontrarMunicipio,
   materializar,
   materializarMunicipio,
+  materializarPublico,
   medir,
   PrototypeError,
+  validarDestinoPublico,
   validarDestinoTemporario,
 } from "../scripts/saeb-query-prototype/materialize.mjs";
 import { EDICOES, INDICADORES } from "../scripts/saeb/lib/sources.mjs";
@@ -1106,5 +1109,287 @@ test("compararComReferencia: índice nacional com municipios: [] não aprova qua
         `deveria ter registrado municipio_ausente para ${codigoIbge}`,
       );
     }
+  });
+});
+
+// ---- 11. Versão determinística dos dados publicados -------------------------
+//
+// calcularVersaoDados() precisa mudar quando QUALQUER coisa que afeta o
+// conteúdo final muda — inclusive um indicador isolado que não move nem a
+// contagem de escolas nem a de partições no índice nacional (o cenário que a
+// revisão explicitamente pediu para não deixar passar batido).
+
+const REGISTRO_VERSAO_TESTE = [
+  { id: "pacote-a", xlsxSha256: "aaa", zipSha256: "111" },
+  { id: "pacote-b", xlsxSha256: "bbb", zipSha256: "222" },
+];
+
+function referenciaVersaoTeste(valorIndicador = 220.5) {
+  return [
+    particaoMunicipio({
+      codigoIbge: "3550308",
+      nome: "São Paulo",
+      uf: "SP",
+      escolas: [escola({ codigoInep: "35000001", nome: "EE UM", bytesPayload: 10 })].map((e) => ({
+        ...e,
+        etapas: { anosIniciais: { 2025: { lp: valorIndicador, mt: 210.3, n: 5.5, p: 0.9, ideb: 5.0 } } },
+      })),
+    }),
+  ];
+}
+
+test("calcularVersaoDados: determinístico — mesma entrada produz sempre o mesmo hash", () => {
+  const referencia = referenciaVersaoTeste();
+  const a = calcularVersaoDados({ registro: REGISTRO_VERSAO_TESTE, limiteBytesGzip: 51200, referencia });
+  const b = calcularVersaoDados({ registro: REGISTRO_VERSAO_TESTE, limiteBytesGzip: 51200, referencia });
+  assert.equal(a, b);
+  assert.match(a, /^[0-9a-f]{64}$/, "deve ser um hex sha256 completo");
+});
+
+test("calcularVersaoDados: muda quando um indicador muda, mesmo com a mesma quantidade de escolas e partições", () => {
+  const referenciaOriginal = referenciaVersaoTeste(220.5);
+  const referenciaAlterada = referenciaVersaoTeste(999.9); // só o valor de lp muda
+  assert.equal(referenciaOriginal[0].conteudo.escolas.length, referenciaAlterada[0].conteudo.escolas.length);
+
+  const versaoOriginal = calcularVersaoDados({ registro: REGISTRO_VERSAO_TESTE, limiteBytesGzip: 51200, referencia: referenciaOriginal });
+  const versaoAlterada = calcularVersaoDados({ registro: REGISTRO_VERSAO_TESTE, limiteBytesGzip: 51200, referencia: referenciaAlterada });
+  assert.notEqual(versaoOriginal, versaoAlterada, "um indicador alterado precisa mudar a versão, mesmo sem mudar contagens");
+});
+
+test("calcularVersaoDados: muda quando o limite de KiB gzip (configuração de particionamento) muda", () => {
+  const referencia = referenciaVersaoTeste();
+  const v50 = calcularVersaoDados({ registro: REGISTRO_VERSAO_TESTE, limiteBytesGzip: 51200, referencia });
+  const v100 = calcularVersaoDados({ registro: REGISTRO_VERSAO_TESTE, limiteBytesGzip: 102400, referencia });
+  assert.notEqual(v50, v100);
+});
+
+test("calcularVersaoDados: muda quando o fingerprint de um pacote fonte muda", () => {
+  const referencia = referenciaVersaoTeste();
+  const registroAlterado = [REGISTRO_VERSAO_TESTE[0], { ...REGISTRO_VERSAO_TESTE[1], xlsxSha256: "diferente" }];
+  const v1 = calcularVersaoDados({ registro: REGISTRO_VERSAO_TESTE, limiteBytesGzip: 51200, referencia });
+  const v2 = calcularVersaoDados({ registro: registroAlterado, limiteBytesGzip: 51200, referencia });
+  assert.notEqual(v1, v2);
+});
+
+test("construirPrototipo: comVersao:true embute a MESMA versão no índice nacional, no índice municipal e em toda partição", async () => {
+  const escolasFixture = [
+    { uf: "SP", codigoIbge: "3550308", municipio: "São Paulo", codigoInep: "35000001", nome: "EE UM", rede: "Estadual" },
+    { uf: "SP", codigoIbge: "3550308", municipio: "São Paulo", codigoInep: "35000002", nome: "EE DOIS", rede: "Estadual" },
+  ];
+  const linhas = escolasFixture.map((id) => linha(id));
+  const { zip, pacote } = montarPacoteFixture(linhas);
+  const base = await mkdtemp(path.join(tmpdir(), "saeb-versao-cache-"));
+  const cache = path.join(base, "cache");
+  await mkdir(cache, { recursive: true });
+  await writeFile(path.join(cache, pacote.zipName), zip);
+
+  try {
+    // Limite pequeno o bastante para forçar mais de uma partição em São Paulo,
+    // para que o índice municipal também entre na checagem.
+    const prototipo = await construirPrototipo({ registro: [pacote], cacheDir: cache, limiteBytesGzip: 250, comVersao: true });
+    assert.ok(prototipo.versao, "versão deveria ter sido calculada");
+
+    const indice = JSON.parse(prototipo.indiceNacionalTexto);
+    assert.equal(indice.versao, prototipo.versao);
+
+    const sp = encontrarMunicipio(prototipo, "3550308");
+    assert.ok(sp.particoes.length > 1, "fixture precisa forçar subdivisão para testar o índice municipal também");
+    const indiceMunicipal = JSON.parse(sp.escolasIndiceTexto);
+    assert.equal(indiceMunicipal.versao, prototipo.versao);
+
+    for (const particao of sp.particoes) {
+      const conteudo = JSON.parse(particao.texto);
+      assert.equal(conteudo.versao, prototipo.versao, `partição ${particao.arquivo} não embutiu a versão`);
+    }
+  } finally {
+    await rm(base, { recursive: true, force: true });
+  }
+});
+
+test("construirPrototipo: sem comVersao (padrão), nenhum artefato ganha o campo versao — comportamento de todas as rodadas anteriores preservado", async () => {
+  const prototipo = await construirPrototipoSintetico();
+  assert.equal(prototipo.versao, undefined);
+  // construirPrototipoSintetico já não passa por construirPrototipo() real, então a prova direta
+  // sobre o caminho de produção é o teste com fixture real acima; aqui confirma-se a ausência de
+  // efeito colateral em materializarMunicipio quando chamado sem a opção.
+  const semVersao = materializarMunicipio(particaoMunicipio({ escolas: [escola({ codigoInep: "1", nome: "X" })] }), 1024 * 1024);
+  const conteudo = JSON.parse(semVersao.particoes[0].texto);
+  assert.equal(Object.prototype.hasOwnProperty.call(conteudo, "versao"), false);
+});
+
+test("materializarMunicipio: embutir a versão entra na medição de tamanho desde o início — nunca estoura o limite depois de fechado o grupo", () => {
+  const versaoFalsa = "a".repeat(64); // pior caso: hash sha256 hex inteiro, o mais longo que calcularVersaoDados produz
+  const escolas = Array.from({ length: 30 }, (_, i) =>
+    escola({ codigoInep: String(66000000 + i).padStart(8, "0"), nome: `Escola ${i}`, bytesPayload: 400 }),
+  );
+  const limite = 2000;
+  const resultado = materializarMunicipio(
+    particaoMunicipio({ codigoIbge: "3550308", nome: "São Paulo", uf: "SP", escolas }),
+    limite,
+    { versao: versaoFalsa },
+  );
+  for (const particao of resultado.particoes) {
+    if (particao.totalEscolas === 1 && resultado.excecoes.some((e) => e.codigoInep === particao.escolas[0].codigoInep)) continue;
+    assert.ok(particao.bytesGzip <= limite, `partição ${particao.arquivo} com versão embutida tem ${particao.bytesGzip} B, acima do limite de ${limite} B`);
+    assert.equal(JSON.parse(particao.texto).versao, versaoFalsa);
+  }
+});
+
+test("compararComReferencia: [versionamento] detecta partição com versão diferente da do índice nacional", async () => {
+  await comCenarioMaterializado(async ({ prototipo, outDir }) => {
+    // Simula uma geração versionada: injeta `versao` no índice nacional já
+    // materializado (o cenário síncrono de teste não passa por comVersao).
+    const caminhoIndice = path.join(outDir, "municipios-index.json");
+    const indice = JSON.parse(await readFile(caminhoIndice, "utf8"));
+    indice.versao = "versao-atual";
+    await writeFile(caminhoIndice, JSON.stringify(indice));
+
+    const alvo = path.join(outDir, "municipios", "1100015", "particoes", "001.json");
+    const conteudo = JSON.parse(await readFile(alvo, "utf8"));
+    conteudo.versao = "versao-antiga"; // partição "esquecida" de uma geração anterior
+    await writeFile(alvo, JSON.stringify(conteudo));
+
+    const resultado = await compararComReferencia({ referencia: prototipo.referencia, outDir });
+    assert.equal(resultado.ok, false);
+    assert.ok(
+      resultado.discrepancias.some(
+        (d) => d.tipo === "versao_inconsistente" && d.origem === "particao" && d.codigoIbge === "1100015" && d.encontrado === "versao-antiga",
+      ),
+    );
+  });
+});
+
+test("compararComReferencia: [versionamento] detecta índice municipal com versão diferente da do índice nacional", async () => {
+  await comCenarioMaterializado(async ({ prototipo, outDir }) => {
+    const caminhoIndice = path.join(outDir, "municipios-index.json");
+    const indice = JSON.parse(await readFile(caminhoIndice, "utf8"));
+    indice.versao = "versao-atual";
+    await writeFile(caminhoIndice, JSON.stringify(indice));
+
+    const caminhoIndiceMunicipal = path.join(outDir, "municipios", "3550308", "escolas-index.json");
+    const indiceMunicipal = JSON.parse(await readFile(caminhoIndiceMunicipal, "utf8"));
+    indiceMunicipal.versao = "versao-antiga";
+    await writeFile(caminhoIndiceMunicipal, JSON.stringify(indiceMunicipal));
+
+    const resultado = await compararComReferencia({ referencia: prototipo.referencia, outDir });
+    assert.equal(resultado.ok, false);
+    assert.ok(
+      resultado.discrepancias.some(
+        (d) => d.tipo === "versao_inconsistente" && d.origem === "indice_municipal" && d.codigoIbge === "3550308" && d.encontrado === "versao-antiga",
+      ),
+    );
+  });
+});
+
+test("compararComReferencia: sem versao no índice nacional, a checagem de versionamento fica desligada (compatibilidade com gerações não versionadas)", async () => {
+  await comCenarioMaterializado(async ({ prototipo, outDir }) => {
+    // Cenário padrão de comCenarioMaterializado não embute versao em nada —
+    // isto confirma que a ausência do campo não gera nenhuma discrepância nova.
+    const resultado = await compararComReferencia({ referencia: prototipo.referencia, outDir });
+    assert.equal(resultado.ok, true, JSON.stringify(resultado.discrepancias));
+  });
+});
+
+// ---- 12. Destino e escrita públicos (public/data/saeb) -----------------------
+//
+// Sempre contra uma raiz de repositório FALSA e isolada (mkdtemp) — nunca o
+// public/data/saeb real deste projeto. Um teste à parte confirma que o padrão
+// (sem override) resolve para o caminho real, sem escrever nada nele.
+
+async function comRepositorioPublicoFalso(fn) {
+  const raizRepositorio = await mkdtemp(path.join(tmpdir(), "saeb-repo-publico-falso-"));
+  try {
+    return await fn(raizRepositorio);
+  } finally {
+    await rm(raizRepositorio, { recursive: true, force: true });
+  }
+}
+
+test("validarDestinoPublico: resolve para exatamente <raiz>/public/data/saeb", async () => {
+  await comRepositorioPublicoFalso(async (raizRepositorio) => {
+    const destino = await validarDestinoPublico({ raizRepositorio });
+    assert.equal(destino, path.resolve(raizRepositorio, "public", "data", "saeb"));
+  });
+});
+
+test("validarDestinoPublico: por padrão (sem override), resolve para o public/data/saeb real deste projeto — sem escrever nada", async () => {
+  const destino = await validarDestinoPublico();
+  assert.equal(destino, path.resolve(REPO_ROOT_REAL, "public", "data", "saeb"));
+  // Resolver o caminho não é escrever nele — confirma que public/data/saeb
+  // continua exatamente como esta suíte o encontrou (ver README da Etapa 3).
+});
+
+test("validarDestinoPublico: recusa quando um segmento do caminho até a raiz do repositório é um link simbólico", async (t) => {
+  const base = await mkdtemp(path.join(tmpdir(), "saeb-repo-publico-link-"));
+  const raizReal = path.join(base, "raiz-real");
+  const raizLink = path.join(base, "raiz-link");
+  await mkdir(path.join(raizReal, "public", "data"), { recursive: true });
+  try {
+    await symlink(raizReal, raizLink, "dir");
+  } catch (error) {
+    await rm(base, { recursive: true, force: true });
+    t.skip(`ambiente não permite criar link simbólico (${error.code}) — limitação do sistema, não do protótipo`);
+    return;
+  }
+  try {
+    await assert.rejects(
+      () => validarDestinoPublico({ raizRepositorio: raizLink }),
+      (error) => error instanceof PrototypeError && /link simbólico/.test(error.message),
+    );
+  } finally {
+    await rm(base, { recursive: true, force: true });
+  }
+});
+
+test("materializarPublico: grava índice nacional, índices municipais (só onde subdividido), partições e current.json", async () => {
+  await comRepositorioPublicoFalso(async (raizRepositorio) => {
+    const prototipo = await construirPrototipoSintetico();
+    prototipo.versao = "versao-teste-123";
+    const resultado = await materializarPublico({ prototipo, raizRepositorio });
+
+    assert.equal(resultado.outDir, path.resolve(raizRepositorio, "public", "data", "saeb"));
+    assert.ok(resultado.escritos > 0);
+
+    const indice = JSON.parse(await readFile(path.join(resultado.outDir, "municipios-index.json"), "utf8"));
+    assert.equal(indice.municipios.length, 2);
+
+    const current = JSON.parse(await readFile(path.join(resultado.outDir, "current.json"), "utf8"));
+    assert.equal(current.versao, "versao-teste-123");
+    assert.equal(current.municipios, 2);
+    assert.equal(current.limiteBytesGzip, prototipo.limiteBytesGzip);
+
+    // São Paulo (município[0] da fixture sintética) tem 8 escolas grandes sob
+    // limite apertado — subdividido; Alta Floresta D'Oeste tem 1 escola só.
+    const spIndex = await stat(path.join(resultado.outDir, "municipios", "3550308", "escolas-index.json")).catch(() => null);
+    assert.ok(spIndex, "município subdividido deveria ter escolas-index.json");
+    const roIndex = await stat(path.join(resultado.outDir, "municipios", "1100015", "escolas-index.json")).catch(() => null);
+    assert.equal(roIndex, null, "município de partição única não deveria ter escolas-index.json");
+  });
+});
+
+test("materializarPublico: chamar duas vezes com o mesmo protótipo não reescreve nada na segunda vez", async () => {
+  await comRepositorioPublicoFalso(async (raizRepositorio) => {
+    const prototipo = await construirPrototipoSintetico();
+    const r1 = await materializarPublico({ prototipo, raizRepositorio });
+    assert.ok(r1.escritos > 0);
+    const r2 = await materializarPublico({ prototipo, raizRepositorio });
+    assert.equal(r2.escritos, 0, "segunda gravação idêntica não deveria escrever nada");
+  });
+});
+
+test("materializarPublico: recusa gravar quando o destino já tem arquivo estranho, sem apagar nem sobrescrever nada", async () => {
+  await comRepositorioPublicoFalso(async (raizRepositorio) => {
+    const prototipo = await construirPrototipoSintetico();
+    const outDir = path.resolve(raizRepositorio, "public", "data", "saeb");
+    await mkdir(outDir, { recursive: true });
+    const estranho = path.join(outDir, "nao-deveria-estar-aqui.txt");
+    await writeFile(estranho, "trabalho de outra pessoa\n");
+
+    await assert.rejects(
+      () => materializarPublico({ prototipo, raizRepositorio }),
+      (error) => error instanceof PrototypeError && /não previu/.test(error.message),
+    );
+    assert.equal(await readFile(estranho, "utf8"), "trabalho de outra pessoa\n");
+    assert.deepEqual(await readdir(outDir), ["nao-deveria-estar-aqui.txt"]);
   });
 });
