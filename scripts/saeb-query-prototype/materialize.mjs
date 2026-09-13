@@ -502,8 +502,20 @@ function diretorioPublicoSaeb(raizRepositorio) {
 }
 
 export async function validarDestinoPublico({ raizRepositorio = REPO_ROOT } = {}) {
-  const destino = diretorioPublicoSaeb(raizRepositorio);
-  await recusarLinksNoCaminho(destino, path.resolve(raizRepositorio));
+  const raiz = path.resolve(raizRepositorio);
+  // recusarLinksNoCaminho() só olha segmentos ESTRITAMENTE ENTRE o destino e a raiz recebida como
+  // limite — nunca a própria raiz, porque para validarDestinoTemporario() essa raiz é sempre
+  // os.tmpdir(), um valor fixo do sistema que não faz sentido escrutinar. Aqui a raiz É
+  // raizRepositorio, um parâmetro (com default REPO_ROOT, mas sobrescrevível) — exatamente o tipo
+  // de valor que precisa ser checado também. Sem esta checagem extra, um raizRepositorio que fosse
+  // ele mesmo um link simbólico passava sem ser recusado (bug real, pego só em CI Linux — o teste
+  // correspondente não roda no Windows sem Modo de Desenvolvedor).
+  const infoRaiz = await lstat(raiz).catch(() => null);
+  if (infoRaiz?.isSymbolicLink()) {
+    throw new PrototypeError(`destino recusado: "${raiz}" é um link simbólico (ou junction) — não é permitido no caminho de destino`);
+  }
+  const destino = diretorioPublicoSaeb(raiz);
+  await recusarLinksNoCaminho(destino, raiz);
   return destino;
 }
 
