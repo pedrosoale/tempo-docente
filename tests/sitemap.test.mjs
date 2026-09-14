@@ -92,10 +92,15 @@ test("sitemap.xml is served with a 200 and an XML content type", () => {
 });
 
 test("includes the core public routes", () => {
-  const expected = ["", "/bncc", "/bncc/competencias-gerais", "/bncc/ensino-fundamental", "/bncc/ensino-medio", "/bncc/educacao-infantil", "/saresp", "/sobre", "/privacidade"];
+  const expected = ["", "/bncc", "/bncc/competencias-gerais", "/bncc/ensino-fundamental", "/bncc/ensino-medio", "/bncc/educacao-infantil", "/saresp", "/saeb", "/sobre", "/privacidade"];
   for (const route of expected) {
     assert.ok(locs.includes(`${BASE_URL}${route}`), `missing ${route}`);
   }
+});
+
+test("includes /saeb exactly once", () => {
+  const matches = locs.filter((loc) => loc === `${BASE_URL}/saeb`);
+  assert.equal(matches.length, 1, `expected /saeb exactly once, found ${matches.length}`);
 });
 
 test("includes /sobre exactly once", () => {
@@ -198,8 +203,9 @@ test("no Educação Infantil route carries a #direito- anchor or a ?faixa= query
 });
 
 test("does not include routes for unimplemented or non-page functionality", () => {
+  // /saeb is a real, published page as of this round — it's asserted present above,
+  // not listed here as disallowed.
   const disallowedFragments = [
-    "/saeb",
     "/ia",
     "/login",
     "/planejamento",
@@ -214,7 +220,12 @@ test("does not include routes for unimplemented or non-page functionality", () =
   }
 });
 
-test("total URL count matches exactly what the current BNCC/SARESP/institutional data supports — 1683 (1682 previous + 1 /privacidade)", async () => {
+test("/saeb appears as a bare route only — never with a query string, a school/município parameter, or a .json data path", () => {
+  const saebLike = locs.filter((loc) => loc.includes("/saeb"));
+  assert.deepEqual(saebLike, [`${BASE_URL}/saeb`], "the only /saeb-related sitemap entry must be the bare page route");
+});
+
+test("total URL count matches exactly what the current BNCC/SARESP/institutional data supports — 1684 (1683 previous + 1 /saeb)", async () => {
   const staticRouteCount =
     1 + // home
     1 + // /bncc
@@ -222,6 +233,7 @@ test("total URL count matches exactly what the current BNCC/SARESP/institutional
     1 + // /bncc/ensino-fundamental
     1 + // /bncc/ensino-medio
     1 + // /saresp
+    1 + // /saeb
     1 + // /bncc/educacao-infantil
     1 + // /sobre
     1 + // /privacidade
@@ -236,6 +248,6 @@ test("total URL count matches exactly what the current BNCC/SARESP/institutional
   const expectedCodes = await expectedCodeSet();
   const expectedTotal = staticRouteCount + yearPageCount + ENSINO_MEDIO_AREAS.length + expectedCodes.size;
 
-  assert.equal(expectedTotal, 1683, "the independently-derived expectation itself should land on 1683");
+  assert.equal(expectedTotal, 1684, "the independently-derived expectation itself should land on 1684");
   assert.equal(locs.length, expectedTotal);
 });

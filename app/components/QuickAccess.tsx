@@ -1,4 +1,4 @@
-import { ArrowUpRight, BookOpenText, Layers, MapPinned, School, Sparkles, type LucideIcon } from "lucide-react";
+import { ArrowUpRight, BookOpenText, Layers, MapPinned, School, Sparkles, TrendingUp, type LucideIcon } from "lucide-react";
 
 type AccessItem = {
   title: string;
@@ -11,7 +11,7 @@ type AccessItem = {
 
 // Cada item aqui é um destino real e navegável agora — nenhum cartão "Em
 // breve" ou de conteúdo demonstrativo. A grade geral /bncc continua acessível
-// pelo Header, pelo Hero e pela busca abaixo; esta seção lista as 5 etapas/
+// pelo Header, pelo Hero e pela busca abaixo; esta seção lista as 6 etapas/
 // ferramentas específicas, não a página guarda-chuva.
 const items: AccessItem[] = [
   {
@@ -54,6 +54,14 @@ const items: AccessItem[] = [
     label: "Avaliação estadual",
     icon: MapPinned,
   },
+  {
+    title: "SAEB",
+    description: "Consulte resultados por município e escola, com histórico por edição em gráfico e tabela.",
+    action: "Explorar SAEB",
+    href: "/saeb",
+    label: "Avaliação nacional",
+    icon: TrendingUp,
+  },
 ];
 
 function QuickAccessCard({ item }: { item: AccessItem }) {
@@ -82,7 +90,7 @@ export function QuickAccess() {
             <span className="section-kicker">Acesso rápido</span>
             <h2>O que você quer consultar?</h2>
           </div>
-          <p>Cinco recursos disponíveis agora — escolha um para começar.</p>
+          <p>Seis recursos disponíveis agora — escolha um para começar.</p>
         </div>
         <div className="access-grid quick-access-grid">
           {items.map((item) => <QuickAccessCard key={item.title} item={item} />)}

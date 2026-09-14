@@ -370,23 +370,29 @@ test("the essential content is present in the server-rendered HTML, with no clie
   assert.doesNotMatch(html, /react-loading-skeleton|Carregando\.\.\./);
 });
 
-// ---- Isolamento: nada de menu nem sitemap nesta rodada ----
+// ---- Navegação: menu, homepage, Footer e sitemap (a partir da rodada de navegação) ----
 
-test("/saeb is not linked from the Header, the mobile menu or the Footer yet", async () => {
+test("/saeb is linked from the Header (desktop and mobile) and the Footer", async () => {
   const homeHtml = await (await render("/")).text();
   const headerBlock = homeHtml.match(/<header class="site-header">[^]*?<\/header>/)?.[0] ?? "";
   const footerBlock = homeHtml.match(/<footer class="footer">[^]*?<\/footer>/)?.[0] ?? "";
   assert.ok(headerBlock, "missing <header>");
   assert.ok(footerBlock, "missing <footer>");
-  assert.ok(!headerBlock.includes('href="/saeb"'), "the Header must not link to /saeb in this round");
-  assert.ok(!footerBlock.includes('href="/saeb"'), "the Footer must not link to /saeb in this round");
+  assert.ok(headerBlock.includes('href="/saeb"'), "the Header should link to /saeb");
+  assert.ok(footerBlock.includes('href="/saeb"'), "the Footer should link to /saeb");
+
+  const desktopNav = headerBlock.match(/<nav class="desktop-nav"[^]*?<\/nav>/)?.[0] ?? "";
+  const mobileNav = headerBlock.match(/<nav aria-label="Navegação móvel"[^]*?<\/nav>/)?.[0] ?? "";
+  assert.match(desktopNav, /<a href="\/saeb"[^>]*>SAEB</, "desktop nav missing the SAEB link");
+  assert.match(mobileNav, /<a href="\/saeb"[^>]*>SAEB</, "mobile nav missing the SAEB link");
 });
 
-test("/saeb does not appear in the sitemap yet", async () => {
+test("/saeb appears in the sitemap exactly once, with the canonical domain and no query string", async () => {
   const sitemapResponse = await render("/sitemap.xml");
   const xml = await sitemapResponse.text();
   assert.equal(sitemapResponse.status, 200);
-  assert.ok(!xml.includes("/saeb"), "/saeb must stay out of the sitemap in this round");
+  const matches = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]).filter((loc) => loc.includes("/saeb"));
+  assert.deepEqual(matches, ["https://tempodocente.com.br/saeb"], "/saeb should appear exactly once, as the bare canonical route");
 });
 
 test("the SAEB page body links to no internal route other than the breadcrumb home", () => {

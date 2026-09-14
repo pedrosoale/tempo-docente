@@ -120,6 +120,7 @@ export function Header() {
           </div>
 
           <a href="/saresp" aria-current={pathname === "/saresp" ? "page" : undefined}>SARESP</a>
+          <a href="/saeb" aria-current={pathname === "/saeb" ? "page" : undefined}>SAEB</a>
           <a href="/sobre" aria-current={pathname === "/sobre" ? "page" : undefined}>Sobre</a>
         </nav>
 
@@ -167,6 +168,7 @@ export function Header() {
             </div>
 
             <a href="/saresp" aria-current={pathname === "/saresp" ? "page" : undefined} onClick={() => closeMobile(false)}>SARESP</a>
+            <a href="/saeb" aria-current={pathname === "/saeb" ? "page" : undefined} onClick={() => closeMobile(false)}>SAEB</a>
             <a href="/sobre" aria-current={pathname === "/sobre" ? "page" : undefined} onClick={() => closeMobile(false)}>Sobre</a>
             <a className="mobile-menu-cta" href="/bncc" onClick={() => closeMobile(false)}>Explorar BNCC</a>
           </nav>

@@ -25,6 +25,7 @@ const REAL_CARDS = [
   { title: "Ensino Médio", href: "/bncc/ensino-medio" },
   { title: "Competências Gerais", href: "/bncc/competencias-gerais" },
   { title: "SARESP", href: "/saresp" },
+  { title: "SAEB", href: "/saeb" },
 ];
 
 const homeResponse = await render("/");
@@ -42,7 +43,7 @@ test("no old anchor link (#avaliacoes, #dados, #ferramentas, #sobre) appears any
   }
 });
 
-test("Header and Footer only link to real destinations (/, /bncc, /saresp, /sobre, and the four BNCC submenu pages)", () => {
+test("Header and Footer only link to real destinations (/, /bncc, /saresp, /saeb, /sobre, and the four BNCC submenu pages)", () => {
   const headerBlock = homeHtml.match(/<header class="site-header">[^]*?<\/header>/)?.[0] ?? "";
   const footerBlock = homeHtml.match(/<footer class="footer">[^]*?<\/footer>/)?.[0] ?? "";
   assert.ok(headerBlock, "missing <header>");
@@ -59,6 +60,14 @@ test("Header and Footer only link to real destinations (/, /bncc, /saresp, /sobr
 
   assert.match(headerBlock, /href="\/saresp"/);
   assert.match(footerBlock, /href="\/saresp"/);
+
+  // SAEB: real link to /saeb, never to a search query, an anchor, or "Em breve" copy.
+  assert.match(headerBlock, /href="\/saeb"[^>]*>SAEB</, "header should link 'SAEB' to the real /saeb page");
+  assert.match(footerBlock, /href="\/saeb">SAEB</, "footer should link 'SAEB' to the real /saeb page");
+  assert.doesNotMatch(headerBlock, /href="\/bncc\?q=SAEB"/);
+  assert.doesNotMatch(footerBlock, /href="\/bncc\?q=SAEB"/);
+  assert.doesNotMatch(headerBlock, /href="#saeb"/);
+  assert.doesNotMatch(footerBlock, /href="#saeb"/);
 });
 
 // ---- Privacidade: Footer only, never the main Header menu ----
@@ -145,7 +154,17 @@ const ARIA_CURRENT_CASES = [
     expectBnccSectionClass: false,
     expectedSubmenuPageHref: null,
   },
+  {
+    path: "/saeb",
+    describe: "on /saeb, outside the BNCC section entirely",
+    expectBnccPage: false,
+    expectBnccSectionClass: false,
+    expectedSubmenuPageHref: null,
+  },
 ];
+
+// Top-level nav items (outside the BNCC dropdown) that carry aria-current="page" on their own route.
+const SIMPLE_CURRENT_ROUTES = ["/saresp", "/saeb"];
 
 for (const testCase of ARIA_CURRENT_CASES) {
   test(`aria-current ${testCase.describe} (${testCase.path}): exactly one current element, never a duplicate`, async () => {
@@ -169,8 +188,16 @@ for (const testCase of ARIA_CURRENT_CASES) {
       assert.ok(!(/aria-current="page"/.test(bnccAttrs) && /class="is-section-active"/.test(bnccAttrs)), `${testCase.path} ${navName}: BNCC must not carry both aria-current="page" and is-section-active`);
 
       const currentPageCount = (nav.match(/aria-current="page"/g) ?? []).length;
-      const expectedCount = testCase.expectBnccPage || testCase.expectedSubmenuPageHref || testCase.path === "/saresp" ? 1 : 0;
+      const expectedCount = testCase.expectBnccPage || testCase.expectedSubmenuPageHref || SIMPLE_CURRENT_ROUTES.includes(testCase.path) ? 1 : 0;
       assert.equal(currentPageCount, expectedCount, `${testCase.path} ${navName}: expected exactly ${expectedCount} aria-current="page" element(s), found ${currentPageCount}`);
+
+      // Each simple route's own link carries aria-current="page" only when it's the current path.
+      for (const route of SIMPLE_CURRENT_ROUTES) {
+        const label = route === "/saresp" ? "SARESP" : "SAEB";
+        const linkMatch = nav.match(new RegExp(`<a href="${route.replace(/\//g, "\\/")}"([^>]*)>${label}</`));
+        assert.ok(linkMatch, `${testCase.path} ${navName}: ${label} link not found`);
+        assert.equal(/aria-current="page"/.test(linkMatch[1]), route === testCase.path, `${testCase.path} ${navName}: ${label} aria-current="page" mismatch`);
+      }
 
       if (testCase.expectedSubmenuPageHref) {
         assert.match(nav, new RegExp(`<a href="${testCase.expectedSubmenuPageHref.replace(/\//g, "\\/")}" aria-current="page"`), `${testCase.path} ${navName}: expected submenu link to carry aria-current="page"`);
@@ -196,15 +223,29 @@ test("the BNCC search section appears before the 'acesso rápido' cards in the h
   assert.ok(searchIndex < accessIndex, "search should render before the quick-access grid");
 });
 
-// ---- 6 & 7. Cinco cartões reais, destinos corretos, nenhum "Em breve" ----
+// ---- 6 & 7. Seis cartões reais, destinos corretos, nenhum "Em breve" ----
 
-test("exactly the five real cards are present, each with the correct destination", () => {
+test("exactly the six real cards are present, each with the correct destination", () => {
   for (const card of REAL_CARDS) {
     const pattern = new RegExp(`href="${card.href.replace(/\//g, "\\/")}"[^>]*>[^]*?<h3>${card.title}</h3>`);
     assert.match(homeHtml, pattern, `missing card for ${card.title} -> ${card.href}`);
   }
   const accessCardCount = (homeHtml.match(/class="access-card"/g) ?? []).length;
-  assert.equal(accessCardCount, 5, "expected exactly 5 access-card elements on the homepage");
+  assert.equal(accessCardCount, 6, "expected exactly 6 access-card elements on the homepage");
+});
+
+test("the SAEB quick-access card describes only what's implemented, never descriptors, proficiency levels, territorial comparisons or export", () => {
+  const card = homeHtml.match(/<a class="access-card" href="\/saeb">[^]*?<\/a>/)?.[0] ?? "";
+  assert.ok(card, "SAEB access-card not found");
+  assert.match(card, /<h3>SAEB<\/h3>/);
+  assert.match(card, /município/i);
+  assert.match(card, /escola/i);
+  assert.match(card, /histórico|evolução/i);
+  assert.doesNotMatch(card, /descritor/i);
+  assert.doesNotMatch(card, /n[íi]vel de profici[êe]ncia/i);
+  assert.doesNotMatch(card, /compara(ç|c)[ãa]o territorial|munic[íi]pio, .*UF|Brasil\b/i);
+  assert.doesNotMatch(card, /exportar|exporta[çc][ãa]o/i);
+  assert.doesNotMatch(card, /Em breve/);
 });
 
 test("no real card is marked 'Em breve', and no disabled-card markers remain on the homepage", () => {
@@ -281,6 +322,40 @@ test("every page family has exactly one #main-content landmark, and the skip lin
 });
 
 // ---- 11. Feedback de "nenhuma escola encontrada" no SARESP ----
+
+// ---- 12. Acesso à consulta SAEB pela home é navegação, não busca ----
+
+test("the homepage's SAEB access point is a real navigation link, not a BNCC search shortcut and not a mobile menu link left open", () => {
+  const searchSection = homeHtml.match(/<section class="section search-section"[^]*?<\/section>/)?.[0] ?? "";
+  assert.ok(searchSection, "search section not found");
+  // The BNCC search examples are untouched: still exactly the four original chips, none mentioning SAEB.
+  for (const example of ["EF07MA18", "Equações", "Frações", "Matemática 8º ano"]) {
+    assert.match(searchSection, new RegExp(`href="/bncc\\?q=${encodeURIComponent(example).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`));
+  }
+  assert.doesNotMatch(searchSection, />SAEB</);
+
+  // The SAEB quick-access card uses a plain <a href="/saeb">, not a <form>/query-string search.
+  const card = homeHtml.match(/<a class="access-card" href="\/saeb">[^]*?<\/a>/)?.[0] ?? "";
+  assert.ok(card, "SAEB access-card not found");
+  assert.doesNotMatch(card, /<form/);
+});
+
+// ---- 13. Rodapé inclui SAEB junto de SARESP ----
+
+test("the Footer's tools navigation includes SAEB right after SARESP, following the existing pattern", () => {
+  const footerBlock = homeHtml.match(/<footer class="footer">[^]*?<\/footer>/)?.[0] ?? "";
+  assert.ok(footerBlock, "missing <footer>");
+  const nav = footerBlock.match(/<nav aria-label="Navegação do rodapé">[^]*?<\/nav>/)?.[0] ?? "";
+  assert.ok(nav, "missing footer nav");
+  assert.match(nav, /<a href="\/saresp">SARESP<\/a>\s*<a href="\/saeb">SAEB<\/a>/);
+});
+
+// ---- 14. Seção de acesso rápido reflete o novo total ----
+
+test("the quick-access section heading reflects six available resources, not five", () => {
+  assert.match(homeHtml, /Seis recursos disponíveis agora/);
+  assert.doesNotMatch(homeHtml, /Cinco recursos disponíveis agora/);
+});
 
 test("SARESP's 'no school found' copy is still present in the component, and a nonsense query genuinely produces zero matches against the real index", () => {
   // This state only exists after client-side interaction (typing into the school filter), so it

@@ -759,8 +759,8 @@ summary {
 
 /* Modificador só da homepage — não muda .access-grid em si, então os hubs da
    BNCC e da Educação Infantil (que também usam essa classe) continuam
-   exatamente como estavam. 5 cartões reais: 3 colunas no desktop (3+2, nunca
-   4+1), 2 no tablet (ver @media 900px), 1 no celular (regra já existente de
+   exatamente como estavam. 6 cartões reais: 3 colunas no desktop (3+3), 2 no
+   tablet (3 linhas — ver @media 900px), 1 no celular (regra já existente de
    .access-grid em @media 640px, reaproveitada sem duplicação). */
 .quick-access-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
