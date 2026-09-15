@@ -74,6 +74,13 @@ summary {
   margin-inline: auto;
 }
 
+/* A homepage usa um único eixo editorial. Textos, cartões e demonstrações
+   começam e terminam na mesma largura, evitando que cada seção pareça ter um
+   alinhamento próprio em telas largas. */
+.home-rail {
+  width: min(1120px, calc(100% - 48px));
+}
+
 .section {
   padding: 112px 0;
 }
@@ -759,15 +766,24 @@ summary {
 
 /* Modificador só da homepage — não muda .access-grid em si, então os hubs da
    BNCC e da Educação Infantil (que também usam essa classe) continuam
-   exatamente como estavam. 6 cartões reais: 3 colunas no desktop (3+3), 2 no
-   tablet (3 linhas — ver @media 900px), 1 no celular (regra já existente de
-   .access-grid em @media 640px, reaproveitada sem duplicação). */
+   exatamente como estavam. Os 6 cartões usam 2 colunas mais largas no desktop
+   e tablet, e 1 coluna no celular pela regra geral de .access-grid. */
 .quick-access-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.home-page .section-heading {
+  display: block;
+  max-width: 760px;
+}
+
+.home-page .section-heading > p {
+  max-width: 720px;
+  margin-top: 16px;
 }
 
 .access-card {
-  min-height: 294px;
+  min-height: 268px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -868,9 +884,12 @@ summary {
 
 .search-layout {
   display: grid;
-  grid-template-columns: 0.78fr 1.22fr;
-  gap: 90px;
-  align-items: center;
+  grid-template-columns: 1fr;
+  gap: 36px;
+}
+
+.search-copy {
+  max-width: 760px;
 }
 
 .search-copy .section-kicker {
@@ -954,19 +973,20 @@ summary {
 
 .search-examples button,
 .search-examples a {
-  padding: 7px 9px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 8px;
+  padding: 3px 1px;
+  border: 0;
+  border-bottom: 1px solid rgba(115, 219, 196, 0.42);
+  border-radius: 0;
   color: #e4edf3;
   background: transparent;
-  font-size: 11px;
+  font-size: 12px;
   cursor: pointer;
   text-decoration: none;
 }
 
 .search-examples button:hover,
 .search-examples a:hover {
-  border-color: rgba(115, 219, 196, 0.7);
+  border-color: #8de4d0;
   color: #8de4d0;
 }
 
@@ -1051,9 +1071,12 @@ summary {
 
 .dashboard-layout {
   display: grid;
-  grid-template-columns: 0.72fr 1.28fr;
-  gap: 72px;
-  align-items: center;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+.dashboard-copy {
+  max-width: 760px;
 }
 
 .dashboard-copy > p {
@@ -1518,6 +1541,10 @@ summary {
 @media (max-width: 640px) {
   .container {
     width: min(100% - 32px, 1240px);
+  }
+
+  .home-rail {
+    width: min(100% - 32px, 1120px);
   }
 
   .section {

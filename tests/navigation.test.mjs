@@ -323,15 +323,38 @@ test("every page family has exactly one #main-content landmark, and the skip lin
 
 // ---- 11. Feedback de "nenhuma escola encontrada" no SARESP ----
 
-// ---- 12. Acesso à consulta SAEB pela home é navegação, não busca ----
+// ---- 12. Sugestões de busca representam componentes variados da BNCC ----
+
+test("the homepage search examples represent varied BNCC subjects", () => {
+  const searchSection = homeHtml.match(/<section class="section search-section"[^]*?<\/section>/)?.[0] ?? "";
+  assert.ok(searchSection, "search section not found");
+
+  const examples = ["Língua Portuguesa", "Ciências", "História", "Geografia"];
+  for (const example of examples) {
+    const encoded = encodeURIComponent(example).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    assert.match(searchSection, new RegExp(`href="/bncc\\?q=${encoded}"[^>]*>${example}</a>`));
+  }
+
+  assert.doesNotMatch(searchSection, />EF07MA18<|>Equações<|>Frações<|>Matemática 8º ano</);
+});
+
+test("the homepage uses one shared content rail across its principal sections", () => {
+  assert.match(homeHtml, /<main id="main-content" class="home-page">/);
+  assert.equal(
+    (homeHtml.match(/class="container home-rail(?: [^"]*)?"/g) ?? []).length,
+    6,
+    "Hero, search, quick access, trust, flow and dashboard must share the same content rail",
+  );
+  assert.match(homeHtml, /class="container home-rail search-layout"/);
+  assert.match(homeHtml, /class="container home-rail dashboard-layout"/);
+});
+
+// ---- 13. Acesso à consulta SAEB pela home é navegação, não busca ----
 
 test("the homepage's SAEB access point is a real navigation link, not a BNCC search shortcut and not a mobile menu link left open", () => {
   const searchSection = homeHtml.match(/<section class="section search-section"[^]*?<\/section>/)?.[0] ?? "";
   assert.ok(searchSection, "search section not found");
-  // The BNCC search examples are untouched: still exactly the four original chips, none mentioning SAEB.
-  for (const example of ["EF07MA18", "Equações", "Frações", "Matemática 8º ano"]) {
-    assert.match(searchSection, new RegExp(`href="/bncc\\?q=${encodeURIComponent(example).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`));
-  }
+  // SAEB has its own route and must not be presented as a BNCC search example.
   assert.doesNotMatch(searchSection, />SAEB</);
 
   // The SAEB quick-access card uses a plain <a href="/saeb">, not a <form>/query-string search.
@@ -340,7 +363,7 @@ test("the homepage's SAEB access point is a real navigation link, not a BNCC sea
   assert.doesNotMatch(card, /<form/);
 });
 
-// ---- 13. Rodapé inclui SAEB junto de SARESP ----
+// ---- 14. Rodapé inclui SAEB junto de SARESP ----
 
 test("the Footer's tools navigation includes SAEB right after SARESP, following the existing pattern", () => {
   const footerBlock = homeHtml.match(/<footer class="footer">[^]*?<\/footer>/)?.[0] ?? "";

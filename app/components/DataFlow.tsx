@@ -10,7 +10,7 @@ const steps = [
 export function DataFlow() {
   return (
     <section className="section flow-section" id="avaliacoes">
-      <div className="container">
+      <div className="container home-rail">
         <div className="section-heading flow-heading">
           <div>
             <span className="section-kicker">No roteiro</span>

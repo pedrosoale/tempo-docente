@@ -1,11 +1,11 @@
 import { ArrowRight, Search } from "lucide-react";
 
-const examples = ["EF07MA18", "Equações", "Frações", "Matemática 8º ano"];
+const examples = ["Língua Portuguesa", "Ciências", "História", "Geografia"];
 
 export function EducationSearch() {
   return (
     <section className="section search-section" id="busca">
-      <div className="container search-layout">
+      <div className="container home-rail search-layout">
         <div className="search-copy">
           <span className="section-kicker">Busca educacional</span>
           <h2>Encontre rapidamente o que precisa.</h2>

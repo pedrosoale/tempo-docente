@@ -84,7 +84,7 @@ function QuickAccessCard({ item }: { item: AccessItem }) {
 export function QuickAccess() {
   return (
     <section className="section quick-access" id="acessos">
-      <div className="container">
+      <div className="container home-rail">
         <div className="section-heading">
           <div>
             <span className="section-kicker">Acesso rápido</span>

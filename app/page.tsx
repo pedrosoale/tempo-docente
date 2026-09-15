@@ -44,7 +44,7 @@ export default function Home() {
       {/* JSON-LD estático, sem entrada de usuário — ver websiteJsonLdScript acima para o escape de segurança. */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: websiteJsonLdScript }} />
       <Header />
-      <main id="main-content">
+      <main id="main-content" className="home-page">
         <Hero />
         <EducationSearch />
         <QuickAccess />

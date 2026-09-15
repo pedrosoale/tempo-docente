@@ -152,7 +152,7 @@ export default function SaebPage() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section" id="saeb-ideb-censo">
         <div className="container">
           <div className="section-heading">
             <div>

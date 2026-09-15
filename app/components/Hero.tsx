@@ -4,7 +4,7 @@ import { HeroPlatformPreview } from "./HeroPlatformPreview";
 export function Hero() {
   return (
     <section className="hero" id="top">
-      <div className="container hero-grid">
+      <div className="container home-rail hero-grid">
         <div className="hero-copy">
           <div className="section-kicker"><span /> Inteligência educacional</div>
           <h1>Dados educacionais que fazem sentido para quem ensina.</h1>

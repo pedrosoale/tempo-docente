@@ -3,7 +3,7 @@ import { ExternalLink, ShieldCheck } from "lucide-react";
 export function SourceTrust() {
   return (
     <section className="section trust-section" id="fontes">
-      <div className="container trust-card">
+      <div className="container home-rail trust-card">
         <div className="trust-icon"><ShieldCheck size={26} aria-hidden="true" /></div>
         <div className="trust-copy">
           <span className="section-kicker">Transparência</span>

@@ -102,30 +102,35 @@
   margin-top: 28px;
 }
 
-/* ---- Três definições lado a lado (SAEB / Censo Escolar / Ideb) ----
-   Grade de conceitos paralelos, não uma sequência: sem numeração e sem seta
-   de "próximo passo", pelo mesmo motivo documentado em sobre.css. */
+/* ---- Comparação editorial (SAEB / Censo Escolar / Ideb) ----
+   Os conceitos são paralelos, mas aparecem como linhas da mesma explicação em
+   vez de três cartões independentes. Isso preserva a comparação sem quebrar o
+   ritmo de leitura das demais seções da página. */
 
 .saeb-concepts {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  max-width: 72ch;
+  margin: 32px 0 0;
+  border-top: 1px solid var(--line);
 }
 
 .saeb-concept {
-  padding: 26px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  background: var(--white);
+  display: grid;
+  grid-template-columns: 40px 170px minmax(0, 1fr);
+  column-gap: 20px;
+  align-items: start;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
 }
 
 .saeb-concept svg {
+  margin-top: 1px;
   color: var(--teal-dark);
 }
 
 .saeb-concept h3 {
-  margin: 14px 0 8px;
+  margin: 0;
   color: var(--navy);
   font-size: 18px;
   letter-spacing: -0.02em;
@@ -140,7 +145,8 @@
 
 .saeb-concept-role {
   display: block;
-  margin-top: 12px;
+  grid-column: 3;
+  margin-top: 9px;
   color: var(--teal-dark);
   font-family: var(--font-geist-mono), monospace;
   font-size: 12.5px;
@@ -283,9 +289,23 @@
   line-height: 1.65;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 700px) {
   .saeb-concepts {
-    grid-template-columns: 1fr;
+    margin-top: 28px;
+  }
+
+  .saeb-concept {
+    grid-template-columns: 36px minmax(0, 1fr);
+    column-gap: 14px;
+  }
+
+  .saeb-concept p,
+  .saeb-concept-role {
+    grid-column: 2;
+  }
+
+  .saeb-concept p {
+    margin-top: 8px;
   }
 }
 
@@ -300,7 +320,6 @@
     padding: 32px 0 40px;
   }
 
-  .saeb-concept,
   .saeb-reasons li {
     padding: 20px;
   }

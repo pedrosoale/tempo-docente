@@ -8,7 +8,7 @@ const bars = [
 export function DashboardPreview() {
   return (
     <section className="section dashboard-section" id="dados">
-      <div className="container dashboard-layout">
+      <div className="container home-rail dashboard-layout">
         <div className="dashboard-copy">
           <span className="section-kicker">No roteiro</span>
           <h2>Dados mais fáceis de interpretar.</h2>
