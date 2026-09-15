@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { AlertTriangle, HelpCircle, Loader2, RotateCcw, School, TrendingUp, X } from "lucide-react";
+import { AlertTriangle, BookOpen, HelpCircle, Loader2, RotateCcw, School, TrendingUp, X } from "lucide-react";
 import { buscarEscolasNaParticao, buscarEscolasNoIndiceMunicipal, buscarMunicipios } from "@/lib/saeb/busca";
 import { createSaebClient, SaebVersionMismatchError, type SaebClient } from "@/lib/saeb/client";
 import { mensagemDeErro } from "@/lib/saeb/erros";
@@ -22,6 +22,7 @@ import type {
 } from "@/lib/saeb/types";
 import Combobox from "./Combobox";
 import HistoricoEscola from "./HistoricoEscola";
+import InterpretacaoResultado from "./InterpretacaoResultado";
 
 type Carregavel<T> = { status: "loading" } | { status: "error"; erro: string } | { status: "ok"; dados: T };
 
@@ -122,6 +123,7 @@ export default function SaebConsulta() {
     setEtapaEscolhida(null);
     setEdicaoEscolhida(null);
     setHistoricoAberto(false);
+    setInterpretacaoAberta(false);
   }
 
   async function selecionarMunicipio(entrada: EntradaIndiceNacional) {
@@ -162,6 +164,11 @@ export default function SaebConsulta() {
   // seleção acima; trocar de escola fecha o painel para nunca exibir histórico de uma escola que
   // não é mais a selecionada (o componente também é remontado por key={escolaAtual.codigoInep}).
   const [historicoAberto, setHistoricoAberto] = useState(false);
+  // Painel "Entenda este resultado" (ver InterpretacaoResultado.tsx) — mesma disciplina do
+  // histórico: abrir/fechar não mexe em nenhuma seleção, e trocar de escola fecha o painel (mais
+  // o remount por key={escolaAtual.codigoInep}) para nunca mostrar a interpretação de uma escola
+  // que não é mais a selecionada.
+  const [interpretacaoAberta, setInterpretacaoAberta] = useState(false);
 
   const municipioAtual: Municipio | null = useMemo(() => {
     if (fluxoMunicipio.status !== "ok") return null;
@@ -195,6 +202,7 @@ export default function SaebConsulta() {
     setEtapaEscolhida(null);
     setEdicaoEscolhida(null);
     setHistoricoAberto(false);
+    setInterpretacaoAberta(false);
     setFluxoEscola({ status: "loading" });
     try {
       const resultado = await escolaControllerRef.current.run(async (signal) => {
@@ -214,6 +222,7 @@ export default function SaebConsulta() {
     setEtapaEscolhida(null);
     setEdicaoEscolhida(null);
     setHistoricoAberto(false);
+    setInterpretacaoAberta(false);
   }
 
   // Escola efetivamente resolvida — vem de fontes diferentes conforme o tipo de município, mas o
@@ -422,6 +431,23 @@ export default function SaebConsulta() {
                   municipio={municipioAtual}
                   etapaInicial={etapaEfetiva}
                   onFechar={() => setHistoricoAberto(false)}
+                />
+              )}
+
+              {edicoesPossiveis.length > 0 && etapaEfetiva && edicaoEfetiva && !interpretacaoAberta && (
+                <button type="button" className="saeb-retry saeb-historico-abrir" onClick={() => setInterpretacaoAberta(true)}>
+                  <BookOpen size={15} aria-hidden="true" /> Entenda este resultado
+                </button>
+              )}
+
+              {interpretacaoAberta && etapaEfetiva && edicaoEfetiva && (
+                <InterpretacaoResultado
+                  key={`${escolaAtual.codigoInep}-${etapaEfetiva}-${edicaoEfetiva}`}
+                  escola={escolaAtual}
+                  etapa={etapaEfetiva}
+                  edicao={edicaoEfetiva}
+                  registro={registroAtual}
+                  onFechar={() => setInterpretacaoAberta(false)}
                 />
               )}
             </>

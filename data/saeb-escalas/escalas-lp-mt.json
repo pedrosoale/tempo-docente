@@ -1,0 +1,1222 @@
+{
+  "escalas": [
+    {
+      "componente": "lp",
+      "edicoesAssociadas": [
+        "2005",
+        "2007",
+        "2009",
+        "2011",
+        "2013",
+        "2015",
+        "2017",
+        "2019",
+        "2021",
+        "2023",
+        "2025"
+      ],
+      "etapa": "anosIniciais",
+      "etapaLabelOficial": "5º Ano do Ensino Fundamental",
+      "fonteInternaCitada": "Fonte: Elaboração própria a partir de Daeb/Inep (2018b).",
+      "niveis": [
+        {
+          "descricaoOficial": "O Saeb não utilizou itens que avaliam as habilidades deste nível. Os estudantes localizados abaixo do nível 125 requerem atenção especial, pois não demonstram habilidades muito elementares.",
+          "limiteInferior": null,
+          "limiteSuperior": 125,
+          "nivel": 0,
+          "nomeNivel": "Nível 0",
+          "operadorInferior": null,
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            5
+          ],
+          "paginasPdf": [
+            7
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Os estudantes provavelmente são capazes de:\n•\t Localizar informações explícitas em textos narrativos curtos, informativos e anúncios.\n•\t Identificar o tema de um texto.\n•\t Localizar elementos como o personagem principal.\n•\t Estabelecer relação entre partes do texto: personagem e ação; ação e tempo; ação e lugar.",
+          "limiteInferior": 125,
+          "limiteSuperior": 150,
+          "nivel": 1,
+          "nomeNivel": "Nível 1",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            5
+          ],
+          "paginasPdf": [
+            7
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Localizar informações explícitas em contos.\n•\t Identificar o assunto principal e a personagem principal em reportagem e em fábulas.\n•\t Reconhecer a finalidade de receitas, manuais e regulamentos.\n•\t Inferir características de personagens em fábulas.\n•\t Interpretar linguagem verbal e não-verbal em tirinhas.",
+          "limiteInferior": 150,
+          "limiteSuperior": 175,
+          "nivel": 2,
+          "nomeNivel": "Nível 2",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            5
+          ],
+          "paginasPdf": [
+            7
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Localizar informação explícita em contos e reportagens.\n•\t Localizar informação explícita em propagandas com ou sem apoio de recursos gráficos.\n•\t Reconhecer relação de causa e consequência em poemas, contos e tirinhas.\n•\t Inferir o sentido de palavra, o sentido de expressão ou o assunto em cartas, contos, tirinhas e histórias em quadrinhos com o apoio de linguagem verbal e não verbal.",
+          "limiteInferior": 175,
+          "limiteSuperior": 200,
+          "nivel": 3,
+          "nomeNivel": "Nível 3",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            5,
+            6
+          ],
+          "paginasPdf": [
+            7,
+            8
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Identificar informação explícita em sinopses e receitas culinárias.\n•\t Identificar assunto principal e personagem em contos e letras de música.\n•\t Identificar formas de representação de medida de tempo em reportagens.\n•\t Identificar assuntos comuns a duas reportagens.\n•\t Identificar o efeito de humor em piadas.\n•\t Reconhecer sentido de expressão, elementos da narrativa e opinião em reportagens, contos e poemas.\n•\t Reconhecer relação de causa e consequência e relação entre pronomes e seus referentes em fábulas, poemas, contos e tirinhas.\n•\t Inferir sentido decorrente da utilização de sinais de pontuação e sentido de expressões em poemas, fábulas e contos.\n•\t Inferir efeito de humor em tirinhas e histórias em quadrinhos.",
+          "limiteInferior": 200,
+          "limiteSuperior": 225,
+          "nivel": 4,
+          "nomeNivel": "Nível 4",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            6
+          ],
+          "paginasPdf": [
+            8
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Identificar assunto e opinião em reportagens e contos.\n•\t Identificar assunto comum a cartas e poemas.\n•\t Identificar informação explícita em letras de música e contos.\n•\t Reconhecer assunto em poemas e tirinhas.\n•\t Reconhecer sentido de conjunções e de locuções adverbiais em verbetes, lendas e contos.\n•\t Reconhecer finalidade de reportagens e cartazes.\n•\t Reconhecer relação de causa e consequência e relação entre pronome e seu referente em tirinhas, contos e reportagens.\n•\t Inferir elementos da narrativa em fábulas, contos e cartas.\n•\t Inferir finalidade e efeito de sentido decorrente do uso de pontuação e assunto em fábulas.\n•\t Inferir informação em poemas, reportagens e cartas.\n•\t Diferenciar opinião de fato em reportagens.\n•\t Interpretar efeito de humor e sentido de palavra em piadas e tirinhas.",
+          "limiteInferior": 225,
+          "limiteSuperior": 250,
+          "nivel": 5,
+          "nomeNivel": "Nível 5",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            6,
+            7
+          ],
+          "paginasPdf": [
+            8,
+            9
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Identificar opinião e informação explícita em fábulas, contos, crônicas e reportagens.\n•\t Identificar informação explícita em reportagens com ou sem o auxílio de recursos gráficos.\n•\t Reconhecer a finalidade de verbetes, fábulas, charges e reportagens.\n•\t Reconhecer relação de causa e consequência e relação entre pronomes e seus referentes em poemas, fábulas e contos.\n•\t Inferir assunto principal e sentido de expressão em poemas, fábulas, contos, crônicas, reportagens e tirinhas.\n•\t Inferir informação em contos e reportagens.\n•\t Inferir efeito de humor e moral em piadas e fábulas.",
+          "limiteInferior": 250,
+          "limiteSuperior": 275,
+          "nivel": 6,
+          "nomeNivel": "Nível 6",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            7
+          ],
+          "paginasPdf": [
+            9
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Identificar assunto principal e informações explícitas em poemas, fábulas e letras de música.\n•\t Identificar opinião em poemas e crônicas.\n•\t Reconhecer o gênero textual a partir da comparação entre textos e assunto comum a duas reportagens.\n•\t Reconhecer elementos da narrativa em fábulas.\n•\t Reconhecer relação de causa e consequência e relação entre pronomes e seus referentes em fábulas, contos e crônicas.\n•\t Inferir informação e efeito de sentido decorrente do uso de sinais gráficos em reportagens e em letras de música.\n•\t Interpretar efeito de humor em piadas e contos.\n•\t Interpretar linguagem verbal e não verbal em histórias em quadrinhos.",
+          "limiteInferior": 275,
+          "limiteSuperior": 300,
+          "nivel": 7,
+          "nomeNivel": "Nível 7",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            7
+          ],
+          "paginasPdf": [
+            9
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Identificar assunto principal e opinião em contos e cartas do leitor.\n•\t Reconhecer sentido de locução adverbial e elementos da narrativa em fábulas e contos.\n•\t Reconhecer relação de causa e consequência e relação entre pronomes e seus referentes em fábulas e reportagens.\n•\t Reconhecer assunto comum entre textos de gêneros diferentes.\n•\t Inferir informações e efeito de sentido decorrente do uso de pontuação em fábulas e piadas.",
+          "limiteInferior": 300,
+          "limiteSuperior": 325,
+          "nivel": 8,
+          "nomeNivel": "Nível 8",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            7,
+            8
+          ],
+          "paginasPdf": [
+            9,
+            10
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Identificar opinião em fábulas e reconhecer sentido de advérbios em cartas do leitor.",
+          "limiteInferior": 325,
+          "limiteSuperior": null,
+          "nivel": 9,
+          "nomeNivel": "Nível 9",
+          "operadorInferior": ">=",
+          "operadorSuperior": null,
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            8
+          ],
+          "paginasPdf": [
+            10
+          ],
+          "tabulado": true
+        }
+      ],
+      "quadro": "Quadro 1",
+      "tituloOficial": "Escala de Proficiência de Língua Portuguesa — 5º Ano do Ensino Fundamental"
+    },
+    {
+      "componente": "mt",
+      "edicoesAssociadas": [
+        "2005",
+        "2007",
+        "2009",
+        "2011",
+        "2013",
+        "2015",
+        "2017",
+        "2019",
+        "2021",
+        "2023",
+        "2025"
+      ],
+      "etapa": "anosIniciais",
+      "etapaLabelOficial": "5º Ano do Ensino Fundamental",
+      "fonteInternaCitada": "Fonte: Elaboração própria a partir de Daeb/Inep (2018e).",
+      "niveis": [
+        {
+          "descricaoOficial": "O Saeb não utilizou itens que avaliam as habilidades deste nível. Os estudantes localizados abaixo do nível 125 requerem atenção especial, pois não demonstram habilidades muito elementares.",
+          "limiteInferior": null,
+          "limiteSuperior": 125,
+          "nivel": 0,
+          "nomeNivel": "Nível 0",
+          "operadorInferior": null,
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            9
+          ],
+          "paginasPdf": [
+            11
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Os estudantes provavelmente são capazes de:\nGRANDEZAS E MEDIDAS\n•\t Determinar a área de figuras desenhadas em malhas quadriculadas por meio de contagem.",
+          "limiteInferior": 125,
+          "limiteSuperior": 150,
+          "nivel": 1,
+          "nomeNivel": "Nível 1",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            9
+          ],
+          "paginasPdf": [
+            11
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Resolver problemas do cotidiano envolvendo adição de pequenas quantias de dinheiro.\nTRATAMENTO DE INFORMAÇÕES\n•\t Localizar informações, relativas ao maior ou menor elemento, em tabelas ou gráficos.",
+          "limiteInferior": 150,
+          "limiteSuperior": 175,
+          "nivel": 2,
+          "nomeNivel": "Nível 2",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            9
+          ],
+          "paginasPdf": [
+            11
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Localizar um ponto ou objeto em uma malha quadriculada ou croqui, a partir de duas coordenadas ou duas ou mais referências.\n•\t Reconhecer dentre um conjunto de polígonos, aquele que possui o maior número de ângulos.\n•\t Associar figuras geométricas elementares (quadrado, triângulo e círculo) a seus respectivos nomes.\nGRANDEZAS E MEDIDAS\n•\t Converter uma quantia, dada na ordem das unidades de real, em seu equivalente em moedas.\n•\t Determinar o horário final de um evento a partir de seu horário de início e de um intervalo de tempo dado, todos no formato de horas inteiras.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Associar a fração ¼ a uma de suas representações gráficas.\n•\t Determinar o resultado da subtração de números representados na forma decimal, tendo como contexto o sistema monetário.\nTRATAMENTO DE INFORMAÇÕES\n•\t Reconhecer o maior valor em uma tabela de dupla entrada cujos dados possuem até duas ordens.\n•\t Reconhecer informações em um gráfico de colunas duplas.",
+          "limiteInferior": 175,
+          "limiteSuperior": 200,
+          "nivel": 3,
+          "nomeNivel": "Nível 3",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            9,
+            10
+          ],
+          "paginasPdf": [
+            11,
+            12
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Reconhecer retângulos em meio a outros quadriláteros.\n•\t Reconhecer a planificação de uma pirâmide dentre um conjunto de planificações.\nGRANDEZAS E MEDIDAS\n•\t Determinar o total de uma quantia a partir da quantidade de moedas de 25 e/ou 50 centavos que a compõe, ou vice-versa.\n•\t Determinar a duração de um evento cujos horários inicial e final acontecem em minutos diferentes de uma mesma hora dada.\n•\t Converter uma hora em minutos.\n•\t Converter mais de uma semana inteira em dias.\n•\t Interpretar horas em relógios de ponteiros.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Determinar o resultado da multiplicação de números naturais por valores do sistema monetário nacional, expressos em números de até duas ordens e posterior adição.\n•\t Determinar os termos desconhecidos em uma sequência numérica de múltiplos de cinco.\n•\t Determinar a adição, com reserva, de até três números naturais com até quatro ordens.\n•\t Determinar a subtração de números naturais usando a noção de completar.\n•\t Determinar a multiplicação de um número natural de até três ordens por cinco, com reserva.\n•\t Determinar a divisão exata por números de um algarismo.\n•\t Reconhecer o princípio do valor posicional do Sistema de Numeração Decimal.\n•\t Reconhecer uma fração como representação da relação parte-todo, com o apoio de um conjunto de até cinco figuras.\n•\t Associar a metade de um total ao seu equivalente em porcentagem.\n•\t Associar um número natural à sua decomposição expressa por extenso.\n•\t Localizar um número em uma reta numérica graduada onde estão expressos números naturais consecutivos e uma subdivisão equivalente à metade do intervalo entre eles.\nTRATAMENTO DE INFORMAÇÕES\n•\t Reconhecer o maior valor em uma tabela cujos dados possuem até oito ordens.\n•\t Localizar um dado em tabelas de dupla entrada.",
+          "limiteInferior": 200,
+          "limiteSuperior": 225,
+          "nivel": 4,
+          "nomeNivel": "Nível 4",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            10,
+            11
+          ],
+          "paginasPdf": [
+            12,
+            13
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Localizar um ponto entre outros dois fixados, apresentados em uma figura composta por vários outros pontos.\n•\t Reconhecer a planificação de um cubo dentre um conjunto de planificações apresentadas.\nGRANDEZAS E MEDIDAS\n•\t Determinar a área de um terreno retangular representado em uma malha quadriculada.\n•\t Determinar o horário final de um evento a partir do horário de início, dado em horas e minutos, e de um intervalo dado em quantidade de minutos superior a uma hora.\n•\t Converter mais de uma hora inteira em minutos.\n•\t Converter uma quantia dada em moedas de 5, 25 e 50 centavos e 1 real em cédulas de real.\n•\t Estimar a altura de um determinado objeto com referência aos dados fornecidos por uma régua graduada em centímetros.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Determinar o resultado da subtração, com recursos à ordem superior, entre números naturais de até cinco ordens, utilizando as ideias de retirar e comparar.\n•\t Determinar o resultado da multiplicação de um número inteiro por um número representado na forma decimal, em contexto envolvendo o sistema monetário.\n•\t Determinar o resultado da divisão de números naturais, com resto, por um número de uma ordem, usando noção de agrupamento.\n•\t Resolver problemas envolvendo a análise do algoritmo da adição de dois números naturais.\n•\t Resolver problemas, no sistema monetário nacional, envolvendo adição e subtração de cédulas e moedas.\n•\t Resolver problemas que envolvam a metade e o triplo de números naturais.\n•\t Localizar um número em uma reta numérica graduada onde estão expressos o primeiro e o último número representando um intervalo de tempo de dez anos, com dez subdivisões entre eles.\n•\t Localizar um número racional dado em sua forma decimal em uma reta numérica graduada onde estão expressos diversos números naturais consecutivos, com dez subdivisões entre eles.\n•\t Reconhecer o valor posicional do algarismo localizado na 4ª ordem de um número natural.\n•\t Reconhecer uma fração como representação da relação parte-todo, com apoio de um polígono dividido em oito partes ou mais.\n•\t Associar um número natural às suas ordens e vice-versa.",
+          "limiteInferior": 225,
+          "limiteSuperior": 250,
+          "nivel": 5,
+          "nomeNivel": "Nível 5",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            11,
+            12,
+            13
+          ],
+          "paginasPdf": [
+            13,
+            14,
+            15
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Reconhecer polígonos presentes em um mosaico composto por diversas formas geométricas.\nGRANDEZAS E MEDIDAS\n•\t Determinar a duração de um evento a partir dos horários de início, informado em horas e minutos, e de término, também informado em horas e minutos, sem coincidência nas horas ou nos minutos dos dois horários informados.\n•\t Converter a duração de um intervalo de tempo, dado em horas e minutos, para minutos.\n•\t Resolver problemas envolvendo intervalos de tempo em meses, inclusive passando pelo final do ano (outubro a janeiro).\n•\t Reconhecer que entre quatro ladrilhos apresentados, quanto maior o ladrilho, menor a quantidade necessária para cobrir uma dada região.\n•\t Reconhecer o m2 como unidade de medida de área.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Determinar o resultado da diferença entre dois números racionais representados na forma decimal.\n•\t Determinar o resultado da multiplicação de um número natural de uma ordem por outro de até três ordens, em contexto que envolve o conceito de proporcionalidade.\n•\t Determinar o resultado da divisão exata entre dois números naturais, com divisor até quatro, e dividendo com até quatro ordens.\n•\t Determinar 50% de um número natural com até três ordens.\n•\t Determinar porcentagens simples (25%, 50%).\n•\t Associar a metade de um total a algum equivalente, apresentado como fração ou porcentagem.\n•\t Associar números naturais à quantidade de agrupamentos de 1 000.\n•\t Reconhecer uma fração como representação da relação parte-todo, sem apoio de figuras.\n•\t Localizar números em uma reta numérica graduada onde estão expressos diversos números naturais não consecutivos e crescentes, com uma subdivisão entre eles.\n•\t Resolver problemas por meio da realização de subtrações e divisões, para determinar o valor das prestações de uma compra a prazo (sem incidência de juros).\n•\t Resolver problemas que envolvam soma e subtração de valores monetários.\n•\t Resolver problemas que envolvam a composição e a decomposição polinomial de números naturais de até cinco ordens.\n•\t Resolver problemas que utilizam a multiplicação envolvendo a noção de proporcionalidade.\n•\t Reconhecer a modificação sofrida no valor de um número quando um algarismo é alterado.\n•\t Reconhecer que um número não se altera ao multiplicá-lo por 1.\nTRATAMENTO DE INFORMAÇÕES\n•\t Interpretar dados em uma tabela simples.\n•\t Comparar dados representados pelas alturas de colunas presentes em um gráfico.",
+          "limiteInferior": 250,
+          "limiteSuperior": 275,
+          "nivel": 6,
+          "nomeNivel": "Nível 6",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            13,
+            14
+          ],
+          "paginasPdf": [
+            15,
+            16
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Interpretar a movimentação de um objeto utilizando referencial diferente do seu.\n•\t Reconhecer um cubo a partir de uma de suas planificações desenhadas em uma malha quadriculada.\nGRANDEZAS E MEDIDAS\n•\t Determinar o perímetro de um retângulo desenhado em malha quadriculada, com as medidas de comprimento e largura explicitados.\n•\t Converter medidas dadas em toneladas para quilogramas.\n•\t Converter uma quantia, dada na ordem das dezenas de real, em moedas de 50 centavos.\n•\t Estimar o comprimento de um objeto a partir de outro, dado como unidade padrão de medida.\n•\t Resolver problemas envolvendo conversão de quilograma para grama.\n•\t Resolver problemas envolvendo conversão de litro para mililitro.\n•\t Resolver problemas sobre intervalos de tempo envolvendo adição e subtração e com intervalo de tempo passando pela meia noite.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Determinar 25% de um número múltiplo de quatro.\n•\t Determinar a quantidade de dezenas presentes em um número de quatro ordens.\n•\t Resolver problemas que envolvem a divisão exata ou a multiplicação de números naturais.\n•\t Associar números naturais à quantidade de agrupamentos menos usuais, como 300 dezenas.\nTRATAMENTO DE INFORMAÇÕES\n•\t Interpretar dados em gráficos de setores.",
+          "limiteInferior": 275,
+          "limiteSuperior": 300,
+          "nivel": 7,
+          "nomeNivel": "Nível 7",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            14,
+            15
+          ],
+          "paginasPdf": [
+            16,
+            17
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Reconhecer uma linha paralela a outra dada como referência em um mapa.\n•\t Reconhecer os lados paralelos de um trapézio expressos em forma de segmentos de retas.\n•\t Reconhecer objetos com a forma esférica dentre uma lista de objetos do cotidiano.\nGRANDEZAS E MEDIDAS\n•\t Determinar a área de um retângulo desenhado numa malha quadriculada, após a modificação de uma de suas dimensões.\n•\t Determinar a razão entre as áreas de duas figuras desenhadas numa malha quadriculada.\n•\t Determinar a área de uma figura poligonal não convexa desenhada sobre uma malha quadriculada.\n•\t Estimar a diferença de altura entre dois objetos, a partir da altura de um deles.\n•\t Converter medidas lineares de comprimento (m/cm).\n•\t Resolver problemas que envolvem a conversão entre diferentes unidades de medida de massa.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Resolver problemas que envolvem grandezas diretamente proporcionais requerendo mais de uma operação.\n•\t Resolver problemas envolvendo divisão de números naturais com resto.\n•\t Associar a fração ½ à sua representação na forma decimal.\n•\t Associar 50% à sua representação na forma de fração.\n•\t Associar um número natural de seis ordens à sua forma polinomial.\nTRATAMENTO DE INFORMAÇÕES\n•\t Interpretar dados em um gráfico de colunas duplas.",
+          "limiteInferior": 300,
+          "limiteSuperior": 325,
+          "nivel": 8,
+          "nomeNivel": "Nível 8",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            15,
+            16
+          ],
+          "paginasPdf": [
+            17,
+            18
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Reconhecer a planificação de uma caixa cilíndrica.\nGRANDEZAS E MEDIDAS\n•\t Determinar o perímetro de um polígono não convexo desenhado sobre as linhas de uma malha quadriculada.\n•\t Resolver problemas que envolvem a conversão entre unidades de medida de tempo (minutos em horas, meses em anos).\n•\t Resolver problemas que envolvem a conversão entre unidades de medida de comprimento (metros em centímetros).\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Determinar o minuendo de uma subtração entre números naturais, de três ordens, a partir do conhecimento do subtraendo e da diferença.\n•\t Determinar o resultado da multiplicação entre o número oito e um número de quatro ordens com reserva.\n•\t Reconhecer frações equivalentes.\n•\t Resolver problemas envolvendo multiplicação com significado de combinatória.\n•\t Comparar números racionais com quantidades diferentes de casas decimais.\nTRATAMENTO DE INFORMAÇÕES\n•\t Reconhecer o gráfico de linhas correspondente a uma sequência de valores ao longo do tempo (com valores positivos e negativos).",
+          "limiteInferior": 325,
+          "limiteSuperior": 350,
+          "nivel": 9,
+          "nomeNivel": "Nível 9",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            16,
+            17
+          ],
+          "paginasPdf": [
+            18,
+            19
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Reconhecer dentre um conjunto de quadriláteros, aquele que possui lados perpendiculares e com a mesma medida.\nGRANDEZAS E MEDIDAS\n•\t Converter uma medida de comprimento, expressando decímetros e centímetros, para milímetros.",
+          "limiteInferior": 350,
+          "limiteSuperior": null,
+          "nivel": 10,
+          "nomeNivel": "Nível 10",
+          "operadorInferior": ">=",
+          "operadorSuperior": null,
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            17
+          ],
+          "paginasPdf": [
+            19
+          ],
+          "tabulado": true
+        }
+      ],
+      "quadro": "Quadro 2",
+      "tituloOficial": "Escala de Proficiência de Matemática — 5º Ano do Ensino Fundamental"
+    },
+    {
+      "componente": "lp",
+      "edicoesAssociadas": [
+        "2005",
+        "2007",
+        "2009",
+        "2011",
+        "2013",
+        "2015",
+        "2017",
+        "2019",
+        "2021",
+        "2023",
+        "2025"
+      ],
+      "etapa": "anosFinais",
+      "etapaLabelOficial": "9º Ano do Ensino Fundamental",
+      "fonteInternaCitada": "Fonte: Elaboração própria a partir de Daeb/Inep (2018c).",
+      "niveis": [
+        {
+          "descricaoOficial": "O Saeb não utilizou itens do 9º ano que avaliam as habilidades do Nível 0. Os estudantes do 9º ano com desempenho menor que 200 requerem atenção especial, pois ainda não demonstram habilidades muito elementares que deveriam apresentar nessa etapa escolar.",
+          "limiteInferior": null,
+          "limiteSuperior": 200,
+          "nivel": 0,
+          "nomeNivel": "Abaixo do Nível 1",
+          "operadorInferior": null,
+          "operadorSuperior": "<",
+          "origemNome": "nota_rodape",
+          "paginasImpressas": [
+            21
+          ],
+          "paginasPdf": [
+            23
+          ],
+          "tabulado": false
+        },
+        {
+          "descricaoOficial": "Os estudantes provavelmente são capazes de:\n•\t Reconhecer expressões características da linguagem (científica, jornalística etc.) e a relação entre expressão e seu referente em reportagens e artigos de opinião.\n•\t Inferir o efeito de sentido de expressão e opinião em crônicas e reportagens.",
+          "limiteInferior": 200,
+          "limiteSuperior": 225,
+          "nivel": 1,
+          "nomeNivel": "Nível 1",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            18
+          ],
+          "paginasPdf": [
+            20
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Localizar informações explícitas em fragmentos de romances e crônicas.\n•\t Identificar tema e assunto em poemas e charges, relacionando elementos verbais e não verbais.\n•\t Reconhecer o sentido estabelecido pelo uso de expressões, de pontuação, de conjunções em poemas, charges e fragmentos de romances.\n•\t Reconhecer relações de causa e consequência e características de personagens em lendas e fábulas.\n•\t Reconhecer recurso argumentativo em artigos de opinião.\n•\t Inferir efeito de sentido de repetição de expressões em crônicas.",
+          "limiteInferior": 225,
+          "limiteSuperior": 250,
+          "nivel": 2,
+          "nomeNivel": "Nível 2",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            18
+          ],
+          "paginasPdf": [
+            20
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Localizar informações explícitas em crônicas e fábulas.\n•\t Identificar os elementos da narrativa em letras de música e fábulas.\n•\t Reconhecer a finalidade de abaixo-assinado e verbetes.\n•\t Reconhecer relação entre pronomes e seus referentes e relações de causa e consequência em fragmentos de romances, diários, crônicas, reportagens e máximas (provérbios).\n•\t Interpretar o sentido de conjunções, de advérbios, e as relações entre elementos verbais e não verbais em tirinhas, fragmentos de romances, reportagens e crônicas.\n•\t Comparar textos de gêneros diferentes que abordem o mesmo tema.\n•\t Inferir tema e ideia principal em notícias, crônicas e poemas.\n•\t Inferir o sentido de palavra ou expressão em história em quadrinhos, poemas e fragmentos de romances.",
+          "limiteInferior": 250,
+          "limiteSuperior": 275,
+          "nivel": 3,
+          "nomeNivel": "Nível 3",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            18,
+            19
+          ],
+          "paginasPdf": [
+            20,
+            21
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Localizar informações explícitas em artigos de opinião e crônicas.\n•\t Identificar finalidade e elementos da narrativa em fábulas e contos.\n•\t Reconhecer opiniões distintas sobre o mesmo assunto em reportagens, contos e enquetes.\n•\t Reconhecer relações de causa e consequência e relações entre pronomes e seus referentes em fragmentos de romances, fábulas, crônicas, artigos de opinião e reportagens.\n•\t Reconhecer o sentido de expressão e de variantes linguísticas em letras de música, tirinhas, poemas e fragmentos de romances.\n•\t Inferir tema, tese e ideia principal em contos, letras de música, editoriais, reportagens, crônicas e artigos.\n•\t Inferir o efeito de sentido de linguagem verbal e não verbal em charges e história em quadrinhos.\n•\t Inferir informações em fragmentos de romance.\n•\t Inferir o efeito de sentido da pontuação e da polissemia como recurso para estabelecer humor ou ironia em tirinhas, anedotas e contos.",
+          "limiteInferior": 275,
+          "limiteSuperior": 300,
+          "nivel": 4,
+          "nomeNivel": "Nível 4",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            19
+          ],
+          "paginasPdf": [
+            21
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Localizar a informação principal em reportagens.\n•\t Identificar ideia principal e finalidade em notícias, reportagens e resenhas.\n•\t Reconhecer características da linguagem (científica, jornalística etc.) em reportagens.\n•\t Reconhecer elementos da narrativa em crônicas.\n•\t Reconhecer argumentos e opiniões em notícias, artigos de opinião e fragmentos de romances.\n•\t Diferenciar abordagem do mesmo tema em textos de gêneros distintos.\n•\t Inferir informação em contos, crônicas, notícias e charges.\n•\t Inferir sentido de palavras, da repetição de palavras, de expressões, de linguagem verbal e não verbal e de pontuação em charges, tirinhas, contos, crônicas e fragmentos de romances.",
+          "limiteInferior": 300,
+          "limiteSuperior": 325,
+          "nivel": 5,
+          "nomeNivel": "Nível 5",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            19,
+            20
+          ],
+          "paginasPdf": [
+            21,
+            22
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Identificar ideia principal e elementos da narrativa em reportagens e crônicas.\n•\t Identificar argumento em reportagens e crônicas.\n•\t Reconhecer o efeito de sentido da repetição de expressões e palavras, do uso de pontuação, de variantes linguísticas e de figuras de linguagem em poemas, contos e fragmentos de romances.\n•\t Reconhecer a relação de causa e consequência em contos.\n•\t Reconhecer diferentes opiniões entre cartas de leitor que abordam o mesmo tema.\n•\t Reconhecer a relação de sentido estabelecida por conjunções em crônicas, contos e cordéis.\n•\t Reconhecer o tema comum entre textos de gêneros distintos.\n•\t Reconhecer o efeito de sentido decorrente do uso de figuras de linguagem e de recursos gráficos em poemas e fragmentos de romances.\n•\t Diferenciar fato de opinião em artigos e reportagens.\n•\t Inferir o efeito de sentido de linguagem verbal e não verbal em tirinhas.",
+          "limiteInferior": 325,
+          "limiteSuperior": 350,
+          "nivel": 6,
+          "nomeNivel": "Nível 6",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            20
+          ],
+          "paginasPdf": [
+            22
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Localizar informações explícitas, ideia principal e expressão que causa humor em contos, crônicas e artigos de opinião.\n•\t Identificar variantes linguísticas em letras de música.\n•\t Reconhecer a finalidade e a relação de sentido estabelecida por conjunções em lendas e crônicas.",
+          "limiteInferior": 350,
+          "limiteSuperior": 375,
+          "nivel": 7,
+          "nomeNivel": "Nível 7",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            20
+          ],
+          "paginasPdf": [
+            22
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Localizar ideia principal em manuais, reportagens, artigos e teses.\n•\t Identificar os elementos da narrativa em contos e crônicas.\n•\t Diferenciar fatos de opiniões e opiniões diferentes em artigos e notícias.\n•\t Inferir o sentido de palavras em poemas.",
+          "limiteInferior": 375,
+          "limiteSuperior": null,
+          "nivel": 8,
+          "nomeNivel": "Nível 8",
+          "operadorInferior": ">=",
+          "operadorSuperior": null,
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            21
+          ],
+          "paginasPdf": [
+            23
+          ],
+          "tabulado": true
+        }
+      ],
+      "quadro": "Quadro 3",
+      "tituloOficial": "Escala de Proficiência de Língua Portuguesa — 9º Ano do Ensino Fundamental"
+    },
+    {
+      "componente": "mt",
+      "edicoesAssociadas": [
+        "2005",
+        "2007",
+        "2009",
+        "2011",
+        "2013",
+        "2015",
+        "2017",
+        "2019",
+        "2021",
+        "2023",
+        "2025"
+      ],
+      "etapa": "anosFinais",
+      "etapaLabelOficial": "9º Ano do Ensino Fundamental",
+      "fonteInternaCitada": "Fonte: Elaboração própria a partir de Daeb/Inep (2018f).",
+      "niveis": [
+        {
+          "descricaoOficial": "O Saeb não utilizou itens do 9º ano que avaliam as habilidades do Nível 0. Os estudantes do 9º ano com desempenho menor que 200 requerem atenção especial, pois ainda não demonstram habilidades muito elementares que deveriam apresentar nessa etapa escolar.",
+          "limiteInferior": null,
+          "limiteSuperior": 200,
+          "nivel": 0,
+          "nomeNivel": "Abaixo do Nível 1",
+          "operadorInferior": null,
+          "operadorSuperior": "<",
+          "origemNome": "nota_rodape",
+          "paginasImpressas": [
+            28
+          ],
+          "paginasPdf": [
+            30
+          ],
+          "tabulado": false
+        },
+        {
+          "descricaoOficial": "Os estudantes provavelmente são capazes de:\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Reconhecer o maior ou o menor número em uma coleção de números racionais, representados na forma decimal.\nTRATAMENTO DE INFORMAÇÕES\n•\t Interpretar dados apresentados em tabela e gráfico de colunas.",
+          "limiteInferior": 200,
+          "limiteSuperior": 225,
+          "nivel": 1,
+          "nomeNivel": "Nível 1",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            22
+          ],
+          "paginasPdf": [
+            24
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Reconhecer a fração que corresponde à relação parte-todo entre uma figura e suas partes hachuradas.\n•\t Associar um número racional que representa uma quantia monetária, escrito por extenso, à sua representação decimal.\n•\t Determinar uma fração irredutível, equivalente a uma fração dada, a partir da simplificação por três.\nTRATAMENTO DE INFORMAÇÕES\n•\t Interpretar dados apresentados em um gráfico de linha simples.\n•\t Associar dados apresentados em gráfico de colunas a uma tabela.",
+          "limiteInferior": 225,
+          "limiteSuperior": 250,
+          "nivel": 2,
+          "nomeNivel": "Nível 2",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            22
+          ],
+          "paginasPdf": [
+            24
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Reconhecer o ângulo de giro que representa a mudança de direção na movimentação de pessoas/objetos.\n•\t Reconhecer a planificação de um sólido simples, dado através de um desenho em perspectiva.\n•\t Localizar um objeto em representação gráfica do tipo planta baixa, utilizando dois critérios: estar mais longe de um referencial e mais perto de outro.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Determinar uma fração irredutível, equivalente a uma fração dada, a partir da simplificação por sete.\n•\t Determinar a soma, a diferença, o produto ou o quociente de números inteiros em situações-problema.\n•\t Localizar o valor que representa um número inteiro positivo associado a um ponto indicado em uma reta numérica.\n•\t Resolver problemas envolvendo grandezas diretamente proporcionais, representadas por números inteiros.\nTRATAMENTO DE INFORMAÇÕES\n•\t Associar dados apresentados em tabela a gráfico de setores.\n•\t Analisar dados dispostos em uma tabela simples.\n•\t Analisar dados apresentados em um gráfico de linha com mais de uma grandeza representada.",
+          "limiteInferior": 250,
+          "limiteSuperior": 275,
+          "nivel": 3,
+          "nomeNivel": "Nível 3",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            22,
+            23
+          ],
+          "paginasPdf": [
+            24,
+            25
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Localizar um ponto em um plano cartesiano, com o apoio de malha quadriculada, a partir de suas coordenadas.\n•\t Reconhecer as coordenadas de um ponto dado em um plano cartesiano, com o apoio de malha quadriculada.\n•\t Interpretar a movimentação de um objeto utilizando referencial diferente do seu.\nGRANDEZAS E MEDIDAS\n•\t Converter unidades de medidas de comprimento, de metros para centímetros, na resolução de situação-problema.\n•\t Reconhecer que a medida do perímetro de um retângulo, em uma malha quadriculada, dobra ou se reduz à metade quando os lados dobram ou são reduzidos à metade.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Determinar a soma de números racionais em contextos de sistema monetário.\n•\t Determinar o valor numérico de uma expressão algébrica de 1º grau envolvendo números naturais, em situação-problema.\n•\t Localizar números inteiros negativos na reta numérica.\n•\t Localizar números racionais em sua representação decimal.\nTRATAMENTO DE INFORMAÇÕES\n•\t Analisar dados dispostos em uma tabela de dupla entrada.",
+          "limiteInferior": 275,
+          "limiteSuperior": 300,
+          "nivel": 4,
+          "nomeNivel": "Nível 4",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            23,
+            24
+          ],
+          "paginasPdf": [
+            25,
+            26
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Reconhecer que o ângulo não se altera em figuras obtidas por ampliação/redução.\n•\t Localizar dois ou mais pontos em um sistema de coordenadas.\nGRANDEZAS E MEDIDAS\n•\t Determinar o perímetro de uma região retangular, com o apoio de figura, na resolução de uma situação-problema.\n•\t Determinar o volume através da contagem de blocos.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Associar uma fração com denominador dez à sua representação decimal.\n•\t Associar uma situação-problema à sua linguagem algébrica, por meio de equações do 1º grau ou sistemas lineares.\n•\t Determinar, em situação-problema, a adição e multiplicação entre números racionais, envolvendo divisão por números inteiros.\n•\t Determinar a porcentagem envolvendo números inteiros.\n•\t Resolver problema envolvendo grandezas diretamente proporcionais, representadas por números racionais na forma decimal.",
+          "limiteInferior": 300,
+          "limiteSuperior": 325,
+          "nivel": 5,
+          "nomeNivel": "Nível 5",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            24
+          ],
+          "paginasPdf": [
+            26
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Reconhecer a medida do ângulo determinado entre dois deslocamentos, descritos por meio de orientações dadas por pontos cardeais.\n•\t Reconhecer as coordenadas de pontos representados no primeiro quadrante de um plano cartesiano.\n•\t Reconhecer a relação entre as medidas de raio e diâmetro de uma circunferência, com o apoio de figura.\n•\t Reconhecer a corda de uma circunferência, as faces opostas de um cubo, a partir de uma de suas planificações.\n•\t Comparar as medidas dos lados de um triângulo a partir das medidas de seus respectivos ângulos opostos.\n•\t Resolver problema utilizando o Teorema de Pitágoras no cálculo da medida da hipotenusa, dadas as medidas dos catetos.\nGRANDEZAS E MEDIDAS\n•\t Converter unidades de medida de massa, de quilograma para grama, na resolução de situação-problema.\n•\t Resolver problema fazendo uso de semelhança de triângulos.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Reconhecer frações equivalentes.\n•\t Associar um número racional, escrito por extenso, à sua representação decimal, e vice-versa.\n•\t Estimar o valor da raiz quadrada de um número inteiro aproximando-o de um número racional em sua representação decimal.\n•\t Resolver problema envolvendo grandezas diretamente proporcionais, com constante de proporcionalidade não inteira.\n•\t Determinar o valor numérico de uma expressão algébrica que contenha parênteses, envolvendo números naturais.\n•\t Determinar um valor monetário obtido por meio de um desconto ou um acréscimo percentual.\n•\t Determinar o valor de uma expressão numérica, com números irracionais, fazendo uso de uma aproximação racional fornecida.\nTRATAMENTO DE INFORMAÇÕES\n•\t Resolver problemas que requerem a comparação de dois gráficos de colunas.",
+          "limiteInferior": 325,
+          "limiteSuperior": 350,
+          "nivel": 6,
+          "nomeNivel": "Nível 6",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            25,
+            26
+          ],
+          "paginasPdf": [
+            27,
+            28
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Reconhecer ângulos agudos, retos ou obtusos de acordo com sua medida em graus.\n•\t Reconhecer as coordenadas de pontos representados num plano cartesiano localizados em quadrantes diferentes do primeiro.\n•\t Determinar a posição final de um objeto, após a realização de rotações em torno de um ponto, de diferentes ângulos, em sentido horário e anti-horário.\n•\t Resolver problemas envolvendo ângulos, inclusive utilizando a Lei Angular de Tales sobre a soma dos ângulos internos de um triângulo.\n•\t Resolver problemas envolvendo  as  propriedades  de  ângulos  internos e externos de triângulos e quadriláteros, com ou sem justa-posição ou sobreposição de figuras.\n•\t Resolver problema utilizando o Teorema de Pitágoras no cálculo da medida de um dos catetos, dadas as medidas da hipotenusa e de um de seus catetos.\nGRANDEZAS E MEDIDAS\n•\t Determinar o perímetro de uma região retangular, obtida pela justaposição de dois retângulos, descritos sem o apoio de figuras.\n•\t Determinar a área de um retângulo em situações-problema.\n•\t Determinar a área de regiões poligonais desenhadas em malhas quadriculadas.\n•\t Determinar o volume de um cubo ou de um paralelepípedo retângulo, sem o apoio de figura.\n•\t Converter unidades de medida de volume, de m3 para litro, em situações-problema.\n•\t Reconhecer a relação entre as áreas de figuras semelhantes.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Determinar o quociente entre números racionais, representados na forma decimal ou fracionária, em situações-problema.\n•\t Determinar a soma de números racionais dados na forma fracionária e com denominadores diferentes.\n•\t Determinar o valor numérico de uma expressão algébrica de 2º grau, com coeficientes naturais, envolvendo números inteiros.\n•\t Determinar o valor de uma expressão numérica envolvendo adição, subtração, multiplicação e/ou potenciação entre números inteiros.\n•\t Determinar o valor de uma expressão numérica com números inteiros positivos e negativos.\n•\t Determinar o valor de uma expressão numérica com números racionais.\n•\t Comparar números racionais com diferentes números de casas decimais, usando arredondamento.\n•\t Localizar na reta numérica um número racional, representado na forma de uma fração imprópria.\n•\t Associar uma fração à sua representação na forma decimal.\n•\t Associar uma situação problema à sua linguagem algébrica, por meio de inequações do 1º grau.\n•\t Associar a representação gráfica de duas retas no plano cartesiano a um sistema de duas equações lineares e vice-versa.\n•\t Resolver problemas envolvendo equação do 2º grau.\nTRATAMENTO DE INFORMAÇÕES\n•\t Determinar a média aritmética de um conjunto de valores.\n•\t Estimar quantidades em gráficos de setores.\n•\t Analisar dados dispostos em uma tabela de três ou mais entradas.\n•\t Interpretar dados fornecidos em gráficos envolvendo regiões do plano cartesiano.\n•\t Interpretar gráficos de linhas com duas sequências de valores.",
+          "limiteInferior": 350,
+          "limiteSuperior": 375,
+          "nivel": 7,
+          "nomeNivel": "Nível 7",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            26,
+            27
+          ],
+          "paginasPdf": [
+            28,
+            29
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Resolver problemas utilizando as propriedades das cevianas (altura, mediana e bissetriz) de um triângulo isósceles, com o apoio de figura.\nGRANDEZAS E MEDIDAS\n•\t Converter unidades de medida de capacidade, de mililitro para litro, em situações-problema.\n•\t Reconhecer que a área de um retângulo quadruplica quando seus lados dobram.\n•\t Determinar a área de figuras simples (triângulo, paralelogramo, trapézio), inclusive utilizando composição/decomposição.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Determinar o valor numérico de uma expressão algébrica do 1o grau, com coeficientes racionais, representados na forma decimal.\n•\t Determinar o valor de uma expressão numérica envolvendo adição, subtração e potenciação entre números racionais, representados na forma decimal.\n•\t Resolver problemas envolvendo grandezas inversamente proporcionais.",
+          "limiteInferior": 375,
+          "limiteSuperior": 400,
+          "nivel": 8,
+          "nomeNivel": "Nível 8",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            28
+          ],
+          "paginasPdf": [
+            30
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Resolver problemas utilizando a soma das medidas dos ângulos internos de um polígono.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Reconhecer a expressão algébrica que expressa uma regularidade existente em uma sequência de números ou de figuras geométricas.",
+          "limiteInferior": 400,
+          "limiteSuperior": null,
+          "nivel": 9,
+          "nomeNivel": "Nível 9",
+          "operadorInferior": ">=",
+          "operadorSuperior": null,
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            28
+          ],
+          "paginasPdf": [
+            30
+          ],
+          "tabulado": true
+        }
+      ],
+      "quadro": "Quadro 4",
+      "tituloOficial": "Escala de Proficiência de Matemática — 9º Ano do Ensino Fundamental"
+    },
+    {
+      "componente": "lp",
+      "edicoesAssociadas": [
+        "2017",
+        "2019",
+        "2021",
+        "2023",
+        "2025"
+      ],
+      "etapa": "ensinoMedio",
+      "etapaLabelOficial": "3ª Série do Ensino Médio",
+      "fonteInternaCitada": "Fonte: Elaboração própria a partir de Daeb/Inep (2018a).",
+      "niveis": [
+        {
+          "descricaoOficial": "O Saeb não utilizou itens da 3ª série do Ensino Médio que avaliam as habilidades do Nível 0. Os estudantes da 3ª série com desempenho menor que 225 requerem atenção especial, pois ainda não demonstram habilidades muito elementares que deveriam apresentar nessa etapa escolar.",
+          "limiteInferior": null,
+          "limiteSuperior": 225,
+          "nivel": 0,
+          "nomeNivel": "Abaixo do Nível 1",
+          "operadorInferior": null,
+          "operadorSuperior": "<",
+          "origemNome": "nota_rodape",
+          "paginasImpressas": [
+            32
+          ],
+          "paginasPdf": [
+            34
+          ],
+          "tabulado": false
+        },
+        {
+          "descricaoOficial": "Os estudantes provavelmente são capazes de:\n•\t Identificar elementos da narrativa em história em quadrinhos.\n•\t Reconhecer a finalidade de recurso gráfico em artigos.\n•\t Reconhecer a relação de causa e consequência em lendas.\n•\t Inferir o sentido de palavra em letras de música e reportagens.",
+          "limiteInferior": 225,
+          "limiteSuperior": 250,
+          "nivel": 1,
+          "nomeNivel": "Nível 1",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            29
+          ],
+          "paginasPdf": [
+            31
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Reconhecer a ideia comum entre textos de gêneros diferentes e a ironia em tirinhas.\n•\t Reconhecer relações de sentido estabelecidas por conjunções ou locuções conjuntivas em letras de música e crônicas.\n•\t Reconhecer o uso de expressões características da linguagem (científica, profissional etc.) e a relação entre pronome e seu referente em artigos e reportagens.\n•\t Inferir o efeito de sentido da linguagem verbal e não verbal em notícias e charges.",
+          "limiteInferior": 250,
+          "limiteSuperior": 275,
+          "nivel": 2,
+          "nomeNivel": "Nível 2",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            29
+          ],
+          "paginasPdf": [
+            31
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Localizar informação explícita em artigos de opinião.\n•\t Identificar a finalidade de relatórios científicos.\n•\t Reconhecer relações de sentido marcadas por conjunções, a relação de causa e consequência e a relação entre o pronome e seu referente em fragmentos de romances.\n•\t Reconhecer o tema de uma crônica.\n•\t Reconhecer variantes linguísticas em artigos.\n•\t Reconhecer o sentido e o efeito de sentido produzido pelo uso de recursos morfossintáticos em contos, artigos e crônicas.\n•\t Reconhecer opiniões divergentes sobre o mesmo tema em diferentes textos.\n•\t Inferir informação, o sentido e o efeito de sentido produzido por expressão em reportagens e tirinhas.",
+          "limiteInferior": 275,
+          "limiteSuperior": 300,
+          "nivel": 3,
+          "nomeNivel": "Nível 3",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            29,
+            30
+          ],
+          "paginasPdf": [
+            31,
+            32
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Localizar informações explícitas em infográficos, reportagens, crônicas e artigos.\n•\t Identificar o argumento em contos.\n•\t Identificar a finalidade e a informação principal em notícias.\n•\t Reconhecer a relação entre os pronomes e seus referentes em contos.\n•\t Reconhecer elementos da narrativa em contos.\n•\t Reconhecer variantes linguísticas em contos, notícias e reportagens.\n•\t Reconhecer o efeito de sentido produzido pelo uso de recursos morfossintáticos em poemas.\n•\t Reconhecer ideia comum e opiniões divergentes sobre o mesmo tema na comparação entre diferentes textos.\n•\t Reconhecer ironia e efeito de humor em crônicas e entrevistas.\n•\t Reconhecer a relação de causa e consequência em piadas e fragmentos de romance.\n•\t Comparar poemas que abordem o mesmo tema.\n•\t Diferenciar fato de opinião em contos, artigos e reportagens.\n•\t Diferenciar tese de argumentos em artigos, entrevistas e crônicas.\n•\t Inferir informação, sentido de expressão e o efeito de sentido decorrente do uso de recursos morfossintáticos em crônicas.\n•\t Inferir o sentido decorrente do uso de recursos gráficos em poemas.\n•\t Inferir o efeito de sentido da linguagem verbal e não verbal e o efeito de humor em tirinhas.",
+          "limiteInferior": 300,
+          "limiteSuperior": 325,
+          "nivel": 4,
+          "nomeNivel": "Nível 4",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            30
+          ],
+          "paginasPdf": [
+            32
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Localizar informação explícita em resumos.\n•\t Identificar a informação principal em reportagens.\n•\t Identificar elementos da narrativa e a relação entre argumento e ideia central em crônicas.\n•\t Reconhecer a finalidade de propagandas.\n•\t Reconhecer variantes linguísticas e o efeito de sentido de recursos gráficos em crônicas e artigos.\n•\t Reconhecer a relação de causa e consequência e relações de sentido marcadas por conjunções em reportagens, artigos e ensaios.\n•\t Reconhecer o tema em poemas.\n•\t Diferenciar fato de opinião em resenhas.\n•\t Inferir o sentido de palavras e expressões em piadas e letras de música.\n•\t Inferir informação em artigos; inferir o sentido de expressão em fragmentos de romances.",
+          "limiteInferior": 325,
+          "limiteSuperior": 350,
+          "nivel": 5,
+          "nomeNivel": "Nível 5",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            30,
+            31
+          ],
+          "paginasPdf": [
+            32,
+            33
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Reconhecer efeitos estilísticos em poemas.\n•\t Reconhecer ironia e efeitos de sentido decorrentes da repetição de palavras em sinopses.\n•\t Reconhecer opiniões distintas sobre o mesmo tema, na comparação entre diferentes textos.\n•\t Reconhecer finalidade e traços de humor em reportagens.\n•\t Reconhecer o efeito de sentido do humor em tirinhas.\n•\t Reconhecer o tema em contos e fragmentos de romances.\n•\t Reconhecer relação de sentido marcada por conjunção em crônicas.\n•\t Inferir informação e tema em reportagens, poemas, histórias em quadrinhos e tirinhas.\n•\t Inferir o sentido e o efeito de sentido de palavras ou de expressão em poemas, crônicas e fragmentos de romances.",
+          "limiteInferior": 350,
+          "limiteSuperior": 375,
+          "nivel": 6,
+          "nomeNivel": "Nível 6",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            31
+          ],
+          "paginasPdf": [
+            33
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Identificar a ideia central e o argumento em apresentações de livros, reportagens, editoriais e crônicas.\n•\t Identificar elementos da narrativa em crônicas, contos e fragmentos de romances.\n•\t Identificar ironia e tema em poemas e artigos.\n•\t Reconhecer relações de sentido marcadas por conjunção em artigos, reportagens e fragmentos de romances.\n•\t Reconhecer a relação de causa e consequência em reportagens e fragmentos de romances.\n•\t Reconhecer o efeito de sentido de recursos gráficos em artigos.\n•\t Reconhecer variantes linguísticas em letras de música e piadas.\n•\t Reconhecer a finalidade de reportagens, resenhas e artigos.\n•\t Inferir efeito de humor e ironia em tirinhas e charges.",
+          "limiteInferior": 375,
+          "limiteSuperior": 400,
+          "nivel": 7,
+          "nomeNivel": "Nível 7",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            31,
+            32
+          ],
+          "paginasPdf": [
+            33,
+            34
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\n•\t Reconhecer o efeito de sentido resultante do uso de recursos morfossintáticos em artigos e letras de música.",
+          "limiteInferior": 400,
+          "limiteSuperior": null,
+          "nivel": 8,
+          "nomeNivel": "Nível 8",
+          "operadorInferior": ">=",
+          "operadorSuperior": null,
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            32
+          ],
+          "paginasPdf": [
+            34
+          ],
+          "tabulado": true
+        }
+      ],
+      "quadro": "Quadro 5",
+      "tituloOficial": "Escala de Proficiência de Língua Portuguesa — 3ª Série do Ensino Médio"
+    },
+    {
+      "componente": "mt",
+      "edicoesAssociadas": [
+        "2017",
+        "2019",
+        "2021",
+        "2023",
+        "2025"
+      ],
+      "etapa": "ensinoMedio",
+      "etapaLabelOficial": "3ª Série do Ensino Médio",
+      "fonteInternaCitada": "Fonte: Elaboração própria a partir de Daeb/Inep (2018d).",
+      "niveis": [
+        {
+          "descricaoOficial": "O Saeb não utilizou itens da 3ª série que avaliam as habilidades do Nível 0. Os estudantes da 3ª série com desempenho menor que 225 requerem atenção especial, pois ainda não demonstram habilidades muito elementares que deveriam apresentar nessa etapa escolar.",
+          "limiteInferior": null,
+          "limiteSuperior": 225,
+          "nivel": 0,
+          "nomeNivel": "Abaixo do Nível 1",
+          "operadorInferior": null,
+          "operadorSuperior": "<",
+          "origemNome": "nota_rodape",
+          "paginasImpressas": [
+            39
+          ],
+          "paginasPdf": [
+            41
+          ],
+          "tabulado": false
+        },
+        {
+          "descricaoOficial": "Os estudantes provavelmente são capazes de:\nTRATAMENTO DE INFORMAÇÕES\n•\t Associar uma tabela de até duas entradas a informações apresentadas textualmente ou em um gráfico de barras ou de linhas.",
+          "limiteInferior": 225,
+          "limiteSuperior": 250,
+          "nivel": 1,
+          "nomeNivel": "Nível 1",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            33
+          ],
+          "paginasPdf": [
+            35
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Reconhecer as coordenadas de pontos representados em um plano cartesiano localizados no primeiro quadrante.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Reconhecer os zeros de uma função dada graficamente.\n•\t Determinar o valor de uma função afim, dada sua lei de formação.\n•\t Determinar resultado utilizando o conceito de progressão aritmética.\nTRATAMENTO DE INFORMAÇÕES\n•\t Associar um gráfico de setores a dados percentuais apresentados textualmente ou em uma tabela.",
+          "limiteInferior": 250,
+          "limiteSuperior": 275,
+          "nivel": 2,
+          "nomeNivel": "Nível 2",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            33
+          ],
+          "paginasPdf": [
+            35
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Reconhecer o valor máximo de uma função quadrática representada graficamente.\n•\t Reconhecer, em um gráfico, o intervalo no qual a função assume valor máximo.\n•\t Determinar, por meio de proporcionalidade, o gráfico de setores que representa uma situação com dados fornecidos textualmente.\n•\t Determinar o quarto valor em uma relação de proporcionalidade direta a partir de três valores fornecidos em uma situação do cotidiano.\n•\t Determinar um valor reajustado de uma quantia a partir de seu valor inicial e do percentual de reajuste.\n•\t Resolver problemas utilizando operações fundamentais com números naturais.",
+          "limiteInferior": 275,
+          "limiteSuperior": 300,
+          "nivel": 3,
+          "nomeNivel": "Nível 3",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            33,
+            34
+          ],
+          "paginasPdf": [
+            35,
+            36
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nGRANDEZAS E MEDIDAS\n•\t Resolver problemas envolvendo área de uma região composta por retângulos a partir de medidas fornecidas em texto e figura.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Reconhecer o gráfico de função a partir de valores fornecidos em um texto.\n•\t Determinar a lei de formação de uma função linear a partir de dados fornecidos em uma tabela.\n•\t Determinar a solução de um sistema de duas equações lineares.\n•\t Determinar um termo de progressão aritmética, dada sua forma geral.\n•\t Determinar a probabilidade da ocorrência de um evento simples.\n•\t Resolver problemas utilizando proporcionalidade direta ou inversa, cujos valores devem ser obtidos a partir de operações simples.\n•\t Resolver problemas de contagem usando princípio multiplicativo.",
+          "limiteInferior": 300,
+          "limiteSuperior": 325,
+          "nivel": 4,
+          "nomeNivel": "Nível 4",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            34
+          ],
+          "paginasPdf": [
+            36
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nGRANDEZAS E MEDIDAS\n•\t Determinar medidas de segmentos por meio da semelhança entre dois polígonos.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Determinar o valor de variável dependente ou independente de uma função exponencial dada.\n•\t Determinar o percentual que representa um valor em relação a outro.\n•\t Determinar o valor de uma expressão algébrica.\n•\t Determinar a solução de um sistema de três equações sendo uma com uma incógnita, outra com duas e a terceira com três incógnitas.\n•\t Resolver problema envolvendo divisão proporcional do lucro em relação a dois investimentos iniciais diferentes.\n•\t Resolver problema envolvendo operações, além das fundamentais, com números naturais.\n•\t Resolver problema envolvendo a relação linear entre duas variáveis para a determinação de uma delas.\n•\t Resolver problema envolvendo probabilidade de união de eventos.\n•\t Avaliar o comportamento de uma função representada graficamente, quanto ao seu crescimento.",
+          "limiteInferior": 325,
+          "limiteSuperior": 350,
+          "nivel": 5,
+          "nomeNivel": "Nível 5",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            34,
+            35
+          ],
+          "paginasPdf": [
+            36,
+            37
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Reconhecer as coordenadas de pontos representados em um plano cartesiano e localizados em quadrantes diferentes do primeiro.\n•\t Associar um sólido geométrico simples a uma planificação usual dada.\n•\t Resolver problemas envolvendo Teorema de Pitágoras, para calcular a medida da hipotenusa de um triângulo pitagórico, a partir de informações apresentadas textualmente e em uma figura.\nGRANDEZAS E MEDIDAS\n•\t Determinar a razão de semelhança entre as imagens de um mesmo objeto em escalas diferentes.\n•\t Determinar o volume de um paralelepípedo retângulo, dada sua representação espacial.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Determinar os zeros de uma função quadrática, a partir de sua expressão algébrica.\n•\t Resolver problemas de porcentagem envolvendo números racionais não inteiros.",
+          "limiteInferior": 350,
+          "limiteSuperior": 375,
+          "nivel": 6,
+          "nomeNivel": "Nível 6",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            35,
+            36
+          ],
+          "paginasPdf": [
+            37,
+            38
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Determinar a medida de um dos lados de um triângulo retângulo, por meio de razões trigonométricas, fornecendo ou não as fórmulas.\n•\t Determinar, com o uso do Teorema de Pitágoras, a medida de um dos catetos de um triângulo retângulo não pitagórico.\nGRANDEZAS E MEDIDAS\n•\t Determinar a área de um polígono não convexo composto por retângulos e triângulos, a partir de informações fornecidas na figura.\n•\t Resolver problemas por meio de semelhança de triângulos sem apoio de figura.\n•\t Resolver problemas envolvendo perímetros de triângulos equiláteros que compõem uma figura.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Reconhecer gráfico de função a partir de informações sobre sua variação descritas em um texto.\n•\t Reconhecer os zeros de uma função quadrática em sua forma fatorada.\n•\t Reconhecer gráfico de função afim a partir de sua representação algébrica.\n•\t Reconhecer a equação de uma reta a partir de dois de seus pontos.\n•\t Reconhecer as raízes de um polinômio apresentado na sua forma fatorada.\n•\t Determinar os pontos de máximo ou de mínimo a partir do gráfico de uma função.\n•\t Determinar o valor de uma expressão algébrica envolvendo módulo.\n•\t Determinar o ponto de interseção de duas retas.\n•\t Determinar a expressão algébrica que relaciona duas variáveis com valores dados em tabela ou gráfico.\n•\t Determinar a maior raiz de um polinômio de 2º grau.\n•\t Resolver problemas para obter valor de variável dependente ou independente de uma função exponencial dada.\n•\t Resolver problemas que envolvam uma equação de 1º grau que requeira manipulação algébrica.\n•\t Resolver problemas envolvendo um sistema linear, dadas duas equações a duas incógnitas.\n•\t Resolver problemas usando permutação.\n•\t Resolver problemas utilizando probabilidade, envolvendo eventos independentes.",
+          "limiteInferior": 375,
+          "limiteSuperior": 400,
+          "nivel": 7,
+          "nomeNivel": "Nível 7",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            36,
+            37
+          ],
+          "paginasPdf": [
+            38,
+            39
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Reconhecer a proporcionalidade dos elementos lineares de figuras semelhantes.\n•\t Determinar uma das medidas de uma figura tridimensional, utilizando o Teorema de Pitágoras.\n•\t Determinar a equação de uma circunferência, dados o centro e o raio.\n•\t Determinar a quantidade de faces, vértices e arestas de um poliedro por meio da relação de Euler.\n•\t Resolver problema envolvendo razões trigonométricas no triângulo retângulo, com apoio de figura.\n•\t Associar um prisma a uma planificação usual dada.\nGRANDEZAS E MEDIDAS\n•\t Determinar a área da superfície de uma pirâmide regular.\n•\t Determinar o volume de um paralelepípedo, dadas suas dimensões e unidades diferentes.\n•\t Determinar o volume de cilindros.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Reconhecer o gráfico de uma função trigonométrica da forma y=sen(x).\n•\t Reconhecer um sistema de equações associado a uma matriz.\n•\t Determinar a expressão algébrica associada a um dos trechos do gráfico de uma função definida por partes.\n•\t Determinar o valor máximo de uma função quadrática a partir de sua expressão algébrica e das expressões que determinam as coordenadas do vértice.\n•\t Determinar a distância entre dois pontos no plano cartesiano.\n•\t Resolver problema usando arranjo.\n•\t Resolver problema envolvendo a resolução de uma equação do 2º grau sendo dados seus coeficientes.\n•\t Interpretar o significado dos coeficientes da equação de uma reta, a partir de sua forma reduzida.",
+          "limiteInferior": 400,
+          "limiteSuperior": 425,
+          "nivel": 8,
+          "nomeNivel": "Nível 8",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            37,
+            38
+          ],
+          "paginasPdf": [
+            39,
+            40
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nESPAÇO E FORMA\n•\t Reconhecer a equação que representa uma circunferência, dentre diversas equações dadas.\n•\t Determinar o centro e o raio de uma circunferência a partir de sua equação geral.\n•\t Resolver problemas envolvendo relações métricas em um triângulo retângulo que é parte de uma figura plana dada.\nGRANDEZAS E MEDIDAS\n•\t Determinar o volume de pirâmides regulares.\n•\t Resolver problema envolvendo áreas de círculos e polígonos.\n•\t Resolver problema envolvendo semelhança de triângulos com apoio de figura na qual os dois triângulos apresentam ângulos opostos pelos vértices.\n•\t Resolver problema envolvendo cálculo de volume de cilindro.\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Reconhecer o gráfico de uma função exponencial do tipo f(x)=10x+1 .\n•\t Reconhecer o gráfico de uma função logarítmica dada a expressão algébrica da sua função inversa e seu gráfico.\n•\t Determinar a expressão algébrica correspondente a uma função exponencial, a partir de dados fornecidos em texto ou gráfico.\n•\t Determinar a inversa de uma função exponencial dada, representativa de uma situação do cotidiano.\n•\t Determinar inclinação ou coeficiente angular de retas a partir de suas equações.\n•\t Determinar um polinômio na forma fatorada, dadas as suas raízes.",
+          "limiteInferior": 425,
+          "limiteSuperior": 450,
+          "nivel": 9,
+          "nomeNivel": "Nível 9",
+          "operadorInferior": ">=",
+          "operadorSuperior": "<",
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            38,
+            39
+          ],
+          "paginasPdf": [
+            40,
+            41
+          ],
+          "tabulado": true
+        },
+        {
+          "descricaoOficial": "Além das habilidades anteriormente citadas, os estudantes provavelmente são capazes de:\nNÚMEROS E OPERAÇÕES; ÁLGEBRA E FUNÇÕES\n•\t Determinar a solução de um sistema de três equações lineares, a três incógnitas, apresentado na forma matricial escalonada.",
+          "limiteInferior": 450,
+          "limiteSuperior": null,
+          "nivel": 10,
+          "nomeNivel": "Nível 10",
+          "operadorInferior": ">=",
+          "operadorSuperior": null,
+          "origemNome": "quadro",
+          "paginasImpressas": [
+            39
+          ],
+          "paginasPdf": [
+            41
+          ],
+          "tabulado": true
+        }
+      ],
+      "quadro": "Quadro 6",
+      "tituloOficial": "Escala de Proficiência de Matemática — 3ª Série do Ensino Médio"
+    }
+  ],
+  "fonte": {
+    "hashSha256": "9b45fbf06e8533357ece8cc5ca2df4363d7f2bcb8169291e11353b5b0bdf74c8",
+    "orgao": "Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (Inep/MEC)",
+    "titulo": "Escalas de Proficiência do Saeb",
+    "totalPaginasPdf": 44,
+    "url": "https://download.inep.gov.br/publicacoes/institucionais/avaliacoes_e_exames_da_educacao_basica/escalas_de_proficiencia_do_saeb.pdf",
+    "versaoPublicacao": "Brasília, DF: Inep, agosto de 2020"
+  },
+  "piloto": {
+    "componentes": [
+      "lp",
+      "mt"
+    ],
+    "etapas": [
+      "anosIniciais",
+      "anosFinais",
+      "ensinoMedio"
+    ]
+  },
+  "schema": "saeb-escalas-piloto/2"
+}

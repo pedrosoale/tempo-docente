@@ -130,10 +130,14 @@ export default function SaebPage() {
           </p>
           <p>
             O conjunto de áreas e etapas avaliadas varia de uma edição para outra. Língua Portuguesa e Matemática
-            são as que formam as séries históricas mais longas e contínuas, e por isso serão o foco da futura
-            consulta — mas o SAEB não se limita a elas em caráter permanente: edições recentes também avaliaram
-            Ciências Humanas e Ciências da Natureza, e o 2º ano do ensino fundamental tem recorte próprio, voltado
-            à alfabetização. Verificar o que foi avaliado em cada edição é parte de ler o dado corretamente.
+            são as que formam as séries históricas mais longas e contínuas — e são, hoje, o único recorte em que a
+            consulta abaixo situa a média da escola dentro dos níveis oficiais de proficiência, num piloto que cobre
+            o 5º e o 9º ano do Ensino Fundamental e a 3ª série do Ensino Médio, nas edições com associação
+            documentada à escala em cada etapa (inclusive 2025, cuja prova de Língua Portuguesa e Matemática usa a
+            mesma matriz de referência das edições anteriores, segundo a documentação oficial do Inep) —, mas o SAEB
+            não se limita a elas em caráter permanente: edições recentes também avaliaram Ciências Humanas e
+            Ciências da Natureza, e o 2º ano do ensino fundamental tem recorte próprio, voltado à alfabetização.
+            Verificar o que foi avaliado em cada edição é parte de ler o dado corretamente.
           </p>
           <p>
             O SAEB é uma avaliação de sistemas e redes de ensino. Ele foi desenhado para descrever o conjunto —
@@ -277,33 +281,31 @@ export default function SaebPage() {
           <div className="section-heading">
             <div>
               <span className="section-kicker">Roteiro</span>
-              <h2>Como o Tempo Docente pretende apresentar esses dados</h2>
+              <h2>O que a consulta já oferece, e o que falta</h2>
             </div>
           </div>
           <div className="saeb-prose">
             <p>
-              A ferramenta de consulta, acima, já cobre parte destes compromissos — seleção de município e escola,
-              fonte identificada por indicador, ausências explicadas em vez de silenciadas, e um painel de
-              evolução histórica por escola (gráfico e tabela, sem escalas de proficiência nem distribuição por
-              nível). As três referências de comparação territorial e a exportação continuam pendentes para uma
-              etapa futura. A lista abaixo foi registrada antes da implementação, e não depois dela:
+              A ferramenta de consulta, acima, já cobre parte destes compromissos: seleção de município e escola,
+              fonte identificada por indicador, ausências explicadas em vez de silenciadas, um painel de evolução
+              histórica por escola (gráfico e tabela), e — num piloto que cobre o 5º e o 9º ano do Ensino
+              Fundamental e a 3ª série do Ensino Médio, em Língua Portuguesa e Matemática, nas edições com
+              associação documentada à escala em cada etapa (inclusive 2025) — a posição da média da escola nos
+              níveis oficiais de proficiência, com comparação opcional entre a edição consultada e a edição
+              documentada anterior. O painel nunca estima uma distribuição percentual de estudantes por nível: essa
+              informação, quando existir para a escola, está apenas na consulta oficial do Boletim da Escola.
+              Comparação territorial e exportação continuam pendentes:
             </p>
           </div>
+          <h3 className="saeb-list-heading">Já disponível</h3>
           <ul className="saeb-list">
             <li>
               <MapPinned size={18} aria-hidden="true" />
-              <span>Permitir selecionar o município e, dentro dele, a escola.</span>
+              <span>Selecionar o município e, dentro dele, a escola.</span>
             </li>
             <li>
               <TrendingUp size={18} aria-hidden="true" />
-              <span>Mostrar a trajetória histórica da escola ao longo das edições disponíveis.</span>
-            </li>
-            <li>
-              <Layers size={18} aria-hidden="true" />
-              <span>
-                Comparar essa trajetória com o município, a unidade da Federação e o Brasil — as quatro únicas
-                referências previstas.
-              </span>
+              <span>Ver a trajetória histórica da escola ao longo das edições disponíveis, em gráfico e em tabela.</span>
             </li>
             <li>
               <Database size={18} aria-hidden="true" />
@@ -314,9 +316,28 @@ export default function SaebPage() {
               <span>Explicar cada ausência de resultado e cada ressalva metodológica no ponto em que ela aparece.</span>
             </li>
             <li>
-              <School size={18} aria-hidden="true" />
-              <span>Permitir exportar os dados consultados com os códigos oficiais preservados.</span>
+              <BookOpenCheck size={18} aria-hidden="true" />
+              <span>
+                Situar a média da escola nos níveis oficiais de proficiência — piloto que cobre o 5º e o 9º ano do
+                Ensino Fundamental e a 3ª série do Ensino Médio, em Língua Portuguesa e Matemática, nas edições com
+                associação documentada à escala em cada etapa (inclusive 2025), com comparação opcional entre
+                edições; o painel nunca estima quantos estudantes estão em cada nível.
+              </span>
             </li>
+          </ul>
+          <h3 className="saeb-list-heading">Pendente</h3>
+          <ul className="saeb-list">
+            <li>
+              <Layers size={18} aria-hidden="true" />
+              <span>Comparar a trajetória da escola com o município, a unidade da Federação e o Brasil.</span>
+            </li>
+            <li>
+              <School size={18} aria-hidden="true" />
+              <span>Exportar os dados consultados com os códigos oficiais preservados.</span>
+            </li>
+          </ul>
+          <h3 className="saeb-list-heading">Decisão de projeto</h3>
+          <ul className="saeb-list">
             <li>
               <ShieldCheck size={18} aria-hidden="true" />
               <span>
@@ -326,7 +347,7 @@ export default function SaebPage() {
           </ul>
           <div className="saeb-prose saeb-prose-follow">
             <p>
-              O último item é uma decisão de projeto, não uma limitação técnica. Ordenar escolas por resultado
+              O item acima é uma decisão de projeto, não uma limitação técnica. Ordenar escolas por resultado
               transforma um instrumento de gestão em exposição pública de comunidades escolares que atendem
               públicos muito diferentes, em condições muito diferentes. A comparação que ajuda o professor é
               contra a própria trajetória da escola e contra as referências territoriais — não contra a escola
@@ -374,9 +395,9 @@ export default function SaebPage() {
           </div>
           <div className="saeb-prose">
             <p>
-              A futura ferramenta usará exclusivamente arquivos oficiais publicados pelo Inep. As páginas abaixo
-              são as fontes primárias — vale consultá-las diretamente, inclusive as notas técnicas que acompanham
-              cada divulgação:
+              A consulta usa exclusivamente arquivos oficiais publicados pelo Inep. As páginas abaixo são as fontes
+              primárias — vale consultá-las diretamente, inclusive as notas técnicas que acompanham cada
+              divulgação:
             </p>
           </div>
           <div className="saeb-sources">
@@ -405,8 +426,8 @@ export default function SaebPage() {
           <p className="saeb-attribution">
             Fonte: Ministério da Educação — Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira
             (MEC/Inep). O Tempo Docente não modifica os valores oficiais; organiza e contextualiza os dados,
-            preservando a edição e o arquivo de origem de cada indicador. Quando a ferramenta existir, cada
-            indicador exibido apontará essa origem.
+            preservando a edição e o arquivo de origem de cada indicador, exibidos junto de cada resultado
+            consultado acima.
           </p>
         </div>
       </section>

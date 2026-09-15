@@ -149,6 +149,21 @@
 
 /* ---- Listas de itens com ícone (mesma anatomia de .privacidade-list) ---- */
 
+/* Rótulo curto acima de cada lista (Já disponível / Pendente / Decisão de projeto) — mesma anatomia
+   de .saeb-indicador-grupo h4, reaproveitada aqui como h3 (sub-seção dentro do H2 "Roteiro"). */
+.saeb-list-heading {
+  margin: 24px 0 10px;
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 620;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.saeb-list-heading:first-of-type {
+  margin-top: 4px;
+}
+
 .saeb-list {
   list-style: none;
   margin: 0;
@@ -649,6 +664,16 @@
   line-height: 1.6;
 }
 
+.saeb-fonte a {
+  color: var(--teal-dark);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.saeb-fonte a:hover {
+  color: var(--navy);
+}
+
 @media (max-width: 560px) {
   .saeb-tool {
     padding: 18px;
@@ -890,5 +915,226 @@
   .saeb-historico-controls {
     flex-direction: column;
     align-items: stretch;
+  }
+}
+
+/* ---- Painel "Entenda este resultado" (InterpretacaoResultado.tsx) ---- */
+
+.saeb-interpretacao {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 4px;
+  padding: 20px;
+  border: 1px solid #cfe3dd;
+  border-radius: var(--radius-md);
+  background: var(--teal-tint);
+}
+
+.saeb-interpretacao-recorte {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.saeb-interpretacao-corpo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.saeb-interpretacao-frase {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  color: var(--navy);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.saeb-interpretacao-descricao {
+  padding: 14px 16px;
+  border: 1px solid #cfe3dd;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+}
+
+.saeb-interpretacao-descricao h5 {
+  margin: 0 0 8px;
+  color: var(--navy);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.saeb-interpretacao-descricao p {
+  margin: 0 0 8px;
+  color: var(--soft-ink);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.saeb-interpretacao-descricao p:last-child {
+  margin-bottom: 0;
+}
+
+.saeb-interpretacao-caveat {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.saeb-interpretacao-caveat svg {
+  flex: none;
+  margin-top: 1px;
+}
+
+.saeb-interpretacao-descricao p.saeb-interpretacao-acumulado {
+  margin: 0 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #cfe3dd;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+
+.saeb-interpretacao-comparacao {
+  padding: 14px 16px;
+  border: 1px solid #cfe3dd;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.saeb-interpretacao-comparacao h5 {
+  margin: 0;
+  color: var(--navy);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.saeb-interpretacao-comparacao p {
+  margin: 0;
+  color: var(--soft-ink);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.saeb-interpretacao-limites {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.saeb-interpretacao-intervalo {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+/* ---- Consulta opcional aos níveis anteriores (accordion nativo <details>/<summary>) ---- */
+
+.saeb-interpretacao-niveis-anteriores {
+  margin-top: 2px;
+}
+
+.saeb-interpretacao-niveis-anteriores > summary,
+.saeb-interpretacao-nivel-anterior > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.saeb-interpretacao-niveis-anteriores > summary::-webkit-details-marker,
+.saeb-interpretacao-nivel-anterior > summary::-webkit-details-marker {
+  display: none;
+}
+
+.saeb-interpretacao-niveis-anteriores > summary::marker,
+.saeb-interpretacao-nivel-anterior > summary::marker {
+  content: "";
+}
+
+.saeb-interpretacao-niveis-anteriores > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 1px solid var(--teal-dark);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--teal-dark);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.saeb-interpretacao-niveis-anteriores > summary:hover {
+  background: var(--teal-tint);
+}
+
+.saeb-interpretacao-niveis-anteriores-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.saeb-interpretacao-nivel-anterior {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  overflow: hidden;
+}
+
+.saeb-interpretacao-nivel-anterior > summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  color: var(--navy);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.saeb-interpretacao-nivel-anterior > summary:hover {
+  background: var(--teal-tint);
+}
+
+.saeb-interpretacao-nivel-anterior[open] > summary {
+  border-bottom: 1px solid var(--line);
+}
+
+.saeb-interpretacao-nivel-anterior .saeb-interpretacao-descricao {
+  border: none;
+  border-radius: 0;
+  padding: 12px 14px;
+}
+
+.saeb-interpretacao-chevron {
+  flex: none;
+  transition: transform 0.15s ease;
+}
+
+details[open] > summary > .saeb-interpretacao-chevron {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .saeb-interpretacao-chevron {
+    transition: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .saeb-interpretacao {
+    padding: 16px;
   }
 }

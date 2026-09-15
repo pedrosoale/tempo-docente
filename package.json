@@ -22,7 +22,9 @@
     "saeb:import": "node scripts/saeb/import.mjs",
     "saeb:check": "node scripts/saeb/import.mjs --check",
     "saeb:verify": "node scripts/saeb/import.mjs --verify-source",
-    "saeb:publish-local": "node scripts/saeb-query-prototype/publish-local.mjs"
+    "saeb:publish-local": "node scripts/saeb-query-prototype/publish-local.mjs",
+    "saeb:escalas:gerar": "node scripts/saeb-escalas/gerar.mjs",
+    "saeb:escalas:check": "node scripts/saeb-escalas/gerar.mjs --check"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",

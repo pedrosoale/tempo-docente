@@ -82,7 +82,7 @@ test("all required H2 sections are present, and every H3 lives under an H2", () 
     "SAEB, Ideb e Censo Escolar",
     "O que significa proficiência",
     "Por que uma escola pode não ter resultado divulgado",
-    "Como o Tempo Docente pretende apresentar esses dados",
+    "O que a consulta já oferece, e o que falta",
     "Uso responsável dos indicadores",
     "Fontes e metodologia",
   ];
@@ -146,11 +146,21 @@ test("the set of assessed areas is presented as varying between editions, never 
   assert.match(saebText, /o 2º ano do ensino fundamental tem recorte próprio, voltado à alfabetização/);
 });
 
-test("Língua Portuguesa and Matemática are framed as the focus of the future lookup, not as the whole SAEB", () => {
+test("Língua Portuguesa and Matemática are framed as the only cut with level interpretation today, scoped to a documented pilot that now includes 2025, not as the whole SAEB", () => {
   assert.match(
     saebText,
-    /Língua Portuguesa e Matemática são as que formam as séries históricas mais longas e contínuas, e por isso serão o foco da futura consulta/,
+    /Língua Portuguesa e Matemática são as que formam as séries históricas mais longas e contínuas — e são, hoje, o único recorte em que a consulta abaixo situa a média da escola dentro dos níveis oficiais de proficiência/,
   );
+  assert.match(saebText, /piloto que cobre o 5º e o 9º ano do Ensino Fundamental e a 3ª série do Ensino Médio/);
+  assert.match(saebText, /edições com associação documentada à escala em cada etapa \(inclusive 2025/);
+  // A formulação antiga excluía 2025 da classificação automática — isso não é mais verdade.
+  assert.doesNotMatch(saebText, /2025 fica fora dessa classificação automática/);
+  assert.doesNotMatch(saebText, /piloto restrito ao 9º ano/);
+});
+
+test("the retired 'futura consulta' formulation is gone", () => {
+  assert.doesNotMatch(saebText, /futura consulta/);
+  assert.doesNotMatch(saebText, /serão o foco/);
 });
 
 test("the retired absolute claims about two areas are gone", () => {
@@ -255,15 +265,18 @@ test("the raw non-disclosure codes are not dumped on the reader", () => {
   assert.doesNotMatch(saebText, /ND\*/);
 });
 
-// ---- Compromissos da ferramenta futura ----
+// ---- Compromissos já disponíveis e pendentes ----
 
-test("the future tool's commitments are all stated, including the four allowed comparisons", () => {
-  assert.match(saebText, /Permitir selecionar o município e, dentro dele, a escola/);
-  assert.match(saebText, /Mostrar a trajetória histórica da escola/);
-  assert.match(saebText, /Comparar essa trajetória com o município, a unidade da Federação e o Brasil/);
-  assert.match(saebText, /Identificar a fonte oficial de cada indicador/);
-  assert.match(saebText, /Explicar cada ausência de resultado e cada ressalva metodológica/);
-  assert.match(saebText, /Permitir exportar os dados consultados com os códigos oficiais/);
+test("já-disponível and pendente commitments are both stated, none misrepresented as the other", () => {
+  // Já disponível
+  assert.match(saebText, /Selecionar o município e, dentro dele, a escola\./);
+  assert.match(saebText, /Ver a trajetória histórica da escola ao longo das edições disponíveis, em gráfico e em tabela\./);
+  assert.match(saebText, /Identificar a fonte oficial de cada indicador exibido, indicador por indicador\./);
+  assert.match(saebText, /Explicar cada ausência de resultado e cada ressalva metodológica no ponto em que ela aparece\./);
+  assert.match(saebText, /Situar a média da escola nos níveis oficiais de proficiência/);
+  // Pendente
+  assert.match(saebText, /Comparar a trajetória da escola com o município, a unidade da Federação e o Brasil\./);
+  assert.match(saebText, /Exportar os dados consultados com os códigos oficiais preservados\./);
 });
 
 test("the no-ranking policy is stated explicitly and framed as a project decision", () => {
@@ -285,15 +298,23 @@ test("the lookup tool is described as available now, with no leftover developmen
   assert.match(saebText, /A ferramenta de consulta, acima, já cobre parte destes compromissos/);
 });
 
-test("the tool's page never promises descriptors, proficiency levels, territorial comparisons or export as already implemented", () => {
-  // As quatro referências/recursos abaixo continuam no roteiro (aspiracional, ver o teste de
-  // compromissos futuros) — o que este teste garante é que a página nunca os apresente como algo
-  // que a ferramenta JÁ faz hoje.
+test("the tool's page never promises descriptors, full territorial comparison or export as already implemented, and never promises a percentage distribution by level", () => {
+  // Comparação territorial e exportação continuam pendentes (lista "Pendente") — a página nunca
+  // pode apresentá-las como algo que a ferramenta já faz hoje. A interpretação por nível, em
+  // contraste, JÁ está implementada para 5º ano, 9º ano e Ensino Médio, LP/MT, em todas as
+  // edições com associação documentada por etapa (inclusive 2025) — mas o painel nunca estima
+  // quantos estudantes estão em cada nível (só a posição da média da escola).
   assert.doesNotMatch(saebText, /já compara(m)? (a|essa) trajetória com o município/i);
   assert.doesNotMatch(saebText, /já permite exportar/i);
   assert.doesNotMatch(saebText, /descritor(es)? (já )?(disponív|implementad)/i);
-  assert.doesNotMatch(saebText, /n[íi]vel(is)? de proficiência (já )?(disponív|implementad)/i);
+  // "distribuição percentual" só pode aparecer numa frase que a recusa ("nunca estima uma
+  // distribuição percentual..."), nunca como algo que o painel oferece — mesmo padrão de checagem
+  // usado abaixo para "ranking" (contexto ao redor da ocorrência, não a mera ausência da palavra).
+  for (const match of saebText.matchAll(/.{30}distribuição percentual/gi)) {
+    assert.match(match[0], /nunca/i, `"distribuição percentual" usada fora de uma negação: …${match[0]}`);
+  }
   assert.match(saebText, /continuam pendentes/);
+  assert.match(saebText, /nunca estima quantos estudantes estão em cada nível/);
 });
 
 // ---- Uso responsável ----
