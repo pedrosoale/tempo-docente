@@ -11,6 +11,18 @@ const BNCC_SUBMENU = [
   ["Competências Gerais", "/bncc/competencias-gerais"],
 ] as const;
 
+// "Resultados por escola" repete deliberadamente o href do link principal "SAEB" (/saeb) — é a
+// mesma página, só nomeada de forma explícita dentro do submenu. Por isso o aria-current="page"
+// desse item específico é sempre suprimido na renderização (ver SAEB_SUBMENU_HOME_HREF abaixo): o
+// link principal já carrega essa semântica, e duplicá-la no item do submenu violaria "só um
+// elemento atual por vez" — o mesmo princípio que rege a distinção aria-current/is-section-active
+// no restante deste componente.
+const SAEB_SUBMENU = [
+  ["Resultados por escola", "/saeb"],
+  ["Matrizes de referência", "/saeb/matriz"],
+] as const;
+const SAEB_SUBMENU_HOME_HREF = "/saeb";
+
 export function Header() {
   const pathname = usePathname();
   const isBnccExact = pathname === "/bncc";
@@ -24,22 +36,39 @@ export function Header() {
   const bnccAriaCurrent: "page" | undefined = isBnccExact ? "page" : undefined;
   const bnccSectionClassName = isBnccSection && !isBnccExact ? "is-section-active" : undefined;
 
+  // Mesmo raciocínio de BNCC acima, aplicado à seção SAEB: /saeb exato carrega aria-current="page"
+  // no link principal; qualquer página da seção mais funda (hoje, só /saeb/matriz — inclusive com
+  // parâmetros de etapa/componente/busca na URL, que usePathname() já ignora, contando só o path)
+  // usa is-section-active em vez disso.
+  const isSaebExact = pathname === "/saeb";
+  const isSaebSection = isSaebExact || pathname.startsWith("/saeb/");
+  const saebAriaCurrent: "page" | undefined = isSaebExact ? "page" : undefined;
+  const saebSectionClassName = isSaebSection && !isSaebExact ? "is-section-active" : undefined;
+
   const desktopDropdownId = useId();
+  const desktopSaebDropdownId = useId();
   const mobileNavId = useId();
   const mobileBnccPanelId = useId();
+  const mobileSaebPanelId = useId();
 
   const [desktopBnccOpen, setDesktopBnccOpen] = useState(false);
   const desktopGroupRef = useRef<HTMLDivElement>(null);
   const desktopToggleRef = useRef<HTMLButtonElement>(null);
 
+  const [desktopSaebOpen, setDesktopSaebOpen] = useState(false);
+  const desktopSaebGroupRef = useRef<HTMLDivElement>(null);
+  const desktopSaebToggleRef = useRef<HTMLButtonElement>(null);
+
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileBnccOpen, setMobileBnccOpen] = useState(false);
+  const [mobileSaebOpen, setMobileSaebOpen] = useState(false);
   const mobileGroupRef = useRef<HTMLDivElement>(null);
   const mobileToggleRef = useRef<HTMLButtonElement>(null);
 
   function closeMobile(returnFocus: boolean) {
     setMobileOpen(false);
     setMobileBnccOpen(false);
+    setMobileSaebOpen(false);
     if (returnFocus) mobileToggleRef.current?.focus();
   }
 
@@ -48,7 +77,12 @@ export function Header() {
     if (returnFocus) desktopToggleRef.current?.focus();
   }
 
-  // O botão hambúrguer só abre (nunca mexe no accordion) ou fecha por completo
+  function closeDesktopSaeb(returnFocus: boolean) {
+    setDesktopSaebOpen(false);
+    if (returnFocus) desktopSaebToggleRef.current?.focus();
+  }
+
+  // O botão hambúrguer só abre (nunca mexe nos accordions) ou fecha por completo
   // via closeMobile — antes, fechar clicando no próprio X só alternava
   // mobileOpen e deixava mobileBnccOpen preso em true, reabrindo o painel já
   // com o submenu BNCC expandido na vez seguinte.
@@ -60,19 +94,32 @@ export function Header() {
     }
   }
 
-  // Um único par de listeners cobre os dois widgets (dropdown desktop e painel
-  // mobile): Escape fecha o que estiver aberto e devolve o foco ao acionador;
-  // clique fora só fecha, sem mexer no foco (padrão comum de disclosure).
+  // Só um dropdown de desktop aberto por vez — abrir um fecha o outro, em vez de deixar os dois
+  // menus flutuantes abertos ao mesmo tempo na mesma barra de navegação.
+  function toggleDesktopBncc() {
+    setDesktopSaebOpen(false);
+    setDesktopBnccOpen((open) => !open);
+  }
+  function toggleDesktopSaeb() {
+    setDesktopBnccOpen(false);
+    setDesktopSaebOpen((open) => !open);
+  }
+
+  // Um único conjunto de listeners cobre os quatro widgets (dois dropdowns de desktop e o painel
+  // mobile, que por sua vez contém os dois accordions): Escape fecha o que estiver aberto e devolve
+  // o foco ao acionador; clique fora só fecha, sem mexer no foco (padrão comum de disclosure).
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key !== "Escape") return;
       if (mobileOpen) { closeMobile(true); return; }
-      if (desktopBnccOpen) closeDesktopBncc(true);
+      if (desktopBnccOpen) { closeDesktopBncc(true); return; }
+      if (desktopSaebOpen) closeDesktopSaeb(true);
     }
     function onPointerDown(event: MouseEvent) {
       const target = event.target as Node;
       if (mobileOpen && mobileGroupRef.current && !mobileGroupRef.current.contains(target)) closeMobile(false);
       if (desktopBnccOpen && desktopGroupRef.current && !desktopGroupRef.current.contains(target)) closeDesktopBncc(false);
+      if (desktopSaebOpen && desktopSaebGroupRef.current && !desktopSaebGroupRef.current.contains(target)) closeDesktopSaeb(false);
     }
     document.addEventListener("keydown", onKeyDown);
     document.addEventListener("mousedown", onPointerDown);
@@ -80,7 +127,7 @@ export function Header() {
       document.removeEventListener("keydown", onKeyDown);
       document.removeEventListener("mousedown", onPointerDown);
     };
-  }, [mobileOpen, desktopBnccOpen]);
+  }, [mobileOpen, desktopBnccOpen, desktopSaebOpen]);
 
   return (
     <header className="site-header">
@@ -102,7 +149,7 @@ export function Header() {
               aria-expanded={desktopBnccOpen}
               aria-controls={desktopDropdownId}
               aria-label="Submenu de BNCC"
-              onClick={() => setDesktopBnccOpen((open) => !open)}
+              onClick={toggleDesktopBncc}
             >
               <ChevronDown size={16} aria-hidden="true" />
             </button>
@@ -120,7 +167,34 @@ export function Header() {
           </div>
 
           <a href="/saresp" aria-current={pathname === "/saresp" ? "page" : undefined}>SARESP</a>
-          <a href="/saeb" aria-current={pathname === "/saeb" ? "page" : undefined}>SAEB</a>
+
+          <div className="nav-item" ref={desktopSaebGroupRef}>
+            <a href="/saeb" aria-current={saebAriaCurrent} className={saebSectionClassName}>SAEB</a>
+            <button
+              type="button"
+              ref={desktopSaebToggleRef}
+              className="nav-toggle"
+              aria-expanded={desktopSaebOpen}
+              aria-controls={desktopSaebDropdownId}
+              aria-label="Submenu de SAEB"
+              onClick={toggleDesktopSaeb}
+            >
+              <ChevronDown size={16} aria-hidden="true" />
+            </button>
+            <div className="nav-dropdown" id={desktopSaebDropdownId} hidden={!desktopSaebOpen}>
+              {SAEB_SUBMENU.map(([label, href]) => (
+                <a
+                  key={href}
+                  href={href}
+                  aria-current={href !== SAEB_SUBMENU_HOME_HREF && pathname === href ? "page" : undefined}
+                  onClick={() => closeDesktopSaeb(false)}
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
+
           <a href="/sobre" aria-current={pathname === "/sobre" ? "page" : undefined}>Sobre</a>
         </nav>
 
@@ -168,7 +242,35 @@ export function Header() {
             </div>
 
             <a href="/saresp" aria-current={pathname === "/saresp" ? "page" : undefined} onClick={() => closeMobile(false)}>SARESP</a>
-            <a href="/saeb" aria-current={pathname === "/saeb" ? "page" : undefined} onClick={() => closeMobile(false)}>SAEB</a>
+
+            <div className="mobile-accordion">
+              <div className="mobile-accordion-row">
+                <a href="/saeb" aria-current={saebAriaCurrent} className={saebSectionClassName} onClick={() => closeMobile(false)}>SAEB</a>
+                <button
+                  type="button"
+                  className="mobile-accordion-trigger"
+                  aria-expanded={mobileSaebOpen}
+                  aria-controls={mobileSaebPanelId}
+                  aria-label="Submenu de SAEB"
+                  onClick={() => setMobileSaebOpen((open) => !open)}
+                >
+                  <ChevronDown size={18} aria-hidden="true" />
+                </button>
+              </div>
+              <div className="mobile-accordion-panel" id={mobileSaebPanelId} hidden={!mobileSaebOpen}>
+                {SAEB_SUBMENU.map(([label, href]) => (
+                  <a
+                    key={href}
+                    href={href}
+                    aria-current={href !== SAEB_SUBMENU_HOME_HREF && pathname === href ? "page" : undefined}
+                    onClick={() => closeMobile(false)}
+                  >
+                    {label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
             <a href="/sobre" aria-current={pathname === "/sobre" ? "page" : undefined} onClick={() => closeMobile(false)}>Sobre</a>
             <a className="mobile-menu-cta" href="/bncc" onClick={() => closeMobile(false)}>Explorar BNCC</a>
           </nav>

@@ -68,6 +68,9 @@ test("Header and Footer only link to real destinations (/, /bncc, /saresp, /saeb
   assert.doesNotMatch(footerBlock, /href="\/bncc\?q=SAEB"/);
   assert.doesNotMatch(headerBlock, /href="#saeb"/);
   assert.doesNotMatch(footerBlock, /href="#saeb"/);
+
+  // SAEB submenu: the matriz/descritores consultation must be reachable from the header too.
+  assert.match(headerBlock, /href="\/saeb\/matriz"[^>]*>\s*Matrizes de referência/, "header should link the SAEB submenu to /saeb/matriz");
 });
 
 // ---- Privacidade: Footer only, never the main Header menu ----
@@ -108,6 +111,58 @@ test("the BNCC trigger has aria-expanded, an accessible name, and aria-controls 
   const controlsId = toggleMatch.match(/aria-controls="([^"]+)"/)?.[1];
   assert.ok(controlsId, "nav-toggle missing aria-controls");
   assert.ok(homeHtml.includes(`id="${controlsId}"`), "aria-controls does not point to an existing id");
+});
+
+// ---- Submenu SAEB: mesmo padrão do submenu BNCC, com "Resultados por escola" e "Matrizes de referência" ----
+
+test("the SAEB submenu contains exactly the two expected destinations, in both the desktop dropdown and the mobile accordion", () => {
+  const expectedHrefs = ["/saeb", "/saeb/matriz"];
+
+  // O submenu BNCC é o primeiro .nav-dropdown / .mobile-accordion-panel do documento — o do SAEB é
+  // o segundo, na mesma ordem em que os dois aparecem na barra de navegação.
+  const dropdowns = [...homeHtml.matchAll(/<div class="nav-dropdown"[^>]*>[^]*?<\/div>/g)].map((m) => m[0]);
+  assert.equal(dropdowns.length, 2, `expected exactly 2 nav-dropdown elements (BNCC + SAEB), found ${dropdowns.length}`);
+  const saebDropdown = dropdowns[1];
+  for (const href of expectedHrefs) {
+    assert.ok(saebDropdown.includes(`href="${href}"`), `SAEB desktop dropdown missing ${href}`);
+  }
+  assert.equal((saebDropdown.match(/<a /g) ?? []).length, 2, "SAEB desktop dropdown should contain exactly 2 links");
+  assert.match(saebDropdown, />Resultados por escola</);
+  assert.match(saebDropdown, />Matrizes de referência</);
+
+  const panels = [...homeHtml.matchAll(/<div class="mobile-accordion-panel"[^>]*>[^]*?<\/div>/g)].map((m) => m[0]);
+  assert.equal(panels.length, 2, `expected exactly 2 mobile-accordion-panel elements (BNCC + SAEB), found ${panels.length}`);
+  const saebPanel = panels[1];
+  for (const href of expectedHrefs) {
+    assert.ok(saebPanel.includes(`href="${href}"`), `SAEB mobile accordion panel missing ${href}`);
+  }
+  assert.equal((saebPanel.match(/<a /g) ?? []).length, 2, "SAEB mobile accordion panel should contain exactly 2 links");
+});
+
+test("the SAEB desktop and mobile triggers have aria-expanded, an accessible name, and aria-controls pointing at an existing id", () => {
+  const desktopToggles = [...homeHtml.matchAll(/<button[^>]*class="nav-toggle"[^>]*>/g)].map((m) => m[0]);
+  assert.equal(desktopToggles.length, 2, `expected exactly 2 desktop nav-toggle buttons (BNCC + SAEB), found ${desktopToggles.length}`);
+  const saebDesktopToggle = desktopToggles[1];
+  assert.match(saebDesktopToggle, /aria-expanded="false"/);
+  assert.match(saebDesktopToggle, /aria-label="Submenu de SAEB"/);
+  const desktopControlsId = saebDesktopToggle.match(/aria-controls="([^"]+)"/)?.[1];
+  assert.ok(desktopControlsId, "SAEB nav-toggle missing aria-controls");
+  assert.ok(homeHtml.includes(`id="${desktopControlsId}"`), "SAEB desktop aria-controls does not point to an existing id");
+
+  const mobileTriggers = [...homeHtml.matchAll(/<button[^>]*class="mobile-accordion-trigger"[^>]*>/g)].map((m) => m[0]);
+  assert.equal(mobileTriggers.length, 2, `expected exactly 2 mobile-accordion-trigger buttons (BNCC + SAEB), found ${mobileTriggers.length}`);
+  const saebMobileTrigger = mobileTriggers[1];
+  assert.match(saebMobileTrigger, /aria-expanded="false"/);
+  assert.match(saebMobileTrigger, /aria-label="Submenu de SAEB"/);
+  const mobileControlsId = saebMobileTrigger.match(/aria-controls="([^"]+)"/)?.[1];
+  assert.ok(mobileControlsId, "SAEB mobile-accordion-trigger missing aria-controls");
+  assert.ok(homeHtml.includes(`id="${mobileControlsId}"`), "SAEB mobile aria-controls does not point to an existing id");
+});
+
+test("the SAEB desktop trigger is a real <button>, and 'SAEB' itself is a plain navigation <a> — never a clickable div", () => {
+  const headerBlock = homeHtml.match(/<header class="site-header">[^]*?<\/header>/)?.[0] ?? "";
+  assert.match(headerBlock, /<a href="\/saeb"[^>]*>SAEB<\/a>\s*<button[^>]*class="nav-toggle"/, "SAEB link and its toggle button should be adjacent, distinct elements");
+  assert.doesNotMatch(headerBlock, /<div[^>]*onclick/i, "no clickable <div> should be used for navigation");
 });
 
 // ---- aria-current: nunca dois elementos "atuais" na mesma navegação ----
@@ -156,15 +211,41 @@ const ARIA_CURRENT_CASES = [
   },
   {
     path: "/saeb",
-    describe: "on /saeb, outside the BNCC section entirely",
+    describe: "on /saeb itself",
     expectBnccPage: false,
     expectBnccSectionClass: false,
     expectedSubmenuPageHref: null,
+    expectSaebPage: true,
+    expectSaebSectionClass: false,
+    expectedSaebSubmenuPageHref: null,
+  },
+  {
+    path: "/saeb/matriz",
+    describe: "on the SAEB matriz submenu destination matched exactly",
+    expectBnccPage: false,
+    expectBnccSectionClass: false,
+    expectedSubmenuPageHref: null,
+    expectSaebPage: false,
+    expectSaebSectionClass: true,
+    expectedSaebSubmenuPageHref: "/saeb/matriz",
+  },
+  {
+    // A busca de descritores preserva etapa/componente/busca na querystring — usePathname() nunca
+    // vê essa parte da URL, então a página ativa precisa continuar identificada corretamente.
+    path: "/saeb/matriz?etapa=anosFinais&componente=mt&busca=D1",
+    describe: "on the SAEB matriz page with etapa/componente/busca query params",
+    expectBnccPage: false,
+    expectBnccSectionClass: false,
+    expectedSubmenuPageHref: null,
+    expectSaebPage: false,
+    expectSaebSectionClass: true,
+    expectedSaebSubmenuPageHref: "/saeb/matriz",
   },
 ];
 
-// Top-level nav items (outside the BNCC dropdown) that carry aria-current="page" on their own route.
-const SIMPLE_CURRENT_ROUTES = ["/saresp", "/saeb"];
+// Único item de nível principal (fora dos dois dropdowns, BNCC e SAEB) que carrega
+// aria-current="page" na própria rota.
+const SIMPLE_CURRENT_ROUTES = ["/saresp"];
 
 for (const testCase of ARIA_CURRENT_CASES) {
   test(`aria-current ${testCase.describe} (${testCase.path}): exactly one current element, never a duplicate`, async () => {
@@ -174,6 +255,10 @@ for (const testCase of ARIA_CURRENT_CASES) {
     const { desktop, mobile } = extractNavBlocks(html);
     assert.ok(desktop, `${testCase.path}: missing desktop nav block`);
     assert.ok(mobile, `${testCase.path}: missing mobile nav block`);
+
+    const expectSaebPage = testCase.expectSaebPage ?? false;
+    const expectSaebSectionClass = testCase.expectSaebSectionClass ?? false;
+    const expectedSaebSubmenuPageHref = testCase.expectedSaebSubmenuPageHref ?? null;
 
     for (const [navName, nav] of [["desktop", desktop], ["mobile", mobile]]) {
       // "location" was retired entirely — the active section is only ever conveyed visually now.
@@ -187,20 +272,43 @@ for (const testCase of ARIA_CURRENT_CASES) {
       // The two are mutually exclusive by construction, but assert it explicitly too.
       assert.ok(!(/aria-current="page"/.test(bnccAttrs) && /class="is-section-active"/.test(bnccAttrs)), `${testCase.path} ${navName}: BNCC must not carry both aria-current="page" and is-section-active`);
 
+      // Same distinction for the SAEB section — /saeb exact gets aria-current="page" on the parent
+      // link; /saeb/matriz (with or without query params) gets is-section-active instead.
+      const saebLinkMatch = nav.match(/<a href="\/saeb"([^>]*)>SAEB<\/a>/);
+      assert.ok(saebLinkMatch, `${testCase.path} ${navName}: SAEB link not found`);
+      const saebAttrs = saebLinkMatch[1];
+      assert.equal(/aria-current="page"/.test(saebAttrs), expectSaebPage, `${testCase.path} ${navName}: SAEB aria-current="page" mismatch`);
+      assert.equal(/class="is-section-active"/.test(saebAttrs), expectSaebSectionClass, `${testCase.path} ${navName}: SAEB is-section-active mismatch`);
+      assert.ok(!(/aria-current="page"/.test(saebAttrs) && /class="is-section-active"/.test(saebAttrs)), `${testCase.path} ${navName}: SAEB must not carry both aria-current="page" and is-section-active`);
+
+      // "Resultados por escola" duplicates the parent SAEB link's href (/saeb) — it must never
+      // carry aria-current="page" itself, even when /saeb is the current page, to avoid a second
+      // "current" element pointing at the same destination.
+      const resultadosMatch = nav.match(/<a href="\/saeb"[^>]*>Resultados por escola<\/a>/);
+      assert.ok(resultadosMatch, `${testCase.path} ${navName}: "Resultados por escola" submenu item not found`);
+      assert.doesNotMatch(resultadosMatch[0], /aria-current="page"/, `${testCase.path} ${navName}: "Resultados por escola" must never carry aria-current`);
+
       const currentPageCount = (nav.match(/aria-current="page"/g) ?? []).length;
-      const expectedCount = testCase.expectBnccPage || testCase.expectedSubmenuPageHref || SIMPLE_CURRENT_ROUTES.includes(testCase.path) ? 1 : 0;
+      const expectedCount =
+        (testCase.expectBnccPage ? 1 : 0) +
+        (testCase.expectedSubmenuPageHref ? 1 : 0) +
+        (expectSaebPage ? 1 : 0) +
+        (expectedSaebSubmenuPageHref ? 1 : 0) +
+        (SIMPLE_CURRENT_ROUTES.includes(testCase.path) ? 1 : 0);
       assert.equal(currentPageCount, expectedCount, `${testCase.path} ${navName}: expected exactly ${expectedCount} aria-current="page" element(s), found ${currentPageCount}`);
 
       // Each simple route's own link carries aria-current="page" only when it's the current path.
       for (const route of SIMPLE_CURRENT_ROUTES) {
-        const label = route === "/saresp" ? "SARESP" : "SAEB";
-        const linkMatch = nav.match(new RegExp(`<a href="${route.replace(/\//g, "\\/")}"([^>]*)>${label}</`));
-        assert.ok(linkMatch, `${testCase.path} ${navName}: ${label} link not found`);
-        assert.equal(/aria-current="page"/.test(linkMatch[1]), route === testCase.path, `${testCase.path} ${navName}: ${label} aria-current="page" mismatch`);
+        const linkMatch = nav.match(new RegExp(`<a href="${route.replace(/\//g, "\\/")}"([^>]*)>SARESP</`));
+        assert.ok(linkMatch, `${testCase.path} ${navName}: SARESP link not found`);
+        assert.equal(/aria-current="page"/.test(linkMatch[1]), route === testCase.path, `${testCase.path} ${navName}: SARESP aria-current="page" mismatch`);
       }
 
       if (testCase.expectedSubmenuPageHref) {
-        assert.match(nav, new RegExp(`<a href="${testCase.expectedSubmenuPageHref.replace(/\//g, "\\/")}" aria-current="page"`), `${testCase.path} ${navName}: expected submenu link to carry aria-current="page"`);
+        assert.match(nav, new RegExp(`<a href="${testCase.expectedSubmenuPageHref.replace(/\//g, "\\/")}" aria-current="page"`), `${testCase.path} ${navName}: expected BNCC submenu link to carry aria-current="page"`);
+      }
+      if (expectedSaebSubmenuPageHref) {
+        assert.match(nav, new RegExp(`<a href="${expectedSaebSubmenuPageHref.replace(/\//g, "\\/")}" aria-current="page"`), `${testCase.path} ${navName}: expected SAEB submenu link to carry aria-current="page"`);
       }
     }
   });
