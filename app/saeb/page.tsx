@@ -87,6 +87,9 @@ export default function SaebPage() {
               por si só para quem precisa interpretar resultados já publicados pelo Inep.
             </span>
           </p>
+          <a className="text-link" href="/saeb/matriz">
+            Consultar matriz e descritores do SAEB <ArrowUpRight size={17} aria-hidden="true" />
+          </a>
         </div>
       </section>
 

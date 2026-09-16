@@ -408,21 +408,29 @@ test("/saeb is linked from the Header (desktop and mobile) and the Footer", asyn
   assert.match(mobileNav, /<a href="\/saeb"[^>]*>SAEB</, "mobile nav missing the SAEB link");
 });
 
-test("/saeb appears in the sitemap exactly once, with the canonical domain and no query string", async () => {
+test("/saeb and /saeb/matriz each appear in the sitemap exactly once, with the canonical domain and no query string", async () => {
   const sitemapResponse = await render("/sitemap.xml");
   const xml = await sitemapResponse.text();
   assert.equal(sitemapResponse.status, 200);
   const matches = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]).filter((loc) => loc.includes("/saeb"));
-  assert.deepEqual(matches, ["https://tempodocente.com.br/saeb"], "/saeb should appear exactly once, as the bare canonical route");
+  assert.deepEqual(
+    matches.sort(),
+    ["https://tempodocente.com.br/saeb", "https://tempodocente.com.br/saeb/matriz"].sort(),
+    "/saeb and /saeb/matriz should each appear exactly once, as bare canonical routes",
+  );
 });
 
-test("the SAEB page body links to no internal route other than the breadcrumb home", () => {
+test("the SAEB page body links to no internal route other than the breadcrumb home and the matriz/descritores entry point", () => {
   const bodyOnly = saebMain.replace(/<script[^]*?<\/script>/g, " ");
-  const internalHrefs = [...bodyOnly.matchAll(/<a href="(\/[^"]*)"/g)].map((match) => match[1]);
+  // Matches <a ...href="..."> regardless of attribute order (href isn't always the first
+  // attribute — e.g. the matriz entry point renders class before href).
+  const internalHrefs = [...bodyOnly.matchAll(/<a\s+[^>]*href="(\/[^"]*)"/g)].map((match) => match[1]);
   assert.ok(internalHrefs.length > 0, "expected at least the breadcrumb link");
+  const ALLOWED_HREFS = ["/", "/saeb/matriz"];
   for (const href of internalHrefs) {
-    assert.equal(href, "/", `unexpected internal link on /saeb: ${href}`);
+    assert.ok(ALLOWED_HREFS.includes(href), `unexpected internal link on /saeb: ${href}`);
   }
+  assert.ok(internalHrefs.includes("/saeb/matriz"), "expected the new 'Consultar matriz e descritores do SAEB' entry point");
 });
 
 // ---- Sem regressão nas páginas existentes ----

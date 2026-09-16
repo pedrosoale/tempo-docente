@@ -15,7 +15,7 @@
 // documentada anterior, (6) limites da interpretação — incluindo a distinção entre média e
 // distribuição por nível —, (7) fonte oficial.
 import { useId, useState } from "react";
-import { ChevronDown, HelpCircle, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, HelpCircle, X } from "lucide-react";
 import { buscarEscala, catalogoEscalas, type FaixaNivel } from "@/lib/saeb/escalas";
 import {
   comPreposicao,
@@ -123,6 +123,14 @@ export default function InterpretacaoResultado({
 
       <p className="saeb-interpretacao-recorte">
         {ETAPA_LABEL[etapa]} · edição {edicao}
+      </p>
+
+      {/* Link contextual para a consulta de descritores — nunca associa um descritor específico ao
+          resultado da escola: só preserva etapa e componente para abrir o mesmo recorte na matriz. */}
+      <p className="saeb-interpretacao-link-matriz">
+        <a href={`/saeb/matriz?etapa=${etapa}&componente=${componente}`}>
+          Consultar os descritores da matriz desta etapa <ArrowUpRight size={13} aria-hidden="true" />
+        </a>
       </p>
 
       {/* 1 e 3 — Resultado da escola e nível oficial, numa frase direta que já nomeia o nível quando
