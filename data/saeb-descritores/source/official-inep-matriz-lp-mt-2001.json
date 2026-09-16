@@ -1,0 +1,427 @@
+{
+  "fontes": {
+    "lp": {
+      "titulo": "Matriz de Referência de Língua Portuguesa",
+      "orgao": "Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (Inep/MEC)",
+      "url": "https://download.inep.gov.br/educacao_basica/saeb/matriz-de-referencia-de-lingua-portuguesa_2001.pdf",
+      "versaoPublicacao": "Brasília, DF: Inep, publicada on-line em abril de 2022",
+      "hashSha256": "f36ef2adf874822fa827de2a89422a145d8dbaa5f3536cfe1fa312bf6ef021f9",
+      "totalPaginasPdf": 14,
+      "notaDocumental": "A ficha catalográfica interna deste PDF (página 2) cita, por erro de diagramação do próprio Inep, \"Matrizes de referência de linguagens Língua Portuguesa do Saeb – BNCC. Brasília, 2022\" — a mesma citação, inclusive, aparece copiada no arquivo de Matemática. O conteúdo do documento é inequivocamente a matriz tradicional (2001): o cabeçalho de página repete \"MATRIZ DE REFERÊNCIA DE LÍNGUA PORTUGUESA\" (sem menção à BNCC), cada quadro de descritores cita \"Fonte: Elaborado pela Daeb/Inep com base no Saeb 2001 (Brasil. Inep, 2002)\", a referência final do documento é \"Saeb 2001: novas perspectivas\" (Inep, 2002), e o próprio arquivo publicado se chama \"matriz-de-referencia-de-lingua-portuguesa_2001.pdf\" — distinto do arquivo BNCC (\"matriz-de-referencia-de-linguagens_BNCC.pdf\") listado ao lado dele na mesma página do Inep."
+    },
+    "mt": {
+      "titulo": "Matriz de Referência de Matemática",
+      "orgao": "Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (Inep/MEC)",
+      "url": "https://download.inep.gov.br/educacao_basica/saeb/matriz-de-referencia-de-matematica_2001.pdf",
+      "versaoPublicacao": "Brasília, DF: Inep, publicada on-line em abril de 2022",
+      "hashSha256": "df198f248b0df55c07d5f8b32b6697704dcdf4a7807ab67554b51fa1798eb144",
+      "totalPaginasPdf": 14,
+      "notaDocumental": "Mesma observação do arquivo de Língua Portuguesa: a ficha catalográfica interna (página 2) cita por engano \"Matrizes de referência de linguagens Língua Portuguesa do Saeb – BNCC. Brasília, 2022\" também neste arquivo de Matemática. O corpo do documento contradiz essa ficha: cabeçalho \"MATRIZ DE REFERÊNCIA DE MATEMÁTICA\", cada quadro cita \"Fonte: Elaborado pela Daeb/Inep com base no Saeb 2001 (Brasil. Inep, 2002)\", a referência final é \"Saeb 2001: novas perspectivas\" (Inep, 2002), e o arquivo publicado se chama \"matriz-de-referencia-de-matematica_2001.pdf\" — distinto do arquivo BNCC (\"matriz-de-referencia-de-matematica_BNCC.pdf\")."
+    }
+  },
+  "matrizes": [
+    {
+      "etapa": "anosIniciais",
+      "etapaLabelOficial": "5º Ano do Ensino Fundamental",
+      "componente": "lp",
+      "quadro": "Quadro 1",
+      "tituloOficial": "Matriz de Referência de Língua Portuguesa do Saeb: Tópicos e seus Descritores — 5º Ano do Ensino Fundamental",
+      "fonteInternaCitada": "Fonte: Elaborado pela Daeb/Inep com base no Saeb 2001 (Brasil. Inep, 2002).",
+      "rotuloAgrupamento": "topico",
+      "grupos": [
+        {
+          "numero": "I",
+          "nome": "Procedimentos de leitura",
+          "descritores": [
+            { "codigo": "D1", "texto": "Localizar informações explícitas em um texto.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D3", "texto": "Inferir o sentido de uma palavra ou expressão.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D4", "texto": "Inferir uma informação implícita em um texto.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D6", "texto": "Identificar o tema de um texto.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D11", "texto": "Distinguir um fato da opinião relativa a esse fato.", "paginasPdf": [6], "paginasImpressas": [4] }
+          ]
+        },
+        {
+          "numero": "II",
+          "nome": "Implicações do suporte, do gênero e/ou do enunciador na compreensão do texto",
+          "descritores": [
+            { "codigo": "D5", "texto": "Interpretar texto com auxílio de material gráfico diverso (propagandas, quadrinhos, fotos etc.).", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D9", "texto": "Identificar a finalidade de textos de diferentes gêneros.", "paginasPdf": [6], "paginasImpressas": [4] }
+          ]
+        },
+        {
+          "numero": "III",
+          "nome": "Relação entre textos",
+          "descritores": [
+            { "codigo": "D15", "texto": "Reconhecer diferentes formas de tratar uma informação na comparação de textos que abordam o mesmo tema, em função das condições em que ele foi produzido e daquelas em que será recebido.", "paginasPdf": [6], "paginasImpressas": [4] }
+          ]
+        },
+        {
+          "numero": "IV",
+          "nome": "Coerência e coesão no processamento do texto",
+          "descritores": [
+            { "codigo": "D2", "texto": "Estabelecer relações entre partes de um texto, identificando repetições ou substituições que contribuem para a continuidade dele.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D7", "texto": "Identificar o conflito gerador do enredo e os elementos que constroem a narrativa.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D8", "texto": "Estabelecer relação causa/consequência entre partes e elementos do texto.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D12", "texto": "Estabelecer relações lógico-discursivas presentes no texto, marcadas por conjunções, advérbios etc.", "paginasPdf": [6], "paginasImpressas": [4] }
+          ]
+        },
+        {
+          "numero": "V",
+          "nome": "Relações entre recursos expressivos e efeitos de sentido",
+          "descritores": [
+            { "codigo": "D13", "texto": "Identificar efeitos de ironia ou humor em textos variados.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D14", "texto": "Identificar o efeito de sentido decorrente do uso da pontuação e de outras notações.", "paginasPdf": [6], "paginasImpressas": [4] }
+          ]
+        },
+        {
+          "numero": "VI",
+          "nome": "Variação linguística",
+          "descritores": [
+            { "codigo": "D10", "texto": "Identificar as marcas linguísticas que evidenciam o locutor e o interlocutor de um texto.", "paginasPdf": [6], "paginasImpressas": [4] }
+          ]
+        }
+      ]
+    },
+    {
+      "etapa": "anosFinais",
+      "etapaLabelOficial": "9º Ano do Ensino Fundamental",
+      "componente": "lp",
+      "quadro": "Quadro 3",
+      "tituloOficial": "Matriz de Referência de Língua Portuguesa do Saeb: Tópicos e seus Descritores — 9º Ano do Ensino Fundamental",
+      "fonteInternaCitada": "Fonte: Elaborado pela Daeb/Inep com base no Saeb 2001 (Brasil. Inep, 2002).",
+      "rotuloAgrupamento": "topico",
+      "grupos": [
+        {
+          "numero": "I",
+          "nome": "Procedimentos de leitura",
+          "descritores": [
+            { "codigo": "D1", "texto": "Localizar informações explícitas em um texto.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D3", "texto": "Inferir o sentido de uma palavra ou expressão.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D4", "texto": "Inferir uma informação implícita em um texto.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D6", "texto": "Identificar o tema de um texto.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D14", "texto": "Distinguir um fato da opinião relativa a esse fato.", "paginasPdf": [8], "paginasImpressas": [6] }
+          ]
+        },
+        {
+          "numero": "II",
+          "nome": "Implicações do suporte, do gênero e/ou do enunciador na compreensão do texto",
+          "descritores": [
+            { "codigo": "D5", "texto": "Interpretar texto com auxílio de material gráfico diverso (propagandas, quadrinhos, fotos etc.).", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D12", "texto": "Identificar a finalidade de textos de diferentes gêneros.", "paginasPdf": [8], "paginasImpressas": [6] }
+          ]
+        },
+        {
+          "numero": "III",
+          "nome": "Relação entre textos",
+          "descritores": [
+            { "codigo": "D20", "texto": "Reconhecer diferentes formas de tratar uma informação na comparação de textos que abordam o mesmo tema, em função das condições em que ele foi produzido e daquelas em que será recebido.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D21", "texto": "Reconhecer posições distintas entre duas ou mais opiniões relativas ao mesmo fato ou ao mesmo tema.", "paginasPdf": [8], "paginasImpressas": [6] }
+          ]
+        },
+        {
+          "numero": "IV",
+          "nome": "Coerência e coesão no processamento do texto",
+          "descritores": [
+            { "codigo": "D2", "texto": "Estabelecer relações entre partes de um texto, identificando repetições ou substituições que contribuem para a continuidade dele.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D7", "texto": "Identificar a tese de um texto.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D8", "texto": "Estabelecer relação entre a tese e os argumentos oferecidos para sustentá-la.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D9", "texto": "Diferenciar as partes principais das secundárias em um texto.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D10", "texto": "Identificar o conflito gerador do enredo e os elementos que constroem a narrativa.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D11", "texto": "Estabelecer relação causa/consequência entre partes e elementos do texto.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D15", "texto": "Estabelecer relações lógico-discursivas presentes no texto, marcadas por conjunções, advérbios etc.", "paginasPdf": [8], "paginasImpressas": [6] }
+          ]
+        },
+        {
+          "numero": "V",
+          "nome": "Relações entre recursos expressivos e efeitos de sentido",
+          "descritores": [
+            { "codigo": "D16", "texto": "Identificar efeitos de ironia ou humor em textos variados.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D17", "texto": "Reconhecer o efeito de sentido decorrente do uso da pontuação e de outras notações.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D18", "texto": "Reconhecer o efeito de sentido decorrente da escolha de uma determinada palavra ou expressão.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D19", "texto": "Reconhecer o efeito de sentido decorrente da exploração de recursos ortográficos e/ou morfossintáticos.", "paginasPdf": [8], "paginasImpressas": [6] }
+          ]
+        },
+        {
+          "numero": "VI",
+          "nome": "Variação linguística",
+          "descritores": [
+            { "codigo": "D13", "texto": "Identificar as marcas linguísticas que evidenciam o locutor e o interlocutor de um texto.", "paginasPdf": [8], "paginasImpressas": [6] }
+          ]
+        }
+      ]
+    },
+    {
+      "etapa": "ensinoMedio",
+      "etapaLabelOficial": "3ª Série do Ensino Médio",
+      "componente": "lp",
+      "quadro": "Quadro 5",
+      "tituloOficial": "Matriz de Referência de Língua Portuguesa do Saeb: Tópicos e seus Descritores — 3ª Série do Ensino Médio",
+      "fonteInternaCitada": "Fonte: Elaborado pela Daeb/Inep com base no Saeb 2001 (Brasil. Inep, 2002).",
+      "rotuloAgrupamento": "topico",
+      "grupos": [
+        {
+          "numero": "I",
+          "nome": "Procedimentos de leitura",
+          "descritores": [
+            { "codigo": "D1", "texto": "Localizar informações explícitas em um texto.", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D3", "texto": "Inferir o sentido de uma palavra ou expressão.", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D4", "texto": "Inferir uma informação implícita em um texto.", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D6", "texto": "Identificar o tema de um texto.", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D14", "texto": "Distinguir um fato da opinião relativa a esse fato.", "paginasPdf": [9], "paginasImpressas": [7] }
+          ]
+        },
+        {
+          "numero": "II",
+          "nome": "Implicações do suporte, do gênero e/ou do enunciador na compreensão do texto",
+          "descritores": [
+            { "codigo": "D5", "texto": "Interpretar texto com auxílio de material gráfico diverso (propagandas, quadrinhos, fotos etc.).", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D12", "texto": "Identificar a finalidade de textos de diferentes gêneros.", "paginasPdf": [9], "paginasImpressas": [7] }
+          ]
+        },
+        {
+          "numero": "III",
+          "nome": "Relação entre textos",
+          "descritores": [
+            { "codigo": "D20", "texto": "Reconhecer diferentes formas de tratar uma informação na comparação de textos que abordam o mesmo tema, em função das condições em que ele foi produzido e daquelas em que será recebido.", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D21", "texto": "Reconhecer posições distintas entre duas ou mais opiniões relativas ao mesmo fato ou ao mesmo tema.", "paginasPdf": [9], "paginasImpressas": [7] }
+          ]
+        },
+        {
+          "numero": "IV",
+          "nome": "Coerência e coesão no processamento do texto",
+          "descritores": [
+            { "codigo": "D2", "texto": "Estabelecer relações entre partes de um texto, identificando repetições ou substituições que contribuem para a continuidade dele.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D7", "texto": "Identificar a tese de um texto.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D8", "texto": "Estabelecer relação entre a tese e os argumentos oferecidos para sustentá-la.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D9", "texto": "Diferenciar as partes principais das secundárias em um texto.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D10", "texto": "Identificar o conflito gerador do enredo e os elementos que constroem a narrativa.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D11", "texto": "Estabelecer relação causa/consequência entre partes e elementos do texto.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D15", "texto": "Estabelecer relações lógico-discursivas presentes no texto, marcadas por conjunções, advérbios etc.", "paginasPdf": [10], "paginasImpressas": [8] }
+          ]
+        },
+        {
+          "numero": "V",
+          "nome": "Relações entre recursos expressivos e efeitos de sentido",
+          "descritores": [
+            { "codigo": "D16", "texto": "Identificar efeitos de ironia ou humor em textos variados.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D17", "texto": "Reconhecer o efeito de sentido decorrente do uso da pontuação e de outras notações.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D18", "texto": "Reconhecer o efeito de sentido decorrente da escolha de uma determinada palavra ou expressão.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D19", "texto": "Reconhecer o efeito de sentido decorrente da exploração de recursos ortográficos e/ou morfossintáticos.", "paginasPdf": [10], "paginasImpressas": [8] }
+          ]
+        },
+        {
+          "numero": "VI",
+          "nome": "Variação linguística",
+          "descritores": [
+            { "codigo": "D13", "texto": "Identificar as marcas linguísticas que evidenciam o locutor e o interlocutor de um texto.", "paginasPdf": [10], "paginasImpressas": [8] }
+          ]
+        }
+      ]
+    },
+    {
+      "etapa": "anosIniciais",
+      "etapaLabelOficial": "5º Ano do Ensino Fundamental",
+      "componente": "mt",
+      "quadro": "Quadro 1",
+      "tituloOficial": "Matriz de Referência de Matemática do Saeb: Temas e seus Descritores — 5º Ano do Ensino Fundamental",
+      "fonteInternaCitada": "Fonte: Elaborado pela Daeb/Inep com base no Saeb 2001 (Brasil. Inep, 2002).",
+      "rotuloAgrupamento": "tema",
+      "grupos": [
+        {
+          "numero": "I",
+          "nome": "Espaço e Forma",
+          "descritores": [
+            { "codigo": "D1", "texto": "Identificar a localização/movimentação de objeto em mapas, croquis e outras representações gráficas.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D2", "texto": "Identificar propriedades comuns e diferenças entre poliedros e corpos redondos, relacionando figuras tridimensionais com suas planificações.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D3", "texto": "Identificar propriedades comuns e diferenças entre figuras bidimensionais pelo número de lados, pelos tipos de ângulos.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D4", "texto": "Identificar quadriláteros observando as posições relativas entre seus lados (paralelos, concorrentes, perpendiculares).", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D5", "texto": "Reconhecer a conservação ou modificação de medidas dos lados, do perímetro, da área em ampliação e/ou redução de figuras poligonais usando malhas quadriculadas.", "paginasPdf": [6], "paginasImpressas": [4] }
+          ]
+        },
+        {
+          "numero": "II",
+          "nome": "Grandezas e Medidas",
+          "descritores": [
+            { "codigo": "D6", "texto": "Estimar a medida de grandezas utilizando unidades de medida convencionais ou não.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D7", "texto": "Resolver problemas significativos utilizando unidades de medida padronizadas como km/m/cm/mm, kg/g/mg, l/ml.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D8", "texto": "Estabelecer relações entre unidades de medida de tempo.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D9", "texto": "Estabelecer relações entre o horário de início e término e/ou o intervalo da duração de um evento ou acontecimento.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D10", "texto": "Num problema, estabelecer trocas entre cédulas e moedas do sistema monetário brasileiro, em função de seus valores.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D11", "texto": "Resolver problema envolvendo o cálculo do perímetro de figuras planas, desenhadas em malhas quadriculadas.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D12", "texto": "Resolver problema envolvendo o cálculo ou estimativa de áreas de figuras planas, desenhadas em malhas quadriculadas.", "paginasPdf": [6], "paginasImpressas": [4] }
+          ]
+        },
+        {
+          "numero": "III",
+          "nome": "Números e Operações/Álgebra e Funções",
+          "descritores": [
+            { "codigo": "D13", "texto": "Reconhecer e utilizar características do sistema de numeração decimal, tais como agrupamentos e trocas na base 10 e princípio do valor posicional.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D14", "texto": "Identificar a localização de números naturais na reta numérica.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D15", "texto": "Reconhecer a decomposição de números naturais nas suas diversas ordens.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D16", "texto": "Reconhecer a composição e a decomposição de números naturais em sua forma polinomial.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D17", "texto": "Calcular o resultado de uma adição ou subtração de números naturais.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D18", "texto": "Calcular o resultado de uma multiplicação ou divisão de números naturais.", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D19", "texto": "Resolver problema com números naturais, envolvendo diferentes significados da adição ou subtração: alteração de um estado inicial (positiva ou negativa), comparação e mais de uma transformação (positiva ou negativa).", "paginasPdf": [6], "paginasImpressas": [4] },
+            { "codigo": "D20", "texto": "Resolver problema com números naturais, envolvendo diferentes significados da multiplicação ou divisão: multiplicação comparativa, idéia de proporcionalidade, configuração retangular e combinatória.", "paginasPdf": [7], "paginasImpressas": [5] },
+            { "codigo": "D21", "texto": "Identificar diferentes representações de um mesmo número racional.", "paginasPdf": [7], "paginasImpressas": [5] },
+            { "codigo": "D22", "texto": "Identificar a localização de números racionais representados na forma decimal na reta numérica.", "paginasPdf": [7], "paginasImpressas": [5] },
+            { "codigo": "D23", "texto": "Resolver problema utilizando a escrita decimal de cédulas e moedas do sistema monetário brasileiro.", "paginasPdf": [7], "paginasImpressas": [5] },
+            { "codigo": "D24", "texto": "Identificar fração como representação que pode estar associada a diferentes significados.", "paginasPdf": [7], "paginasImpressas": [5] },
+            { "codigo": "D25", "texto": "Resolver problema com números racionais expressos na forma decimal envolvendo diferentes significados da adição ou subtração.", "paginasPdf": [7], "paginasImpressas": [5] },
+            { "codigo": "D26", "texto": "Resolver problema envolvendo noções de porcentagem (25%, 50%, 100%).", "paginasPdf": [7], "paginasImpressas": [5] }
+          ]
+        },
+        {
+          "numero": "IV",
+          "nome": "Tratamento da Informação",
+          "descritores": [
+            { "codigo": "D27", "texto": "Ler informações e dados apresentados em tabelas.", "paginasPdf": [7], "paginasImpressas": [5] },
+            { "codigo": "D28", "texto": "Ler informações e dados apresentados em gráficos (particularmente em gráficos de colunas).", "paginasPdf": [7], "paginasImpressas": [5] }
+          ]
+        }
+      ]
+    },
+    {
+      "etapa": "anosFinais",
+      "etapaLabelOficial": "9º Ano do Ensino Fundamental",
+      "componente": "mt",
+      "quadro": "Quadro 2",
+      "tituloOficial": "Matriz de Referência de Matemática do Saeb: Temas e seus Descritores — 9º Ano do Ensino Fundamental",
+      "fonteInternaCitada": "Fonte: Elaborado pela Daeb/Inep com base no Saeb 2001 (Brasil. Inep, 2002).",
+      "rotuloAgrupamento": "tema",
+      "grupos": [
+        {
+          "numero": "I",
+          "nome": "Espaço e Forma",
+          "descritores": [
+            { "codigo": "D1", "texto": "Identificar a localização/movimentação de objeto em mapas, croquis e outras representações gráficas.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D2", "texto": "Identificar propriedades comuns e diferenças entre figuras bidimensionais e tridimensionais, relacionando-as com as suas planificações.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D3", "texto": "Identificar propriedades de triângulos pela comparação de medidas de lados e ângulos.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D4", "texto": "Identificar relação entre quadriláteros por meio de suas propriedades.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D5", "texto": "Reconhecer a conservação ou modificação de medidas dos lados, do perímetro, da área em ampliação e/ou redução de figuras poligonais usando malhas quadriculadas.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D6", "texto": "Reconhecer ângulos como mudança de direção ou giros, identificando ângulos retos e não-retos.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D7", "texto": "Reconhecer que as imagens de uma figura construída por uma transformação homotética são semelhantes, identificando propriedades e/ou medidas que se modificam ou não se alteram.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D8", "texto": "Resolver problema utilizando propriedades dos polígonos (soma de seus ângulos internos, número de diagonais, cálculo da medida de cada ângulo interno nos polígonos regulares).", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D9", "texto": "Interpretar informações apresentadas por meio de coordenadas cartesianas.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D10", "texto": "Utilizar relações métricas do triângulo retângulo para resolver problemas significativos.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D11", "texto": "Reconhecer círculo/circunferência, seus elementos e algumas de suas relações.", "paginasPdf": [8], "paginasImpressas": [6] }
+          ]
+        },
+        {
+          "numero": "II",
+          "nome": "Grandezas e Medidas",
+          "descritores": [
+            { "codigo": "D12", "texto": "Resolver problema envolvendo o cálculo de perímetro de figuras planas.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D13", "texto": "Resolver problema envolvendo o cálculo de área de figuras planas.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D14", "texto": "Resolver problema envolvendo noções de volume.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D15", "texto": "Resolver problema utilizando relações entre diferentes unidades de medida.", "paginasPdf": [8], "paginasImpressas": [6] }
+          ]
+        },
+        {
+          "numero": "III",
+          "nome": "Números e Operações/Álgebra e Funções",
+          "descritores": [
+            { "codigo": "D16", "texto": "Identificar a localização de números inteiros na reta numérica.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D17", "texto": "Identificar a localização de números racionais na reta numérica.", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D18", "texto": "Efetuar cálculos com números inteiros, envolvendo as operações (adição, subtração, multiplicação, divisão, potenciação).", "paginasPdf": [8], "paginasImpressas": [6] },
+            { "codigo": "D19", "texto": "Resolver problema com números naturais, envolvendo diferentes significados das operações (adição, subtração, multiplicação, divisão, potenciação).", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D20", "texto": "Resolver problema com números inteiros envolvendo as operações (adição, subtração, multiplicação, divisão, potenciação).", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D21", "texto": "Reconhecer as diferentes representações de um número racional.", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D22", "texto": "Identificar fração como representação que pode estar associada a diferentes significados.", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D23", "texto": "Identificar frações equivalentes.", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D24", "texto": "Reconhecer as representações decimais dos números racionais como uma extensão do sistema de numeração decimal, identificando a existência de \"ordens\" como décimos, centésimos e milésimos.", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D25", "texto": "Efetuar cálculos que envolvam operações com números racionais (adição, subtração, multiplicação, divisão, potenciação).", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D26", "texto": "Resolver problema com números racionais envolvendo as operações (adição, subtração, multiplicação, divisão, potenciação).", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D27", "texto": "Efetuar cálculos simples com valores aproximados de radicais.", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D28", "texto": "Resolver problema que envolva porcentagem.", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D29", "texto": "Resolver problema que envolva variação proporcional, direta ou inversa, entre grandezas.", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D30", "texto": "Calcular o valor numérico de uma expressão algébrica.", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D31", "texto": "Resolver problema que envolva equação do 2º grau.", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D32", "texto": "Identificar a expressão algébrica que expressa uma regularidade observada em sequências de números ou figuras (padrões).", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D33", "texto": "Identificar uma equação ou inequação do 1º grau que expressa um problema.", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D34", "texto": "Identificar um sistema de equações do 1º grau que expressa um problema.", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D35", "texto": "Identificar a relação entre as representações algébrica e geométrica de um sistema de equações do 1º grau.", "paginasPdf": [9], "paginasImpressas": [7] }
+          ]
+        },
+        {
+          "numero": "IV",
+          "nome": "Tratamento da Informação",
+          "descritores": [
+            { "codigo": "D36", "texto": "Resolver problema envolvendo informações apresentadas em tabelas e/ou gráficos.", "paginasPdf": [9], "paginasImpressas": [7] },
+            { "codigo": "D37", "texto": "Associar informações apresentadas em listas e/ou tabelas simples aos gráficos que as representam e vice-versa.", "paginasPdf": [9], "paginasImpressas": [7] }
+          ]
+        }
+      ]
+    },
+    {
+      "etapa": "ensinoMedio",
+      "etapaLabelOficial": "3ª Série do Ensino Médio",
+      "componente": "mt",
+      "quadro": "Quadro 3",
+      "tituloOficial": "Matriz de Referência de Matemática do Saeb: Temas e seus Descritores — 3ª Série do Ensino Médio",
+      "fonteInternaCitada": "Fonte: Elaborado pela Daeb/Inep com base no Saeb 2001 (Brasil. Inep, 2002).",
+      "rotuloAgrupamento": "tema",
+      "grupos": [
+        {
+          "numero": "I",
+          "nome": "Espaço e Forma",
+          "descritores": [
+            { "codigo": "D1", "texto": "Identificar figuras semelhantes mediante o reconhecimento de relações de proporcionalidade.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D2", "texto": "Reconhecer aplicações das relações métricas do triângulo retângulo em um problema que envolva figuras planas ou espaciais.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D3", "texto": "Relacionar diferentes poliedros ou corpos redondos com suas planificações ou vistas.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D4", "texto": "Identificar a relação entre o número de vértices, faces e/ou arestas de poliedros expressa em um problema.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D5", "texto": "Resolver problema que envolva razões trigonométricas no triângulo retângulo (seno, cosseno, tangente).", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D6", "texto": "Identificar a localização de pontos no plano cartesiano.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D7", "texto": "Interpretar geometricamente os coeficientes da equação de uma reta.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D8", "texto": "Identificar a equação de uma reta apresentada a partir de dois pontos dados ou de um ponto e sua inclinação.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D9", "texto": "Relacionar a determinação do ponto de interseção de duas ou mais retas com a resolução de um sistema de equações com duas incógnitas.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D10", "texto": "Reconhecer, entre as equações do 2º grau com duas incógnitas, as que representam circunferências.", "paginasPdf": [10], "paginasImpressas": [8] }
+          ]
+        },
+        {
+          "numero": "II",
+          "nome": "Grandezas e Medidas",
+          "descritores": [
+            { "codigo": "D11", "texto": "Resolver problema envolvendo o cálculo de perímetro de figuras planas.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D12", "texto": "Resolver problema envolvendo o cálculo de área de figuras planas.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D13", "texto": "Resolver problema envolvendo a área total e/ou volume de um sólido (prisma, pirâmide, cilindro, cone, esfera).", "paginasPdf": [10], "paginasImpressas": [8] }
+          ]
+        },
+        {
+          "numero": "III",
+          "nome": "Números e Operações/Álgebra e Funções",
+          "descritores": [
+            { "codigo": "D14", "texto": "Identificar a localização de números reais na reta numérica.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D15", "texto": "Resolver problema que envolva variação proporcional, direta ou inversa, entre grandezas.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D16", "texto": "Resolver problema que envolva porcentagem.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D17", "texto": "Resolver problema envolvendo equação do 2º grau.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D18", "texto": "Reconhecer expressão algébrica que representa uma função a partir de uma tabela.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D19", "texto": "Resolver problema envolvendo uma função do 1º grau.", "paginasPdf": [10], "paginasImpressas": [8] },
+            { "codigo": "D20", "texto": "Analisar crescimento/decrescimento, zeros de funções reais apresentadas em gráficos.", "paginasPdf": [11], "paginasImpressas": [9] },
+            { "codigo": "D21", "texto": "Identificar o gráfico que representa uma situação descrita em um texto.", "paginasPdf": [11], "paginasImpressas": [9] },
+            { "codigo": "D22", "texto": "Resolver problema envolvendo P.A./P.G., dada a fórmula do termo geral.", "paginasPdf": [11], "paginasImpressas": [9] },
+            { "codigo": "D23", "texto": "Reconhecer o gráfico de uma função polinomial de 1º grau por meio de seus coeficientes.", "paginasPdf": [11], "paginasImpressas": [9] },
+            { "codigo": "D24", "texto": "Reconhecer a representação algébrica de uma função do 1º grau, dado o seu gráfico.", "paginasPdf": [11], "paginasImpressas": [9] },
+            { "codigo": "D25", "texto": "Resolver problemas que envolvam os pontos de máximo ou de mínimo no gráfico de uma função polinomial do 2º grau.", "paginasPdf": [11], "paginasImpressas": [9] },
+            { "codigo": "D26", "texto": "Relacionar as raízes de um polinômio com sua decomposição em fatores do 1º grau.", "paginasPdf": [11], "paginasImpressas": [9] },
+            { "codigo": "D27", "texto": "Identificar a representação algébrica e/ou gráfica de uma função exponencial.", "paginasPdf": [11], "paginasImpressas": [9] },
+            { "codigo": "D28", "texto": "Identificar a representação algébrica e/ou gráfica de uma função logarítmica, reconhecendo-a como inversa da função exponencial.", "paginasPdf": [11], "paginasImpressas": [9] },
+            { "codigo": "D29", "texto": "Resolver problema que envolva função exponencial.", "paginasPdf": [11], "paginasImpressas": [9] },
+            { "codigo": "D30", "texto": "Identificar gráficos de funções trigonométricas (seno, cosseno, tangente) reconhecendo suas propriedades.", "paginasPdf": [11], "paginasImpressas": [9] },
+            { "codigo": "D31", "texto": "Determinar a solução de um sistema linear associando-o a uma matriz.", "paginasPdf": [11], "paginasImpressas": [9] },
+            { "codigo": "D32", "texto": "Resolver problema de contagem utilizando o princípio multiplicativo ou noções de permutação simples, arranjo simples e/ou combinação simples.", "paginasPdf": [11], "paginasImpressas": [9] },
+            { "codigo": "D33", "texto": "Calcular a probabilidade de um evento.", "paginasPdf": [11], "paginasImpressas": [9] }
+          ]
+        },
+        {
+          "numero": "IV",
+          "nome": "Tratamento da Informação",
+          "descritores": [
+            { "codigo": "D34", "texto": "Resolver problema envolvendo informações apresentadas em tabelas e/ou gráficos.", "paginasPdf": [11], "paginasImpressas": [9] },
+            { "codigo": "D35", "texto": "Associar informações apresentadas em listas e/ou tabelas simples aos gráficos que as representam e vice-versa.", "paginasPdf": [11], "paginasImpressas": [9] }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -92,7 +92,7 @@ test("sitemap.xml is served with a 200 and an XML content type", () => {
 });
 
 test("includes the core public routes", () => {
-  const expected = ["", "/bncc", "/bncc/competencias-gerais", "/bncc/ensino-fundamental", "/bncc/ensino-medio", "/bncc/educacao-infantil", "/saresp", "/saeb", "/sobre", "/privacidade"];
+  const expected = ["", "/bncc", "/bncc/competencias-gerais", "/bncc/ensino-fundamental", "/bncc/ensino-medio", "/bncc/educacao-infantil", "/saresp", "/saeb", "/saeb/matriz", "/sobre", "/privacidade"];
   for (const route of expected) {
     assert.ok(locs.includes(`${BASE_URL}${route}`), `missing ${route}`);
   }
@@ -101,6 +101,11 @@ test("includes the core public routes", () => {
 test("includes /saeb exactly once", () => {
   const matches = locs.filter((loc) => loc === `${BASE_URL}/saeb`);
   assert.equal(matches.length, 1, `expected /saeb exactly once, found ${matches.length}`);
+});
+
+test("includes /saeb/matriz exactly once", () => {
+  const matches = locs.filter((loc) => loc === `${BASE_URL}/saeb/matriz`);
+  assert.equal(matches.length, 1, `expected /saeb/matriz exactly once, found ${matches.length}`);
 });
 
 test("includes /sobre exactly once", () => {
@@ -220,12 +225,16 @@ test("does not include routes for unimplemented or non-page functionality", () =
   }
 });
 
-test("/saeb appears as a bare route only — never with a query string, a school/município parameter, or a .json data path", () => {
+test("/saeb-related sitemap entries are exactly the two bare page routes — never with a query string, a school/município parameter, or a .json data path", () => {
   const saebLike = locs.filter((loc) => loc.includes("/saeb"));
-  assert.deepEqual(saebLike, [`${BASE_URL}/saeb`], "the only /saeb-related sitemap entry must be the bare page route");
+  assert.deepEqual(
+    saebLike.sort(),
+    [`${BASE_URL}/saeb`, `${BASE_URL}/saeb/matriz`].sort(),
+    "the only /saeb-related sitemap entries must be the two bare page routes",
+  );
 });
 
-test("total URL count matches exactly what the current BNCC/SARESP/institutional data supports — 1684 (1683 previous + 1 /saeb)", async () => {
+test("total URL count matches exactly what the current BNCC/SARESP/institutional data supports — 1685 (1684 previous + 1 /saeb/matriz)", async () => {
   const staticRouteCount =
     1 + // home
     1 + // /bncc
@@ -234,6 +243,7 @@ test("total URL count matches exactly what the current BNCC/SARESP/institutional
     1 + // /bncc/ensino-medio
     1 + // /saresp
     1 + // /saeb
+    1 + // /saeb/matriz
     1 + // /bncc/educacao-infantil
     1 + // /sobre
     1 + // /privacidade
@@ -248,6 +258,6 @@ test("total URL count matches exactly what the current BNCC/SARESP/institutional
   const expectedCodes = await expectedCodeSet();
   const expectedTotal = staticRouteCount + yearPageCount + ENSINO_MEDIO_AREAS.length + expectedCodes.size;
 
-  assert.equal(expectedTotal, 1684, "the independently-derived expectation itself should land on 1684");
+  assert.equal(expectedTotal, 1685, "the independently-derived expectation itself should land on 1685");
   assert.equal(locs.length, expectedTotal);
 });

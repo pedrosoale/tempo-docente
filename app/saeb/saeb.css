@@ -693,6 +693,25 @@
   color: var(--navy);
 }
 
+.saeb-interpretacao-link-matriz {
+  margin: -6px 0 0;
+}
+
+.saeb-interpretacao-link-matriz a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--teal-dark);
+  font-size: 12.5px;
+  font-weight: 620;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.saeb-interpretacao-link-matriz a:hover {
+  color: var(--navy);
+}
+
 @media (max-width: 560px) {
   .saeb-tool {
     padding: 18px;
@@ -1155,5 +1174,254 @@ details[open] > summary > .saeb-interpretacao-chevron {
 @media (max-width: 560px) {
   .saeb-interpretacao {
     padding: 16px;
+  }
+}
+
+/* ---- Matriz de referência e descritores (app/saeb/matriz/) ---- */
+
+.saeb-matriz-intro {
+  padding-bottom: 32px;
+}
+
+.saeb-matriz-transicao {
+  max-width: 74ch;
+  margin-top: 20px;
+  padding: 16px 18px;
+  border: 1px solid #cfe3dd;
+  border-radius: var(--radius-sm);
+  background: var(--teal-tint);
+}
+
+.saeb-matriz-transicao p {
+  margin: 0;
+  color: var(--soft-ink);
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+
+.saeb-matriz-transicao p + p {
+  margin-top: 10px;
+}
+
+.saeb-matriz-explicacao {
+  max-width: 74ch;
+  margin-bottom: 28px;
+}
+
+.saeb-matriz-explicacao ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.saeb-matriz-explicacao li {
+  position: relative;
+  padding-left: 20px;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.saeb-matriz-explicacao li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal-dark);
+}
+
+.saeb-matriz-consulta {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 920px;
+}
+
+.saeb-matriz-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-end;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.saeb-matriz-fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.saeb-matriz-fieldset legend {
+  padding: 0;
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 620;
+}
+
+.saeb-matriz-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+}
+
+.saeb-matriz-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.saeb-matriz-radio label {
+  color: var(--soft-ink);
+  font-size: 13.5px;
+}
+
+.saeb-matriz-busca-campo {
+  flex: 1 1 240px;
+  min-width: 220px;
+}
+
+.saeb-matriz-busca-campo input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  color: var(--soft-ink);
+  font-size: 15px;
+}
+
+.saeb-matriz-identificacao {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.saeb-matriz-identificacao p {
+  margin: 0;
+  color: var(--soft-ink);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.saeb-matriz-contagem {
+  color: var(--muted) !important;
+  font-size: 13px !important;
+}
+
+.saeb-matriz-grupos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.saeb-matriz-grupo {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+}
+
+.saeb-matriz-grupo > summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  color: var(--navy);
+  font-size: 14.5px;
+  font-weight: 640;
+  cursor: pointer;
+  list-style: none;
+}
+
+.saeb-matriz-grupo > summary::-webkit-details-marker {
+  display: none;
+}
+
+.saeb-matriz-grupo > summary::marker {
+  content: "";
+}
+
+.saeb-matriz-grupo > summary:hover {
+  background: var(--paper);
+}
+
+.saeb-matriz-grupo > summary > span:first-of-type {
+  flex: 1;
+}
+
+.saeb-matriz-grupo-contagem {
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--teal-tint);
+  color: var(--teal-dark);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.saeb-matriz-descritores {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin: 0;
+  padding: 0 16px 16px;
+  list-style: none;
+  background: var(--line);
+}
+
+.saeb-matriz-descritor {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 12px;
+  padding: 12px 0;
+  background: var(--white);
+}
+
+.saeb-matriz-descritor-codigo {
+  color: var(--teal-dark);
+  font-family: var(--font-geist-mono, monospace);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.saeb-matriz-descritor p {
+  margin: 0;
+  color: var(--soft-ink);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.saeb-matriz-fonte,
+.saeb-matriz-fonte-rodape {
+  max-width: 74ch;
+}
+
+.saeb-matriz-fonte-rodape {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 640px) {
+  .saeb-matriz-filtros {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+  }
+
+  .saeb-matriz-descritor {
+    grid-template-columns: 1fr;
+    gap: 4px;
   }
 }

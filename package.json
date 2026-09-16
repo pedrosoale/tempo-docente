@@ -24,7 +24,9 @@
     "saeb:verify": "node scripts/saeb/import.mjs --verify-source",
     "saeb:publish-local": "node scripts/saeb-query-prototype/publish-local.mjs",
     "saeb:escalas:gerar": "node scripts/saeb-escalas/gerar.mjs",
-    "saeb:escalas:check": "node scripts/saeb-escalas/gerar.mjs --check"
+    "saeb:escalas:check": "node scripts/saeb-escalas/gerar.mjs --check",
+    "saeb:descritores:gerar": "node scripts/saeb-descritores/gerar.mjs",
+    "saeb:descritores:check": "node scripts/saeb-descritores/gerar.mjs --check"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",
