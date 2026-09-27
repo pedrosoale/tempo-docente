@@ -187,9 +187,84 @@ export function buscarPorTexto(consulta: string): HabilidadeMatrizBncc[] {
   if (!consultaAparada) return catalogoMatrizBncc.habilidades;
 
   const consultaNormalizada = removerAcentos(consultaAparada.toLowerCase());
-  return catalogoMatrizBncc.habilidades.filter((h) => {
-    const casaPorTexto = removerAcentos(h.textoHabilidade.toLowerCase()).includes(consultaNormalizada);
-    const casaPorCodigo = h.codigoOficial ? h.codigoOficial.toLowerCase().includes(consultaNormalizada) : false;
-    return casaPorTexto || casaPorCodigo;
+  return catalogoMatrizBncc.habilidades.filter((h) => corresponde(h, consultaNormalizada));
+}
+
+function corresponde(h: HabilidadeMatrizBncc, consultaNormalizada: string): boolean {
+  const casaPorTexto = removerAcentos(h.textoHabilidade.toLowerCase()).includes(consultaNormalizada);
+  // Busca por código só existe para Matemática (`codigoOficial` sempre `null` em Linguagens) — nunca
+  // inventa nem casa um código para Linguagens (ver comentário de topo do arquivo).
+  const casaPorCodigo = h.codigoOficial ? removerAcentos(h.codigoOficial.toLowerCase()).includes(consultaNormalizada) : false;
+  return casaPorTexto || casaPorCodigo;
+}
+
+/** Habilidades de um recorte etapa×componente, na mesma ordem do catálogo (que já segue a ordem dos
+ * quadros oficiais) — a contraparte, para a matriz BNCC, de `buscarMatriz` em lib/saeb/descritores.ts.
+ * Nunca lança: um recorte sem habilidades (não deveria ocorrer, dadas as 6 combinações do catálogo)
+ * devolve array vazio, não `undefined` — a interface trata isso como "nenhuma habilidade", não como
+ * "matriz inexistente" (diferente de `buscarMatriz`, que modela combinações inteiramente ausentes). */
+export function buscarHabilidades(etapa: EtapaMatrizBncc, componente: ComponenteMatrizBncc): HabilidadeMatrizBncc[] {
+  return catalogoMatrizBncc.habilidades.filter((h) => h.etapa === etapa && h.componente === componente);
+}
+
+/**
+ * Filtra um recorte já obtido (ex.: de `buscarHabilidades`) por uma consulta livre — mesma
+ * comparação de `buscarPorTexto` (sem diferenciar maiúsculas/minúsculas ou acentuação; código só
+ * casa para Matemática), mas operando sobre um subconjunto arbitrário em vez do catálogo inteiro.
+ * String vazia devolve o subconjunto original sem cópia desnecessária (mesmo padrão de
+ * `filtrarGrupos` em lib/saeb/descritores.ts).
+ */
+export function filtrarHabilidadesPorTexto(habilidades: HabilidadeMatrizBncc[], consulta: string): HabilidadeMatrizBncc[] {
+  const consultaAparada = consulta.trim();
+  if (!consultaAparada) return habilidades;
+  const consultaNormalizada = removerAcentos(consultaAparada.toLowerCase());
+  return habilidades.filter((h) => corresponde(h, consultaNormalizada));
+}
+
+/** Um subgrupo de habilidades que compartilham o mesmo eixo cognitivo dentro de um eixo do
+ * conhecimento — `eixoCognitivo: null` só ocorre para Linguagens/2º ano (Quadro 1, sem eixo
+ * cognitivo; ver `HabilidadeMatrizBncc.eixoCognitivo`). Habilidades em ordem editorial. */
+export interface SubgrupoEixoCognitivo {
+  eixoCognitivo: EixoCognitivoMatrizBncc | null;
+  habilidades: HabilidadeMatrizBncc[];
+}
+
+/** Um grupo por eixo do conhecimento (ex.: "Leitura", "Números"), com seus subgrupos por eixo
+ * cognitivo — a contraparte, para a matriz BNCC, de `GrupoDescritores`/`GrupoFiltrado` em
+ * lib/saeb/descritores.ts (que agrupa por tópico/tema, não por eixo). */
+export interface GrupoEixoConhecimento {
+  eixoConhecimento: string;
+  subgrupos: SubgrupoEixoCognitivo[];
+  totalHabilidades: number;
+}
+
+/**
+ * Agrupa uma lista de habilidades (já filtrada por etapa/componente e, opcionalmente, por busca) em
+ * grupos por eixo do conhecimento e subgrupos por eixo cognitivo, preservando a ordem de primeira
+ * ocorrência de cada eixo (que já segue a ordem dos quadros oficiais, por vir de
+ * `catalogoMatrizBncc.habilidades` sem reordenação) e ordenando cada subgrupo por `ordemEditorial`.
+ * Nunca reordena alfabeticamente — isso embaralharia a ordem em que o Inep apresenta os eixos.
+ */
+export function agruparPorEixo(habilidades: HabilidadeMatrizBncc[]): GrupoEixoConhecimento[] {
+  const porEixo = new Map<string, HabilidadeMatrizBncc[]>();
+  for (const h of habilidades) {
+    const lista = porEixo.get(h.eixoConhecimento) ?? [];
+    lista.push(h);
+    porEixo.set(h.eixoConhecimento, lista);
+  }
+
+  return [...porEixo.entries()].map(([eixoConhecimento, listaDoEixo]) => {
+    const porCognitivo = new Map<string, HabilidadeMatrizBncc[]>();
+    for (const h of listaDoEixo) {
+      const chave = h.eixoCognitivo ?? "";
+      const lista = porCognitivo.get(chave) ?? [];
+      lista.push(h);
+      porCognitivo.set(chave, lista);
+    }
+    const subgrupos: SubgrupoEixoCognitivo[] = [...porCognitivo.entries()].map(([chave, itens]) => ({
+      eixoCognitivo: chave === "" ? null : (chave as EixoCognitivoMatrizBncc),
+      habilidades: [...itens].sort((a, b) => a.ordemEditorial - b.ordemEditorial),
+    }));
+    return { eixoConhecimento, subgrupos, totalHabilidades: listaDoEixo.length };
   });
 }

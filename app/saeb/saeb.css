@@ -1413,6 +1413,128 @@ details[open] > summary > .saeb-interpretacao-chevron {
   border-top: 1px solid var(--line);
 }
 
+/* Seletor de matriz (tradicional × BNCC) — Rodada 14. Dois <button>, nunca <a>, para que Enter e
+   Espaço ativem a troca por teclado nativamente (ver MatrizSeletor.tsx). */
+.saeb-matriz-seletor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 20px;
+}
+
+.saeb-matriz-seletor-opcao {
+  padding: 9px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--soft-ink);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.saeb-matriz-seletor-opcao:hover {
+  background: var(--paper);
+}
+
+.saeb-matriz-seletor-opcao.is-active {
+  border-color: var(--teal-dark);
+  background: var(--teal-tint);
+  color: var(--teal-dark);
+}
+
+/* Resultados da matriz BNCC — habilidades agrupadas por eixo do conhecimento (accordion, classes
+   .saeb-matriz-grupo/.saeb-matriz-grupo-contagem reaproveitadas da matriz tradicional) e
+   subagrupadas por eixo cognitivo. Classes deliberadamente distintas de .saeb-matriz-descritor* —
+   "habilidade" nunca reaproveita a nomenclatura/estilo específico de "descritor" (ver Rodada 14). */
+.saeb-matriz-habilidades {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 0 16px 16px;
+}
+
+.saeb-matriz-subgrupo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.saeb-matriz-eixo-cognitivo {
+  margin: 0;
+  color: var(--teal-dark);
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.saeb-matriz-lista-habilidades {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--line);
+}
+
+.saeb-matriz-habilidade {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 12px;
+  padding: 10px 0;
+  background: var(--white);
+}
+
+.saeb-matriz-habilidade-codigo {
+  color: var(--teal-dark);
+  font-family: var(--font-geist-mono, monospace);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.saeb-matriz-habilidade p {
+  margin: 0;
+  color: var(--soft-ink);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* Fontes e proveniência da matriz BNCC — bloco mais rico que o rodapé da tradicional (título, órgão,
+   ano, URL, data de consulta, hash SHA-256 e nota documental de aplicação, por componente — nunca
+   misturando os hashes das duas publicações). */
+.saeb-matriz-fontes-bncc-titulo {
+  margin: 0 0 12px;
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.saeb-matriz-fonte-proveniencia {
+  margin-bottom: 16px;
+}
+
+.saeb-matriz-fonte-proveniencia:last-child {
+  margin-bottom: 0;
+}
+
+.saeb-matriz-fonte-proveniencia p {
+  margin: 0 0 4px;
+}
+
+.saeb-matriz-hash {
+  color: var(--muted);
+  font-size: 12px !important;
+  word-break: break-all;
+}
+
+.saeb-matriz-hash code {
+  font-family: var(--font-geist-mono, monospace);
+}
+
 @media (max-width: 640px) {
   .saeb-matriz-filtros {
     flex-direction: column;
@@ -1421,6 +1543,11 @@ details[open] > summary > .saeb-interpretacao-chevron {
   }
 
   .saeb-matriz-descritor {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .saeb-matriz-habilidade {
     grid-template-columns: 1fr;
     gap: 4px;
   }
