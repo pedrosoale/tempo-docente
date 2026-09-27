@@ -5,11 +5,14 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import {
+  agruparPorEixo,
   buscarFonte,
+  buscarHabilidades,
   buscarPorCodigoOficial,
   buscarPorIdInterno,
   buscarPorTexto,
   catalogoMatrizBncc,
+  filtrarHabilidadesPorTexto,
   filtrarPorComponente,
   filtrarPorEixoCognitivo,
   filtrarPorEixoConhecimento,
@@ -166,4 +169,90 @@ test("catalogoMatrizBncc: nenhuma habilidade afirma aplicação da matriz de Lin
   const situacaoMatematica = buscarFonte("matematica").situacaoAplicacao;
   assert.match(situacaoLinguagens, /inconclusivo/i);
   assert.match(situacaoMatematica, /inconclusivo/i);
+});
+
+// ---- buscarHabilidades (Rodada 14 — interface) ----
+
+test("buscarHabilidades: as seis combinações etapa×componente batem exatamente com as contagens aprovadas", () => {
+  assert.equal(buscarHabilidades("2anoEF", "linguagens").length, 10);
+  assert.equal(buscarHabilidades("2anoEF", "matematica").length, 33);
+  assert.equal(buscarHabilidades("5anoEF", "linguagens").length, 47);
+  assert.equal(buscarHabilidades("5anoEF", "matematica").length, 56);
+  assert.equal(buscarHabilidades("9anoEF", "linguagens").length, 57);
+  assert.equal(buscarHabilidades("9anoEF", "matematica").length, 59);
+});
+
+test("buscarHabilidades: nunca mistura componente ou etapa fora do recorte pedido", () => {
+  for (const h of buscarHabilidades("9anoEF", "matematica")) {
+    assert.equal(h.etapa, "9anoEF");
+    assert.equal(h.componente, "matematica");
+  }
+});
+
+// ---- filtrarHabilidadesPorTexto (Rodada 14 — interface) ----
+
+test("filtrarHabilidadesPorTexto: string vazia devolve o subconjunto original, sem cópia desnecessária", () => {
+  const subset = buscarHabilidades("5anoEF", "matematica");
+  assert.equal(filtrarHabilidadesPorTexto(subset, ""), subset);
+});
+
+test("filtrarHabilidadesPorTexto: busca por código só funciona dentro de Matemática, nunca inventa código para Linguagens", () => {
+  const linguagens = buscarHabilidades("9anoEF", "linguagens");
+  assert.equal(filtrarHabilidadesPorTexto(linguagens, "9E1").length, 0);
+  const matematica = buscarHabilidades("9anoEF", "matematica");
+  assert.ok(filtrarHabilidadesPorTexto(matematica, "9G2.7").some((h) => h.codigoOficial === "9G2.7"));
+});
+
+test("filtrarHabilidadesPorTexto: busca textual sem diferenciar maiúsculas/minúsculas ou acentuação, restrita ao subconjunto", () => {
+  const subset = buscarHabilidades("9anoEF", "matematica");
+  const comAcento = filtrarHabilidadesPorTexto(subset, "circunferência");
+  const semAcento = filtrarHabilidadesPorTexto(subset, "CIRCUNFERENCIA");
+  assert.ok(comAcento.length > 0);
+  assert.equal(comAcento.length, semAcento.length);
+});
+
+// ---- agruparPorEixo (Rodada 14 — interface) ----
+
+test("agruparPorEixo: cada habilidade do recorte aparece em exatamente um subgrupo, nenhuma perdida ou duplicada", () => {
+  const habilidades = buscarHabilidades("9anoEF", "matematica");
+  const grupos = agruparPorEixo(habilidades);
+  const total = grupos.reduce((soma, g) => soma + g.subgrupos.reduce((s, sg) => s + sg.habilidades.length, 0), 0);
+  assert.equal(total, habilidades.length);
+  assert.equal(
+    grupos.reduce((soma, g) => soma + g.totalHabilidades, 0),
+    habilidades.length,
+  );
+});
+
+test("agruparPorEixo: eixoCognitivo é null só para Linguagens/2º ano (Quadro 1, sem eixo cognitivo)", () => {
+  const grupos2anoLinguagens = agruparPorEixo(buscarHabilidades("2anoEF", "linguagens"));
+  for (const grupo of grupos2anoLinguagens) {
+    for (const subgrupo of grupo.subgrupos) assert.equal(subgrupo.eixoCognitivo, null);
+  }
+  const grupos9anoMatematica = agruparPorEixo(buscarHabilidades("9anoEF", "matematica"));
+  for (const grupo of grupos9anoMatematica) {
+    for (const subgrupo of grupo.subgrupos) assert.notEqual(subgrupo.eixoCognitivo, null);
+  }
+});
+
+test("agruparPorEixo: cada subgrupo vem ordenado por ordemEditorial, nunca fora de ordem", () => {
+  const grupos = agruparPorEixo(buscarHabilidades("9anoEF", "matematica"));
+  for (const grupo of grupos) {
+    for (const subgrupo of grupo.subgrupos) {
+      const ordens = subgrupo.habilidades.map((h) => h.ordemEditorial);
+      const ordenadas = [...ordens].sort((a, b) => a - b);
+      assert.deepEqual(ordens, ordenadas);
+    }
+  }
+});
+
+test("agruparPorEixo: preserva a ordem de primeira ocorrência dos eixos do conhecimento (a ordem dos quadros oficiais), nunca reordena alfabeticamente", () => {
+  const habilidades = buscarHabilidades("5anoEF", "linguagens");
+  const grupos = agruparPorEixo(habilidades);
+  const ordemEsperada = [];
+  for (const h of habilidades) if (!ordemEsperada.includes(h.eixoConhecimento)) ordemEsperada.push(h.eixoConhecimento);
+  assert.deepEqual(
+    grupos.map((g) => g.eixoConhecimento),
+    ordemEsperada,
+  );
 });

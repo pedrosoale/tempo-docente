@@ -42,11 +42,25 @@ test("/saeb/matriz renders with status 200 and an HTML content type", () => {
   assert.match(defaultResponse.headers.get("content-type") ?? "", /^text\/html\b/i);
 });
 
-test("metadata: title, description and canonical point at /saeb/matriz", () => {
-  assert.match(defaultHtml, /<title>Matriz de referência e descritores do SAEB \| Tempo Docente<\/title>/);
+test("metadata: title, description and canonical point at /saeb/matriz — neutral to both matrizes (Rodada 14)", () => {
+  assert.match(defaultHtml, /<title>Matrizes de referência do SAEB \| Tempo Docente<\/title>/);
   const canonicals = [...defaultHtml.matchAll(/<link rel="canonical" href="([^"]+)"/g)];
   assert.equal(canonicals.length, 1, `expected exactly one canonical link, found ${canonicals.length}`);
   assert.equal(canonicals[0][1], "https://tempodocente.com.br/saeb/matriz");
+  // A description agora cobre as duas matrizes — nunca deve se apresentar como só "descritores".
+  const description = defaultHtml.match(/<meta name="description" content="([^"]+)"/)?.[1] ?? "";
+  assert.match(description, /tradicional \(2001\)/);
+  assert.match(description, /descritores/);
+  assert.match(description, /BNCC/);
+  assert.match(description, /habilidades/);
+});
+
+test("breadcrumb: current page label is 'Matrizes de referência' (plural, neutral to both matrizes)", () => {
+  assert.match(defaultMain, /<span aria-current="page">Matrizes de referência<\/span>/);
+});
+
+test("h1: 'Matrizes de referência do SAEB' — neutral to both matrizes, never just 'descritores'", () => {
+  assert.match(defaultMain, /<h1>Matrizes de referência do SAEB<\/h1>/);
 });
 
 test("default render (no query params) shows the 5º ano / Língua Portuguesa matriz, identified as tradicional (2001)", () => {
