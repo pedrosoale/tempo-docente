@@ -1373,11 +1373,10 @@ details[open] > summary > .saeb-interpretacao-chevron {
 .saeb-matriz-descritores {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 0;
   margin: 0;
   padding: 0 16px 16px;
   list-style: none;
-  background: var(--line);
 }
 
 .saeb-matriz-descritor {
@@ -1386,6 +1385,10 @@ details[open] > summary > .saeb-interpretacao-chevron {
   gap: 12px;
   padding: 12px 0;
   background: var(--white);
+}
+
+.saeb-matriz-descritor + .saeb-matriz-descritor {
+  border-top: 1px solid var(--line);
 }
 
 .saeb-matriz-descritor-codigo {
@@ -1481,10 +1484,14 @@ details[open] > summary > .saeb-interpretacao-chevron {
 
 .saeb-matriz-habilidade {
   display: grid;
-  grid-template-columns: 56px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 12px;
   padding: 10px 0;
   background: var(--white);
+}
+
+.saeb-matriz-habilidade.tem-codigo {
+  grid-template-columns: 56px minmax(0, 1fr);
 }
 
 .saeb-matriz-habilidade-codigo {
@@ -1495,10 +1502,22 @@ details[open] > summary > .saeb-interpretacao-chevron {
 }
 
 .saeb-matriz-habilidade p {
+  min-width: 0;
   margin: 0;
   color: var(--soft-ink);
   font-size: 14px;
   line-height: 1.55;
+}
+
+.saeb-matriz-identificacao .saeb-matriz-nota-sem-codigo {
+  margin: 2px 0 0;
+  padding: 8px 12px;
+  border: 1px solid #cfe3dd;
+  border-radius: var(--radius-sm);
+  background: var(--teal-tint);
+  color: var(--teal-dark);
+  font-size: 12.5px;
+  line-height: 1.5;
 }
 
 /* Fontes e proveniência da matriz BNCC — bloco mais rico que o rodapé da tradicional (título, órgão,
@@ -1547,7 +1566,7 @@ details[open] > summary > .saeb-interpretacao-chevron {
     gap: 4px;
   }
 
-  .saeb-matriz-habilidade {
+  .saeb-matriz-habilidade.tem-codigo {
     grid-template-columns: 1fr;
     gap: 4px;
   }

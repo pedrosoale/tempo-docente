@@ -327,6 +327,101 @@ test("MatrizSeletor.tsx nunca reintroduz useRouter, router.push, next/link ou na
   assert.match(source, /<form method="get" action="\/saeb\/matriz"/);
 });
 
+// ---- 21+: Rodada 17 — layout com/sem código, nota informativa, placeholder sem entidades ----
+//
+// Correção de um defeito visual de produção: Linguagens (0 de 114 habilidades com código oficial)
+// tinha seu texto espremido na coluna estreita de 56px reservada ao código, forçando quebra
+// quase palavra-por-palavra. A correção usa classes semânticas .tem-codigo/.sem-codigo,
+// determinadas exclusivamente por habilidade.codigoOficial (nunca por :has() nem por elementos
+// vazios simulando um código inexistente). Ver app/saeb/saeb.css e MatrizBnccConsulta.tsx.
+
+function decodeEntidadesHtml(valor) {
+  return valor
+    .replace(/&quot;/g, '"')
+    .replace(/&#0?39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&amp;/g, "&");
+}
+
+test("21. toda habilidade de Linguagens recebe a classe 'sem-codigo' e nenhuma recebe 'tem-codigo'", async () => {
+  const response = await render("/saeb/matriz?matriz=bncc&etapa=9anoEF&componente=linguagens");
+  const main = isolateMain(await response.text());
+  const classes = [...main.matchAll(/class="saeb-matriz-habilidade ([a-z-]+)"/g)].map((m) => m[1]);
+  assert.equal(classes.length, 57);
+  assert.ok(classes.every((c) => c === "sem-codigo"), "todas as habilidades de Linguagens devem ser 'sem-codigo'");
+});
+
+test("22. toda habilidade de Matemática recebe a classe 'tem-codigo' e nenhuma recebe 'sem-codigo'", async () => {
+  const response = await render("/saeb/matriz?matriz=bncc&etapa=9anoEF&componente=matematica");
+  const main = isolateMain(await response.text());
+  const classes = [...main.matchAll(/class="saeb-matriz-habilidade ([a-z-]+)"/g)].map((m) => m[1]);
+  assert.equal(classes.length, 59);
+  assert.ok(classes.every((c) => c === "tem-codigo"), "todas as habilidades de Matemática devem ser 'tem-codigo'");
+});
+
+test("23. nenhum <span> de código vazio é renderizado para Linguagens; os códigos de Matemática continuam visíveis", async () => {
+  const linguagens = isolateMain(
+    await (await render("/saeb/matriz?matriz=bncc&etapa=9anoEF&componente=linguagens")).text(),
+  );
+  assert.doesNotMatch(linguagens, /saeb-matriz-habilidade-codigo/);
+  const matematica = isolateMain(
+    await (await render("/saeb/matriz?matriz=bncc&etapa=9anoEF&componente=matematica")).text(),
+  );
+  const codigos = [...matematica.matchAll(/saeb-matriz-habilidade-codigo">([^<]+)</g)].map((m) => m[1]);
+  assert.equal(codigos.length, 59);
+  assert.ok(codigos.every((c) => c.trim().length > 0), "nenhum código de Matemática deve ficar vazio");
+});
+
+test("24. a nota de ausência de códigos oficiais aparece uma única vez em Linguagens e nunca em Matemática", async () => {
+  const linguagens = isolateMain(
+    await (await render("/saeb/matriz?matriz=bncc&etapa=5anoEF&componente=linguagens")).text(),
+  );
+  const ocorrencias = [...linguagens.matchAll(/saeb-matriz-nota-sem-codigo/g)];
+  assert.equal(ocorrencias.length, 1, "a nota deve aparecer exatamente uma vez, nunca por habilidade");
+  assert.match(
+    linguagens,
+    /Esta publicação do Inep não atribui códigos oficiais às habilidades de Linguagens\. A busca considera o texto das habilidades\./,
+  );
+  const matematica = isolateMain(
+    await (await render("/saeb/matriz?matriz=bncc&etapa=5anoEF&componente=matematica")).text(),
+  );
+  assert.doesNotMatch(matematica, /saeb-matriz-nota-sem-codigo/);
+  assert.doesNotMatch(matematica, /não atribui códigos oficiais/);
+});
+
+test("25. a nota não usa tom de erro, não inventa código e não faz referência a idInterno/ordemEditorial/EF...", async () => {
+  const response = await render("/saeb/matriz?matriz=bncc&etapa=2anoEF&componente=linguagens");
+  const main = isolateMain(await response.text());
+  const nota = main.match(/<p class="saeb-matriz-nota-sem-codigo">([^]*?)<\/p>/)?.[1] ?? "";
+  assert.ok(nota.length > 0, "a nota deveria estar presente");
+  assert.doesNotMatch(nota, /código não informado/i);
+  assert.doesNotMatch(nota, /falha|erro|inválid/i);
+  assert.doesNotMatch(nota, /EF\d{2}[A-Z]{2}\d{2}/);
+  assert.doesNotMatch(main, /saeb-nao-informado">[^<]*Esta publicação/);
+});
+
+test("26. o placeholder de busca nunca contém a entidade literal '&quot;' após decodificação e nunca fica duplamente codificado", async () => {
+  const linguagens = isolateMain(
+    await (await render("/saeb/matriz?matriz=bncc&etapa=5anoEF&componente=linguagens")).text(),
+  );
+  const matematica = isolateMain(
+    await (await render("/saeb/matriz?matriz=bncc&etapa=5anoEF&componente=matematica")).text(),
+  );
+  for (const html of [linguagens, matematica]) {
+    const placeholderBruto = html.match(/placeholder="([^"]*)"/)?.[1];
+    assert.ok(placeholderBruto, "o input de busca deveria ter um atributo placeholder");
+    assert.doesNotMatch(placeholderBruto, /&amp;quot;/, "nunca deve haver dupla codificação (&amp;quot;)");
+    const decodificado = decodeEntidadesHtml(placeholderBruto);
+    assert.doesNotMatch(decodificado, /&quot;/, "o valor decodificado do placeholder nunca deve conter '&quot;' literal");
+    assert.match(decodificado, /"/, "o valor decodificado deve conter aspas reais");
+  }
+  const placeholderLinguagens = decodeEntidadesHtml(linguagens.match(/placeholder="([^"]*)"/)[1]);
+  assert.equal(placeholderLinguagens, 'Ex.: "inferir" ou "gêneros textuais"...');
+  const placeholderMatematica = decodeEntidadesHtml(matematica.match(/placeholder="([^"]*)"/)[1]);
+  assert.equal(placeholderMatematica, 'Ex.: 5E2.3 ou "porcentagem"...');
+});
+
 test("a troca de matriz funciona sem JavaScript: submeter o form GET (sem JS) produz a URL correta para cada botão", async () => {
   // Simula exatamente o que o navegador faz ao submeter um <form method="get"> sem nenhum
   // JavaScript: monta a query string a partir do(s) campo(s) com `name`, ignorando os sem nome.
