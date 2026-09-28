@@ -14,21 +14,21 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tempodocente.com.br"),
-  title: "Tempo Docente | Dados, planejamento e inteligência para a educação",
-  description: "Plataforma para consulta da BNCC, avaliações externas, SAEB, SARESP e dados educacionais voltados ao planejamento pedagógico.",
+  title: "BNCC, SAEB e SARESP | Tempo Docente",
+  description: "Consulte habilidades da BNCC, matrizes de referência e resultados do SAEB e do SARESP por escola, com fontes oficiais e acesso gratuito.",
   openGraph: {
-    title: "Tempo Docente",
-    description: "Dados, planejamento e inteligência para a educação.",
+    title: "BNCC, SAEB e SARESP | Tempo Docente",
+    description: "Consulte habilidades da BNCC, matrizes de referência e resultados do SAEB e do SARESP por escola, com fontes oficiais e acesso gratuito.",
     url: "https://tempodocente.com.br",
     siteName: "Tempo Docente",
     locale: "pt_BR",
     type: "website",
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Tempo Docente — dados, planejamento e inteligência para a educação" }],
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Tempo Docente — BNCC, SAEB e SARESP em um só lugar" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tempo Docente",
-    description: "Dados, planejamento e inteligência para a educação.",
+    title: "BNCC, SAEB e SARESP | Tempo Docente",
+    description: "Consulte habilidades da BNCC, matrizes de referência e resultados do SAEB e do SARESP por escola, com fontes oficiais e acesso gratuito.",
     images: ["/og.jpg"],
   },
 };

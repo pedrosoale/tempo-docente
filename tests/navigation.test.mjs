@@ -19,13 +19,21 @@ async function render(path = "/") {
 
 const OLD_ANCHOR_HREFS = ['href="/#avaliacoes"', 'href="/#dados"', 'href="/#ferramentas"', 'href="/#sobre"'];
 
-const REAL_CARDS = [
+// Rodada 20: os quatro acessos principais (por tarefa/sistema) nunca se
+// misturam, na mesma hierarquia, com as quatro etapas da BNCC (navegação
+// secundária e compacta) — ver QuickAccess.tsx.
+const PRIMARY_ACCESS_CARDS = [
+  { title: "Consultar habilidades da BNCC", href: "/bncc" },
+  { title: "Consultar matrizes do SAEB", href: "/saeb/matriz" },
+  { title: "Consultar resultados do SAEB", href: "/saeb" },
+  { title: "Consultar resultados do SARESP", href: "/saresp" },
+];
+
+const ETAPA_LINKS = [
   { title: "Educação Infantil", href: "/bncc/educacao-infantil" },
   { title: "Ensino Fundamental", href: "/bncc/ensino-fundamental" },
   { title: "Ensino Médio", href: "/bncc/ensino-medio" },
   { title: "Competências Gerais", href: "/bncc/competencias-gerais" },
-  { title: "SARESP", href: "/saresp" },
-  { title: "SAEB", href: "/saeb" },
 ];
 
 const homeResponse = await render("/");
@@ -314,41 +322,83 @@ for (const testCase of ARIA_CURRENT_CASES) {
   });
 }
 
-// ---- 4. CTA secundário do Hero aponta para /saresp ----
+// ---- 4. Hero: menciona BNCC/SAEB/SARESP, três destinos claros, sem CTA ambíguo ----
 
-test("the Hero's secondary CTA points to /saresp", () => {
-  assert.match(homeHtml, /href="\/saresp">Consultar o SARESP<\/a>/);
-  assert.doesNotMatch(homeHtml, />Ver avaliações externas</);
+test("the Hero mentions BNCC, SAEB and SARESP, and offers three unambiguous destinations", () => {
+  const heroSection = homeHtml.match(/<section class="hero"[^]*?<\/section>/)?.[0] ?? "";
+  assert.ok(heroSection, "hero section not found");
+  assert.match(heroSection, />BNCC<\/span>/);
+  assert.match(heroSection, />SAEB<\/span>/);
+  assert.match(heroSection, />SARESP<\/span>/);
+
+  // CTA principal: nunca escolhe entre SAEB e SARESP por si só, e o texto
+  // descreve a própria seleção de ferramentas (#acessos), não uma consulta
+  // direta — a seção oferece BNCC, matrizes, SAEB e SARESP, não um resultado.
+  assert.match(heroSection, /href="#acessos"[^>]*>Escolher uma consulta/);
+  assert.doesNotMatch(heroSection, />Consultar resultados por escola</, "the primary CTA must not promise a direct results lookup for a section that offers four different tools");
+  // CTA secundário: BNCC, sem ambiguidade.
+  assert.match(heroSection, /href="\/bncc">Consultar a BNCC<\/a>/);
+  // Terceiro link: acesso direto e visível à matriz do SAEB, já no hero.
+  assert.match(heroSection, /href="\/saeb\/matriz"[^>]*>Ver matrizes do SAEB/);
+
+  assert.doesNotMatch(heroSection, />Ver avaliações externas</);
+  assert.doesNotMatch(heroSection, /Dados educacionais que fazem sentido/);
 });
 
-// ---- 5. Busca aparece antes dos acessos principais ----
+test("the hero's tertiary link ('Ver matrizes do SAEB') is self-sufficient and no longer depends on the removed .text-link class", () => {
+  const heroSection = homeHtml.match(/<section class="hero"[^]*?<\/section>/)?.[0] ?? "";
+  assert.ok(heroSection, "hero section not found");
+  assert.match(heroSection, /class="hero-tertiary" href="\/saeb\/matriz"/);
+  assert.doesNotMatch(heroSection, /class="text-link hero-tertiary"/, "hero-tertiary must not depend on the global .text-link class removed with DashboardPreview");
+});
 
-test("the BNCC search section appears before the 'acesso rápido' cards in the homepage HTML", () => {
-  const searchIndex = homeHtml.indexOf("Busca na base oficial da BNCC");
+test("the Hero's trust line only states claims confirmed elsewhere in the published project (gratuito, sem cadastro)", () => {
+  const heroSection = homeHtml.match(/<section class="hero"[^]*?<\/section>/)?.[0] ?? "";
+  assert.match(heroSection, /Gratuito · Sem cadastro · Fontes identificadas/);
+});
+
+// ---- 5. Acessos principais aparecem logo após o hero, antes da busca ----
+
+test("the four primary access cards render immediately after the hero, before the BNCC search section", () => {
+  const heroIndex = homeHtml.indexOf('<section class="hero"');
   const accessIndex = homeHtml.indexOf("O que você quer consultar?");
-  assert.ok(searchIndex > -1, "search section not found");
+  const searchIndex = homeHtml.indexOf("Buscar na BNCC");
+  assert.ok(heroIndex > -1, "hero section not found");
   assert.ok(accessIndex > -1, "quick-access section not found");
-  assert.ok(searchIndex < accessIndex, "search should render before the quick-access grid");
+  assert.ok(searchIndex > -1, "search section not found");
+  assert.ok(heroIndex < accessIndex, "hero should render before the quick-access grid");
+  assert.ok(accessIndex < searchIndex, "the four primary tasks should render before the BNCC search section");
 });
 
-// ---- 6 & 7. Seis cartões reais, destinos corretos, nenhum "Em breve" ----
+// ---- 6 & 7. Quatro cartões principais, destinos corretos, nunca misturados com as etapas ----
 
-test("exactly the six real cards are present, each with the correct destination", () => {
-  for (const card of REAL_CARDS) {
+test("exactly the four primary access cards are present, each with the correct destination, never mixed with the BNCC etapas", () => {
+  const accessSection = homeHtml.match(/<section class="section quick-access"[^]*?<\/section>/)?.[0] ?? "";
+  assert.ok(accessSection, "quick-access section not found");
+
+  for (const card of PRIMARY_ACCESS_CARDS) {
     const pattern = new RegExp(`href="${card.href.replace(/\//g, "\\/")}"[^>]*>[^]*?<h3>${card.title}</h3>`);
-    assert.match(homeHtml, pattern, `missing card for ${card.title} -> ${card.href}`);
+    assert.match(accessSection, pattern, `missing card for ${card.title} -> ${card.href}`);
   }
-  const accessCardCount = (homeHtml.match(/class="access-card"/g) ?? []).length;
-  assert.equal(accessCardCount, 6, "expected exactly 6 access-card elements on the homepage");
+  const accessCardCount = (accessSection.match(/class="access-card"/g) ?? []).length;
+  assert.equal(accessCardCount, 4, "expected exactly 4 access-card elements on the homepage");
+
+  // As etapas da BNCC vivem numa navegação secundária e compacta (.etapa-link),
+  // nunca como um quinto/sexto access-card na mesma grade.
+  for (const etapa of ETAPA_LINKS) {
+    assert.doesNotMatch(accessSection, new RegExp(`class="access-card" href="${etapa.href.replace(/\//g, "\\/")}"`), `${etapa.title} must not be an access-card`);
+    assert.match(accessSection, new RegExp(`class="etapa-link" href="${etapa.href.replace(/\//g, "\\/")}"[^>]*>\\s*${etapa.title}`), `missing compact etapa link for ${etapa.title}`);
+  }
+  const etapaLinkCount = (accessSection.match(/class="etapa-link"/g) ?? []).length;
+  assert.equal(etapaLinkCount, 4, "expected exactly 4 compact etapa links");
 });
 
-test("the SAEB quick-access card describes only what's implemented, never descriptors, proficiency levels, territorial comparisons or export", () => {
+test("the SAEB primary card describes only what's implemented, never descriptors, proficiency levels, territorial comparisons or export", () => {
   const card = homeHtml.match(/<a class="access-card" href="\/saeb">[^]*?<\/a>/)?.[0] ?? "";
   assert.ok(card, "SAEB access-card not found");
-  assert.match(card, /<h3>SAEB<\/h3>/);
+  assert.match(card, /<h3>Consultar resultados do SAEB<\/h3>/);
   assert.match(card, /município/i);
   assert.match(card, /escola/i);
-  assert.match(card, /histórico|evolução/i);
   assert.doesNotMatch(card, /descritor/i);
   assert.doesNotMatch(card, /n[íi]vel de profici[êe]ncia/i);
   assert.doesNotMatch(card, /compara(ç|c)[ãa]o territorial|munic[íi]pio, .*UF|Brasil\b/i);
@@ -356,40 +406,72 @@ test("the SAEB quick-access card describes only what's implemented, never descri
   assert.doesNotMatch(card, /Em breve/);
 });
 
-test("no real card is marked 'Em breve', and no disabled-card markers remain on the homepage", () => {
+test("the SAEB matriz card exists as its own primary access, distinct from the SAEB results card", () => {
+  const card = homeHtml.match(/<a class="access-card" href="\/saeb\/matriz">[^]*?<\/a>/)?.[0] ?? "";
+  assert.ok(card, "SAEB matriz access-card not found");
+  assert.match(card, /<h3>Consultar matrizes do SAEB<\/h3>/);
+  assert.match(card, /matriz tradicional/i);
+  assert.match(card, /alinhada à BNCC/i);
+});
+
+test("no card is marked 'Em breve', and no disabled-card markers remain on the homepage", () => {
   assert.doesNotMatch(homeHtml, /Em breve/);
   assert.doesNotMatch(homeHtml, /access-card-soon/);
   assert.doesNotMatch(homeHtml, /aria-disabled/);
   assert.doesNotMatch(homeHtml, /BNCC \+ SAEB/);
 });
 
-test("the Ensino Médio card says 'Formação Geral Básica', never the retired 'série' label", () => {
-  // /bncc/ensino-medio also appears in the Header dropdown, mobile accordion and Footer, so the
-  // card itself is isolated first (no nested <a> inside an access-card) before asserting on it.
-  const card = homeHtml.match(/<a class="access-card" href="\/bncc\/ensino-medio">[^]*?<\/a>/)?.[0] ?? "";
-  assert.ok(card, "Ensino Médio access-card not found");
-  assert.match(card, /class="access-label">Formação Geral Básica</, "missing the 'Formação Geral Básica' label");
-  assert.match(card, /<h3>Ensino Médio<\/h3>/);
-  assert.match(card, /sem recorte por série/, "description should still explain there's no recorte by série");
-  assert.match(card, /Explorar áreas/, "action text should be unchanged");
-  assert.doesNotMatch(card, /1ª à 3ª série/, "the retired 'série' label must not reappear");
-  assert.doesNotMatch(homeHtml, /1ª à 3ª série/, "the retired label must not reappear anywhere on the page");
+test("the future-vision sections (DataFlow, DashboardPreview) were removed — no fake dashboard, no flow-section, no dashboard-section, no demonstrative data closes the homepage", () => {
+  assert.doesNotMatch(homeHtml, /class="section flow-section"/);
+  assert.doesNotMatch(homeHtml, /class="section dashboard-section"/);
+  assert.doesNotMatch(homeHtml, /Da habilidade ao resultado/);
+  assert.doesNotMatch(homeHtml, /Dados mais fáceis de interpretar/);
+  assert.doesNotMatch(homeHtml, /Indicador ilustrativo|Evolução demonstrativa|Escola demonstrativa/);
+  assert.doesNotMatch(homeHtml, /Dados demonstrativos/i);
+
+  // O que as substitui é uma única faixa compacta, claramente secundária, dentro
+  // do próprio bloco de confiança — nunca uma seção própria com grade ou números.
+  const trustSection = homeHtml.match(/<section class="section trust-section"[^]*?<\/section>/)?.[0] ?? "";
+  assert.ok(trustSection, "trust section not found");
+  assert.match(trustSection, /class="roadmap-note"/);
+  assert.match(trustSection, /Em desenvolvimento:/);
+  const roadmapParagraphCount = (trustSection.match(/class="roadmap-note"/g) ?? []).length;
+  assert.equal(roadmapParagraphCount, 1, "expected exactly one compact roadmap note, never a full section");
 });
 
-test("the future-vision sections (DataFlow, DashboardPreview) are clearly labeled 'No roteiro' and not mixed into the quick-access grid", () => {
-  const accessSection = homeHtml.match(/<section class="section quick-access"[^]*?<\/section>/)?.[0] ?? "";
-  assert.ok(accessSection, "quick-access section not found");
-  assert.doesNotMatch(accessSection, /No roteiro/);
+test("the trust section's source badges are static (never styled or marked as links) and the authorship line links only 'Conheça a proposta'", () => {
+  const trustSection = homeHtml.match(/<section class="section trust-section"[^]*?<\/section>/)?.[0] ?? "";
+  assert.ok(trustSection, "trust section not found");
 
-  // Text content (unlike class names/attributes) gets serialized twice in this framework's SSR
-  // output — once rendered, once in the embedded RSC hydration payload — so exact-count assertions
-  // on visible copy are checked per structural container instead of as a whole-page total.
-  const flowSection = homeHtml.match(/<section class="section flow-section"[^]*?<\/section>/)?.[0] ?? "";
-  const dashboardSection = homeHtml.match(/<section class="section dashboard-section"[^]*?<\/section>/)?.[0] ?? "";
-  assert.ok(flowSection, "flow-section not found");
-  assert.ok(dashboardSection, "dashboard-section not found");
-  assert.match(flowSection, /No roteiro/);
-  assert.match(dashboardSection, /No roteiro/);
+  const chips = trustSection.match(/<div class="source-chips"[^]*?<\/div>/)?.[0] ?? "";
+  assert.ok(chips, "source-chips block not found");
+  for (const source of ["BNCC", "INEP", "SAEB", "SARESP"]) {
+    assert.match(chips, new RegExp(`<span>${source}</span>`), `${source} badge should be a plain, static <span>`);
+  }
+  assert.doesNotMatch(chips, /<a /, "source badges must never be rendered as links");
+  assert.doesNotMatch(chips, /svg/i, "source badges must not carry an ExternalLink icon that implies they're clickable");
+
+  // A autoria linka apenas "Conheça a proposta" para /sobre — nunca expõe a
+  // URL como texto visível, e nunca deixa o link do meio da frase ambíguo.
+  assert.match(trustSection, /<a href="\/sobre">Conheça a proposta<\/a>/);
+  assert.doesNotMatch(trustSection, />\/sobre</, "/sobre must never appear as visible link text");
+});
+
+test("'.trust-copy a' has its own visible link styling, independent of hover, and never falls back to inherited/invisible link color", () => {
+  const css = readFileSync(new URL("../app/globals.css", import.meta.url), "utf-8");
+  const rule = css.match(/\.trust-copy a\s*\{[^}]*\}/)?.[0] ?? "";
+  assert.ok(rule, "'.trust-copy a' rule not found in globals.css — the authorship link would fall back to the global 'a { color: inherit; text-decoration: none; }' and be visually indistinguishable from plain text");
+  assert.match(rule, /color:\s*var\(--color-link-strong\)/);
+  assert.match(rule, /text-decoration:\s*underline/);
+  assert.doesNotMatch(rule, /!important/);
+
+  const hoverRule = css.match(/\.trust-copy a:hover\s*\{[^}]*\}/)?.[0] ?? "";
+  assert.ok(hoverRule, "'.trust-copy a:hover' rule not found");
+  assert.match(hoverRule, /color:\s*var\(--navy\)/);
+
+  // A correção é local a .trust-copy — nunca restaura a classe global .text-link
+  // removida nesta rodada, nem estiliza outros links do site.
+  assert.doesNotMatch(css, /\.text-link\s*\{/, ".text-link must not be restored as a global class");
 });
 
 // ---- 8. Página 404 genérica ----
@@ -446,15 +528,39 @@ test("the homepage search examples represent varied BNCC subjects", () => {
   assert.doesNotMatch(searchSection, />EF07MA18<|>Equações<|>Frações<|>Matemática 8º ano</);
 });
 
+// ---- Busca honesta: título, form e placeholder nunca prometem matriz/descritor/avaliação ----
+
+test("the search is honestly scoped to the BNCC: title, form and placeholder never promise matrices, descritores or avaliações", () => {
+  const searchSection = homeHtml.match(/<section class="section search-section"[^]*?<\/section>/)?.[0] ?? "";
+  assert.ok(searchSection, "search section not found");
+
+  assert.match(searchSection, /class="section-kicker">Buscar na BNCC</);
+  assert.match(searchSection, /<h2>Busque habilidades da BNCC\.<\/h2>/);
+
+  const form = searchSection.match(/<form[^>]*>[^]*?<\/form>/)?.[0] ?? "";
+  assert.ok(form, "search form not found");
+  assert.match(form, /action="\/bncc"/, "search form must keep action=\"/bncc\"");
+  assert.match(form, /method="get"/, "search form must keep method=\"get\" (GET, no JS required)");
+
+  const placeholder = form.match(/placeholder="([^"]*)"/)?.[1] ?? "";
+  assert.ok(placeholder, "search input is missing a placeholder");
+  assert.doesNotMatch(placeholder, /matriz/i);
+  assert.doesNotMatch(placeholder, /descritor/i);
+  assert.doesNotMatch(placeholder, /avalia[çc][ãa]o/i);
+
+  assert.doesNotMatch(searchSection, /Uma única busca para navegar por habilidades, matrizes, disciplinas, anos e avalia[çc][õo]es/);
+  assert.match(searchSection, /Pesquise por habilidade, componente curricular ou etapa na base oficial da BNCC\./);
+});
+
 test("the homepage uses one shared content rail across its principal sections", () => {
   assert.match(homeHtml, /<main id="main-content" class="home-page">/);
   assert.equal(
     (homeHtml.match(/class="container home-rail(?: [^"]*)?"/g) ?? []).length,
-    6,
-    "Hero, search, quick access, trust, flow and dashboard must share the same content rail",
+    4,
+    "Hero, quick access, search and trust must share the same content rail — DataFlow/DashboardPreview no longer exist",
   );
   assert.match(homeHtml, /class="container home-rail search-layout"/);
-  assert.match(homeHtml, /class="container home-rail dashboard-layout"/);
+  assert.doesNotMatch(homeHtml, /home-rail dashboard-layout/);
 });
 
 // ---- 13. Acesso à consulta SAEB pela home é navegação, não busca ----
@@ -481,11 +587,34 @@ test("the Footer's tools navigation includes SAEB right after SARESP, following 
   assert.match(nav, /<a href="\/saresp">SARESP<\/a>\s*<a href="\/saeb">SAEB<\/a>/);
 });
 
-// ---- 14. Seção de acesso rápido reflete o novo total ----
+// ---- 14. Seção de acesso rápido reflete o novo total (Rodada 20: 4 tarefas, não 6 cartões misturados) ----
 
-test("the quick-access section heading reflects six available resources, not five", () => {
-  assert.match(homeHtml, /Seis recursos disponíveis agora/);
+test("the quick-access section heading reflects four primary tools, never the retired six-card count", () => {
+  const accessSection = homeHtml.match(/<section class="section quick-access"[^]*?<\/section>/)?.[0] ?? "";
+  assert.ok(accessSection, "quick-access section not found");
+  assert.match(accessSection, /Quatro ferramentas disponíveis agora/);
+  assert.doesNotMatch(homeHtml, /Seis recursos disponíveis agora/);
   assert.doesNotMatch(homeHtml, /Cinco recursos disponíveis agora/);
+});
+
+// ---- 15. Recursos do hero (HeroPlatformPreview) são links reais, sem dado fictício ----
+
+test("the hero's 'Disponível agora' panel lists the four real tools as actual links, with no chart or demonstrative value", () => {
+  const heroSection = homeHtml.match(/<section class="hero"[^]*?<\/section>/)?.[0] ?? "";
+  assert.ok(heroSection, "hero section not found");
+  assert.match(heroSection, /class="preview-label"/);
+  assert.match(heroSection, />Disponível agora</);
+
+  for (const link of PRIMARY_ACCESS_CARDS) {
+    assert.match(heroSection, new RegExp(`class="preview-link-item" href="${link.href.replace(/\//g, "\\/")}"`), `missing real preview link for ${link.href}`);
+  }
+  const previewLinkCount = (heroSection.match(/class="preview-link-item"/g) ?? []).length;
+  assert.equal(previewLinkCount, 4, "expected exactly 4 real preview links");
+
+  // Nada que possa ser confundido com dado oficial: sem gráfico de barras ilustrativo,
+  // sem valor numérico fictício, sem aviso de "dados demonstrativos" nesta prévia.
+  assert.doesNotMatch(heroSection, /mini-bars|insight-panel|skill-panel|matrix-panel/);
+  assert.doesNotMatch(heroSection, /Demonstração visual|Dados demonstrativos/i);
 });
 
 test("SARESP's 'no school found' copy is still present in the component, and a nonsense query genuinely produces zero matches against the real index", () => {

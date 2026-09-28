@@ -1,6 +1,6 @@
-import { ArrowUpRight, BookOpenText, Layers, MapPinned, School, Sparkles, TrendingUp, type LucideIcon } from "lucide-react";
+import { ArrowUpRight, BookOpenText, LayoutGrid, MapPinned, TrendingUp, type LucideIcon } from "lucide-react";
 
-type AccessItem = {
+type PrimaryAccess = {
   title: string;
   description: string;
   action: string;
@@ -9,62 +9,55 @@ type AccessItem = {
   icon: LucideIcon;
 };
 
-// Cada item aqui é um destino real e navegável agora — nenhum cartão "Em
-// breve" ou de conteúdo demonstrativo. A grade geral /bncc continua acessível
-// pelo Header, pelo Hero e pela busca abaixo; esta seção lista as 6 etapas/
-// ferramentas específicas, não a página guarda-chuva.
-const items: AccessItem[] = [
+// As quatro tarefas reais da plataforma — nunca misturadas, na mesma grade,
+// com as etapas da BNCC (ver EtapaLink/etapas abaixo): a intenção aqui é
+// "o que consultar" (BNCC, matrizes, SAEB, SARESP), não "qual etapa
+// curricular", que é uma navegação secundária e mais compacta.
+const primaryAccess: PrimaryAccess[] = [
   {
-    title: "Educação Infantil",
-    description: "Campos de experiências e objetivos de aprendizagem e desenvolvimento.",
-    action: "Explorar campos",
-    href: "/bncc/educacao-infantil",
-    label: "Bebês a crianças pequenas",
-    icon: Layers,
-  },
-  {
-    title: "Ensino Fundamental",
-    description: "Habilidades por ano, área e componente — Anos Iniciais e Anos Finais completos, do 1º ao 9º ano, nos 9 componentes curriculares.",
-    action: "Explorar componentes",
-    href: "/bncc/ensino-fundamental",
-    label: "1º ao 9º ano",
+    title: "Consultar habilidades da BNCC",
+    description: "Localize habilidades por código, etapa ou palavra-chave.",
+    action: "Explorar a BNCC",
+    href: "/bncc",
+    label: "Base curricular",
     icon: BookOpenText,
   },
   {
-    title: "Ensino Médio",
-    description: "Competências específicas e habilidades por área do conhecimento — Formação Geral Básica completa, sem recorte por série.",
-    action: "Explorar áreas",
-    href: "/bncc/ensino-medio",
-    label: "Formação Geral Básica",
-    icon: School,
+    title: "Consultar matrizes do SAEB",
+    description: "Compare a matriz tradicional e a matriz alinhada à BNCC.",
+    action: "Explorar matrizes",
+    href: "/saeb/matriz",
+    label: "Matriz de referência",
+    icon: LayoutGrid,
   },
   {
-    title: "Competências Gerais",
-    description: "As 10 competências gerais que orientam a Educação Infantil, o Ensino Fundamental e o Ensino Médio.",
-    action: "Ver competências",
-    href: "/bncc/competencias-gerais",
-    label: "Toda a Educação Básica",
-    icon: Sparkles,
-  },
-  {
-    title: "SARESP",
-    description: "Compare resultados de proficiência por escola, com benchmark do recorte e diagnóstico automático.",
-    action: "Explorar SARESP",
-    href: "/saresp",
-    label: "Avaliação estadual",
-    icon: MapPinned,
-  },
-  {
-    title: "SAEB",
-    description: "Consulte resultados por município e escola, com histórico por edição em gráfico e tabela.",
+    title: "Consultar resultados do SAEB",
+    description: "Consulte por escola ou município e acompanhe as edições.",
     action: "Explorar SAEB",
     href: "/saeb",
     label: "Avaliação nacional",
     icon: TrendingUp,
   },
+  {
+    title: "Consultar resultados do SARESP",
+    description: "Compare resultados por escola e interprete o desempenho.",
+    action: "Explorar SARESP",
+    href: "/saresp",
+    label: "Avaliação estadual",
+    icon: MapPinned,
+  },
 ];
 
-function QuickAccessCard({ item }: { item: AccessItem }) {
+type EtapaLink = { title: string; href: string };
+
+const etapas: EtapaLink[] = [
+  { title: "Educação Infantil", href: "/bncc/educacao-infantil" },
+  { title: "Ensino Fundamental", href: "/bncc/ensino-fundamental" },
+  { title: "Ensino Médio", href: "/bncc/ensino-medio" },
+  { title: "Competências Gerais", href: "/bncc/competencias-gerais" },
+];
+
+function PrimaryAccessCard({ item }: { item: PrimaryAccess }) {
   const Icon = item.icon;
   return (
     <a className="access-card" href={item.href}>
@@ -87,13 +80,24 @@ export function QuickAccess() {
       <div className="container home-rail">
         <div className="section-heading">
           <div>
-            <span className="section-kicker">Acesso rápido</span>
+            <span className="section-kicker">Acessos principais</span>
             <h2>O que você quer consultar?</h2>
           </div>
-          <p>Seis recursos disponíveis agora — escolha um para começar.</p>
+          <p>Quatro ferramentas disponíveis agora — escolha uma para começar.</p>
         </div>
         <div className="access-grid quick-access-grid">
-          {items.map((item) => <QuickAccessCard key={item.title} item={item} />)}
+          {primaryAccess.map((item) => <PrimaryAccessCard key={item.title} item={item} />)}
+        </div>
+
+        <div className="etapas-secundarias">
+          <span className="etapas-kicker">Etapas da BNCC</span>
+          <nav className="etapas-lista" aria-label="Etapas da BNCC">
+            {etapas.map((etapa) => (
+              <a className="etapa-link" href={etapa.href} key={etapa.title}>
+                {etapa.title} <ArrowUpRight size={13} aria-hidden="true" />
+              </a>
+            ))}
+          </nav>
         </div>
       </div>
     </section>
