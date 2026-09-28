@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { DashboardPreview } from "./components/DashboardPreview";
-import { DataFlow } from "./components/DataFlow";
 import { EducationSearch } from "./components/EducationSearch";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
@@ -26,7 +24,7 @@ const websiteJsonLd = {
   "@type": "WebSite",
   name: "Tempo Docente",
   url: "https://tempodocente.com.br",
-  description: "Dados, planejamento e inteligência para a educação.",
+  description: "Consulte habilidades da BNCC, matrizes de referência e resultados do SAEB e do SARESP por escola, com fontes oficiais e acesso gratuito.",
   inLanguage: "pt-BR",
   creator: {
     "@type": "Person",
@@ -46,11 +44,9 @@ export default function Home() {
       <Header />
       <main id="main-content" className="home-page">
         <Hero />
-        <EducationSearch />
         <QuickAccess />
+        <EducationSearch />
         <SourceTrust />
-        <DataFlow />
-        <DashboardPreview />
       </main>
       <Footer />
     </>

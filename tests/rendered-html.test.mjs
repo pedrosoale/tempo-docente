@@ -29,11 +29,15 @@ test("server-renders the Tempo Docente homepage", async () => {
 
   const html = await response.text();
   assert.match(html, /<html lang="pt-BR">/i);
-  assert.match(html, /<title>Tempo Docente \| Dados, planejamento e inteligência para a educação<\/title>/i);
-  assert.match(html, /Dados educacionais que fazem sentido para quem ensina\./);
+  assert.match(html, /<title>BNCC, SAEB e SARESP \| Tempo Docente<\/title>/i);
+  assert.match(html, /BNCC, SAEB e SARESP em um só lugar\./);
   assert.match(html, /O que você quer consultar\?/);
-  assert.match(html, /Dados mais fáceis de interpretar\./);
-  assert.match(html, /Dados demonstrativos/i);
+  // As antigas seções DataFlow/DashboardPreview (com dados demonstrativos e um
+  // "roteiro" de funcionalidade inexistente) foram removidas da homepage — ver
+  // Rodada 20 do relatório local para a justificativa completa.
+  assert.doesNotMatch(html, /Da habilidade ao resultado\./);
+  assert.doesNotMatch(html, /Dados mais fáceis de interpretar\./);
+  assert.doesNotMatch(html, /Dados demonstrativos/i);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
 
@@ -43,6 +47,33 @@ test("the homepage has exactly one canonical link, pointing to the domain root",
   const matches = [...html.matchAll(/<link rel="canonical" href="([^"]+)"/g)];
   assert.equal(matches.length, 1, `expected exactly one canonical link, found ${matches.length}`);
   assert.equal(matches[0][1], "https://tempodocente.com.br");
+});
+
+// Rodada 20: título/descrição, Open Graph e Twitter Card foram revisados juntos
+// para refletir as ferramentas atuais (BNCC, SAEB, SARESP) — nunca a tagline
+// genérica anterior, e sempre coerentes entre si e com o conteúdo visível.
+test("the homepage's title, Open Graph and Twitter Card metadata are coherent with the visible BNCC/SAEB/SARESP content", async () => {
+  const response = await render();
+  const html = await response.text();
+  const head = html.match(/<head>[^]*?<\/head>/)?.[0] ?? "";
+  assert.ok(head, "missing <head>");
+
+  assert.match(head, /<title>BNCC, SAEB e SARESP \| Tempo Docente<\/title>/);
+  assert.match(head, /<meta name="description" content="Consulte habilidades da BNCC, matrizes de referência e resultados do SAEB e do SARESP por escola, com fontes oficiais e acesso gratuito\."/);
+
+  assert.match(head, /<meta property="og:title" content="BNCC, SAEB e SARESP \| Tempo Docente"/);
+  assert.match(head, /<meta property="og:description" content="Consulte habilidades da BNCC, matrizes de referência e resultados do SAEB e do SARESP por escola, com fontes oficiais e acesso gratuito\."/);
+  assert.match(head, /<meta property="og:image" content="https:\/\/tempodocente\.com\.br\/og\.jpg"/);
+
+  assert.match(head, /<meta name="twitter:title" content="BNCC, SAEB e SARESP \| Tempo Docente"/);
+  assert.match(head, /<meta name="twitter:description" content="Consulte habilidades da BNCC, matrizes de referência e resultados do SAEB e do SARESP por escola, com fontes oficiais e acesso gratuito\."/);
+
+  // A tagline genérica anterior não deve sobreviver em nenhum metadado (título,
+  // description, OG, Twitter) da home — a Footer, visível em toda a página e
+  // fora de escopo desta rodada, ainda usa essa mesma frase como assinatura,
+  // então a checagem é restrita ao <head>, nunca à página inteira.
+  assert.doesNotMatch(head, /Dados, planejamento e inteligência para a educação\./);
+  assert.doesNotMatch(head, /Plataforma para consulta da BNCC, avaliações externas/);
 });
 
 test("the homepage JSON-LD is a single, valid WebSite entry with the approved Person as creator", async () => {
