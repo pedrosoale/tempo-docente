@@ -123,7 +123,7 @@ export default function MatrizBnccConsulta({
             type="search"
             value={busca}
             onChange={(event) => setBusca(event.target.value)}
-            placeholder={buscaPorCodigoHabilitada ? "Ex.: 5E2.3, ou &quot;porcentagem&quot;..." : "Ex.: &quot;inferir&quot;, &quot;gêneros textuais&quot;..."}
+            placeholder={buscaPorCodigoHabilitada ? 'Ex.: 5E2.3 ou "porcentagem"...' : 'Ex.: "inferir" ou "gêneros textuais"...'}
           />
         </div>
       </div>
@@ -138,6 +138,11 @@ export default function MatrizBnccConsulta({
             ? `${totalEncontradas} de ${totalHabilidades} habilidades correspondem à busca.`
             : `${totalHabilidades} habilidades, agrupadas em ${grupos.length} eixo${grupos.length === 1 ? "" : "s"} do conhecimento.`}
         </p>
+        {componente === "linguagens" && (
+          <p className="saeb-matriz-nota-sem-codigo">
+            Esta publicação do Inep não atribui códigos oficiais às habilidades de Linguagens. A busca considera o texto das habilidades.
+          </p>
+        )}
       </div>
 
       {grupos.length === 0 && <p className="saeb-nao-informado">Nenhuma habilidade encontrada para esta busca, nesta etapa e componente.</p>}
@@ -156,7 +161,10 @@ export default function MatrizBnccConsulta({
                   {subgrupo.eixoCognitivo && <p className="saeb-matriz-eixo-cognitivo">{subgrupo.eixoCognitivo}</p>}
                   <ul className="saeb-matriz-lista-habilidades">
                     {subgrupo.habilidades.map((habilidade) => (
-                      <li key={habilidade.idInterno} className="saeb-matriz-habilidade">
+                      <li
+                        key={habilidade.idInterno}
+                        className={`saeb-matriz-habilidade ${habilidade.codigoOficial ? "tem-codigo" : "sem-codigo"}`}
+                      >
                         {habilidade.codigoOficial && <span className="saeb-matriz-habilidade-codigo">{habilidade.codigoOficial}</span>}
                         <p>{habilidade.textoHabilidade}</p>
                       </li>
