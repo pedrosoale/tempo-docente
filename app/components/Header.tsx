@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 
@@ -198,10 +198,6 @@ export function Header() {
           <a href="/sobre" aria-current={pathname === "/sobre" ? "page" : undefined}>Sobre</a>
         </nav>
 
-        <a className="header-cta" href="/bncc">
-          Explorar BNCC <ArrowUpRight size={16} aria-hidden="true" />
-        </a>
-
         <div className="mobile-menu" ref={mobileGroupRef}>
           <button
             type="button"
@@ -272,7 +268,6 @@ export function Header() {
             </div>
 
             <a href="/sobre" aria-current={pathname === "/sobre" ? "page" : undefined} onClick={() => closeMobile(false)}>Sobre</a>
-            <a className="mobile-menu-cta" href="/bncc" onClick={() => closeMobile(false)}>Explorar BNCC</a>
           </nav>
         </div>
       </div>

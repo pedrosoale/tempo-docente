@@ -81,6 +81,30 @@ test("Header and Footer only link to real destinations (/, /bncc, /saresp, /saeb
   assert.match(headerBlock, /href="\/saeb\/matriz"[^>]*>\s*Matrizes de referência/, "header should link the SAEB submenu to /saeb/matriz");
 });
 
+// Rodada 23: o CTA destacado "Explorar BNCC" (desktop e mobile) foi removido
+// do cabeçalho — a navegação principal e os quatro cartões de #acessos já
+// cobrem esse mesmo destino, tornando o botão redundante.
+test("the header no longer shows the 'Explorar BNCC' CTA (desktop or mobile), but keeps its main navigation and submenus intact", () => {
+  const headerBlock = homeHtml.match(/<header class="site-header">[^]*?<\/header>/)?.[0] ?? "";
+  assert.ok(headerBlock, "missing <header>");
+
+  assert.doesNotMatch(headerBlock, />Explorar BNCC</);
+  assert.doesNotMatch(headerBlock, /class="header-cta"/);
+  assert.doesNotMatch(headerBlock, /class="mobile-menu-cta"/);
+
+  // A navegação principal continua completa: Início, BNCC (+ submenu), SARESP, SAEB (+ submenu), Sobre.
+  assert.match(headerBlock, /href="\/"[^>]*>Início</);
+  assert.match(headerBlock, /href="\/bncc"[^>]*>BNCC</);
+  assert.match(headerBlock, /aria-label="Submenu de BNCC"/);
+  assert.match(headerBlock, /href="\/saresp"[^>]*>SARESP</);
+  assert.match(headerBlock, /href="\/saeb"[^>]*>SAEB</);
+  assert.match(headerBlock, /aria-label="Submenu de SAEB"/);
+  assert.match(headerBlock, /href="\/sobre"[^>]*>Sobre</);
+
+  // O botão do menu mobile continua presente (não é o CTA removido).
+  assert.match(headerBlock, /class="mobile-menu-toggle"/);
+});
+
 // ---- Privacidade: Footer only, never the main Header menu ----
 
 test("'Privacidade' is a Footer-only link — never added to the main Header menu", () => {
@@ -322,34 +346,38 @@ for (const testCase of ARIA_CURRENT_CASES) {
   });
 }
 
-// ---- 4. Hero: menciona BNCC/SAEB/SARESP, três destinos claros, sem CTA ambíguo ----
+// ---- 4. Hero: menciona BNCC/SAEB/SARESP, mas não tem mais CTAs próprios ----
 
-test("the Hero mentions BNCC, SAEB and SARESP, and offers three unambiguous destinations", () => {
+// Rodada 23: o hero deixou de ter sua própria navegação — "Escolher uma
+// consulta", "Consultar a BNCC", "Ver matrizes do SAEB" e a linha decorativa
+// "BNCC · SAEB · SARESP · Matrizes de referência" duplicavam exatamente os
+// quatro destinos que os cartões de #acessos (QuickAccess.tsx) já oferecem
+// logo abaixo. A escolha do destino agora é feita uma única vez, nesses
+// cartões, nunca em dois lugares da mesma página.
+test("the Hero mentions BNCC, SAEB and SARESP but no longer offers its own CTAs or destination links", () => {
   const heroSection = homeHtml.match(/<section class="hero"[^]*?<\/section>/)?.[0] ?? "";
   assert.ok(heroSection, "hero section not found");
-  assert.match(heroSection, />BNCC<\/span>/);
-  assert.match(heroSection, />SAEB<\/span>/);
-  assert.match(heroSection, />SARESP<\/span>/);
+  assert.match(heroSection, /class="section-kicker"[^]*?BNCC · SAEB · SARESP/, "the eyebrow line above the title still names all three systems");
 
-  // CTA principal: nunca escolhe entre SAEB e SARESP por si só, e o texto
-  // descreve a própria seleção de ferramentas (#acessos), não uma consulta
-  // direta — a seção oferece BNCC, matrizes, SAEB e SARESP, não um resultado.
-  assert.match(heroSection, /href="#acessos"[^>]*>Escolher uma consulta/);
-  assert.doesNotMatch(heroSection, />Consultar resultados por escola</, "the primary CTA must not promise a direct results lookup for a section that offers four different tools");
-  // CTA secundário: BNCC, sem ambiguidade.
-  assert.match(heroSection, /href="\/bncc">Consultar a BNCC<\/a>/);
-  // Terceiro link: acesso direto e visível à matriz do SAEB, já no hero.
-  assert.match(heroSection, /href="\/saeb\/matriz"[^>]*>Ver matrizes do SAEB/);
+  assert.doesNotMatch(heroSection, />Escolher uma consulta</);
+  assert.doesNotMatch(heroSection, />Consultar a BNCC</);
+  assert.doesNotMatch(heroSection, />Ver matrizes do SAEB</);
+  assert.doesNotMatch(heroSection, /class="hero-actions"/);
+  assert.doesNotMatch(heroSection, /class="hero-tertiary"/);
+  assert.doesNotMatch(heroSection, /class="hero-topics"/, "the decorative 'BNCC · SAEB · SARESP · Matrizes de referência' line duplicated the same four destinations as the #acessos cards");
+  assert.doesNotMatch(heroSection, />Matrizes de referência</);
+  assert.doesNotMatch(heroSection, /href="#acessos"/);
 
   assert.doesNotMatch(heroSection, />Ver avaliações externas</);
   assert.doesNotMatch(heroSection, /Dados educacionais que fazem sentido/);
 });
 
-test("the hero's tertiary link ('Ver matrizes do SAEB') is self-sufficient and no longer depends on the removed .text-link class", () => {
+test("the hero's title, supporting text and platform preview panel remain after removing its own CTAs", () => {
   const heroSection = homeHtml.match(/<section class="hero"[^]*?<\/section>/)?.[0] ?? "";
   assert.ok(heroSection, "hero section not found");
-  assert.match(heroSection, /class="hero-tertiary" href="\/saeb\/matriz"/);
-  assert.doesNotMatch(heroSection, /class="text-link hero-tertiary"/, "hero-tertiary must not depend on the global .text-link class removed with DashboardPreview");
+  assert.match(heroSection, /<h1>BNCC, SAEB e SARESP em um só lugar\.<\/h1>/);
+  assert.match(heroSection, /Consulte habilidades, matrizes de referência e resultados por escola/);
+  assert.match(heroSection, /class="hero-preview"/, "the real platform preview panel (four actual tool links) must remain");
 });
 
 test("the Hero's trust line only states claims confirmed elsewhere in the published project (gratuito, sem cadastro)", () => {
