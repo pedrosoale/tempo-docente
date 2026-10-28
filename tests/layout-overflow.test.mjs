@@ -2,11 +2,14 @@
 //   1. /saresp em ~375px: .component-grid usava minmax(360px, 1fr) num contêiner de 335px;
 //   2. submenu SAEB do Header em larguras desktop intermediárias: o painel ancorado com
 //      left: 0 podia ultrapassar a viewport (confirmado em 960, 1024, 1100 e 1280 px).
+//   3. rótulos do eixo X do gráfico por série/ano: com a coluna mais estreita o Recharts omitia o tick
+//      intermediário (5º Ano EF) no intervalo automático; interval={0} força todos os ticks.
 // Estes testes verificam a ESTRUTURA do CSS/JSX (sem geometria real: o `npm test` não tem navegador).
 // A geometria é validada à parte, em navegador real, e documentada no relatório da rodada.
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
+import { groupAverage } from "../lib/saresp/analysis.ts";
 
 const read = (path) => readFileSync(new URL(path, import.meta.url), "utf-8");
 const globalsCss = read("../app/globals.css");
@@ -68,6 +71,27 @@ test("SARESP: os componentes de gráfico continuam usando component-grid e chart
   assert.match(charts, /className="panel chart-panel"/);
   assert.match(evolution, /className="component-grid"/);
   assert.match(evolution, /className="panel chart-panel"/);
+});
+
+test("SARESP: o XAxis por série/ano força todos os ticks (interval={0}) e as três séries chegam ao eixo", () => {
+  const charts = read("../app/saresp/components/Charts.tsx");
+  const axes = (charts.match(/<XAxis\b[\s\S]*?\/>/g) ?? []).filter((axis) => /dataKey="name"/.test(axis));
+  assert.equal(axes.length, 1, 'exactly one <XAxis dataKey="name" /> in Charts.tsx');
+  const [axis] = axes;
+  assert.match(axis, /\binterval=\{0\}/, "interval={0} shows every tick; the default drops the middle label on narrow columns");
+  // Nenhuma outra configuração de intervalo/densidade que volte a permitir a omissão automática.
+  assert.equal((axis.match(/\binterval=/g) ?? []).length, 1, "a single interval prop, and it is {0}");
+  assert.doesNotMatch(axis, /\b(minTickGap|tickCount|preserveStart|preserveEnd|equidistantPreserve)/);
+  assert.match(axis, /\btick=\{axisTick\}/, "the shared tick style stays");
+  assert.match(charts, /const axisTick = \{ fontSize: 11,/, "tick font size is not shrunk to fit");
+
+  // Fluxo normal: o eixo recebe uma linha por série/ano, e nenhuma é descartada na agregação.
+  assert.match(charts, /groupAverage\(rows, "serieAno"\)/);
+  const rows = ["9º Ano EF", "2º Ano EF", "5º Ano EF", "5º Ano EF"].map((serieAno) => ({ serieAno, prof2024: 200, prof2025: 210, diff: 10 }));
+  const names = groupAverage(rows, "serieAno")
+    .sort((a, b) => a.name.localeCompare(b.name, "pt-BR"))
+    .map((row) => row.name);
+  assert.deepEqual(names, ["2º Ano EF", "5º Ano EF", "9º Ano EF"]);
 });
 
 test("SARESP: a página /saresp continua renderizando (200) com o cabeçalho e o menu intactos", async () => {
