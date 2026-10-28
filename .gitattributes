@@ -6,3 +6,7 @@ public/data/saresp/** linguist-generated=true
 # Deterministic SAEB BNCC source and generated catalog — byte-for-byte checks require LF
 data/saeb-matriz-bncc/source/*.json text eol=lf
 data/saeb-matriz-bncc/matriz-linguagens-matematica-bncc.json text eol=lf
+
+# Deterministic BNCC Computação (Complemento à BNCC) source and generated catalogs — byte-for-byte checks require LF
+data/bncc/source/official-mec-bncc-computacao-*.json text eol=lf
+data/bncc/computacao-*.json text eol=lf
