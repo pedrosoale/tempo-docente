@@ -217,6 +217,14 @@ summary {
   z-index: 60;
 }
 
+/* Itens perto da borda direita da barra (hoje, SAEB — seguido só por "Sobre") ancoram o painel
+   pela direita: com left:0 e min-width de 216px o painel, mais largo que o item, passava da
+   borda direita da viewport em larguras desktop de ~960px a ~1280px. */
+.nav-dropdown[data-align="end"] {
+  left: auto;
+  right: 0;
+}
+
 .nav-dropdown a {
   padding: 11px 12px;
   border-radius: 9px;
