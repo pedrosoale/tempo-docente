@@ -1,0 +1,505 @@
+{
+  "schema": "bncc-computacao-fonte/1",
+  "escopo": "educacao-infantil",
+  "nome_oficial": "Computação na Educação Básica — Complemento à BNCC",
+  "nome_curto": "BNCC Computação",
+  "etapa": "Educação Infantil",
+  "segmento": null,
+  "classificacao": "dado_oficial",
+  "natureza_do_conteudo": "Complemento nacional à BNCC (Resolução CNE/CEB nº 1/2022). Não é currículo estadual ou municipal, não é matriz do SAEB e não substitui nenhuma habilidade da BNCC já publicada.",
+  "fundamento_normativo": {
+    "resolucao": {
+      "documento": "resolucao-ceb-1-2022",
+      "titulo": "Resolução CNE/CEB nº 1, de 4 de outubro de 2022",
+      "ementa": "Normas sobre Computação na Educação Básica – Complemento à BNCC.",
+      "publicacao": "Diário Oficial da União, Brasília, 6 de outubro de 2022, Seção 1, p. 33.",
+      "vigencia": "1º de novembro de 2022 (art. 6º)",
+      "dispositivo_sobre_as_tabelas": "Art. 1º, § 2º: o desenvolvimento e a formulação dos currículos devem considerar as tabelas de competências e habilidades anexas.",
+      "pagina_pdf": 1
+    },
+    "parecer": {
+      "documento": "parecer-ceb-2-2022",
+      "titulo": "Parecer CNE/CEB nº 2/2022",
+      "processo": "23001.001050/2019-18",
+      "aprovado_em": "2022-02-17",
+      "homologacao": "Despacho do Ministro de Estado da Educação, publicado no D.O.U. de 3/10/2022, Seção 1, p. 55.",
+      "anexos": "Voto da Comissão: aprovação 'na forma deste Parecer, do Projeto de Resolução e dos anexos (documento SEI 3247470), dos quais são parte integrante' (Parecer, seção II)."
+    }
+  },
+  "fontes": [
+    {
+      "id": "anexo-parecer-ceb-2-2022",
+      "titulo": "Anexo ao Parecer CNE/CEB nº 2/2022 — Computação na Educação Básica: Complemento à BNCC (tabelas de competências e habilidades)",
+      "orgao": "Ministério da Educação — Conselho Nacional de Educação (CNE/CEB)",
+      "url": "https://www.gov.br/mec/pt-br/cne/pdf/pareceres-do-cne/ceb/2022/anexo-ao-parecer-cneceb-no-2-2022-bncc-computacao.pdf",
+      "sha256": "b0f021db3c7c2c042b821cec5fab7d77ed1888dbb61590461ce2afef404865b7",
+      "tamanho_bytes": 1426596,
+      "total_paginas_pdf": 75,
+      "mime": "application/pdf",
+      "http": {
+        "status": 200,
+        "redirecionamentos": 0,
+        "url_final": "https://www.gov.br/mec/pt-br/cne/pdf/pareceres-do-cne/ceb/2022/anexo-ao-parecer-cneceb-no-2-2022-bncc-computacao.pdf"
+      },
+      "acessado_em": "2026-10-28T11:35:46Z",
+      "papel": "fonte_das_tabelas"
+    },
+    {
+      "id": "bncc-computacao-gov-br-media",
+      "titulo": "BNCC Computação na Educação Básica.pdf (gov.br/mec/pt-br/media) — byte a byte idêntico ao Anexo",
+      "orgao": "Ministério da Educação",
+      "url": "https://www.gov.br/mec/pt-br/media/bncc-computacao-na-educacao-basica.pdf",
+      "sha256": "b0f021db3c7c2c042b821cec5fab7d77ed1888dbb61590461ce2afef404865b7",
+      "tamanho_bytes": 1426596,
+      "total_paginas_pdf": 75,
+      "mime": "application/pdf",
+      "http": {
+        "status": 200,
+        "redirecionamentos": 0,
+        "url_final": "https://www.gov.br/mec/pt-br/media/bncc-computacao-na-educacao-basica.pdf"
+      },
+      "acessado_em": "2026-10-28T11:38:45Z",
+      "papel": "equivalente_oficial_identico_ao_anexo"
+    },
+    {
+      "id": "parecer-ceb-2-2022",
+      "titulo": "Parecer CNE/CEB nº 2/2022 — Normas sobre Computação na Educação Básica – Complemento à Base Nacional Comum Curricular (BNCC)",
+      "orgao": "Ministério da Educação — Conselho Nacional de Educação (CNE/CEB)",
+      "url": "https://www.gov.br/mec/pt-br/cne/pdf/pareceres-do-cne/ceb/2022/pceb002_22.pdf",
+      "sha256": "03fa6616e7b92b9f382b3c4177acce23b49b6fe8e2d787fc86326908179fa144",
+      "tamanho_bytes": 617783,
+      "total_paginas_pdf": 34,
+      "mime": "application/pdf",
+      "http": {
+        "status": 200,
+        "redirecionamentos": 0,
+        "url_final": "https://www.gov.br/mec/pt-br/cne/pdf/pareceres-do-cne/ceb/2022/pceb002_22.pdf"
+      },
+      "acessado_em": "2026-10-28T11:35:46Z",
+      "papel": "fundamento_normativo"
+    },
+    {
+      "id": "resolucao-ceb-1-2022",
+      "titulo": "Resolução CNE/CEB nº 1, de 4 de outubro de 2022 — Normas sobre Computação na Educação Básica – Complemento à BNCC",
+      "orgao": "Ministério da Educação — Conselho Nacional de Educação (CNE/CEB)",
+      "url": "https://www.gov.br/mec/pt-br/cne/pdf/resolucoes-do-cne/ceb/2022/rceb001_22.pdf",
+      "sha256": "4a4312a44ce3248f73770d97bd884f4f6e38abd2a8f3974060cbedd90f2cb7ab",
+      "tamanho_bytes": 56349,
+      "total_paginas_pdf": 1,
+      "mime": "application/pdf",
+      "http": {
+        "status": 200,
+        "redirecionamentos": 0,
+        "url_final": "https://www.gov.br/mec/pt-br/cne/pdf/resolucoes-do-cne/ceb/2022/rceb001_22.pdf"
+      },
+      "acessado_em": "2026-10-28T11:35:46Z",
+      "papel": "fundamento_normativo"
+    }
+  ],
+  "paginas_oficiais_de_listagem": [
+    "https://www.gov.br/mec/pt-br/cne/normas-classificadas-por-assunto/base-nacional-comum-curricular-bncc",
+    "https://www.gov.br/mec/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/cne/base-nacional-comum-curricular-bncc",
+    "https://www.gov.br/mec/pt-br/cne/parecer-ceb-2022"
+  ],
+  "fontes_indisponiveis": [
+    {
+      "url": "https://portal.mec.gov.br/docman/fevereiro-2022-pdf/235511-pceb002-22/file",
+      "motivo": "O host portal.mec.gov.br não possui registros DNS (A, AAAA nem CNAME; resposta SOA/NODATA, confirmada no resolvedor local, em 8.8.8.8 e em 1.1.1.1). As páginas oficiais do gov.br ainda listam este endereço, mas ele não responde.",
+      "equivalente_oficial": "https://www.gov.br/mec/pt-br/cne/pdf/pareceres-do-cne/ceb/2022/pceb002_22.pdf",
+      "verificado_em": "2026-10-28"
+    },
+    {
+      "url": "https://portal.mec.gov.br/docman/outubro-2022-pdf/241671-rceb001-22/file",
+      "motivo": "Mesmo host portal.mec.gov.br sem registros DNS.",
+      "equivalente_oficial": "https://www.gov.br/mec/pt-br/cne/pdf/resolucoes-do-cne/ceb/2022/rceb001_22.pdf",
+      "verificado_em": "2026-10-28"
+    },
+    {
+      "url": "http://portal.mec.gov.br/index.php?option=com_docman&view=download&alias=236791-anexo-ao-parecer-cneceb-n-2-2022-bncc-computacao&category_slug=fevereiro-2022-pdf&Itemid=30192",
+      "motivo": "Link do Anexo listado na página oficial do MEC no gov.br; mesmo host portal.mec.gov.br sem registros DNS.",
+      "equivalente_oficial": "https://www.gov.br/mec/pt-br/cne/pdf/pareceres-do-cne/ceb/2022/anexo-ao-parecer-cneceb-no-2-2022-bncc-computacao.pdf",
+      "verificado_em": "2026-10-28"
+    },
+    {
+      "url": "https://www.gov.br/mec/pt-br/escolas-conectadas/BNCCComputaoCompletodiagramado.pdf",
+      "motivo": "HTTP 404 (corpo JSON com error_type NotFound) em www.gov.br. O documento diagramado da BNCC Computação continua publicado em outro endereço oficial do gov.br e é byte a byte idêntico ao Anexo (mesmo SHA-256).",
+      "equivalente_oficial": "https://www.gov.br/mec/pt-br/media/bncc-computacao-na-educacao-basica.pdf",
+      "verificado_em": "2026-10-28"
+    },
+    {
+      "url": "https://portal.mec.gov.br/docman/janeiro-2022-pdf/233371-documentos-consolidados-comp-bncc-xlsx/file",
+      "motivo": "Planilha consolidada oficial inacessível: mesmo host portal.mec.gov.br sem registros DNS. Nenhum equivalente oficial foi localizado em outro endereço; nenhuma cópia de terceiros foi usada. A validação cruzada contra a planilha NÃO foi feita.",
+      "equivalente_oficial": null,
+      "verificado_em": "2026-10-28"
+    }
+  ],
+  "validacao_cruzada": {
+    "planilha_consolidada_oficial": "nao_realizada — fonte inacessível (ver fontes_indisponiveis)",
+    "pdf_diagramado": "byte a byte idêntico ao Anexo (mesmo SHA-256) — não é uma segunda fonte independente",
+    "observacao": "A única fonte das tabelas de habilidades acessível é o próprio Anexo; nenhuma cópia de terceiros foi consultada como fonte de dados."
+  },
+  "metodo": {
+    "extracao": "PyMuPDF (get_text('dict') e get_drawings()). Cada tabela do Anexo é uma tabela larga cortada em duas páginas espelhadas; as linhas horizontais da grade e as colunas lidas das linhas verticais definem as células. Cada faixa de linha é exigida a conter exatamente um código de habilidade.",
+    "conferencia_visual": "Todas as páginas com tabela foram renderizadas e lidas contra o texto extraído (código, habilidade, eixo, objeto, explicação, exemplos); ver data/bncc/README.md.",
+    "extrator": "scripts/bncc-computacao/extrair_anexo.py"
+  },
+  "correcoes_tipograficas": [],
+  "marcadores_de_continuacao_removidos": [],
+  "divergencias_documentais": [],
+  "juncoes_de_linha": [
+    {
+      "tipo": "barra",
+      "contexto": "p9 exemplos EI03CO04",
+      "fim_da_linha": "temos o “AlgoCards” (http://",
+      "inicio_da_proxima": "www.computacional.com.br/) e"
+    }
+  ],
+  "competencias": [],
+  "premissas": [
+    {
+      "tipo": "premissa",
+      "numero": 1,
+      "etapa": "Educação Infantil",
+      "texto": "Desenvolver o reconhecimento e a identificação de padrões, construindo conjuntos de objetos com base em diferentes critérios como: quantidade, forma, tamanho, cor e comportamento.",
+      "quadro_fonte": "PREMISSAS",
+      "pagina_fonte": 5,
+      "pagina_impressa": 1
+    },
+    {
+      "tipo": "premissa",
+      "numero": 2,
+      "etapa": "Educação Infantil",
+      "texto": "Vivenciar e identificar diferentes formas de interação mediadas por artefatos computacionais.",
+      "quadro_fonte": "PREMISSAS",
+      "pagina_fonte": 5,
+      "pagina_impressa": 1
+    },
+    {
+      "tipo": "premissa",
+      "numero": 3,
+      "etapa": "Educação Infantil",
+      "texto": "Criar e testar algoritmos brincando com objetos do ambiente e com movimentos do corpo de maneira individual ou em grupo.",
+      "quadro_fonte": "PREMISSAS",
+      "pagina_fonte": 5,
+      "pagina_impressa": 1
+    },
+    {
+      "tipo": "premissa",
+      "numero": 4,
+      "etapa": "Educação Infantil",
+      "texto": "Solucionar problemas decompondo-os em partes menores identificando passos, etapas ou ciclos que se repetem e que podem ser generalizadas ou reutilizadas para outros problemas.",
+      "quadro_fonte": "PREMISSAS",
+      "pagina_fonte": 5,
+      "pagina_impressa": 1
+    }
+  ],
+  "registros": [
+    {
+      "tipo": "objetivo_aprendizagem",
+      "codigo": "EI03CO01",
+      "etapa": "Educação Infantil",
+      "segmento": null,
+      "ano": null,
+      "anos_aplicaveis": null,
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": null,
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Reconhecer padrão de repetição em sequência de sons, movimentos, desenhos.",
+      "explicacao": null,
+      "exemplos": [
+        "Computação plugada:\n1) Criar padrões de repetição em sequência com formas e cores diferentes:\n(i) por meio de editor de desenho;\n(ii) por meio de ferramenta online (Pattern Shapes: https://apps.mathlearningcenter.org/pattern-shapes/).",
+        "2) Completar a sequência de figuras de acordo com o padrão estabelecido por meio de jogo online:\n(i) Shape Pattern (https://www.topmarks.co.uk/ordering-and-sequencing/shape-patterns);\n(ii) Chicken Dance (https://pbskids.org/peg/games/chicken-dance).",
+        "Computação desplugada:\n1) Perceber, por meio de tarefas de sua rotina, a repetição de movimentos:\n(i) comer um sanduíche (morder, mastigar, engolir);\n(ii) respirar (inspirar, expirar).",
+        "2) Reconhecer padrão por meio de sons do próprio corpo:\n(i) Perguntar às crianças se sabem o que é um padrão;\n(ii) Escolher uma música produzida com sons do corpo;\n(iii) E, após ouvir, fazer questionamentos como: Alguma coisa nessa música repete? O quê? Qual padrão você conseguiu observar? Você consegue reproduzir?",
+        "3) Criar uma sequência a partir de um padrão de cores ou formas semelhantes, indicando a quantidade de repetições por meio de blocos de montar ou outros materiais"
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - EDUCAÇÃO INFANTIL",
+      "pagina_fonte": 6,
+      "pagina_impressa": 2,
+      "pagina_fonte_complemento": 7,
+      "pagina_impressa_complemento": 3
+    },
+    {
+      "tipo": "objetivo_aprendizagem",
+      "codigo": "EI03CO02",
+      "etapa": "Educação Infantil",
+      "segmento": null,
+      "ano": null,
+      "anos_aplicaveis": null,
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": null,
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Expressar as etapas para a realização de uma tarefa de forma clara e ordenada.",
+      "explicacao": null,
+      "exemplos": [
+        "Computação plugada:\n1) Experienciar as etapas de execução de tarefas, discutindo como as tarefas são divididas em etapas a partir de jogos digitais como:\n(i) Cookie Monsters Foodie Truck (https://pbskids.org/sesame/games/cookie-monsters-foodie-truck/);\n(ii) Ready Set Grow (https://pbskids.org/sesame/games/ready-set-grow/).",
+        "Computação desplugada:\n1) Expressar as etapas de realização de tarefas diárias por meio de desenhos ou de forma oral;\n2) Ordenar uma sequência de imagens que representam as etapas de uma tarefa diária.\nExemplo de uma tarefa diária - Hora de dormir:\n(i) tomar banho,\n(ii) colocar pijama,\n(iii) escovar os dentes,\n(iv) ouvir uma história,\n(v) dormir."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - EDUCAÇÃO INFANTIL",
+      "pagina_fonte": 6,
+      "pagina_impressa": 2,
+      "pagina_fonte_complemento": 7,
+      "pagina_impressa_complemento": 3
+    },
+    {
+      "tipo": "objetivo_aprendizagem",
+      "codigo": "EI03CO03",
+      "etapa": "Educação Infantil",
+      "segmento": null,
+      "ano": null,
+      "anos_aplicaveis": null,
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": null,
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Experienciar a execução de algoritmos brincando com objetos (des)plugados.",
+      "explicacao": null,
+      "exemplos": [
+        "Computação plugada:\n1) Experienciar a execução de algoritmos por meio de\n(i) jogos digitais (e.g. Follow the Code: https://www.mathplayground.com/follow_the_code.html);\n(ii) brinquedos robóticos (e.g. Rope: http://smartfunbrasil.com/).",
+        "Computação desplugada:\n1) Experienciar a execução de algoritmos por meio de percursos realizados a partir de desenhos no chão (ou maquetes) como, por exemplo:\n(i) jogos de labirinto;\n(ii) amarelinha;\n(iii) sequências de números;\n(iv) sequências de cores;\n2) Experienciar a execução de algoritmos por meio de atividades manuais (e.g. dobraduras, bordado, costura). Exemplo: Executar o seguinte algoritmo\nPasso (1) - Pegar uma folha de papel sulfite;\nPasso (2) - Dobrar esta folha ao meio;\nPasso (3) - Dobrar novamente ao meio;\nPasso (4) - Dobrar novamente ao meio;\nAvaliar o resultado refletindo sobre: (a) Quantas vezes pode-se repetir este passo? e (b) Existem formas diferentes de dobrar o papel ao meio?"
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - EDUCAÇÃO INFANTIL",
+      "pagina_fonte": 6,
+      "pagina_impressa": 2,
+      "pagina_fonte_complemento": 7,
+      "pagina_impressa_complemento": 3
+    },
+    {
+      "tipo": "objetivo_aprendizagem",
+      "codigo": "EI03CO04",
+      "etapa": "Educação Infantil",
+      "segmento": null,
+      "ano": null,
+      "anos_aplicaveis": null,
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": null,
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Criar e representar algoritmos para resolver problemas.",
+      "explicacao": null,
+      "exemplos": [
+        "Computação Plugada:\n1) Explorar jogos digitais, puzzles e jogos de programar que permitem representar uma sequência lógica para resolver problemas. Como exemplos de recursos, temos:\n(i) Jogos de sequência lógica (https://www.smartkids.com.br/jogos-educativos/c/jogos-sequencia-logica);\n(ii) LightBot (https://lightbot.com/);\n(iii) Scratch Jr. (https://www.scratchjr.org/).",
+        "Computação Desplugada:\n1) Preparar uma receita (e.g. bolo, sorvete) com as crianças, evidenciando os passos para o preparo (algoritmo). Dialogar com elas sobre a ordem das etapas. Como sugestão de material de apoio pedagógico, temos a \"Minha Fábrica de Comida\" (https://lifes.dc.ufscar.br/computar/minha-fabrica-de-comida/).\n2) Criar percursos, de uma origem até um destino, em um tabuleiro (e.g. papel, chão), representando os passos do trajeto. Como sugestão de material de apoio pedagógico, temos o “AlgoCards” (http://www.computacional.com.br/) e \"Segue o Trilho\" (https://lifes.dc.ufscar.br/computar/segue-o-trilho/)."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - EDUCAÇÃO INFANTIL (CONTINUAÇÃO)",
+      "pagina_fonte": 8,
+      "pagina_impressa": 4,
+      "pagina_fonte_complemento": 9,
+      "pagina_impressa_complemento": 5
+    },
+    {
+      "tipo": "objetivo_aprendizagem",
+      "codigo": "EI03CO05",
+      "etapa": "Educação Infantil",
+      "segmento": null,
+      "ano": null,
+      "anos_aplicaveis": null,
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": null,
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Comparar soluções algorítmicas para resolver um mesmo problema.",
+      "explicacao": null,
+      "exemplos": [
+        "Computação Plugada:\n1) Comparar diferentes rotas executadas pelas crianças a partir de um jogo digital de labirinto.",
+        "Computação Desplugada:\n1) Comparar diferentes rotas executadas pelas crianças a partir de um labirinto marcado no chão;\n2) Comparar diferentes formas de se realizar tarefas diárias como:\n(i) escovar os dentes,\n(ii) tomar banho,\n(iii) colocar roupa."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - EDUCAÇÃO INFANTIL (CONTINUAÇÃO)",
+      "pagina_fonte": 8,
+      "pagina_impressa": 4,
+      "pagina_fonte_complemento": 9,
+      "pagina_impressa_complemento": 5
+    },
+    {
+      "tipo": "objetivo_aprendizagem",
+      "codigo": "EI03CO06",
+      "etapa": "Educação Infantil",
+      "segmento": null,
+      "ano": null,
+      "anos_aplicaveis": null,
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": null,
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Compreender decisões em dois estados (verdadeiro ou falso).",
+      "explicacao": null,
+      "exemplos": [
+        "Computação plugada:\n1) Criar um jogo digital a partir de um conjunto de perguntas com base em uma história, personagens ou tema de interesse da turma e avaliar as perguntas respondendo verdadeiro ou falso. Como sugestão de ferramentas para criação da atividade, temos:\n(i) Wordwall (https://wordwall.net/pt), e\n(ii) Jamboard (https://jamboard.google.com/).",
+        "Computação desplugada:\n1) Criar um conjunto de perguntas com base em uma história, personagens ou tema de interesse da turma. Cada criança recebe duas cartas, uma verde (verdadeiro) e uma vermelha (falso). Para cada pergunta, a criança apresenta o resultado da sua avaliação e, em conjunto, discutem os erros e acertos.\n2) Realizar a brincadeira popular de “morto e vivo” (e suas variações) em que, ao invés de morto e vivo, sejam utilizadas frases passíveis de ser julgadas como verdadeiras (vivo) ou falsas (morto).\n3) “Verdadeiro ou Falso” / “Isso no meu mundo” (https://lifes.dc.ufscar.br/computar/verdadeiro-ou-falso/).\""
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - EDUCAÇÃO INFANTIL (CONTINUAÇÃO)",
+      "pagina_fonte": 8,
+      "pagina_impressa": 4,
+      "pagina_fonte_complemento": 9,
+      "pagina_impressa_complemento": 5
+    },
+    {
+      "tipo": "objetivo_aprendizagem",
+      "codigo": "EI03CO07",
+      "etapa": "Educação Infantil",
+      "segmento": null,
+      "ano": null,
+      "anos_aplicaveis": null,
+      "bloco_anos": null,
+      "eixo": "Mundo Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": null,
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Reconhecer dispositivos eletrônicos (e não-eletrônicos), identificando quando estão ligados ou desligados (abertos ou fechados).",
+      "explicacao": null,
+      "exemplos": [
+        "Computação (Des)plugada:\n1) Propor atividades de visualização ou exploração de dispositivos eletrônicos (e.g. lanterna, calculadora, televisão, celular, rádio, tablets) de forma a:\n(i) possibilitar que as crianças possam ligar e desligar os aparelhos,\n(ii) reconhecer quando estão ligados ou desligados, e\n(iii) diferenciar dos dispositivos não-eletrônicos.",
+        "2) Participar de brincadeiras que demonstrem dois estados (ligado e desligado). Como brincadeiras de exemplo:\n(i) Seu Mestre Mandou;\n(ii) Pega-gelo / Pega-congelou;\n(iii) Estátua."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - EDUCAÇÃO INFANTIL (CONTINUAÇÃO)",
+      "pagina_fonte": 10,
+      "pagina_impressa": 6,
+      "pagina_fonte_complemento": 11,
+      "pagina_impressa_complemento": 7
+    },
+    {
+      "tipo": "objetivo_aprendizagem",
+      "codigo": "EI03CO08",
+      "etapa": "Educação Infantil",
+      "segmento": null,
+      "ano": null,
+      "anos_aplicaveis": null,
+      "bloco_anos": null,
+      "eixo": "Mundo Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": null,
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Compreender o conceito de interfaces para comunicação com objetos (des)plugados.",
+      "explicacao": null,
+      "exemplos": [
+        "Computação Plugada\n1) Reconhecer as diferentes interfaces de aparelhos (e.g. micro-ondas, computador, projetor, controle remoto etc.) e suas partes, diferenciando as formas de comunicar ações.\n2) Representar, por meio de editores gráficos (e.g. Paint), as diferentes interfaces de aparelhos e suas partes.",
+        "Computação Desplugada\n1) Brincar de \"telefone sem fio\" (brincadeira popular), dialogando sobre o conceito de interface;\n2) Criar desenhos representando diferentes formas de interface dos aparelhos e suas partes (e.g. criar as teclas de um telefone)."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - EDUCAÇÃO INFANTIL (CONTINUAÇÃO)",
+      "pagina_fonte": 10,
+      "pagina_impressa": 6,
+      "pagina_fonte_complemento": 11,
+      "pagina_impressa_complemento": 7
+    },
+    {
+      "tipo": "objetivo_aprendizagem",
+      "codigo": "EI03CO09",
+      "etapa": "Educação Infantil",
+      "segmento": null,
+      "ano": null,
+      "anos_aplicaveis": null,
+      "bloco_anos": null,
+      "eixo": "Mundo Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": null,
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Identificar dispositivos computacionais e as diferentes formas de interação.",
+      "explicacao": null,
+      "exemplos": [
+        "Computação Plugada:\n1) Brincar com dispositivos (e.g. tablets, mesas e telas interativas, computador, dispositivos robóticos, tecnologias assistivas) por meio de jogos educacionais ou situações de aprendizagem, a fim de que as crianças possam verificar as diferentes formas de utilização de cada uma delas, como:\n(i) toque de tela em tablets,\n(ii) uso do mouse no computador,\n(iii) manipulação de um robô,\n(iv) comando por voz,\n(v) reconhecimento facial,\n(vi) reconhecimento de gestos.",
+        "Computação Desplugada:\n1) Simular um jogo de perguntas e respostas ou adivinhação usando imagens que representam as diferentes formas de interação entre os dispositivos;\n2) Representar as diferentes formas de interação (e.g. narrativas, storyboards) com dispositivos por meio de atividades manuais (e.g. desenhos, maquetes, colagem, modelagem)."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - EDUCAÇÃO INFANTIL (CONTINUAÇÃO)",
+      "pagina_fonte": 10,
+      "pagina_impressa": 6,
+      "pagina_fonte_complemento": 11,
+      "pagina_impressa_complemento": 7
+    },
+    {
+      "tipo": "objetivo_aprendizagem",
+      "codigo": "EI03CO10",
+      "etapa": "Educação Infantil",
+      "segmento": null,
+      "ano": null,
+      "anos_aplicaveis": null,
+      "bloco_anos": null,
+      "eixo": "Cultura Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": null,
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Utilizar tecnologia digital de maneira segura, consciente e respeitosa.",
+      "explicacao": null,
+      "exemplos": [
+        "Computação plugada:\n1) Propor um caça ao tesouro (e.g. escape room) com desafios que retratam situações reais de uso de tecnologia, segurança e ética. É possível criar ambientes como esse gratuitamente pelo Google Forms, Escape Factory ou Genial.ly;\n2) Adaptar o caça ao tesouro para ser jogado de forma cooperativa ou competitiva, individual ou em grupo, podendo ser online, híbrido ou presencial.\n3) Produzir um portfólio com dicas para manter-se seguro ao assistir vídeos, jogar online, registrar vídeos e fotos e compartilhar informações na internet. O portfólio deve ser produzido pelas crianças e pode incluir vídeos, imagens, desenhos e escrita espontânea. Como opções para produzir um portfólio online, tem-se: Book Creator, Flipgrid, Canva, entre outros.",
+        "Computação desplugada:\n1) Propor um caça ao tesouro onde as pistas são situações reais de uso de tecnologia, segurança e ética. Para avançar para a próxima pista, as crianças devem demonstrar ou oralizar o que fariam em cada situação.\n2) Produzir um portfólio físico a partir da mesma realidade apresentada no exemplo plugado.",
+        "Situações de exemplo (caça ao tesouro):\n(i) você está jogando e aparece uma propaganda que deixa você com medo. O que você deve fazer?\n(ii) Você está participando de uma interação na internet. Alguém que você não conhece pergunta onde você mora. Você conta?\n(iii) Todo jogo pode ser jogado por crianças da sua idade? Como você descobre se ele será legal ou não?"
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - EDUCAÇÃO INFANTIL (CONTINUAÇÃO)",
+      "pagina_fonte": 12,
+      "pagina_impressa": 8,
+      "pagina_fonte_complemento": 13,
+      "pagina_impressa_complemento": 9
+    },
+    {
+      "tipo": "objetivo_aprendizagem",
+      "codigo": "EI03CO11",
+      "etapa": "Educação Infantil",
+      "segmento": null,
+      "ano": null,
+      "anos_aplicaveis": null,
+      "bloco_anos": null,
+      "eixo": "Cultura Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": null,
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Adotar hábitos saudáveis de uso de artefatos computacionais, seguindo recomendações de órgãos de saúde competentes.",
+      "explicacao": null,
+      "exemplos": [
+        "Computação plugada:\n1) Compreender a importância do tempo de exposição à tela por meio de um óculos sem grau:\n(i) Utilizar um óculos usado e sem grau;\n(ii) Pedir que as crianças visualizem alguns objetos na tela do computador;\n(iii) Depois que todos visualizaram, utilizar tampões de tamanhos diferentes, aumentando o grau de dificuldade da visualização;\n(iv) Quando todos visualizaram com o último tampão (o mais fechado), explicar que o grau de dificuldade simboliza o tempo de permanência na frente da tela, de forma que quanto maior o tempo, maior a dificuldade de visualizar nitidamente.\n2) Compreender os potenciais efeitos do uso prolongado de jogos digitais. Como por exemplo:\ni) Fazer um levantamento sobre os jogos que as crianças jogam;\nii) Acessar um jogo em um dispositivo ilustrando-o para as crianças;\niii) Dialogar sobre características que tornam os jogos estimulantes (visual, sons gráficos etc.);\niv) Dialogar sobre estratégias usadas para manter o usuário envolvido com o jogo o maior tempo possível (recompensas, fases, bônus etc.);\nv) Dialogar sobre a sensação que esses jogos geram nas crianças.",
+        "Computação desplugada:\n1) Utilizar a mesma estratégia plugada (1), substituindo a tela do computador por um painel de fantoches."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - EDUCAÇÃO INFANTIL (CONTINUAÇÃO)",
+      "pagina_fonte": 12,
+      "pagina_impressa": 8,
+      "pagina_fonte_complemento": 13,
+      "pagina_impressa_complemento": 9
+    }
+  ],
+  "premissas_introducao": {
+    "texto": "A Computação permite explorar e vivenciar experiências, sempre movidas pela ludicidade por meio da interação com seus pares. Estas experiências se relacionam com diversos dos campos de experiência da Educação Infantil e devem considerar as seguintes premissas.",
+    "quadro_fonte": "PREMISSAS",
+    "pagina_fonte": 5,
+    "pagina_impressa": 1
+  }
+}

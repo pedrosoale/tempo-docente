@@ -1,0 +1,1707 @@
+{
+  "schema": "bncc-computacao-fonte/1",
+  "escopo": "anos-iniciais",
+  "nome_oficial": "Computação na Educação Básica — Complemento à BNCC",
+  "nome_curto": "BNCC Computação",
+  "etapa": "Ensino Fundamental",
+  "segmento": "Anos Iniciais",
+  "classificacao": "dado_oficial",
+  "natureza_do_conteudo": "Complemento nacional à BNCC (Resolução CNE/CEB nº 1/2022). Não é currículo estadual ou municipal, não é matriz do SAEB e não substitui nenhuma habilidade da BNCC já publicada.",
+  "fundamento_normativo": {
+    "resolucao": {
+      "documento": "resolucao-ceb-1-2022",
+      "titulo": "Resolução CNE/CEB nº 1, de 4 de outubro de 2022",
+      "ementa": "Normas sobre Computação na Educação Básica – Complemento à BNCC.",
+      "publicacao": "Diário Oficial da União, Brasília, 6 de outubro de 2022, Seção 1, p. 33.",
+      "vigencia": "1º de novembro de 2022 (art. 6º)",
+      "dispositivo_sobre_as_tabelas": "Art. 1º, § 2º: o desenvolvimento e a formulação dos currículos devem considerar as tabelas de competências e habilidades anexas.",
+      "pagina_pdf": 1
+    },
+    "parecer": {
+      "documento": "parecer-ceb-2-2022",
+      "titulo": "Parecer CNE/CEB nº 2/2022",
+      "processo": "23001.001050/2019-18",
+      "aprovado_em": "2022-02-17",
+      "homologacao": "Despacho do Ministro de Estado da Educação, publicado no D.O.U. de 3/10/2022, Seção 1, p. 55.",
+      "anexos": "Voto da Comissão: aprovação 'na forma deste Parecer, do Projeto de Resolução e dos anexos (documento SEI 3247470), dos quais são parte integrante' (Parecer, seção II)."
+    }
+  },
+  "fontes": [
+    {
+      "id": "anexo-parecer-ceb-2-2022",
+      "titulo": "Anexo ao Parecer CNE/CEB nº 2/2022 — Computação na Educação Básica: Complemento à BNCC (tabelas de competências e habilidades)",
+      "orgao": "Ministério da Educação — Conselho Nacional de Educação (CNE/CEB)",
+      "url": "https://www.gov.br/mec/pt-br/cne/pdf/pareceres-do-cne/ceb/2022/anexo-ao-parecer-cneceb-no-2-2022-bncc-computacao.pdf",
+      "sha256": "b0f021db3c7c2c042b821cec5fab7d77ed1888dbb61590461ce2afef404865b7",
+      "tamanho_bytes": 1426596,
+      "total_paginas_pdf": 75,
+      "mime": "application/pdf",
+      "http": {
+        "status": 200,
+        "redirecionamentos": 0,
+        "url_final": "https://www.gov.br/mec/pt-br/cne/pdf/pareceres-do-cne/ceb/2022/anexo-ao-parecer-cneceb-no-2-2022-bncc-computacao.pdf"
+      },
+      "acessado_em": "2026-10-28T11:35:46Z",
+      "papel": "fonte_das_tabelas"
+    },
+    {
+      "id": "bncc-computacao-gov-br-media",
+      "titulo": "BNCC Computação na Educação Básica.pdf (gov.br/mec/pt-br/media) — byte a byte idêntico ao Anexo",
+      "orgao": "Ministério da Educação",
+      "url": "https://www.gov.br/mec/pt-br/media/bncc-computacao-na-educacao-basica.pdf",
+      "sha256": "b0f021db3c7c2c042b821cec5fab7d77ed1888dbb61590461ce2afef404865b7",
+      "tamanho_bytes": 1426596,
+      "total_paginas_pdf": 75,
+      "mime": "application/pdf",
+      "http": {
+        "status": 200,
+        "redirecionamentos": 0,
+        "url_final": "https://www.gov.br/mec/pt-br/media/bncc-computacao-na-educacao-basica.pdf"
+      },
+      "acessado_em": "2026-10-28T11:38:45Z",
+      "papel": "equivalente_oficial_identico_ao_anexo"
+    },
+    {
+      "id": "parecer-ceb-2-2022",
+      "titulo": "Parecer CNE/CEB nº 2/2022 — Normas sobre Computação na Educação Básica – Complemento à Base Nacional Comum Curricular (BNCC)",
+      "orgao": "Ministério da Educação — Conselho Nacional de Educação (CNE/CEB)",
+      "url": "https://www.gov.br/mec/pt-br/cne/pdf/pareceres-do-cne/ceb/2022/pceb002_22.pdf",
+      "sha256": "03fa6616e7b92b9f382b3c4177acce23b49b6fe8e2d787fc86326908179fa144",
+      "tamanho_bytes": 617783,
+      "total_paginas_pdf": 34,
+      "mime": "application/pdf",
+      "http": {
+        "status": 200,
+        "redirecionamentos": 0,
+        "url_final": "https://www.gov.br/mec/pt-br/cne/pdf/pareceres-do-cne/ceb/2022/pceb002_22.pdf"
+      },
+      "acessado_em": "2026-10-28T11:35:46Z",
+      "papel": "fundamento_normativo"
+    },
+    {
+      "id": "resolucao-ceb-1-2022",
+      "titulo": "Resolução CNE/CEB nº 1, de 4 de outubro de 2022 — Normas sobre Computação na Educação Básica – Complemento à BNCC",
+      "orgao": "Ministério da Educação — Conselho Nacional de Educação (CNE/CEB)",
+      "url": "https://www.gov.br/mec/pt-br/cne/pdf/resolucoes-do-cne/ceb/2022/rceb001_22.pdf",
+      "sha256": "4a4312a44ce3248f73770d97bd884f4f6e38abd2a8f3974060cbedd90f2cb7ab",
+      "tamanho_bytes": 56349,
+      "total_paginas_pdf": 1,
+      "mime": "application/pdf",
+      "http": {
+        "status": 200,
+        "redirecionamentos": 0,
+        "url_final": "https://www.gov.br/mec/pt-br/cne/pdf/resolucoes-do-cne/ceb/2022/rceb001_22.pdf"
+      },
+      "acessado_em": "2026-10-28T11:35:46Z",
+      "papel": "fundamento_normativo"
+    }
+  ],
+  "paginas_oficiais_de_listagem": [
+    "https://www.gov.br/mec/pt-br/cne/normas-classificadas-por-assunto/base-nacional-comum-curricular-bncc",
+    "https://www.gov.br/mec/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/cne/base-nacional-comum-curricular-bncc",
+    "https://www.gov.br/mec/pt-br/cne/parecer-ceb-2022"
+  ],
+  "fontes_indisponiveis": [
+    {
+      "url": "https://portal.mec.gov.br/docman/fevereiro-2022-pdf/235511-pceb002-22/file",
+      "motivo": "O host portal.mec.gov.br não possui registros DNS (A, AAAA nem CNAME; resposta SOA/NODATA, confirmada no resolvedor local, em 8.8.8.8 e em 1.1.1.1). As páginas oficiais do gov.br ainda listam este endereço, mas ele não responde.",
+      "equivalente_oficial": "https://www.gov.br/mec/pt-br/cne/pdf/pareceres-do-cne/ceb/2022/pceb002_22.pdf",
+      "verificado_em": "2026-10-28"
+    },
+    {
+      "url": "https://portal.mec.gov.br/docman/outubro-2022-pdf/241671-rceb001-22/file",
+      "motivo": "Mesmo host portal.mec.gov.br sem registros DNS.",
+      "equivalente_oficial": "https://www.gov.br/mec/pt-br/cne/pdf/resolucoes-do-cne/ceb/2022/rceb001_22.pdf",
+      "verificado_em": "2026-10-28"
+    },
+    {
+      "url": "http://portal.mec.gov.br/index.php?option=com_docman&view=download&alias=236791-anexo-ao-parecer-cneceb-n-2-2022-bncc-computacao&category_slug=fevereiro-2022-pdf&Itemid=30192",
+      "motivo": "Link do Anexo listado na página oficial do MEC no gov.br; mesmo host portal.mec.gov.br sem registros DNS.",
+      "equivalente_oficial": "https://www.gov.br/mec/pt-br/cne/pdf/pareceres-do-cne/ceb/2022/anexo-ao-parecer-cneceb-no-2-2022-bncc-computacao.pdf",
+      "verificado_em": "2026-10-28"
+    },
+    {
+      "url": "https://www.gov.br/mec/pt-br/escolas-conectadas/BNCCComputaoCompletodiagramado.pdf",
+      "motivo": "HTTP 404 (corpo JSON com error_type NotFound) em www.gov.br. O documento diagramado da BNCC Computação continua publicado em outro endereço oficial do gov.br e é byte a byte idêntico ao Anexo (mesmo SHA-256).",
+      "equivalente_oficial": "https://www.gov.br/mec/pt-br/media/bncc-computacao-na-educacao-basica.pdf",
+      "verificado_em": "2026-10-28"
+    },
+    {
+      "url": "https://portal.mec.gov.br/docman/janeiro-2022-pdf/233371-documentos-consolidados-comp-bncc-xlsx/file",
+      "motivo": "Planilha consolidada oficial inacessível: mesmo host portal.mec.gov.br sem registros DNS. Nenhum equivalente oficial foi localizado em outro endereço; nenhuma cópia de terceiros foi usada. A validação cruzada contra a planilha NÃO foi feita.",
+      "equivalente_oficial": null,
+      "verificado_em": "2026-10-28"
+    }
+  ],
+  "validacao_cruzada": {
+    "planilha_consolidada_oficial": "nao_realizada — fonte inacessível (ver fontes_indisponiveis)",
+    "pdf_diagramado": "byte a byte idêntico ao Anexo (mesmo SHA-256) — não é uma segunda fonte independente",
+    "observacao": "A única fonte das tabelas de habilidades acessível é o próprio Anexo; nenhuma cópia de terceiros foi consultada como fonte de dados."
+  },
+  "metodo": {
+    "extracao": "PyMuPDF (get_text('dict') e get_drawings()). Cada tabela do Anexo é uma tabela larga cortada em duas páginas espelhadas; as linhas horizontais da grade e as colunas lidas das linhas verticais definem as células. Cada faixa de linha é exigida a conter exatamente um código de habilidade.",
+    "conferencia_visual": "Todas as páginas com tabela foram renderizadas e lidas contra o texto extraído (código, habilidade, eixo, objeto, explicação, exemplos); ver data/bncc/README.md.",
+    "extrator": "scripts/bncc-computacao/extrair_anexo.py"
+  },
+  "correcoes_tipograficas": [
+    {
+      "id": "C1",
+      "natureza": "codigo_com_digito_a_mais",
+      "campo": "codigo",
+      "registros": [
+        "EF05CO11"
+      ],
+      "pagina_fonte": 36,
+      "impresso_na_fonte": "EF05CO011",
+      "corrigido": "EF05CO11",
+      "justificativa": "O 11º código do 5º ano é impresso como (EF05CO011), com três dígitos. Todos os outros 140 códigos do Anexo têm exatamente 2 dígitos após CO, e a sequência impressa do 5º ano é EF05CO01…EF05CO10 seguida desta linha — a leitura EF05CO11 é a única compatível com o padrão e com a sequência. O código impresso literal fica registrado aqui.",
+      "conferido_visualmente": true
+    }
+  ],
+  "marcadores_de_continuacao_removidos": [],
+  "divergencias_documentais": [],
+  "juncoes_de_linha": [
+    {
+      "tipo": "hifen",
+      "contexto": "p29 explicação EF04CO02",
+      "fim_da_linha": "s que possui um tamanho pré-",
+      "inicio_da_proxima": "definido e os dados agrupado"
+    },
+    {
+      "tipo": "hifen",
+      "contexto": "p33 explicação EF05CO01",
+      "fim_da_linha": "stas não têm um tamanho pré-",
+      "inicio_da_proxima": "definido, o que permite a re"
+    },
+    {
+      "tipo": "hifen",
+      "contexto": "p33 explicação EF05CO01",
+      "fim_da_linha": "do ser visual) para ilustrá-",
+      "inicio_da_proxima": "los. Além disso, devem reali"
+    },
+    {
+      "tipo": "hifen",
+      "contexto": "p33 explicação EF05CO03",
+      "fim_da_linha": " operação de negação e vice-",
+      "inicio_da_proxima": "versa."
+    }
+  ],
+  "competencias": [
+    {
+      "tipo": "competencia_especifica",
+      "numero": 1,
+      "etapa": "Ensino Fundamental",
+      "abrangencia": "Ensino Fundamental inteiro (1º ao 9º ano) — a mesma lista de 7 competências aparece nos catálogos dos Anos Iniciais e dos Anos Finais",
+      "texto": "Compreender a Computação como uma área de conhecimento que contribui para explicar o mundo atual e ser um agente ativo e consciente de transformação capaz de analisar criticamente seus impactos sociais, ambientais, culturais, econômicos, científicos, tecnológicos, legais e éticos.",
+      "quadro_fonte": "COMPETÊNCIAS",
+      "pagina_fonte": 15,
+      "pagina_impressa": 11
+    },
+    {
+      "tipo": "competencia_especifica",
+      "numero": 2,
+      "etapa": "Ensino Fundamental",
+      "abrangencia": "Ensino Fundamental inteiro (1º ao 9º ano) — a mesma lista de 7 competências aparece nos catálogos dos Anos Iniciais e dos Anos Finais",
+      "texto": "Reconhecer o impacto dos artefatos computacionais e os respectivos desafios para os indivíduos na sociedade, discutindo questões socioambientais, culturais, científicas, políticas e econômicas.",
+      "quadro_fonte": "COMPETÊNCIAS",
+      "pagina_fonte": 15,
+      "pagina_impressa": 11
+    },
+    {
+      "tipo": "competencia_especifica",
+      "numero": 3,
+      "etapa": "Ensino Fundamental",
+      "abrangencia": "Ensino Fundamental inteiro (1º ao 9º ano) — a mesma lista de 7 competências aparece nos catálogos dos Anos Iniciais e dos Anos Finais",
+      "texto": "Expressar e partilhar informações, ideias, sentimentos e soluções computacionais utilizando diferentes linguagens e tecnologias da Computação de forma criativa, crítica, significativa, reflexiva e ética.",
+      "quadro_fonte": "COMPETÊNCIAS",
+      "pagina_fonte": 15,
+      "pagina_impressa": 11
+    },
+    {
+      "tipo": "competencia_especifica",
+      "numero": 4,
+      "etapa": "Ensino Fundamental",
+      "abrangencia": "Ensino Fundamental inteiro (1º ao 9º ano) — a mesma lista de 7 competências aparece nos catálogos dos Anos Iniciais e dos Anos Finais",
+      "texto": "Aplicar os princípios e técnicas da Computação e suas tecnologias para identificar problemas e criar soluções computacionais, preferencialmente de forma cooperativa, bem como alicerçar descobertas em diversas áreas do conhecimento seguindo uma abordagem científica e inovadora, considerando os impactos sob diferentes contextos.",
+      "quadro_fonte": "COMPETÊNCIAS",
+      "pagina_fonte": 15,
+      "pagina_impressa": 11
+    },
+    {
+      "tipo": "competencia_especifica",
+      "numero": 5,
+      "etapa": "Ensino Fundamental",
+      "abrangencia": "Ensino Fundamental inteiro (1º ao 9º ano) — a mesma lista de 7 competências aparece nos catálogos dos Anos Iniciais e dos Anos Finais",
+      "texto": "Avaliar as soluções e os processos envolvidos na resolução computacional de problemas de diversas áreas do conhecimento, sendo capaz de construir argumentações coerentes e consistentes, utilizando conhecimentos da Computação para argumentar em diferentes contextos com base em fatos e informações confiáveis com respeito à diversidade de opiniões, saberes, identidades e culturas.",
+      "quadro_fonte": "COMPETÊNCIAS",
+      "pagina_fonte": 15,
+      "pagina_impressa": 11
+    },
+    {
+      "tipo": "competencia_especifica",
+      "numero": 6,
+      "etapa": "Ensino Fundamental",
+      "abrangencia": "Ensino Fundamental inteiro (1º ao 9º ano) — a mesma lista de 7 competências aparece nos catálogos dos Anos Iniciais e dos Anos Finais",
+      "texto": "Desenvolver projetos, baseados em problemas, desafios e oportunidades que façam sentido ao contexto ou interesse do estudante, de maneira individual e/ou cooperativa, fazendo uso da Computação e suas tecnologias, utilizando conceitos, técnicas e ferramentas computacionais que possibilitem automatizar processos em diversas áreas do conhecimento com base em princípios éticos, democráticos, sustentáveis e solidários, valorizando a diversidade de indivíduos e de grupos sociais, de maneira inclusiva.",
+      "quadro_fonte": "COMPETÊNCIAS",
+      "pagina_fonte": 15,
+      "pagina_impressa": 11
+    },
+    {
+      "tipo": "competencia_especifica",
+      "numero": 7,
+      "etapa": "Ensino Fundamental",
+      "abrangencia": "Ensino Fundamental inteiro (1º ao 9º ano) — a mesma lista de 7 competências aparece nos catálogos dos Anos Iniciais e dos Anos Finais",
+      "texto": "Agir pessoal e coletivamente com respeito, autonomia, responsabilidade, flexibilidade, resiliência e determinação, identificando e reconhecendo seus direitos e deveres, recorrendo aos conhecimentos da Computação e suas tecnologias para tomar decisões frente às questões de diferentes naturezas.",
+      "quadro_fonte": "COMPETÊNCIAS",
+      "pagina_fonte": 15,
+      "pagina_impressa": 11
+    }
+  ],
+  "premissas": [],
+  "registros": [
+    {
+      "tipo": "habilidade",
+      "codigo": "EF01CO01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "1º ano",
+      "anos_aplicaveis": [
+        "1º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Organização de objetos",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Organizar objetos físicos ou digitais considerando diferentes características para esta organização, explicitando semelhanças (padrões) e diferenças.",
+      "explicacao": "Objetos de um mesmo conjunto podem ser organizados e agrupados de diferentes maneiras, enfatizando as características desejadas. A organização adequada pode facilitar a busca por um objeto específico dentro deste conjunto.",
+      "exemplos": [
+        "O professor pode pedir que os alunos organizem um conjunto de personagens por gênero, cor dos olhos, idade, tamanho, nacionalidade etc.\nTambém pode sugerir que os alunos organizem um conjunto de figuras geométricas por cor, por tipo de figura, por tamanho das figuras etc."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 1º ANO",
+      "pagina_fonte": 16,
+      "pagina_impressa": 12,
+      "pagina_fonte_complemento": 17,
+      "pagina_impressa_complemento": 13
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF01CO02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "1º ano",
+      "anos_aplicaveis": [
+        "1º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Conceituação de Algoritmos",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Identificar e seguir sequências de passos aplicados no dia a dia para resolver problemas.",
+      "explicacao": "O objetivo é que os alunos possam identificar passos que fazem parte da execução de uma tarefa, bem como seguir uma sequência de passos para realizar uma tarefa (resolver um problema).",
+      "exemplos": [
+        "O professor pode fornecer sequências de passos para resolver problemas como construir origamis simples, seguir caminhos, executar uma receita, construir figuras com Tangram, entre outros, e solicitar que os alunos as executem."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 1º ANO",
+      "pagina_fonte": 16,
+      "pagina_impressa": 12,
+      "pagina_fonte_complemento": 17,
+      "pagina_impressa_complemento": 13
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF01CO03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "1º ano",
+      "anos_aplicaveis": [
+        "1º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Conceituação de Algoritmos",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Reorganizar e criar sequências de passos em meios físicos ou digitais, relacionando essas sequências à palavra ‘Algoritmos’.",
+      "explicacao": "Ao explicar para alguém como realizar uma tarefa (resolver um problema), se está criando um algoritmo. Esses algoritmos podem ser construídos a partir de um conjunto de passos desordenados, onde o aluno deve identificar a sequência em que esses passos devem ser executados, ou podem ser construídos partindo do zero, na qual esses passos também devem ser determinados, além da sequência desses. Pode-se usar linguagem textual, oral ou pictográfica para descrever os passos de um algoritmo.",
+      "exemplos": [
+        "O professor pode fornecer imagens que descrevem os passos para construir um objeto usando peças do tipo 'Lego' e solicitar que os alunos as organizem em uma sequência que permita construir o objeto. Ou ainda, o professor pode solicitar que os alunos expliquem, oralmente ou através de sequências de desenhos, como se joga esconde-esconde ou qualquer outro tipo de jogo."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 1º ANO",
+      "pagina_fonte": 16,
+      "pagina_impressa": 12,
+      "pagina_fonte_complemento": 17,
+      "pagina_impressa_complemento": 13
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF01CO04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "1º ano",
+      "anos_aplicaveis": [
+        "1º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Mundo Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Codificação da informação",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Reconhecer o que é a informação, que ela pode ser armazenada, transmitida como mensagem por diversos meios e descrita em várias linguagens.",
+      "explicacao": "O objetivo é fazer com que o aluno compreenda o conceito de informação, que uma mesma informação pode ser descrita de diversas formas (usando linguagem oral, imagens, sons etc.) e que tal descrição pode ser armazenada e transmitida. Por exemplo, a informação sobre a existência de um cachorro pode ser representada como uma imagem ou como o som de seu latido, que pode ser transmitida repassando a folha com a imagem para outra pessoa ou reproduzindo o som para outra pessoa (como na brincadeira telefone sem fio) e depois pode ser armazenada em uma pasta ou gravação.",
+      "exemplos": [
+        "Transmitir uma palavra por ‘telefone sem fio’, enviar um desenho para um colega, gravar uma mensagem de áudio e reproduzi-la para um colega, entre outros."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 1º ANO",
+      "pagina_fonte": 16,
+      "pagina_impressa": 12,
+      "pagina_fonte_complemento": 17,
+      "pagina_impressa_complemento": 13
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF01CO05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "1º ano",
+      "anos_aplicaveis": [
+        "1º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Mundo Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Codificação da informação",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Representar informação usando diferentes codificações.",
+      "explicacao": "Compreender o conceito de representação é um passo importante para a compreensão de como computadores representam as informações e simulam comportamentos, além de ser habilidade importante para o desenvolvimento e uso de abstrações. Um algoritmo executado por um computador opera dados representados de maneira simbólica. Por exemplo, uma imagem pode ser representada por uma grade formada por pequenos quadrados (pixels), cada qual com um número que representa sua cor (por exemplo, 0 branco e 1 preto). Sons podem ser representados por notas musicais etc.",
+      "exemplos": [
+        "Mostrar que ao pintar as áreas de uma imagem com cores pré-definidas (codificação) uma imagem é recuperada (informação) ou mostrar a relação de uma música com suas notas musicais."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 1º ANO",
+      "pagina_fonte": 16,
+      "pagina_impressa": 12,
+      "pagina_fonte_complemento": 17,
+      "pagina_impressa_complemento": 13
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF01CO06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "1º ano",
+      "anos_aplicaveis": [
+        "1º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Cultura Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Uso de artefatos computacionais",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Reconhecer e explorar artefatos computacionais voltados a atender necessidades pessoais ou coletivas.",
+      "explicacao": "Esta habilidade tem como proposta a identificação e exploração de tecnologias físicas ou digitais, como por exemplo computador, tablets, brinquedos eletrônicos, ferramentas do cotidiano (martelo, alavancas, rampa).",
+      "exemplos": [
+        "O professor poderá utilizar um jogo educacional em ferramentas como computador, tablet, mesas interativas, celular, em que os alunos possam experimentar seus recursos."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 1º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 18,
+      "pagina_impressa": 14,
+      "pagina_fonte_complemento": 19,
+      "pagina_impressa_complemento": 15
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF01CO07",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "1º ano",
+      "anos_aplicaveis": [
+        "1º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Cultura Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Segurança e responsabilidade no uso de tecnologia computacional",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Conhecer as possibilidades de uso seguro das tecnologias computacionais para proteção dos dados pessoais e para garantir a própria segurança.",
+      "explicacao": "Esta habilidade propõe que o aluno possa refletir sobre a importância de resguardar dados pessoais como nome, endereço, idade, onde estuda, quando da utilização de tecnologias como celular, tablets, em que não se pode compartilhar essas informações com qualquer pessoa.",
+      "exemplos": [
+        "Professor poderá fazer um jogo de imagens de dispositivos como celular, tablet, computador dentre outros em que os alunos precisam apresentar o que as pessoas fazem com essas tecnologias. Assim, o professor poderá destacar os cuidados quando usamos esses dispositivos."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 1º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 18,
+      "pagina_impressa": 14,
+      "pagina_fonte_complemento": 19,
+      "pagina_impressa_complemento": 15
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF02CO01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "2º ano",
+      "anos_aplicaveis": [
+        "2º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Modelagem de objetos",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Criar e comparar modelos (representações) de objetos, identificando padrões e atributos essenciais.",
+      "explicacao": "Um modelo é construído ao se identificar características essenciais de objetos. Modelos são importantes para classificar objetos e a escolha das características define os agrupamentos.",
+      "exemplos": [
+        "O professor pode distribuir um conjunto de imagens de veículos como motos, bicicletas, automóveis, trens, aviões, caminhões, helicópteros, jet-skis, barcos a vela, lanchas etc., e solicitar que os alunos agrupem as imagens dos veículos que voam ou que possuem rodas, ou ainda os que possuem motor, entre outras características. Chamar a atenção de que diferentes características podem gerar diferentes agrupamentos."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 2º ANO",
+      "pagina_fonte": 20,
+      "pagina_impressa": 16,
+      "pagina_fonte_complemento": 21,
+      "pagina_impressa_complemento": 17
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF02CO02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "2º ano",
+      "anos_aplicaveis": [
+        "2º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Algoritmos com repetições simples",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Criar e simular algoritmos representados em linguagem oral, escrita ou pictográfica, construídos como sequências com repetições simples (iterações definidas) com base em instruções preestabelecidas ou criadas, analisando como a precisão da instrução impacta na execução do algoritmo.",
+      "explicacao": "Usar linguagem oral, textual ou pictográfica para descrever algoritmos, percebendo a importância de descrevê-los com precisão para que possam ser executados por outras pessoas (ou máquinas). Os algoritmos aqui devem ser descritos através de sequências de instruções (preestabelecidas ou criadas pelos alunos) que podem ser repetidas um determinado número de vezes. Os ciclos de repetição devem ser simples, isto é, não devem conter outros ciclos.",
+      "exemplos": [
+        "Os alunos podem construir algoritmos com conjuntos de instruções pré-definidas, como ações para avançar, virar à direita, virar à esquerda, bem como definir seus próprios conjuntos de instruções. Para descrever a tarefa de andar 10 passos, virar a esquerda e andar mais 5 passos, pode-se definir o seguinte algoritmo:\n'Ande um passo 10 vezes; vire à esquerda; e ande um passo 5 vezes'"
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 2º ANO",
+      "pagina_fonte": 20,
+      "pagina_impressa": 16,
+      "pagina_fonte_complemento": 21,
+      "pagina_impressa_complemento": 17
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF02CO03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "2º ano",
+      "anos_aplicaveis": [
+        "2º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Mundo Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Instrução de máquina",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Identificar que máquinas diferentes executam conjuntos próprios de instruções e que podem ser usadas para definir algoritmos.",
+      "explicacao": "Para compreender o funcionamento dos computadores, é importante entender que uma máquina disponibiliza um conjunto de instruções (as operações) que, se realizadas em uma dada sequência (algoritmo), produzem algum resultado.",
+      "exemplos": [
+        "Nesta etapa, o aluno poderia começar a identificar que alguns conjuntos de instruções bem definidos (operações aritméticas simples de uma calculadora, operações de dobradura etc.) podem ser usados em sequências bem definidas para produzir coisas (o cálculo de uma expressão simples, um origami etc.)."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 2º ANO",
+      "pagina_fonte": 20,
+      "pagina_impressa": 16,
+      "pagina_fonte_complemento": 21,
+      "pagina_impressa_complemento": 17
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF02CO04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "2º ano",
+      "anos_aplicaveis": [
+        "2º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Mundo Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Hardware e software",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Diferenciar componentes físicos (hardware) e programas que fornecem as instruções (software) para o hardware.",
+      "explicacao": "O objetivo da habilidade é mostrar aos alunos que em seu cotidiano existem dispositivos físicos (celulares, computadores, calculadoras, máquinas de costura etc.) que são controlados por algo que segue uma sequência de passos lógicos (um App do celular, uma pessoa com a calculadora, uma costureira) etc.",
+      "exemplos": [
+        "Pode-se utilizar dispositivos do cotidiano do aluno para diferenciar o dispositivo físico (hardware) daquilo que o controla (software)."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 2º ANO",
+      "pagina_fonte": 20,
+      "pagina_impressa": 16,
+      "pagina_fonte_complemento": 21,
+      "pagina_impressa_complemento": 17
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF02CO05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "2º ano",
+      "anos_aplicaveis": [
+        "2º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Cultura Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Uso de artefatos computacionais",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Reconhecer as características e usos das tecnologias computacionais no cotidiano dentro e fora da escola.",
+      "explicacao": "A proposta nessa habilidade é que o aluno verifique as diferentes características das tecnologias de informação e comunicação, identificando como funcionam, principais aspectos, bem como reconhecendo os diferentes usos no dia a dia das pessoas dentro e fora da escola.",
+      "exemplos": [
+        "O professor pode apresentar imagens de diferentes tecnologias (celular, tablets, computador, dentre outros) destacando características de cada uma delas como tamanho, tipos, bem como diferentes usos do no seu cotidiano, celular para ligações, acessar informações, computador para trabalhar com documentos, produzir conteúdo, dentre outros. Criar um portfólio de tecnologias com imagens de tecnologias;"
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 2º ANO",
+      "pagina_fonte": 20,
+      "pagina_impressa": 16,
+      "pagina_fonte_complemento": 21,
+      "pagina_impressa_complemento": 17
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF02CO06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "2º ano",
+      "anos_aplicaveis": [
+        "2º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Cultura Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Segurança e responsabilidade no uso de tecnologia computacional",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Reconhecer os cuidados com a segurança no uso de dispositivos computacionais.",
+      "explicacao": "Nesta habilidade temos a perspectiva de trazer um panorama sobre os cuidados com a segurança ao usar dispositivos como celular, tablets, computadores dentre outros (roubo de dados em dispositivos físicos, rastro de dados online quando da utilização de jogos por exemplo etc.).",
+      "exemplos": [
+        "O professor poderá criar um portfólio com alguns cuidados ao jogar nos dispositivos como celular, tablets."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 2º ANO",
+      "pagina_fonte": 20,
+      "pagina_impressa": 16,
+      "pagina_fonte_complemento": 21,
+      "pagina_impressa_complemento": 17
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF03CO01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Lógica computacional",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Associar os valores 'verdadeiro' e 'falso' a sentenças lógicas que dizem respeito a situações do dia a dia, fazendo uso de termos que indicam negação.",
+      "explicacao": "As sentenças lógicas são sentenças declarativas que representam a constatação de um fato pelo emissor, podendo ser afirmativas ou negativas. Quando se faz uma declaração, ela pode ser \"verdadeira\" ou \"falsa\". Esses termos definem os possíveis valores (verdade) para as sentenças lógicas. Comparações de tamanho, peso ou cor de objetos tem como resultado um valor lógico (\"verdadeiro\" ou \"falso\"). O valor de uma sentença lógica pode ser modificado usando a operação de negação, indicada por termos como NÃO e NÃO É VERDADE QUE.",
+      "exemplos": [
+        "O professor pode apresentar diferentes sentenças lógicas e solicitar que os alunos determinem seus valores verdade, como por exemplo:\nCinco é maior que seis. (Falso)\nCinco NÃO é maior que seis. (Verdadeiro)\nA raiz é uma das partes de uma planta.\n(Verdadeiro)\nA raiz NÃO é uma das partes de uma planta.\n(Falso)"
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 3º ANO",
+      "pagina_fonte": 22,
+      "pagina_impressa": 18,
+      "pagina_fonte_complemento": 23,
+      "pagina_impressa_complemento": 19
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF03CO02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Algoritmos com repetições condicionais simples",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Criar e simular algoritmos representados em linguagem oral, escrita ou pictográfica, que incluam sequências e repetições simples com condição (iterações indefinidas), para resolver problemas de forma independente e em colaboração.",
+      "explicacao": "Os algoritmos aqui devem ser descritos através de sequências de instruções que podem ser repetidas um número de vezes que não é conhecido de antemão. Nestes casos, esta repetição é controlada por alguma condição (sentença lógica). Os ciclos de repetição devem ser simples, isto é, não devem conter outros ciclos.",
+      "exemplos": [
+        "Os alunos podem construir algoritmos com conjuntos de instruções como ações para avançar, virar à direita, virar à esquerda. Para descrever a tarefa de andar em um tabuleiro até encontrar um obstáculo, pode-se definir o seguinte algoritmo: \"Enquanto a próxima posição estiver vazia, ande um passo\". Nesse exemplo, o número de vezes em que a ação \"andar um passo\" será repetida é determinado pelo valor lógico da sentença \"a próxima posição está vazia\". Caso o valor seja \"verdadeiro\", o ciclo de repetição continua, caso contrário ele será interrompido."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 3º ANO",
+      "pagina_fonte": 22,
+      "pagina_impressa": 18,
+      "pagina_fonte_complemento": 23,
+      "pagina_impressa_complemento": 19
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF03CO03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Decomposição",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Aplicar a estratégia de decomposição para resolver problemas complexos, dividindo esse problema em partes menores, resolvendo-as e combinando suas soluções.",
+      "explicacao": "Decomposição é uma das principais técnicas de resolução de problemas, na qual um problema é dividido em subproblemas, os quais são resolvidos independentemente, e cujas soluções são combinadas para construir a solução do problema original. Algumas vantagens da decomposição são:\n- permitir uma melhor organização e visualização do problema e da solução;\n- facilitar o trabalho em grupo;\n- permitir que possamos reutilizar as soluções dos subproblemas em outros problemas.",
+      "exemplos": [
+        "Criar uma receita (algoritmo) que descreva a tarefa (problema) de preparar o café da manhã, pode-se dividir essa tarefa em duas etapas (subproblemas): preparar o café e fazer um sanduíche. Cada etapa pode ser descrita por receitas independentes, criadas pela mesma pessoa ou pessoas diferentes. A solução do problema inicial é obtida combinando as duas receitas (algoritmos). Uma possível combinação é realizar todos os passos da receita do sanduíche e depois todos os passos da receita do café.\nOutra combinação poderia intercalar os passos das duas receitas, podendo, por exemplo, iniciar aquecendo a água para o café, após preparar o sanduíche e por fim terminar o café."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 3º ANO",
+      "pagina_fonte": 22,
+      "pagina_impressa": 18,
+      "pagina_fonte_complemento": 23,
+      "pagina_impressa_complemento": 19
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF03CO04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Mundo Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Codificação da informação",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Relacionar o conceito de informação com o de dado.",
+      "explicacao": "Para que um computador possa armazenar, transmitir ou manipular uma informação é preciso processá-la e representá-la como um conjunto de dados (símbolos). A habilidade trabalha a diferença entre esses dois conceitos.",
+      "exemplos": [
+        "Pode-se mostrar exemplos de dados que individualmente não possuem significado relevante, mas que, em conjunto, definem alguma informação. Por exemplo, cada um dos dados de um endereço (tipo e nome do logradouro, CEP, município etc.), em conjunto, definem a informação de um endereço específico, os dados de dia, mês e ano definem uma data específica, as cores de cada pixel, juntas, definem uma imagem etc."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 3º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 24,
+      "pagina_impressa": 20,
+      "pagina_fonte_complemento": 25,
+      "pagina_impressa_complemento": 21
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF03CO05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Mundo Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Codificação da informação",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Compreender que dados são estruturados em formatos específicos dependendo da informação armazenada.",
+      "explicacao": "A Computação emprega diferentes técnicas para organizar dados de forma estruturada para representar informação. Cada tipo de informação possui uma estratégia de representação. Textos podem ser representados como uma sequência de números decimais, onde cada número representa um caractere (como é feito com o uso da tabela ASCII), uma imagem pode ser representada como uma sequência de números decimais que definem a cor de cada elemento de um reticulado uniforme que divide a imagem (pixel) etc.",
+      "exemplos": [
+        "Mostrar que para representar informação às vezes é necessário combinar diferentes tipos de dados. A informação sobre uma data pode ser recuperada pelo processamento de uma composição de dados de um dia, de um mês e de um ano em uma determinada ordem. Imagens podem ser representados por composições de cores em determinados pontos (pixels) etc."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 3º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 24,
+      "pagina_impressa": 20,
+      "pagina_fonte_complemento": 25,
+      "pagina_impressa_complemento": 21
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF03CO06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Mundo Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Interface física",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Reconhecer que, para um computador realizar tarefas, ele se comunica com o mundo exterior com o uso de interfaces físicas (dispositivos de entrada e saída).",
+      "explicacao": "É importante entender que o computador se comunica com o mundo exterior com dispositivos físicos próprios. Alguns dos dispositivos permitem fornecer informações para os computadores, os dispositivos de entrada (teclado, mouse, microfone, sensores, antena etc.), enquanto outros permitem que o computador transmita informações para o mundo exterior, os dispositivos de saída (monitor, alto-falante, impressora etc.).",
+      "exemplos": [
+        "Exemplificar os diferentes tipos de dispositivos de entrada (teclado, mouse, microfone, sensores, antena etc.) e de dispositivos de saída (monitor, alto-falante, impressora etc.)"
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 3º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 24,
+      "pagina_impressa": 20,
+      "pagina_fonte_complemento": 25,
+      "pagina_impressa_complemento": 21
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF03CO07",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Cultura Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Uso de tecnologias computacionais",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Utilizar diferentes navegadores e ferramentas de busca para pesquisar e acessar informações.",
+      "explicacao": "Nesta habilidade temos a perspectiva que o aluno possa explorar diferentes navegadores e buscadores, conhecendo aspectos gerais das ferramentas de busca como associação de palavras, as abas em cada um deles, filtros, dentre outros. Além disso, por meio das pesquisas apresentar os cuidados na busca das informações desejadas.",
+      "exemplos": [
+        "O professor pode solicitar uma pesquisa simples em algum site de escolha do docente, sobre temas como um personagem de desenho animado por exemplo, em que os alunos poderão verificar os diferentes resultados da busca, verificando filtros de pesquisa, testando novas palavras associadas a escolhida primeiramente e assim os diferentes tipos de informação sobre um mesmo assunto."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 3º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 26,
+      "pagina_impressa": 22,
+      "pagina_fonte_complemento": 27,
+      "pagina_impressa_complemento": 23
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF03CO08",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Cultura Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Uso de tecnologias computacionais",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Usar ferramentas computacionais em situações didáticas para se expressar em diferentes formatos digitais.",
+      "explicacao": "O objetivo desta habilidade é que o aluno possa explorar diversas ferramentas computacionais como jogos educacionais, programas de animação, ferramentas de desenho dentre outros, expressar ideias.",
+      "exemplos": [
+        "O professor poderá utilizar uma ferramenta de desenho para os alunos criarem uma figura que represente suas férias ou algum evento importante."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 3º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 26,
+      "pagina_impressa": 22,
+      "pagina_fonte_complemento": 27,
+      "pagina_impressa_complemento": 23
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF03CO09",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "3º ano",
+      "anos_aplicaveis": [
+        "3º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Cultura Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Segurança e responsabilidade no uso da tecnologia",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Reconhecer o potencial impacto do compartilhamento de informações pessoais ou de seus pares em meio digital.",
+      "explicacao": "A proposta nesta habilidade é que o aluno possa identificar alguns dos principais impactos de compartilhar informações pessoais com colegas ou pessoas em meio digital, como por exemplo endereço, nomes das pessoas da família, onde estuda, onde mora. Essas informações podem ser utilizadas por pessoas de forma mal-intencionadas, quando os alunos trocam informações online por celular, computador ou até mesmo quando estão jogando na internet.",
+      "exemplos": [
+        "O professor poderá apresentar um caso em que foram utilizados dados roubados de pessoas, solicitando aos alunos que destaquem o que pode ter acontecido para que os dados pudessem ter sido roubados. Poderá ainda, a partir do que foi levantado pelos alunos, criar um painel com imagens dos dispositivos computacionais como tablets, celular, computador, apontando em cada um os impactos de acordo com o que mais se utiliza nesses dispositivos."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 3º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 26,
+      "pagina_impressa": 22,
+      "pagina_fonte_complemento": 27,
+      "pagina_impressa_complemento": 23
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF04CO01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Matrizes e registros",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Reconhecer objetos do mundo real e/ou digital que podem ser representados através de matrizes que estabelecem uma organização na qual cada componente está em uma posição definida por coordenadas, fazendo manipulações simples sobre estas representações.",
+      "explicacao": "Informações podem ser organizadas em estruturas, denominadas estruturas de dados. Essas estruturas permitem uma melhor compreensão e também facilitam a manipulação das informações. Uma estrutura de dados esconde a particularidade de diferentes informações, permitindo que sejam vistas como objetos únicos, ou seja, é uma forma de abstração.\n\nMatrizes são um tipo de estrutura de dados organizadas em linhas e colunas assim como as tabelas. As matrizes possuem um tamanho pré-definido e todos os dados que fazem parte da estrutura são do mesmo tipo. Um dado específico é acessado em uma matriz através de coordenadas (x,y) que indicam a linha e a coluna em que esse se localiza. Matrizes compostas de uma única linha são denominadas vetores. A ideia aqui é que os alunos consigam identificar objetos estruturados no mundo real que possam ser caracterizados como matrizes e usem algum tipo de representação (podendo ser visual) para ilustrá-los. Além disso, devem realizar manipulações simples sobre essas representações como recuperar e alterar informações nas matrizes. Exemplos de objetos que podem ser caracterizados como matrizes: tabuleiro de batalha naval, tabuleiro de xadrez, caixa de ovos, organização de classes em uma sala, janelas na fachada de um prédio etc.",
+      "exemplos": [
+        "O professor pode solicitar que os alunos construam o tabuleiro (usando uma matriz) e joguem a batalha naval, onde os tiros são dados informando as coordenadas no tabuleiro. Outra atividade que pode ser feita é apresentar diferentes fachadas de prédios e solicitar que os alunos representem a distribuição das janelas por matrizes, registrando nas correspondentes coordenadas as características de cada janela (por exemplo, aberta ou fechada, com cortina ou não, com persiana ou não). Com essas representações, os alunos podem fazer um jogo estilo \"cara a cara\" onde cada jogador escolhe secretamente uma janela (por exemplo 2ª janela do 3º andar) e o adversário deve descobrir a janela escolhida. Para isso, os jogadores devem fazer perguntas, sobre as características das janelas, que permitam ir descartando janelas até descobrir a janela escolhida pelo adversário. O registro das janelas descartadas deve ser feito na matriz que representa a fachada do prédio."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 4º ANO",
+      "pagina_fonte": 28,
+      "pagina_impressa": 24,
+      "pagina_fonte_complemento": 29,
+      "pagina_impressa_complemento": 25
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF04CO02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Matrizes e registros",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Reconhecer objetos do mundo real e/ou digital que podem ser representados através de registros que estabelecem uma organização na qual cada componente é identificado por um nome, fazendo manipulações sobre estas representações.",
+      "explicacao": "Informações podem ser organizadas em estruturas, denominadas estruturas de dados. Essas estruturas permitem uma melhor compreensão e também facilitam a manipulação das informações. Uma estrutura de dados esconde a particularidade de diferentes informações, permitindo que sejam vistas como objetos únicos, ou seja, é uma forma de abstração.\n\nRegistros, que são agrupamentos de informações, são um tipo de estrutura de dados que possui um tamanho pré-definido e os dados agrupados podem ser de diferentes tipos. Uma informação específica de um registro é acessada através de um identificador (ou nome) associado a ela. A ideia aqui é que os alunos consigam identificar objetos estruturados no mundo real que possam ser caracterizados como registros e usem algum tipo de representação (podendo ser visual) para ilustrá-los. Além disso, devem realizar manipulações simples sobre essas representações como recuperar e alterar informações nos registros.\nExemplos de objetos que podem ser caracterizados como registros: carteira de estudante, boletim, ficha de cadastro de aluno, descrição de qualquer objeto/pessoa (escolhendo um conjunto de atributos) etc.",
+      "exemplos": [
+        "O professor pode distribuir imagens de documentos de identidade de pessoas fictícias e solicitar que os alunos identifiquem quais informações estão disponíveis nos documentos, como por exemplo nome, registro geral, filiação, naturalidade, data de nascimento etc. Pedir que os alunos separem os documentos cujas pessoas tenham nascido em um determinado ano ou tenham nascido em uma determinada cidade. O docente pode ainda solicitar que identifiquem qual é a cidade em que a maioria das pessoas nasceu.\nOutra atividade que pode ser feita é solicitar que os alunos, em grupos, criem um formulário para coletar informações anônimas sobre os colegas como características físicas, gostos sobre comida, time de futebol, jogo/brincadeira, filmes etc. Após distribuir aos colegas de grupos diferentes para que completem e devolvam ao grupo. De posse dos formulários preenchidos, os grupos devem identificar qual o colega que preencheu cada formulário."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 4º ANO",
+      "pagina_fonte": 28,
+      "pagina_impressa": 24,
+      "pagina_fonte_complemento": 29,
+      "pagina_impressa_complemento": 25
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF04CO03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Algoritmos com repetições simples e aninhadas",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Criar e simular algoritmos representados em linguagem oral, escrita ou pictográfica, que incluam sequências e repetições simples e aninhadas (iterações definidas e indefinidas), para resolver problemas de forma independente e em colaboração.",
+      "explicacao": "Os algoritmos aqui devem ser descritos através de sequências de instruções que podem ser repetidas. As repetições, aqui, podem ser aninhadas, isto é, um ciclo de repetição pode conter outro.",
+      "exemplos": [
+        "Imaginando que alguém quer lavar as janelas de um prédio com 10 andares e 20 janelas por andar. A pessoas pode lavar as 20 janelas de um andar, e depois ir para o próximo andar (até chegar ao último andar). Este é um algoritmo que envolve uma repetição aninhada: A pessoa vai repetir 10 vezes a tarefa de lavar 20 janelas, que por sua vez, repete 20 vezes a tarefa de lavar uma janela."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 4º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 30,
+      "pagina_impressa": 26,
+      "pagina_fonte_complemento": 31,
+      "pagina_impressa_complemento": 27
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF04CO04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Mundo Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Codificação da informação",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Entender que para guardar, manipular e transmitir dados deve-se codificá-los de alguma forma que seja compreendida pela máquina (formato digital).",
+      "explicacao": "Um processador é formado por circuitos eletrônicos que operam apenas em dois níveis de tensão. Por isso, o sistema binário (0 e 1) é o sistema de numeração usado para codificação em formato digital. Isso implica que para que um computador possa guardar, manipular e transmitir dados, precisamos codificá-los utilizando diferentes estratégias.",
+      "exemplos": [
+        "Pode-se utilizar a tabela ASCII de codificação de caracteres. Por exemplo, quando se utiliza a tabela ASCII de codificação, a letra \"A\" é representada pelo número decimal 65, que é codificado em binário como 1000001."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 4º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 30,
+      "pagina_impressa": 26,
+      "pagina_fonte_complemento": 31,
+      "pagina_impressa_complemento": 27
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF04CO05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Mundo Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Codificação da informação",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Codificar diferentes informações para representação em computador (binária, ASCII, atributos de pixel, como RGB etc.).",
+      "explicacao": "Existem diferentes estratégias de representação em formato digital para diferentes tipos de informação. Conhecê-las é um passo importante para o desenvolvimento de algoritmos que trabalhem com tipos diferentes de informação.",
+      "exemplos": [
+        "Pode-se utilizar como exemplos a tabela ASCII, que especifica como codificar caracteres em formato digital, ou os formatos de imagem 'Portable BitMap' e 'Portable GrayMap', que codificam uma imagem de forma simples usando uma matriz de 0 e 1 (branco e preto) ou com uma matriz com valores entre 0 e 255 (tons de cinza), respectivamente."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 4º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 30,
+      "pagina_impressa": 26,
+      "pagina_fonte_complemento": 31,
+      "pagina_impressa_complemento": 27
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF04CO06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Cultura Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Uso de tecnologias computacionais",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Usar diferentes ferramentas computacionais para criação de conteúdo (textos, apresentações, vídeos etc.).",
+      "explicacao": "O objetivo desta habilidade é que o aluno possa explorar diversas ferramentas computacionais como editor de texto, editor de imagem, editor de apresentações, programa de história em quadrinhos, animação dentre outros, para produzir conteúdo em projetos, atividades diversas.",
+      "exemplos": [
+        "O professor poderá propor um projeto de criação de uma história digital ou um vídeo de curta duração, em que os alunos experimentam os recursos de um editor de texto ou de vídeo."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 4º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 30,
+      "pagina_impressa": 26,
+      "pagina_fonte_complemento": 31,
+      "pagina_impressa_complemento": 27
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF04CO07",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Cultura Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Segurança e responsabilidade no uso da tecnologia",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Demonstrar postura ética nas atividades de coleta, transferência, guarda e uso de dados.",
+      "explicacao": "Propõe-se que o aluno reflita sobre aspectos éticos relacionados a manipulação de dados, como por exemplo quando assiste e faz download, compartilha uma imagem, dentre outros.",
+      "exemplos": [
+        "Construção de um painel, a partir das imagens de tecnologias como o celular e computador, em que os alunos poderão destacar ações importantes de quando se manipula um dado como imagem, música, vídeo, informação, como verificar as permissões, autoria, dentre outros."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 4º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 30,
+      "pagina_impressa": 26,
+      "pagina_fonte_complemento": 31,
+      "pagina_impressa_complemento": 27
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF04CO08",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "4º ano",
+      "anos_aplicaveis": [
+        "4º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Cultura Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Segurança e responsabilidade no uso da tecnologia",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Reconhecer a importância de verificar a confiabilidade das fontes de informações obtidas na Internet.",
+      "explicacao": "Nesta habilidade espera-se que os alunos possam reconhecer que, ao se obter informações na Internet, é preciso identificar as suas fontes e se elas são seguras e a informação é confiável.",
+      "exemplos": [
+        "O professor poderá organizar casos em que se precisa de determinadas informações e ao se deparar com elas, se verifica que muitas dessas informações estão equivocadas, comparando páginas que tratam do mesmo tema, mas com informações diferentes como por exemplo em uma biografia."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 4º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 30,
+      "pagina_impressa": 26,
+      "pagina_fonte_complemento": 31,
+      "pagina_impressa_complemento": 27
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF05CO01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Listas e grafos",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Reconhecer objetos do mundo real e/ou digital que podem ser representados através de listas que estabelecem uma organização na qual há um número variável de itens dispostos em sequência, fazendo manipulações simples sobre estas representações.",
+      "explicacao": "Listas são estruturas de dados que agrupam itens organizados (logicamente) um depois do outro. As listas não têm um tamanho pré-definido, o que permite a resolução de problemas que tratam argumentos de diferentes tamanhos (um algoritmo que descreve como gerenciar uma fila de pessoas em um caixa é o mesmo, independentemente do tamanho da fila). A ideia aqui é que os alunos consigam identificar objetos estruturados no mundo real que possam ser caracterizados como listas e usem algum tipo de representação (podendo ser visual) para ilustrá-los. Além disso, devem realizar manipulações simples sobre essas representações como recuperar, alterar e inserir informações nas listas. Exemplos de objetos que podem ser representados usando listas: filas de pessoas, pilhas de cartas, lista de itens, pilha de pratos, lista de alunos de uma turma, lista de notas musicais etc.",
+      "exemplos": [
+        "O professor pode fornecer um monte de cartas agrupadas por naipes e em cada naipe as cartas estão ordenadas por seus valores. Fornecer novas cartas, solicitar que os alunos as incluam no baralho mantendo a ordem e registrem as cartas vizinhas. O professor também pode solicitar que todas as cartas de um determinado valor sejam substituídas por cartas curingas ou retiradas do monte. Outra tarefa que pode ser dada é fazer a busca por uma carta específica que pode ou não estar no monte de cartas."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 5º ANO",
+      "pagina_fonte": 32,
+      "pagina_impressa": 28,
+      "pagina_fonte_complemento": 33,
+      "pagina_impressa_complemento": 29
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF05CO02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Listas e grafos",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Reconhecer objetos do mundo real e digital que podem ser representados através de grafos que estabelecem uma organização com uma quantidade variável de vértices conectados por arestas, fazendo manipulações simples sobre estas representações.",
+      "explicacao": "Grafos são um tipo de estrutura usada para representar relações entre objetos. Eles são descritos por vértices (objetos) e arestas (relações). Os grafos também não têm um tamanho pré-definido, o que permite a resolução de problemas que tratam argumentos de diferentes tamanhos (Um algoritmo que encontra um caminho em um mapa pode ter como entrada tanto um mapa de uma região como um mapa de um país.). A ideia aqui é que os alunos consigam identificar objetos estruturados no mundo real que possam ser caracterizados como grafos e usem algum tipo de representação (podendo ser visual) para ilustrá-los. Além disso, devem realizar manipulações simples sobre essas representações como recuperar informações ou encontrar caminhos nos grafos. Exemplos de objetos que podem ser representados usando grafos: mapas, redes sociais, internet, redes de computadores, árvores genealógicas, chaveamento de times em um campeonato etc.",
+      "exemplos": [
+        "O professor pode distribuir, para diferentes grupos os alunos, mapas do bairro onde alguns prédios estão marcados. Pedir que eles tracem linhas ligando esses prédios sempre que houver um caminho entre eles sem passar na frente de outro (dentre os marcados). Marcar na linha traçada o número de quadras de cada caminho considerado. Pedir que os grupos comparem seus grafos para verificar se todos tem as mesmas arestas ou não e qual o número de quadras dos caminhos encontrados.\nDepois pode-se construir conjuntamente a representação do grafo, considerando os menores caminhos encontrados dentre os resultados de cada grupo. Com a representação única pedir que tracem rotas passando por determinados prédios, calculando o número de quadras que se deve andar para chegar no destino. Voltar ao mapa e traçar as rotas identificadas no grafo, nas ruas do bairro.",
+        "O professor pode distribuir os perfis fictícios de diferentes pessoas em alguma rede social, indicando amigos comuns entre os donos dos perfis. Pedir que representem a relação de amizade através de um grafo, no qual as pessoas são representadas por vértices e a amizade pelas arestas.\nDepois fazer perguntas sobre amigos comuns, \"distância\" de amizades etc."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 5º ANO",
+      "pagina_fonte": 32,
+      "pagina_impressa": 28,
+      "pagina_fonte_complemento": 33,
+      "pagina_impressa_complemento": 29
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF05CO03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Lógica computacional",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Realizar operações de negação, conjunção e disjunção sobre sentenças lógicas e valores 'verdadeiro' e 'falso'.",
+      "explicacao": "Os valores de sentenças lógicas podem ser modificados ou combinados usando operações lógicas como negação (NÃO), conjunção (E) e disjunção (OU). A operação da negação modifica o valor da sentença lógica invertendo seu valor, isto é, uma sentença verdadeira torna-se falsa quando aplicada a operação de negação e vice-versa.",
+      "exemplos": [
+        "O professor pode apresentar diferentes sentenças lógicas e solicitar que os alunos determinem seus valores verdade, como por exemplo:\nCinco é maior que seis. (Falso)\nCinco NÃO é maior que seis. (Verdadeiro)\nCinco é maior que seis E maior que dois. (Falso)\nCinco é maior que seis OU maior que dez. (Falso)\nCinco é maior que seis OU maior que dois. (Verdadeiro)"
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 5º ANO",
+      "pagina_fonte": 32,
+      "pagina_impressa": 28,
+      "pagina_fonte_complemento": 33,
+      "pagina_impressa_complemento": 29
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF05CO04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Algoritmos com seleção condicional",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Criar e simular algoritmos representados em linguagem oral, escrita ou pictográfica, que incluam sequências, repetições e seleções condicionais para resolver problemas de forma independente e em colaboração.",
+      "explicacao": "Além de construir algoritmos com sequências de instruções, repetidas ou não, muitas vezes é necessário fazer escolhas sobre qual ação a ser executada a seguir. Escolhas são feitas a partir de situações (condições definidas por sentenças lógicas), como, por exemplo, ao chegar em um semáforo, dependendo de sua cor, a ação a ser realizada é diferente.",
+      "exemplos": [
+        "O professor pode solicitar que os alunos simulem um algoritmo que descreve o que fazer para atravessar uma rua com semáforo usando a instrução de seleção condicional: um trecho deste algoritmo poderia ser: \"se o semáforo estiver vermelho OU amarelo, aguardar na calçada, caso contrário, atravessar a rua\". Além disso, pode solicitar que os alunos determinem os passos de um algoritmo que faça uso da seleção condicional, como por exemplo, definir as ações que devem ser realizadas ao chegar em algum local caso este esteja aberto ou fechado."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 5º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 34,
+      "pagina_impressa": 30,
+      "pagina_fonte_complemento": 35,
+      "pagina_impressa_complemento": 31
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF05CO05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Mundo Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Arquitetura de computadores",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Identificar os componentes principais de um computador (dispositivos de entrada/saída, processadores e armazenamento).",
+      "explicacao": "O objetivo é começar a ensinar ao aluno os elementos principais que compõem a arquitetura de um computador: dispositivos de entrada/saída, processadores e dispositivos de armazenamento temporários (ex: memória RAM) e persistentes (ex: disco rígido).",
+      "exemplos": [
+        "Explicar os componentes básicos dos computadores e suas funções: processador, memória, e exemplos de diferentes dispositivos de entrada e saída."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 5º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 34,
+      "pagina_impressa": 30,
+      "pagina_fonte_complemento": 35,
+      "pagina_impressa_complemento": 31
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF05CO06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Mundo Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Armazenamento de dados",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Reconhecer que os dados podem ser armazenados em um dispositivo local ou remoto.",
+      "explicacao": "Os dispositivos físicos de um computador são gerenciados por um software que denominamos Sistema Operacional. O objetivo da habilidade é explicitar a existência desse software e mostrar que é ele o responsável por gerenciar os recursos de um computador (define qual programa pode utilizar o processador, gerencia os dispositivos físicos da máquina etc.)",
+      "exemplos": [
+        "Os dispositivos físicos que compõem um computador não funcionam sozinhos. É preciso mostrar que a operação desses dispositivos é controlada por um software que denominamos Sistema Operacional. É possível falar sobre algumas das funções de um sistema operacional (gerenciamento da memória, de sistemas de arquivos, de dispositivos de entrada e saída como teclado, mouse, monitores, impressoras etc.).\nTambém é possível mostrar que existem vários Sistemas Operacionais diferentes (Windows, Linux, macOS etc.)"
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [
+        "A explicação e o exemplo impressos na mesma linha da tabela descrevem sistema operacional (assunto da habilidade EF05CO07), e não armazenamento de dados. A associação posicional impressa foi preservada exatamente como está no documento; uma possível inversão editorial no Anexo não foi corrigida por inferência."
+      ],
+      "quadro_fonte": "COMPUTAÇÃO - 5º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 34,
+      "pagina_impressa": 30,
+      "pagina_fonte_complemento": 35,
+      "pagina_impressa_complemento": 31
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF05CO07",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Mundo Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Sistema operacional",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Reconhecer a necessidade de um sistema operacional para a execução de programas e gerenciamento do hardware.",
+      "explicacao": "Os dados de um usuário podem ser armazenados em um dispositivo de armazenamento acoplado ao computador utilizado (disco rígido, disco SSD etc.), em dispositivos removíveis (pen drives, discos rígidos etc.) ou serem transmitidos e armazenados em outros computadores ligados à Internet (armazenamento na nuvem). Reconhecer a necessidade de armazenar dados em dispositivos de armazenamento permitirá a compreensão do conceito de sistemas de arquivos.",
+      "exemplos": [
+        "Pode-se exemplificar os diferentes dispositivos de armazenamento de dados existentes, mostrar que os arquivos são organizados de forma diferentes neles e, para cada dispositivo, mostrar claramente se o dispositivo é local (acoplado permanentemente ao computador do usuário) ou remoto (removível ou dispositivo de armazenamento na Internet)."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [
+        "A explicação e o exemplo impressos na mesma linha da tabela descrevem armazenamento de dados (assunto da habilidade EF05CO06), e não sistema operacional. A associação posicional impressa foi preservada exatamente como está no documento; uma possível inversão editorial no Anexo não foi corrigida por inferência."
+      ],
+      "quadro_fonte": "COMPUTAÇÃO - 5º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 34,
+      "pagina_impressa": 30,
+      "pagina_fonte_complemento": 35,
+      "pagina_impressa_complemento": 31
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF05CO08",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Cultura Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Segurança e responsabilidade no uso da tecnologia",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Acessar as informações na Internet de forma crítica para distinguir os conteúdos confiáveis de não confiáveis.",
+      "explicacao": "Nesta habilidade é importante que os alunos possam refletir e acessar informações em buscas na Internet criticamente, identificando características de conteúdos prejudiciais, informações confiáveis, notícias falsas.",
+      "exemplos": [
+        "O professor pode propor um estudo comparativo entre sites de jornais oficiais e blogs para falar sobre as fontes de informação, considerando sua confiabilidade."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 5º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 36,
+      "pagina_impressa": 32,
+      "pagina_fonte_complemento": 37,
+      "pagina_impressa_complemento": 33
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF05CO09",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Cultura Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Segurança e responsabilidade no uso da tecnologia",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Usar informações considerando aplicações e limites dos direitos autorais em diferentes mídias digitais.",
+      "explicacao": "O objetivo desta habilidade é que o aluno possa utilizar informações e dados na Internet reconhecendo os direitos autorais, como por exemplo de uma música, um filme, um livro, e os cuidados em seu compartilhamento e uso pessoal.",
+      "exemplos": [
+        "O aluno poderá criar um portfólio com imagens de personagens de desenhos animados em que ele poderá citar as fontes e propor um formato em que considera todos os direitos autorais"
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 5º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 36,
+      "pagina_impressa": 32,
+      "pagina_fonte_complemento": 37,
+      "pagina_impressa_complemento": 33
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF05CO10",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Cultura Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Uso de tecnologias computacionais",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Expressar-se crítica e criativamente na compreensão das mudanças tecnológicas no mundo do trabalho e sobre a evolução da sociedade.",
+      "explicacao": "Espera-se que o aluno possa expressar-se crítica e criativamente por meio de dispositivos computacionais ou não, demonstrando compreensão das mudanças que as tecnologias trazem ao cotidiano, incluindo mundo do trabalho.",
+      "exemplos": [
+        "Nessa habilidade, o aluno poderá criar uma animação em computador ou papel sobre alguma impressão que ele tenha sobre um impacto da tecnologia na sociedade, como por exemplo uso do celular para mandar mensagem de áudio ao invés de uma chamada, comum no cotidiano das pessoas."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 5º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 36,
+      "pagina_impressa": 32,
+      "pagina_fonte_complemento": 37,
+      "pagina_impressa_complemento": 33
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF05CO11",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": "5º ano",
+      "anos_aplicaveis": [
+        "5º ano"
+      ],
+      "bloco_anos": null,
+      "eixo": "Cultura Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Uso de tecnologias computacionais",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Identificar a adequação de diferentes tecnologias computacionais na resolução de problemas.",
+      "explicacao": "Nesta habilidade propõe-se que os alunos possam compreender diferentes necessidades de uso das tecnologias computacionais, como por exemplo porque usamos um computador para criar uma história em quadrinhos e usamos um celular para fazer uma ligação telefônica.",
+      "exemplos": [
+        "O professor pode propor um jogo em que apresenta alguns problemas que precisam de solução usando diferentes tecnologias e os alunos individualmente ou em grupos buscam a solução escolhendo a melhor tecnologia considerando diferentes critérios."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO - 5º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 36,
+      "pagina_impressa": 32,
+      "pagina_fonte_complemento": 37,
+      "pagina_impressa_complemento": 33
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF15CO01",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": null,
+      "anos_aplicaveis": [
+        "1º ano",
+        "2º ano",
+        "3º ano",
+        "4º ano",
+        "5º ano"
+      ],
+      "bloco_anos": "1º ao 5º ano",
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Organização e representação da informação",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Identificar as principais formas de organizar e representar a informação de maneira estruturada (matrizes, registros, listas e grafos) ou não estruturada (números, palavras, valores verdade).",
+      "explicacao": "Objetos de um mesmo conjunto podem ser organizados e agrupados de diferentes maneiras, enfatizando as características desejadas. A organização adequada pode facilitar a busca por um objeto específico dentro deste conjunto.",
+      "exemplos": [
+        "O professor pode pedir que os alunos organizem um conjunto de personagens por gênero, cor dos olhos, idade, tamanho, nacionalidade etc.\nTambém pode sugerir que os alunos organizem um conjunto de figuras geométricas por cor, por tipo de figura, por tamanho das figuras etc."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO / POR ETAPA - 1º ao 5º ANO",
+      "pagina_fonte": 38,
+      "pagina_impressa": 34,
+      "pagina_fonte_complemento": 39,
+      "pagina_impressa_complemento": 35
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF15CO02",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": null,
+      "anos_aplicaveis": [
+        "1º ano",
+        "2º ano",
+        "3º ano",
+        "4º ano",
+        "5º ano"
+      ],
+      "bloco_anos": "1º ao 5º ano",
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Algoritmos",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Construir e simular algoritmos, de forma independente ou em colaboração, que resolvam problemas simples e do cotidiano com uso de sequências, seleções condicionais e repetições de instruções.",
+      "explicacao": "O objetivo é que os alunos possam identificar passos que fazem parte da execução de uma tarefa, bem como seguir uma sequência de passos para realizar uma tarefa (resolver um problema).\n\nAo explicar para alguém como realizar uma tarefa (resolver um problema), se está criando um algoritmo. Esses algoritmos podem ser construídos a partir de um conjunto de passos desordenados, onde o aluno deve identificar a sequência em que esses passos devem ser executados, ou podem ser construídos partindo do zero, na qual esses passos também devem ser determinados, além da sequência desses. Pode-se usar linguagem textual, oral ou pictográfica para descrever os passos de um algoritmo.",
+      "exemplos": [
+        "O professor pode fornecer sequências de passos para resolver problemas como construir origamis simples, seguir caminhos, executar uma receita, construir figuras com Tangram, entre outros, e solicitar que os alunos as executem.",
+        "O professor pode fornecer imagens que descrevem os passos para construir um objeto usando peças do tipo 'Lego' e solicitar que os alunos as organizem em uma sequência que permita construir o objeto. Ou ainda, o professor pode solicitar que os alunos expliquem, oralmente ou através de sequências de desenhos, como se joga esconde-esconde ou qualquer outro tipo de jogo."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO / POR ETAPA - 1º ao 5º ANO",
+      "pagina_fonte": 38,
+      "pagina_impressa": 34,
+      "pagina_fonte_complemento": 39,
+      "pagina_impressa_complemento": 35
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF15CO03",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": null,
+      "anos_aplicaveis": [
+        "1º ano",
+        "2º ano",
+        "3º ano",
+        "4º ano",
+        "5º ano"
+      ],
+      "bloco_anos": "1º ao 5º ano",
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Lógica computacional",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Realizar operações de negação, conjunção e disjunção sobre sentenças lógicas e valores 'verdadeiro' e 'falso'.",
+      "explicacao": "As sentenças lógicas são sentenças declarativas que representam a constatação de um fato pelo emissor, podendo ser afirmativas ou negativas. Quando se faz uma declaração, ela pode ser \"verdadeira\" ou \"falsa\". Esses termos definem os possíveis valores (verdade) para as sentenças lógicas. Comparações de tamanho, peso ou cor de objetos tem como resultado um valor lógico (\"verdadeiro\" ou \"falso\"). O valor de uma sentença lógica pode ser modificado usando a operação de negação, indicada por termos como NÃO e NÃO É VERDADE QUE.",
+      "exemplos": [
+        "O professor pode apresentar diferentes sentenças lógicas e solicitar que os alunos determinem seus valores verdade, como por exemplo:\n• Cinco é maior que seis. (Falso)\n• Cinco NÃO é maior que seis. (Verdadeiro)\n• A raiz é uma das partes de uma planta.\n(Verdadeiro)\n• A raiz NÃO é uma das partes de uma planta.\n(Falso)"
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO / POR ETAPA - 1º ao 5º ANO",
+      "pagina_fonte": 38,
+      "pagina_impressa": 34,
+      "pagina_fonte_complemento": 39,
+      "pagina_impressa_complemento": 35
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF15CO04",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": null,
+      "anos_aplicaveis": [
+        "1º ano",
+        "2º ano",
+        "3º ano",
+        "4º ano",
+        "5º ano"
+      ],
+      "bloco_anos": "1º ao 5º ano",
+      "eixo": "Pensamento Computacional",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Decomposição",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Aplicar a estratégia de decomposição para resolver problemas complexos, dividindo esse problema em partes menores, resolvendo-as e combinando suas soluções.",
+      "explicacao": "Decomposição é uma das principais técnicas de resolução de problemas, na qual um problema é dividido em subproblemas, os quais são resolvidos independentemente, e cujas soluções são combinadas para construir a solução do problema original. Algumas vantagens da decomposição são:\n- permitir uma melhor organização e visualização do problema e da solução;\n- facilitar o trabalho em grupo;\n- permitir que possamos reutilizar as soluções dos subproblemas em outros problemas.",
+      "exemplos": [
+        "Criar uma receita (algoritmo) que descreva a tarefa (problema) de preparar o café da manhã, pode-se dividir essa tarefa em duas etapas (subproblemas): preparar o café e fazer um sanduíche. Cada etapa pode ser descrita por receitas independentes, criadas pela mesma pessoa ou pessoas diferentes. A solução do problema inicial é obtida combinando as duas receitas (algoritmos). Uma possível combinação é realizar todos os passos da receita do sanduíche e depois todos os passos da receita do café.\nOutra combinação poderia intercalar os passos das duas receitas, podendo, por exemplo, iniciar aquecendo a água para o café, após preparar o sanduíche e por fim terminar o café."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO / POR ETAPA - 1º ao 5º ANO",
+      "pagina_fonte": 38,
+      "pagina_impressa": 34,
+      "pagina_fonte_complemento": 39,
+      "pagina_impressa_complemento": 35
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF15CO05",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": null,
+      "anos_aplicaveis": [
+        "1º ano",
+        "2º ano",
+        "3º ano",
+        "4º ano",
+        "5º ano"
+      ],
+      "bloco_anos": "1º ao 5º ano",
+      "eixo": "Mundo Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Codificação da informação",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Codificar a informação de diferentes formas, entendendo a importância desta codificação para o armazenamento, manipulação e transmissão em dispositivos computacionais.",
+      "explicacao": "Para que um computador possa armazenar, transmitir ou manipular uma informação é preciso processá-la e representá-la como um conjunto de dados (símbolos). A habilidade trabalha a diferença entre esses dois conceitos.\n\nA Computação emprega diferentes técnicas para organizar dados de forma estruturada para representar informação. Cada tipo de informação possui uma estratégia de representação. Textos podem ser representados como uma sequência de números decimais, onde cada número representa um caractere (como é feito com o uso da tabela ASCII), uma imagem pode ser representada como uma sequência de números decimais que definem a cor de cada elemento de um reticulado uniforme que divide a imagem (pixel) etc.",
+      "exemplos": [
+        "Pode-se mostrar exemplos de dados que individualmente não possuem significado relevante, mas que, em conjunto, definem alguma informação. Por exemplo, cada um dos dados de um endereço (tipo e nome do logradouro, CEP, município etc.), em conjunto, definem a informação de um endereço específico, os dados de dia, mês e ano definem uma data específica, as cores de cada pixel, juntas, definem uma imagem etc.",
+        "Mostrar que para representar informação às vezes é necessário combinar diferentes tipos de dados. A informação sobre uma data pode ser recuperada pelo processamento de uma composição de dados de um dia, de um mês e de um ano em uma determinada ordem. Imagens podem ser representados por composições de cores em determinados pontos (pixels) etc."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO / POR ETAPA - 1º ao 5º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 40,
+      "pagina_impressa": 36,
+      "pagina_fonte_complemento": 41,
+      "pagina_impressa_complemento": 37
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF15CO06",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": null,
+      "anos_aplicaveis": [
+        "1º ano",
+        "2º ano",
+        "3º ano",
+        "4º ano",
+        "5º ano"
+      ],
+      "bloco_anos": "1º ao 5º ano",
+      "eixo": "Mundo Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Funcionamento de dispositivos computacionais",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Conhecer os componentes básicos de dispositivos computacionais, entendendo os princípios de seu funcionamento.",
+      "explicacao": "Para compreender o funcionamento dos computadores, é importante entender que uma máquina disponibiliza um conjunto de instruções (as operações) que, se realizadas em uma dada sequência (algoritmo), produzem algum resultado.",
+      "exemplos": [
+        "Nesta etapa, o aluno poderia começar a identificar que alguns conjuntos de instruções bem definidos (operações aritméticas simples de uma calculadora, operações de dobradura etc.) podem ser usados em sequências bem definidas para produzir coisas (o cálculo de uma expressão simples, um origami etc.)."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO / POR ETAPA - 1º ao 5º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 40,
+      "pagina_impressa": 36,
+      "pagina_fonte_complemento": 41,
+      "pagina_impressa_complemento": 37
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF15CO07",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": null,
+      "anos_aplicaveis": [
+        "1º ano",
+        "2º ano",
+        "3º ano",
+        "4º ano",
+        "5º ano"
+      ],
+      "bloco_anos": "1º ao 5º ano",
+      "eixo": "Mundo Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Sistema Operacional",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Conhecer o conceito de Sistema Operacional e sua importância na integração entre software e hardware.",
+      "explicacao": "O objetivo da habilidade é mostrar aos alunos que em seu cotidiano existem dispositivos físicos (celulares, computadores, calculadoras, máquinas de costura etc.) que são controlados por algo que segue uma sequência de passos lógicos (um app do celular, uma pessoa com a calculadora, uma costureira) etc.",
+      "exemplos": [
+        "Utilizar dispositivos do cotidiano do aluno para diferenciar o dispositivo físico (hardware) daquilo que o controla (software)."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO / POR ETAPA - 1º ao 5º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 40,
+      "pagina_impressa": 36,
+      "pagina_fonte_complemento": 41,
+      "pagina_impressa_complemento": 37
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF15CO08",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": null,
+      "anos_aplicaveis": [
+        "1º ano",
+        "2º ano",
+        "3º ano",
+        "4º ano",
+        "5º ano"
+      ],
+      "bloco_anos": "1º ao 5º ano",
+      "eixo": "Cultura Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Uso de artefatos computacionais",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Reconhecer e utilizar tecnologias computacionais para pesquisar e acessar informações, expressar-se crítica e criativamente e resolver problemas.",
+      "explicacao": "A proposta nessa habilidade é que o aluno verifique as diferentes características das tecnologias de informação e comunicação, identificando como funcionam, principais aspectos, bem como reconhecendo os diferentes usos no dia a dia das pessoas dentro e fora da escola.",
+      "exemplos": [
+        "Apresentar imagens de diferentes tecnologias (celular, tablets, computador, dentre outros) destacando características de cada uma delas como tamanho, tipos, bem como diferentes usos do no seu cotidiano, celular para ligações, acessar informações, computador para trabalhar com documentos, produzir conteúdo, dentre outros.\nCriar um portfólio de tecnologias com imagens de tecnologias;"
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO / POR ETAPA - 1º ao 5º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 40,
+      "pagina_impressa": 36,
+      "pagina_fonte_complemento": 41,
+      "pagina_impressa_complemento": 37
+    },
+    {
+      "tipo": "habilidade",
+      "codigo": "EF15CO09",
+      "etapa": "Ensino Fundamental",
+      "segmento": "Anos Iniciais",
+      "ano": null,
+      "anos_aplicaveis": [
+        "1º ano",
+        "2º ano",
+        "3º ano",
+        "4º ano",
+        "5º ano"
+      ],
+      "bloco_anos": "1º ao 5º ano",
+      "eixo": "Cultura Digital",
+      "competencia_especifica": null,
+      "objeto_conhecimento": "Segurança e responsabilidade no uso da tecnologia computacional",
+      "objeto_conhecimento_nivel_2": null,
+      "enunciado_agrupador": null,
+      "texto": "Entender que as tecnologias devem ser utilizadas de maneira segura, ética e responsável, respeitando direitos autorais, de imagem e as leis vigentes.",
+      "explicacao": "Nesta habilidade temos a perspectiva de trazer um panorama sobre os cuidados com a segurança ao usar dispositivos como celular, tablets, computadores dentre outros (roubo de dados em dispositivos físicos, rastro de dados online quando da utilização de jogos por exemplo etc.). Temos também a perspectiva da responsabilidade ao usar as tecnologias, principalmente quanto aos direitos e deveres como cuidado com propriedade intelectual dentre outros.",
+      "exemplos": [
+        "O professor poderá propor atividades de comparação entre a segurança que temos em nossas casas como fechaduras, nos carros com os alarmes, nos cuidados com nossos itens pessoais, comparando com a necessidade de cuidados quando estamos na internet, ao conversar com pessoas desconhecidas, fornecendo informação pessoais. Além disso, é possível trabalhar com atividades de criação de pinturas ou desenhos que demonstrem de quem é cada um deles, apresentando os princípios de direitos autorias e da propriedade intelectual."
+      ],
+      "relacoes_transversais": [],
+      "notas_documentais": [],
+      "quadro_fonte": "COMPUTAÇÃO / POR ETAPA - 1º ao 5º ANO (CONTINUAÇÃO)",
+      "pagina_fonte": 40,
+      "pagina_impressa": 36,
+      "pagina_fonte_complemento": 41,
+      "pagina_impressa_complemento": 37
+    }
+  ]
+}

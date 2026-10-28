@@ -528,3 +528,176 @@ unidade por unidade:
 A planilha cobre 1º ao 9º ano de todos os 9 componentes. Não está versionada no
 repositório (`.gitignore`) por não ser necessária para o site funcionar; quem
 quiser refazer essa validação precisa da própria planilha.
+
+## Computação na Educação Básica — Complemento à BNCC (catálogo interno, sem interface)
+
+**Nome oficial:** *Computação na Educação Básica — Complemento à BNCC*. Nome curto interno: **BNCC
+Computação**. É o complemento nacional à BNCC instituído pela Resolução CNE/CEB nº 1/2022. **Não é** matriz
+do SAEB, **não é** habilidade de Língua Portuguesa (nem de mídia), **não é** currículo de rede de ensino,
+**não é** o guia de Educação Digital e Midiática e **não substitui** nenhuma habilidade da BNCC já
+publicada nos demais arquivos desta pasta. Educação Digital é uma área relacionada, mas o dado aqui
+implementado é, exclusivamente, o complemento de Computação.
+
+**Estado: somente dados, geração, validação, biblioteca interna e testes.** Nada deste catálogo está em
+`lib/bncc/data.ts`, em `data/bncc/import-report.json`, na busca da homepage, em `/bncc`, no sitemap, em
+menus ou em qualquer rota. A busca pública continua sem retornar resultados de Computação até que haja uma
+decisão de interface posterior. Total anterior de registros da BNCC publicada: **1616** (inalterado). Total
+novo de Computação: **141** habilidades/objetivos (+ 4 premissas e 14 competências específicas registradas,
+ver abaixo). Total público atual: 1616 (Computação não está publicada).
+
+### Fundamento normativo e fontes (somente MEC/CNE)
+
+- **Resolução CNE/CEB nº 1, de 4 de outubro de 2022** — fonte normativa (Art. 1º, § 2º: os currículos devem
+  considerar as tabelas de competências e habilidades anexas; vigência em 1º/11/2022; DOU 6/10/2022, Seção 1, p. 33).
+- **Parecer CNE/CEB nº 2/2022** — aprovado em 17/2/2022; homologado por Despacho publicado no DOU de 3/10/2022,
+  Seção 1, p. 55; o voto da comissão aprova o Parecer, o Projeto de Resolução e "os anexos (documento SEI
+  3247470), dos quais são parte integrante".
+- **Anexo ao Parecer CNE/CEB nº 2/2022** (75 páginas) — fonte das tabelas, dos códigos e dos textos.
+
+| Documento | URL oficial (acessada em 28/10/2026) | Tamanho | SHA-256 |
+| --- | --- | --: | --- |
+| Anexo (tabelas) | `https://www.gov.br/mec/pt-br/cne/pdf/pareceres-do-cne/ceb/2022/anexo-ao-parecer-cneceb-no-2-2022-bncc-computacao.pdf` | 1.426.596 B, 75 p. | `b0f021db3c7c2c042b821cec5fab7d77ed1888dbb61590461ce2afef404865b7` |
+| Documento diagramado (mesmo conteúdo) | `https://www.gov.br/mec/pt-br/media/bncc-computacao-na-educacao-basica.pdf` | 1.426.596 B | idêntico ao do Anexo (comparado byte a byte) |
+| Parecer | `https://www.gov.br/mec/pt-br/cne/pdf/pareceres-do-cne/ceb/2022/pceb002_22.pdf` | 617.783 B, 34 p. | `03fa6616e7b92b9f382b3c4177acce23b49b6fe8e2d787fc86326908179fa144` |
+| Resolução | `https://www.gov.br/mec/pt-br/cne/pdf/resolucoes-do-cne/ceb/2022/rceb001_22.pdf` | 56.349 B, 1 p. | `4a4312a44ce3248f73770d97bd884f4f6e38abd2a8f3974060cbedd90f2cb7ab` |
+
+Todos responderam HTTP 200, `application/pdf`, sem redirecionamento. **URLs pedidas que não responderam**
+(registradas em `metadata.fontes_indisponiveis` de cada catálogo; nenhuma cópia de terceiros foi usada):
+os links `portal.mec.gov.br/docman/...` (Parecer, Resolução, Anexo e a planilha consolidada `233371`) — o host
+`portal.mec.gov.br` não tem **nenhum** registro DNS (A, AAAA ou CNAME; confirmado no resolvedor local, em 8.8.8.8
+e em 1.1.1.1), embora as páginas oficiais do gov.br ainda os listem; e
+`gov.br/mec/pt-br/escolas-conectadas/BNCCComputaoCompletodiagramado.pdf` (HTTP 404; o documento continua
+publicado no endereço `.../media/` acima, idêntico ao Anexo). Parecer, Resolução e Anexo foram obtidos nos
+endereços equivalentes do gov.br, achados a partir das páginas oficiais da BNCC no MEC. **A planilha consolidada
+não tem equivalente oficial acessível: a validação cruzada contra ela NÃO foi feita** e o PDF diagramado não é uma
+segunda fonte independente (é o mesmo arquivo).
+
+### Arquivos e comandos
+
+| Arquivo | Papel |
+| --- | --- |
+| `data/bncc/source/official-mec-bncc-computacao-{educacao-infantil,anos-iniciais,anos-finais,ensino-medio}.json` | transcrição auditada (fonte versionada) |
+| `data/bncc/computacao-{educacao-infantil,anos-iniciais,anos-finais,ensino-medio}.json` | catálogo **gerado** — nunca editar à mão |
+| `scripts/bncc-computacao/extrair_anexo.py` | extrator do PDF → 4 fontes (PyMuPDF; `--bruto` grava a revisão) |
+| `scripts/bncc-computacao/conferir_texto_independente.py` | segunda leitura do texto com `pypdf` (conferência independente) |
+| `scripts/bncc-computacao/gerar.mjs` | gerador/validador (`--check`, `--fonte-dir`, `--saida-dir`) |
+| `scripts/bncc-computacao/referencia-aprovada.mjs` | referência **literal** congelada: tabela canônica de códigos, totais por ano/bloco/competência/eixo e hash SHA-256 de cada registro |
+| `lib/bncc/computacao.ts` | biblioteca interna de consulta (não integrada à interface) |
+| `tests/bncc-computacao-{catalogo,lib,mutacoes}.test.mjs` | testes |
+
+```bash
+npm run bncc:computacao:gerar   # valida as 4 fontes e grava os catálogos só quando os bytes mudam ("já em dia" se nada muda)
+npm run bncc:computacao:check   # gera em memória e compara byte a byte; nunca escreve
+python scripts/bncc-computacao/extrair_anexo.py --pdf <Anexo.pdf> --saida data/bncc/source --parecer <pceb002_22.pdf> --resolucao <rceb001_22.pdf> --bruto <revisao.json>
+python scripts/bncc-computacao/conferir_texto_independente.py <Anexo.pdf> <revisao.json>
+```
+
+### Metodologia de extração e conferência visual
+
+O Anexo é uma tabela larga cortada em **duas páginas espelhadas**: a esquerda traz eixo, objeto de conhecimento
+e habilidade (ou competência específica e habilidade, no Ensino Médio); a direita, explicação e exemplos. O
+texto de cada célula é centralizado verticalmente, então a atribuição é sempre **geométrica** (linhas
+horizontais da grade da página × colunas lidas das linhas verticais), nunca pela ordem do texto. Cada faixa de
+linha precisa conter exatamente um código; uma habilidade pode ter mais de uma linha de explicação/exemplo na
+direita (EF15CO02 tem duas), que são reunidas na ordem. Quebras de linha do PDF só são unidas sem espaço
+quando a linha termina em hífen impresso (o PDF não tem hifenização automática: "pré-definido", "vice-versa") ou
+em "/" colado a uma palavra/URL; as 15 junções estão em `metadata.juncoes_de_linha`.
+
+**Conferência visual:** todas as 33 tabelas (EI p. 6–13; EF p. 16–63; EM p. 66–75) e as 3 páginas de texto
+(premissas p. 5; competências do EF p. 15 e do EM p. 65) foram renderizadas e lidas lado a lado com o texto
+extraído (código, texto, eixo, objeto, explicação, exemplos, alinhamento linha a linha). **Conferência
+independente:** o multiconjunto de letras/dígitos de cada uma das 69 páginas com conteúdo foi comparado com o
+lido por um segundo motor (`pypdf`): 67 páginas idênticas e 2 (p. 5 e p. 15) só diferem nas letras de títulos
+grandes. (O `pdftotext`/xpdf 4.00 da máquina não abre este PDF.) Reexecutar o extrator reproduz as 4 fontes
+byte a byte.
+
+### Totais exatos
+
+141 habilidades/objetivos = **Educação Infantil 11** (EI03CO01–11) + **EF Anos Iniciais 50** + **EF Anos
+Finais 54** + **Ensino Médio 26** (EM13CO01–26). Padrões de código realmente existentes (13): `EI03CO`,
+`EF01CO` a `EF05CO`, `EF15CO` (bloco 1º ao 5º ano), `EF06CO` a `EF09CO`, `EF69CO` (bloco 6º ao 9º ano), `EM13CO`.
+
+| Grupo | Total | Pensamento Computacional | Mundo Digital | Cultura Digital |
+| --- | --: | --: | --: | --: |
+| Educação Infantil (EI03CO) | 11 | 6 | 3 | 2 |
+| 1º ano | 7 | 3 | 2 | 2 |
+| 2º ano | 6 | 2 | 2 | 2 |
+| 3º ano | 9 | 3 | 3 | 3 |
+| 4º ano | 8 | 3 | 2 | 3 |
+| 5º ano | 11 | 4 | 3 | 4 |
+| 1º ao 5º ano (EF15CO) | 9 | 4 | 3 | 2 |
+| 6º ano | 10 | 6 | 2 | 2 |
+| 7º ano | 11 | 5 | 2 | 4 |
+| 8º ano | 11 | 4 | 2 | 5 |
+| 9º ano | 10 | 3 | 2 | 5 |
+| 6º ao 9º ano (EF69CO) | 12 | 6 | 4 | 2 |
+
+Ensino Médio (sem eixo; por competência específica): 1 → 6; 2 → 2; 3 → 3; 4 → 5; 5 → 2; 6 → 4; 7 → 4. Além das
+habilidades: 4 **premissas** da Educação Infantil (+ o parágrafo introdutório), 7 **competências específicas**
+do Ensino Fundamental (a mesma lista nos dois arquivos do EF; 14 registros físicos, 7 distintas) e 7 do Ensino
+Médio. Os registros físicos nos 4 arquivos somam 166 (141 + 4 + 14 + 7).
+
+### Campos por etapa
+
+Comuns: `id_interno` (identificador técnico — **nunca** um código oficial), `tipo`, `codigo` (o código oficial,
+`null` para premissas e competências, que a fonte não codifica), `etapa`, `segmento`, `ano`, `anos_aplicaveis`,
+`bloco_anos`, `eixo`, `competencia_especifica`, `objeto_conhecimento`, `texto`, `explicacao`, `exemplos`,
+`relacoes_transversais`, `notas_documentais`, `quadro_fonte`, `pagina_fonte`, `pagina_impressa` (= real − 4),
+`pagina_fonte_complemento`/`pagina_impressa_complemento` (página da explicação/exemplos),
+`documento_fonte`, `documento_url`, `documento_sha256`. Ausência é `null`, nunca string vazia.
+
+- **Educação Infantil:** `tipo` = `objetivo_aprendizagem`; eixo; `explicacao` = `null` (o quadro só tem
+  exemplos); sem objeto, ano nem competência.
+- **Ensino Fundamental:** eixo e `objeto_conhecimento` sempre; `ano` ("3º ano") ou, nos blocos, `ano` = `null`
+  e `bloco_anos` + `anos_aplicaveis`. Do 6º ao 9º ano (e `EF69CO`) o objeto tem **vários níveis de colunas sob o
+  cabeçalho "OBJETO DE CONHECIMENTO"/"HABILIDADE"**: `objeto_conhecimento` (nível 1), `objeto_conhecimento_nivel_2`
+  e `enunciado_agrupador` — uma frase **não codificada** impressa sob o cabeçalho HABILIDADE, à esquerda das
+  habilidades codificadas; **não é uma habilidade**. Os nomes dos níveis são neutros porque a fonte não os nomeia.
+  Habilidades do EF não são ligadas a competências no quadro (`competencia_especifica` = `null`).
+- **Ensino Médio:** sem eixo e sem objeto; `competencia_especifica` (1–7) obrigatória, lida da célula mesclada.
+
+### Habilidade, explicação, exemplo e relação transversal
+
+São campos separados e nunca se substituem: `texto` é a habilidade; `explicacao` ("EXPLICAÇÃO DA HABILIDADE")
+e `exemplos` ("EXEMPLOS") são material de apoio oficial, **não** o texto da habilidade. Relações transversais
+só entram quando a fonte as imprime: há **uma** no Anexo — EM13CO05 "Possui relação direta com (EM13MAT315)",
+impressa na célula de exemplos — guardada em `relacoes_transversais` (relação, nunca equivalência; o destino
+existe em `ensino-medio-matematica.json`) e retirada de `exemplos` para não duplicar.
+
+### Correções tipográficas controladas (nenhuma é global; cada uma é ligada a registros específicos)
+
+| Id | Registros | Impresso na fonte | Registrado |
+| --- | --- | --- | --- |
+| C1 | EF05CO11 (p. 36) | `(EF05CO011)`, 3 dígitos | `EF05CO11`; o literal fica em `correcoes_tipograficas` e em `codigoImpressoNaFonte()` |
+| C2 | EF09CO06–09 (p. 58) | "responsabilidad" / "e no uso da tecnologia" (palavra quebrada sem hífen) | "Segurança e responsabilidade no uso da tecnologia" |
+| C3 | EF09CO05 (p. 58) | células repetidas com o marcador "(cont.)" | marcador removido; texto idêntico ao de EF09CO04 |
+
+### Divergências e peculiaridades do próprio documento (preservadas, não resolvidas por inferência)
+
+1. **Competências 4, 5 e 7 do Ensino Médio:** o texto da lista de competências (p. 65) difere do texto repetido na
+   primeira coluna dos quadros de habilidades (pp. 70 e 74): "conteúdos e artefatos … questões éticas e legais" ×
+   "informação e/ou artefatos … questões legais"; "preferencialmente de maneira colaborativa" × "de maneira
+   colaborativa"; "frente às questões" × "para tomar decisões frente às questões". Guardados `texto` (lista) e
+   `texto_no_quadro_de_habilidades`, com `textos_divergem` e três itens em `divergencias_documentais`.
+2. **EF05CO06 e EF05CO07:** a explicação e o exemplo impressos na linha de EF05CO06 ("Armazenamento de dados")
+   tratam de sistema operacional e os da linha de EF05CO07 ("Sistema operacional") tratam de armazenamento.
+   Mantida a associação posicional impressa, com `notas_documentais`; possível inversão editorial na fonte.
+3. **EF69CO01:** a coluna "explicação" e a coluna "exemplos" têm o mesmo texto, palavra por palavra.
+4. **EF06CO01:** o texto da habilidade é impresso sem ponto final (termina em `‘tipo de dados’`).
+
+### Limitações
+
+Única fonte das tabelas é o Anexo (sem validação cruzada com a planilha consolidada, inacessível); a
+transcrição de explicações/exemplos reproduz erros de digitação do original; quebras de item em listas sem
+marcador podem ter sido unidas numa só linha lógica (as palavras e sua ordem são sempre preservadas); espaços
+múltiplos foram normalizados para um; a ordem dos registros é por código, não pela ordem das páginas.
+
+### Garantias de validação
+
+O gerador rejeita (e os testes de mutação provam): código duplicado, inválido, de outra etapa, de outro ano ou
+bloco, incompatível com o tipo ou inventado; texto vazio, truncado ou com cabeçalho/rodapé; eixo inexistente ou
+errado; objeto ou competência ausente/trocado; página inválida ou trocada; URL fora do domínio oficial; hash
+malformado ou diferente do aprovado; explicação, exemplo ou relação tratados como habilidade; troca simétrica
+entre eixos, anos ou etapas; alteração de uma palavra; duplicação por continuação de tabela. A identidade **não**
+depende só de contagens: a tabela canônica e o hash por registro são literais congelados em
+`referencia-aprovada.mjs`. Atualizá-lo é uma ação deliberada, só após reconferir o PDF.
