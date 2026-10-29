@@ -116,8 +116,8 @@ test("'Privacidade' is a Footer-only link — never added to the main Header men
 
 // ---- 2. Submenu BNCC contém exatamente os quatro destinos previstos ----
 
-test("the BNCC submenu contains exactly the four expected destinations, in both the desktop dropdown and the mobile accordion", () => {
-  const expectedHrefs = ["/bncc/educacao-infantil", "/bncc/ensino-fundamental", "/bncc/ensino-medio", "/bncc/competencias-gerais"];
+test("the BNCC submenu contains exactly the five expected destinations (the four BNCC stages + BNCC Computação, added in Rodada 35), in both the desktop dropdown and the mobile accordion", () => {
+  const expectedHrefs = ["/bncc/educacao-infantil", "/bncc/ensino-fundamental", "/bncc/ensino-medio", "/bncc/competencias-gerais", "/bncc/computacao"];
 
   // Note: these hrefs legitimately also appear in the homepage's quick-access cards and Footer, so
   // a whole-page occurrence count isn't meaningful here — each container is checked in isolation.
@@ -126,14 +126,14 @@ test("the BNCC submenu contains exactly the four expected destinations, in both 
   for (const href of expectedHrefs) {
     assert.ok(dropdown.includes(`href="${href}"`), `desktop dropdown missing ${href}`);
   }
-  assert.equal((dropdown.match(/<a /g) ?? []).length, 4, "desktop dropdown should contain exactly 4 links");
+  assert.equal((dropdown.match(/<a /g) ?? []).length, 5, "desktop dropdown should contain exactly 5 links");
 
   const mobilePanel = homeHtml.match(/<div class="mobile-accordion-panel"[^>]*>[^]*?<\/div>/)?.[0] ?? "";
   assert.ok(mobilePanel, "missing mobile-accordion-panel");
   for (const href of expectedHrefs) {
     assert.ok(mobilePanel.includes(`href="${href}"`), `mobile accordion panel missing ${href}`);
   }
-  assert.equal((mobilePanel.match(/<a /g) ?? []).length, 4, "mobile accordion panel should contain exactly 4 links");
+  assert.equal((mobilePanel.match(/<a /g) ?? []).length, 5, "mobile accordion panel should contain exactly 5 links");
 });
 
 test("the BNCC trigger has aria-expanded, an accessible name, and aria-controls pointing at an existing id", () => {

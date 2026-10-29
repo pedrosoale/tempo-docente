@@ -147,10 +147,11 @@ test("código impresso na fonte: EF05CO11 foi impresso como EF05CO011; os demais
   assert.equal(codigoImpressoNaFonte("XX"), null);
 });
 
-test("metadados: nenhum escopo está publicado na interface; proveniência e fontes indisponíveis disponíveis", () => {
+test("metadados: todos os escopos estão publicados na interface (só em /bncc/computacao); proveniência e fontes indisponíveis disponíveis", () => {
   for (const e of ESCOPOS_COMPUTACAO) {
     const m = obterMetadados(e);
-    assert.equal(m.publicado_na_interface, false);
+    assert.equal(m.publicado_na_interface, true);
+    assert.match(m.nota_de_interface, /exclusivamente na página \/bncc\/computacao/);
     assert.equal(m.nome_curto, "BNCC Computação");
     assert.ok(m.fontes.length === 4 && m.fontes_indisponiveis.length === 5);
   }

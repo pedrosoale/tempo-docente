@@ -6,9 +6,9 @@
 // auditadas em data/bncc/source/official-mec-bncc-computacao-<escopo>.json — nunca editar os arquivos
 // gerados. Ver data/bncc/README.md ("Computação na Educação Básica — Complemento à BNCC").
 //
-// NÃO INTEGRADA À INTERFACE: este módulo não é importado por lib/bncc/data.ts, pela busca da homepage,
-// por /bncc, pelo sitemap nem por nenhuma página. A busca pública existente continua sem retornar
-// resultados de Computação até que haja uma decisão de interface posterior.
+// INTERFACE: a única página que o consome é /bncc/computacao, via lib/bncc/computacao-consulta.ts (leitura de
+// parâmetros, busca e projeção dos campos públicos). Este módulo continua fora de lib/bncc/data.ts, da busca
+// da homepage, de /bncc e da busca pública existente, que seguem sem retornar resultados de Computação.
 //
 // DISTINÇÕES QUE ESTE MÓDULO PRESERVA (nunca unificar):
 //   - É o complemento NACIONAL à BNCC (Resolução CNE/CEB nº 1/2022) — não é currículo estadual ou
@@ -94,7 +94,8 @@ export interface MetadadosComputacao {
   escopo: EscopoComputacao;
   nome_oficial: string;
   nome_curto: string;
-  publicado_na_interface: false;
+  publicado_na_interface: true;
+  nota_de_interface: string;
   total_registros: number;
   total_habilidades_e_objetivos: number;
   fontes: { id: string; titulo: string; url: string; sha256: string; tamanho_bytes: number; papel: string; acessado_em: string }[];

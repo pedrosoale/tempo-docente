@@ -529,7 +529,7 @@ A planilha cobre 1º ao 9º ano de todos os 9 componentes. Não está versionada
 repositório (`.gitignore`) por não ser necessária para o site funcionar; quem
 quiser refazer essa validação precisa da própria planilha.
 
-## Computação na Educação Básica — Complemento à BNCC (catálogo interno, sem interface)
+## Computação na Educação Básica — Complemento à BNCC (catálogo com interface pública em /bncc/computacao)
 
 **Nome oficial:** *Computação na Educação Básica — Complemento à BNCC*. Nome curto interno: **BNCC
 Computação**. É o complemento nacional à BNCC instituído pela Resolução CNE/CEB nº 1/2022. **Não é** matriz
@@ -538,12 +538,17 @@ do SAEB, **não é** habilidade de Língua Portuguesa (nem de mídia), **não é
 publicada nos demais arquivos desta pasta. Educação Digital é uma área relacionada, mas o dado aqui
 implementado é, exclusivamente, o complemento de Computação.
 
-**Estado: somente dados, geração, validação, biblioteca interna e testes.** Nada deste catálogo está em
-`lib/bncc/data.ts`, em `data/bncc/import-report.json`, na busca da homepage, em `/bncc`, no sitemap, em
-menus ou em qualquer rota. A busca pública continua sem retornar resultados de Computação até que haja uma
-decisão de interface posterior. Total anterior de registros da BNCC publicada: **1616** (inalterado). Total
-novo de Computação: **141** habilidades/objetivos (+ 4 premissas e 14 competências específicas registradas,
-ver abaixo). Total público atual: 1616 (Computação não está publicada).
+**Estado: dados, geração, validação, biblioteca e uma única interface pública, `/bncc/computacao`** (Rodada 35;
+código em `app/(bncc-computacao)/bncc/computacao`, consulta em `lib/bncc/computacao-consulta.ts`, item "BNCC
+Computação" no submenu BNCC e uma entrada no sitemap). Nada deste catálogo está em `lib/bncc/data.ts`, em
+`data/bncc/import-report.json`, na busca da homepage, em `/bncc` ou em qualquer outra rota; a busca pública
+existente continua sem retornar resultados de Computação. Os JSONs são importados no servidor (build) e nunca
+buscados pelo navegador. Total anterior de registros da BNCC publicada: **1616** (inalterado). Total
+de Computação: **141** habilidades/objetivos (+ 4 premissas e 14 competências específicas registradas, ver
+abaixo). Os metadados operacionais `publicado_na_interface` (`true`) e `nota_de_interface` de cada catálogo
+gerado são escritos por `scripts/bncc-computacao/gerar.mjs` e dizem o mesmo que esta seção: o catálogo é
+publicado exclusivamente em `/bncc/computacao`; as **fontes oficiais** (`source/`) não registram o estado da
+interface. A consulta pública pagina os resultados no servidor (24 por página, parâmetro `pagina`).
 
 ### Fundamento normativo e fontes (somente MEC/CNE)
 
@@ -582,7 +587,7 @@ segunda fonte independente (é o mesmo arquivo).
 | `scripts/bncc-computacao/conferir_texto_independente.py` | segunda leitura do texto com `pypdf` (conferência independente) |
 | `scripts/bncc-computacao/gerar.mjs` | gerador/validador (`--check`, `--fonte-dir`, `--saida-dir`) |
 | `scripts/bncc-computacao/referencia-aprovada.mjs` | referência **literal** congelada: tabela canônica de códigos, totais por ano/bloco/competência/eixo e hash SHA-256 de cada registro |
-| `lib/bncc/computacao.ts` | biblioteca interna de consulta (não integrada à interface) |
+| `lib/bncc/computacao.ts` | biblioteca de consulta ao catálogo (só a rota `/bncc/computacao` a usa, via `computacao-consulta.ts`) |
 | `tests/bncc-computacao-{catalogo,lib,mutacoes}.test.mjs` | testes |
 
 ```bash
