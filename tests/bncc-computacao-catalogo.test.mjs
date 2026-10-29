@@ -377,11 +377,16 @@ test("gerador: nenhuma escrita parcial — se uma fonte é inválida, nenhum cat
   }
 });
 
-test("catálogo gerado: metadados declaram que NÃO está publicado na interface e de onde veio cada campo", () => {
+test("catálogo gerado: metadados declaram que está publicado só em /bncc/computacao (submenu e sitemap), e fora de data.ts, import-report, busca geral e homepage", () => {
   for (const e of ESCOPOS) {
     const m = carregar(e).metadata;
-    assert.equal(m.publicado_na_interface, false);
-    assert.match(m.nota_de_interface, /Não está incluído em lib\/bncc\/data\.ts/);
+    assert.equal(m.publicado_na_interface, true);
+    assert.match(m.nota_de_interface, /exclusivamente na página \/bncc\/computacao/);
+    assert.match(m.nota_de_interface, /submenu BNCC/);
+    assert.match(m.nota_de_interface, /sitemap/);
+    assert.match(m.nota_de_interface, /Não está incorporado a lib\/bncc\/data\.ts, a data\/bncc\/import-report\.json, à busca geral de \/bncc nem à homepage/);
+    // Nada de afirmações antigas de que o catálogo é interno/sem rota/sem menu/sem sitemap.
+    assert.doesNotMatch(m.nota_de_interface, /interno|nenhuma página|nenhum.*(menu|sitemap)|não expõe/i);
     assert.equal(m.schema, "bncc-computacao/1");
     assert.equal(m.total_habilidades_e_objetivos, TOTAL_POR_ESCOPO[e]);
   }
@@ -401,21 +406,35 @@ test("compatibilidade: nenhum código de Computação colide com os 1616 registr
   assert.equal(agregado.total_geral, 1616);
 });
 
-test("interface intocada: nenhum módulo público, importador ou rota referencia o catálogo de Computação", () => {
-  const alvos = [join(RAIZ, "lib", "bncc", "data.ts"), join(RAIZ, "scripts", "bncc", "import.mjs"), join(RAIZ, "app", "sitemap.ts"), join(RAIZ, "app", "layout.tsx"), join(RAIZ, "app", "page.tsx"), join(RAIZ, "app", "components", "Header.tsx"), join(RAIZ, "app", "components", "Footer.tsx")];
+// Rodada 35: a interface pública /bncc/computacao foi criada. O que continua valendo é o ISOLAMENTO: a rota,
+// o submenu e o sitemap são os únicos pontos de contato, e nada que não seja a consulta de Computação
+// (dados agregados da BNCC, importador, homepage, rodapé, layout raiz, busca) referencia o catálogo.
+test("interface isolada: só a rota /bncc/computacao, o submenu e o sitemap referenciam Computação; dados, importador, homepage, rodapé e layout raiz não", () => {
+  const alvos = [join(RAIZ, "lib", "bncc", "data.ts"), join(RAIZ, "scripts", "bncc", "import.mjs"), join(RAIZ, "app", "layout.tsx"), join(RAIZ, "app", "page.tsx"), join(RAIZ, "app", "components", "Footer.tsx")];
   for (const alvo of alvos) {
     if (!existsSync(alvo)) continue;
     assert.doesNotMatch(readFileSync(alvo, "utf-8"), /bncc\/computacao|computacao-(educacao|anos|ensino)|bncc-computacao/, alvo);
   }
+  const grupoDaRota = join(RAIZ, "app", "(bncc-computacao)");
+  const pontosDeContato = [join(RAIZ, "app", "sitemap.ts"), join(RAIZ, "app", "components", "Header.tsx")];
   const visitar = (d) => {
     for (const e of readdirSync(d, { withFileTypes: true })) {
       const p = join(d, e.name);
+      if (p === grupoDaRota || pontosDeContato.includes(p)) continue;
       if (e.isDirectory()) visitar(p);
       else if (/\.(ts|tsx)$/.test(e.name)) assert.doesNotMatch(readFileSync(p, "utf-8"), /bncc\/computacao|computacao-(educacao|anos|ensino)/, p);
     }
   };
   visitar(join(RAIZ, "app"));
-  assert.ok(!existsSync(join(RAIZ, "app", "bncc", "computacao")), "nenhuma rota /bncc/computacao");
+  // Os pontos de contato só citam a rota pública — nunca os arquivos do catálogo.
+  for (const ponto of pontosDeContato) {
+    const fonte = readFileSync(ponto, "utf-8");
+    assert.match(fonte, /\/bncc\/computacao/, ponto);
+    assert.doesNotMatch(fonte, /computacao-(educacao|anos|ensino)|data\/bncc/, ponto);
+  }
+  // A rota vive no grupo (fora de app/bncc/loading.tsx, para o conteúdo vir no HTML inicial).
+  assert.ok(existsSync(join(grupoDaRota, "bncc", "computacao", "page.tsx")), "rota /bncc/computacao");
+  assert.ok(!existsSync(join(RAIZ, "app", "bncc", "computacao")), "a rota não fica sob app/bncc (ver o comentário em app/(bncc-computacao)/layout.tsx)");
   assert.ok(!existsSync(join(RAIZ, "app", "educacao-digital")) && !existsSync(join(RAIZ, "app", "educacao-midiatica")));
 });
 

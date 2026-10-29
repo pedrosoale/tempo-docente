@@ -176,14 +176,14 @@
     "natureza_do_conteudo": "Complemento nacional à BNCC (Resolução CNE/CEB nº 1/2022). Não é currículo estadual ou municipal, não é matriz do SAEB e não substitui nenhuma habilidade da BNCC já publicada.",
     "nome_curto": "BNCC Computação",
     "nome_oficial": "Computação na Educação Básica — Complemento à BNCC",
-    "nota_de_interface": "Este catálogo é interno: nenhuma página, rota, busca, menu, mapa do site ou metadado público o expõe. Não está incluído em lib/bncc/data.ts nem em data/bncc/import-report.json.",
+    "nota_de_interface": "Este catálogo é publicado exclusivamente na página /bncc/computacao, com a entrada \"BNCC Computação\" no submenu BNCC e uma entrada no sitemap. Não está incorporado a lib/bncc/data.ts, a data/bncc/import-report.json, à busca geral de /bncc nem à homepage.",
     "paginas_oficiais_de_listagem": [
       "https://www.gov.br/mec/pt-br/cne/normas-classificadas-por-assunto/base-nacional-comum-curricular-bncc",
       "https://www.gov.br/mec/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/cne/base-nacional-comum-curricular-bncc",
       "https://www.gov.br/mec/pt-br/cne/parecer-ceb-2022"
     ],
     "premissas_introducao": null,
-    "publicado_na_interface": false,
+    "publicado_na_interface": true,
     "schema": "bncc-computacao/1",
     "segmento": "Anos Iniciais",
     "total_habilidades_e_objetivos": 50,

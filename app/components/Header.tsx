@@ -9,6 +9,7 @@ const BNCC_SUBMENU = [
   ["Ensino Fundamental", "/bncc/ensino-fundamental"],
   ["Ensino Médio", "/bncc/ensino-medio"],
   ["Competências Gerais", "/bncc/competencias-gerais"],
+  ["BNCC Computação", "/bncc/computacao"],
 ] as const;
 
 // "Resultados por escola" repete deliberadamente o href do link principal "SAEB" (/saeb) — é a

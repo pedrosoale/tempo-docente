@@ -98,6 +98,11 @@ test("includes the core public routes", () => {
   }
 });
 
+test("includes /bncc/computacao exactly once (Rodada 35)", () => {
+  const matches = locs.filter((loc) => loc === `${BASE_URL}/bncc/computacao`);
+  assert.equal(matches.length, 1, `expected /bncc/computacao exactly once, found ${matches.length}`);
+});
+
 test("includes /saeb exactly once", () => {
   const matches = locs.filter((loc) => loc === `${BASE_URL}/saeb`);
   assert.equal(matches.length, 1, `expected /saeb exactly once, found ${matches.length}`);
@@ -234,7 +239,7 @@ test("/saeb-related sitemap entries are exactly the two bare page routes — nev
   );
 });
 
-test("total URL count matches exactly what the current BNCC/SARESP/institutional data supports — 1685 (1684 previous + 1 /saeb/matriz)", async () => {
+test("total URL count matches exactly what the current BNCC/SARESP/institutional data supports — 1686 (1685 previous + 1 /bncc/computacao)", async () => {
   const staticRouteCount =
     1 + // home
     1 + // /bncc
@@ -244,6 +249,7 @@ test("total URL count matches exactly what the current BNCC/SARESP/institutional
     1 + // /saresp
     1 + // /saeb
     1 + // /saeb/matriz
+    1 + // /bncc/computacao
     1 + // /bncc/educacao-infantil
     1 + // /sobre
     1 + // /privacidade
@@ -258,6 +264,6 @@ test("total URL count matches exactly what the current BNCC/SARESP/institutional
   const expectedCodes = await expectedCodeSet();
   const expectedTotal = staticRouteCount + yearPageCount + ENSINO_MEDIO_AREAS.length + expectedCodes.size;
 
-  assert.equal(expectedTotal, 1685, "the independently-derived expectation itself should land on 1685");
+  assert.equal(expectedTotal, 1686, "the independently-derived expectation itself should land on 1686");
   assert.equal(locs.length, expectedTotal);
 });

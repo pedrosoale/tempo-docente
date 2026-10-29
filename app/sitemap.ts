@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
     "/bncc/ensino-medio",
     ...AREAS_ENSINO_MEDIO.map((area) => `/bncc/ensino-medio/${area.slug}`),
+    "/bncc/computacao",
     "/bncc/educacao-infantil",
     ...CAMPOS_EXPERIENCIA_INFANTIL.map((campo) => `/bncc/educacao-infantil/${campo.slug}`),
     "/saresp",
