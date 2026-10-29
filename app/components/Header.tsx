@@ -181,7 +181,7 @@ export function Header() {
             >
               <ChevronDown size={16} aria-hidden="true" />
             </button>
-            <div className="nav-dropdown" id={desktopSaebDropdownId} hidden={!desktopSaebOpen}>
+            <div className="nav-dropdown" data-align="end" id={desktopSaebDropdownId} hidden={!desktopSaebOpen}>
               {SAEB_SUBMENU.map(([label, href]) => (
                 <a
                   key={href}

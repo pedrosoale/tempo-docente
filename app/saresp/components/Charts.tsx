@@ -67,7 +67,7 @@ export function ComponentBreakdownCharts({ comparison }: { comparison: Executive
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={bySerie} margin={{ left: 0, right: 12, bottom: 12 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e7ecea" vertical={false} />
-                <XAxis dataKey="name" tick={axisTick} stroke="#dfe7e5" />
+                <XAxis dataKey="name" interval={0} tick={axisTick} stroke="#dfe7e5" />
                 <YAxis tickFormatter={(value: number) => formatNumber(value, 0)} tick={axisTick} stroke="#dfe7e5" />
                 <Tooltip formatter={tooltipFormatter} contentStyle={tooltipContentStyle} labelStyle={tooltipLabelStyle} cursor={{ fill: "rgba(18, 53, 91, 0.04)" }} />
                 <Legend wrapperStyle={{ fontSize: 12, color: "#385269" }} />
