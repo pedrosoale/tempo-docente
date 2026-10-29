@@ -4,14 +4,17 @@
 // arquivos temporários para os casos de divergência estrutural/semântica.
 import assert from "node:assert/strict";
 import test from "node:test";
-import { mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { copyFileSync, mkdtempSync, readFileSync, rmSync, statSync, utimesSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { isAbsolute, join, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { EscalasGeracaoError, gerar, verificar } from "../scripts/saeb-escalas/gerar.mjs";
 
+// O catálogo versionado e a fonte oficial reais são SOMENTE LEITURA nesta suíte: nenhum teste os usa
+// como destino de escrita (saidaPath) nem chama writeFileSync/copyFileSync com eles como destino.
 const CATALOGO_REAL_PATH = fileURLToPath(new URL("../data/saeb-escalas/escalas-lp-mt.json", import.meta.url));
+const FONTE_REAL_PATH = fileURLToPath(new URL("../data/saeb-escalas/source/official-inep-escalas-lp-mt.json", import.meta.url));
 
 const ETAPAS_PILOTO = ["anosIniciais", "anosFinais", "ensinoMedio"];
 const COMPONENTES_PILOTO = ["lp", "mt"];
@@ -145,14 +148,58 @@ test("gerar: primeira gravação escreve (escrito:true); regravar a mesma fonte 
   assert.equal(readFileSync(saida, "utf-8"), primeira.texto, "o conteúdo continua sendo exatamente o gerado na primeira vez");
 });
 
-test("gerar (fonte real): regenerar duas vezes seguidas não reescreve o catálogo já em dia (mtime preservado)", () => {
-  const primeira = gerar({ escrever: false });
-  writeFileSync(CATALOGO_REAL_PATH, primeira.texto, "utf-8");
-  const mtimeAntes = statSync(CATALOGO_REAL_PATH).mtimeMs;
+test("gerar (fonte real): um catálogo temporário já em dia com a fonte real não é reescrito (mtime e bytes preservados)", () => {
+  // Fonte oficial REAL (só leitura) e saída em arquivo TEMPORÁRIO — o catálogo versionado nunca é destino.
+  const saidaTemporaria = join(dir, "escalas-lp-mt.json");
+  assert.notEqual(resolve(saidaTemporaria), resolve(CATALOGO_REAL_PATH), "a saída do teste não pode ser o catálogo versionado");
+  // Pertencimento por caminho relativo (e não por prefixo textual: "C:\Temp" é prefixo de "C:\TempOutro").
+  const relativoAoTmp = relative(resolve(tmpdir()), resolve(saidaTemporaria));
+  assert.ok(
+    relativoAoTmp !== "" && !isAbsolute(relativoAoTmp) && relativoAoTmp !== ".." && !relativoAoTmp.startsWith(`..${sep}`),
+    "a saída do teste deve ficar dentro do diretório temporário do sistema",
+  );
 
-  const resultado = gerar({ escrever: true });
-  assert.equal(resultado.escrito, false, "o catálogo real já estava em dia com a fonte — gerar() não deveria reescrevê-lo");
-  assert.equal(statSync(CATALOGO_REAL_PATH).mtimeMs, mtimeAntes, "mtime do catálogo real mudou sem necessidade");
+  const bytesRealAntes = readFileSync(CATALOGO_REAL_PATH);
+  const mtimeRealAntes = statSync(CATALOGO_REAL_PATH).mtimeMs;
+  const bytesFonteAntes = readFileSync(FONTE_REAL_PATH);
+
+  // Catálogo temporário = cópia byte a byte do versionado, que está em dia com a fonte real.
+  copyFileSync(CATALOGO_REAL_PATH, saidaTemporaria);
+  // mtime fixo e antigo (sem sleep): se gerar() regravasse o arquivo, o mtime mudaria de forma inequívoca.
+  const mtimeAntigo = new Date("2001-01-01T00:00:00Z");
+  utimesSync(saidaTemporaria, mtimeAntigo, mtimeAntigo);
+  const mtimeAntes = statSync(saidaTemporaria).mtimeMs;
+  assert.equal(mtimeAntes, mtimeAntigo.getTime(), "pré-condição: o mtime do catálogo temporário foi fixado");
+  assert.deepEqual(readFileSync(saidaTemporaria), bytesRealAntes, "pré-condição: o catálogo temporário começa idêntico ao versionado");
+
+  const resultado = gerar({ fontePath: FONTE_REAL_PATH, saidaPath: saidaTemporaria, escrever: true });
+  assert.equal(resultado.escrito, false, "o catálogo temporário já estava em dia com a fonte real — gerar() não deveria reescrevê-lo");
+  assert.equal(statSync(saidaTemporaria).mtimeMs, mtimeAntes, "mtime do catálogo temporário mudou sem necessidade");
+  assert.deepEqual(readFileSync(saidaTemporaria), bytesRealAntes, "o conteúdo do catálogo temporário deixou de ser idêntico ao versionado");
+
+  // O catálogo e a fonte reais continuam intocados (bytes e mtime) depois da geração.
+  assert.deepEqual(readFileSync(CATALOGO_REAL_PATH), bytesRealAntes, "o catálogo versionado mudou durante o teste");
+  assert.equal(statSync(CATALOGO_REAL_PATH).mtimeMs, mtimeRealAntes, "o mtime do catálogo versionado mudou durante o teste");
+  assert.deepEqual(readFileSync(FONTE_REAL_PATH), bytesFonteAntes, "a fonte oficial mudou durante o teste");
+});
+
+test("arquivo de teste: nenhuma operação escreve no catálogo ou na fonte reais (guarda estrutural contra regressão)", () => {
+  // Esta guarda examina SOMENTE este arquivo (tests/saeb-escalas-catalogo.test.mjs) e impede a
+  // reintrodução, nele, de operações de escrita/remoção nos arquivos reais. Ela complementa, mas não
+  // substitui: (1) a execução do teste acima, (2) as medições externas de hash e mtime do catálogo e
+  // (3) a busca manual, mais ampla, nos demais arquivos de teste. Não varre o resto da árvore.
+  // Os padrões são montados em partes para que este próprio arquivo não case com eles.
+  const fonte = readFileSync(fileURLToPath(import.meta.url), "utf-8");
+  const REAIS = "(?:CATALOGO_REAL_PATH|FONTE_REAL_PATH)";
+  const proibidos = [
+    new RegExp("writeFileSync\\(\\s*" + REAIS),
+    new RegExp("copyFileSync\\([^)]*,\\s*" + REAIS),
+    new RegExp("saidaPath\\s*:\\s*" + REAIS),
+    new RegExp("rmSync\\(\\s*" + REAIS),
+  ];
+  for (const padrao of proibidos) {
+    assert.doesNotMatch(fonte, padrao, `o teste não pode escrever em arquivo versionado (${padrao})`);
+  }
 });
 
 test("gerar (fonte real): cobre exatamente Língua Portuguesa e Matemática nas três etapas do piloto, nunca Ideb/N/P/meta", () => {
