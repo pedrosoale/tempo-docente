@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { ArrowRight, ArrowUpRight, BookOpenText, Layers, School, Search, Sparkles } from "lucide-react";
 import { AREAS_ENSINO_MEDIO, getAllRegistros } from "@/lib/bncc/data";
 import { filterSkills } from "@/lib/bncc/search.mjs";
+import { lerBuscaHub } from "@/lib/bncc/busca-hub";
 import type { BnccRegistro } from "@/lib/bncc/types";
+import { buscar as buscarComputacao, contarPorEtapa as contarComputacao, ETAPA_TODAS, lerConsulta as lerConsultaComputacao } from "@/lib/bncc/computacao-consulta";
+import { ComputacaoAcesso, ComputacaoResultadosPrevia, ComputacaoSaltoNoResumo } from "@/app/bncc/components/ComputacaoDescoberta";
 
 const AREA_MEDIO_SLUGS: Record<string, string> = Object.fromEntries(AREAS_ENSINO_MEDIO.map((area) => [area.nome, area.slug]));
 
@@ -17,7 +20,8 @@ export const metadata: Metadata = {
   },
 };
 
-type BnccHubPageProps = { searchParams?: Promise<{ q?: string }> };
+// `q` repetido (?q=a&q=b) chega como array; qualquer formato inesperado também é aceito (ver lib/bncc/busca-hub.ts).
+type BnccHubPageProps = { searchParams?: Promise<Record<string, string | string[] | undefined>> };
 
 function registroMeta(registro: BnccRegistro): string {
   if (registro.tipo === "competencia_geral") return `Competência geral · Competência ${registro.numero} de 10`;
@@ -40,10 +44,30 @@ function registroHref(registro: BnccRegistro): string {
   return `/bncc/${registro.codigo.toLowerCase()}`;
 }
 
+function AvisosBusca({ avisos }: { avisos: string[] }) {
+  if (avisos.length === 0) return null;
+  return (
+    <div className="bncc-avisos" role="status" aria-label="Avisos sobre a busca">
+      {avisos.map((aviso) => (
+        <p key={aviso}>{aviso}</p>
+      ))}
+    </div>
+  );
+}
+
 export default async function BnccHubPage({ searchParams }: BnccHubPageProps) {
   const params = await searchParams;
-  const query = params?.q?.trim() ?? "";
+  const { q: query, avisos } = lerBuscaHub(params);
   const results = query ? filterSkills(getAllRegistros(), { query }) : [];
+
+  // BNCC Computação (complemento oficial): consultada na biblioteca própria, nunca copiada para lib/bncc/data.ts,
+  // e só quando há termo — sem busca nenhum resultado de Computação é calculado nem renderizado.
+  const consultaComputacao = query ? lerConsultaComputacao({ q: query }) : null;
+  const resultadosComputacao =
+    consultaComputacao && consultaComputacao.filtros.q !== ""
+      ? buscarComputacao({ ...consultaComputacao.filtros, etapa: ETAPA_TODAS })
+      : [];
+  const totalComputacao = contarComputacao().reduce((soma, etapa) => soma + etapa.total, 0);
 
   return (
     <>
@@ -89,37 +113,54 @@ export default async function BnccHubPage({ searchParams }: BnccHubPageProps) {
                 <span>{results.length === 1 ? "registro encontrado" : "registros encontrados"}</span>
               </div>
               <span>Busca em toda a BNCC importada</span>
+              {resultadosComputacao.length > 0 ? <ComputacaoSaltoNoResumo total={resultadosComputacao.length} /> : null}
             </div>
 
-            {results.length === 0 ? (
-              <div className="bncc-empty-state">
-                <BookOpenText size={30} aria-hidden="true" />
-                <h2>Nenhum registro encontrado.</h2>
-                <p>Tente outro código ou termo de busca.</p>
-                <a className="button button-secondary" href="/bncc">Limpar busca</a>
+            <AvisosBusca avisos={avisos} />
+
+            {resultadosComputacao.length > 0 ? (
+              <ComputacaoResultadosPrevia itens={resultadosComputacao} q={consultaComputacao?.filtros.q ?? ""} />
+            ) : null}
+
+            <section className="bncc-curricular-secao" aria-labelledby="bncc-curricular-titulo">
+              <div className="bncc-curricular-cabecalho">
+                <h2 id="bncc-curricular-titulo">Resultados na BNCC curricular</h2>
+                <strong>
+                  {results.length} {results.length === 1 ? "registro" : "registros"}
+                </strong>
               </div>
-            ) : (
-              <div className="bncc-results-list">
-                {results.map((registro) => (
-                  <article className="bncc-result-card" key={registro.id}>
-                    <div className="bncc-result-meta">
-                      {registro.codigo && <code>{registro.codigo}</code>}
-                      <span>{registroMeta(registro)}</span>
-                    </div>
-                    <p className="bncc-result-skill">{registro.texto}</p>
-                    <div className="bncc-result-footer">
-                      <div />
-                      <a href={registroHref(registro)}>Ver registro <ArrowRight size={17} aria-hidden="true" /></a>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            )}
+
+              {results.length === 0 ? (
+                <div className="bncc-empty-state">
+                  <BookOpenText size={30} aria-hidden="true" />
+                  <h3 className="bncc-empty-state-title">Nenhum registro encontrado.</h3>
+                  <p>Tente outro código ou termo de busca.{resultadosComputacao.length > 0 ? " Há resultados na BNCC Computação, logo acima." : ""}</p>
+                  <a className="button button-secondary" href="/bncc">Limpar busca</a>
+                </div>
+              ) : (
+                <div className="bncc-results-list">
+                  {results.map((registro) => (
+                    <article className="bncc-result-card" key={registro.id}>
+                      <div className="bncc-result-meta">
+                        {registro.codigo && <code>{registro.codigo}</code>}
+                        <span>{registroMeta(registro)}</span>
+                      </div>
+                      <p className="bncc-result-skill">{registro.texto}</p>
+                      <div className="bncc-result-footer">
+                        <div />
+                        <a href={registroHref(registro)}>Ver registro <ArrowRight size={17} aria-hidden="true" /></a>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              )}
+            </section>
           </div>
         </section>
       ) : (
         <section className="section quick-access" id="etapas">
           <div className="container">
+            <AvisosBusca avisos={avisos} />
             <div className="section-heading">
               <div>
                 <span className="section-kicker">Etapas</span>
@@ -175,6 +216,8 @@ export default async function BnccHubPage({ searchParams }: BnccHubPageProps) {
                 </div>
                 <span className="card-action">Explorar áreas <ArrowUpRight size={17} aria-hidden="true" /></span>
               </a>
+
+              <ComputacaoAcesso total={totalComputacao} />
             </div>
           </div>
         </section>
