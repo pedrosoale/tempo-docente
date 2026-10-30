@@ -618,13 +618,17 @@ test("sem regressão: /, /bncc, /saeb, /saeb/matriz e /saresp continuam 200 com 
   }
   const home = principal((await render("/")).html);
   assert.doesNotMatch(home, /Computa(ç|c)ão|EF01CO01/);
-  for (const arquivo of ["page.tsx", join("components", "Hero.tsx"), join("components", "QuickAccess.tsx"), join("components", "Footer.tsx")]) {
+  // (Rodada 38: o rodapé ganhou o link "BNCC Computação" — coberto em tests/bncc-computacao-descoberta.test.mjs.)
+  for (const arquivo of ["page.tsx", join("components", "Hero.tsx"), join("components", "QuickAccess.tsx")]) {
     assert.doesNotMatch(readFileSync(join(RAIZ, "app", arquivo), "utf-8"), /computa(ç|c)ao/i, arquivo);
   }
-  // A busca pública da BNCC continua sem retornar Computação.
+  // Rodada 38: a busca de /bncc passou a mostrar Computação, mas só numa seção separada e rotulada — nunca entre os
+  // resultados curriculares (a lista curricular continua sem o código).
   const busca = await render("/bncc?q=EF01CO01");
   assert.equal(busca.status, 200);
-  assert.ok(!principal(busca.html).includes("EF01CO01</code>"));
+  const secaoComp = principal(busca.html).match(/<section class="bncc-comp-secao"[^]*?<\/section>/)?.[0] ?? "";
+  assert.ok(secaoComp.includes("EF01CO01</code>"));
+  assert.ok(!principal(busca.html).replace(secaoComp, "").includes("EF01CO01</code>"));
   // Rota dinâmica por código continua com o seu comportamento (código inexistente → 404 próprio).
   assert.equal((await render("/bncc/ef01co01")).status, 404);
   assert.equal((await render("/bncc/ef05lp01")).status, 200);

@@ -409,18 +409,27 @@ test("compatibilidade: nenhum código de Computação colide com os 1616 registr
 // Rodada 35: a interface pública /bncc/computacao foi criada. O que continua valendo é o ISOLAMENTO: a rota,
 // o submenu e o sitemap são os únicos pontos de contato, e nada que não seja a consulta de Computação
 // (dados agregados da BNCC, importador, homepage, rodapé, layout raiz, busca) referencia o catálogo.
-test("interface isolada: só a rota /bncc/computacao, o submenu e o sitemap referenciam Computação; dados, importador, homepage, rodapé e layout raiz não", () => {
-  const alvos = [join(RAIZ, "lib", "bncc", "data.ts"), join(RAIZ, "scripts", "bncc", "import.mjs"), join(RAIZ, "app", "layout.tsx"), join(RAIZ, "app", "page.tsx"), join(RAIZ, "app", "components", "Footer.tsx")];
+// Rodada 38 (descoberta): o rodapé e a página principal /bncc (grupo app/(bncc-hub), só por um cartão de acesso e uma
+// prévia separada via lib/bncc/computacao-consulta.ts) passaram a ser pontos de contato; dados, importador, busca
+// curricular, homepage e layout raiz continuam sem referenciar o catálogo.
+test("interface isolada: só a rota /bncc/computacao, o submenu, o sitemap, o rodapé e a descoberta em /bncc referenciam Computação; dados, importador, homepage e layout raiz não", () => {
+  const alvos = [join(RAIZ, "lib", "bncc", "data.ts"), join(RAIZ, "lib", "bncc", "search.mjs"), join(RAIZ, "scripts", "bncc", "import.mjs"), join(RAIZ, "app", "layout.tsx"), join(RAIZ, "app", "page.tsx")];
   for (const alvo of alvos) {
     if (!existsSync(alvo)) continue;
     assert.doesNotMatch(readFileSync(alvo, "utf-8"), /bncc\/computacao|computacao-(educacao|anos|ensino)|bncc-computacao/, alvo);
   }
   const grupoDaRota = join(RAIZ, "app", "(bncc-computacao)");
-  const pontosDeContato = [join(RAIZ, "app", "sitemap.ts"), join(RAIZ, "app", "components", "Header.tsx")];
+  const grupoDoHub = join(RAIZ, "app", "(bncc-hub)");
+  const pontosDeContato = [
+    join(RAIZ, "app", "sitemap.ts"),
+    join(RAIZ, "app", "components", "Header.tsx"),
+    join(RAIZ, "app", "components", "Footer.tsx"),
+    join(RAIZ, "app", "bncc", "components", "ComputacaoDescoberta.tsx"),
+  ];
   const visitar = (d) => {
     for (const e of readdirSync(d, { withFileTypes: true })) {
       const p = join(d, e.name);
-      if (p === grupoDaRota || pontosDeContato.includes(p)) continue;
+      if (p === grupoDaRota || p === grupoDoHub || pontosDeContato.includes(p)) continue;
       if (e.isDirectory()) visitar(p);
       else if (/\.(ts|tsx)$/.test(e.name)) assert.doesNotMatch(readFileSync(p, "utf-8"), /bncc\/computacao|computacao-(educacao|anos|ensino)/, p);
     }
@@ -431,6 +440,9 @@ test("interface isolada: só a rota /bncc/computacao, o submenu e o sitemap refe
     const fonte = readFileSync(ponto, "utf-8");
     assert.match(fonte, /\/bncc\/computacao/, ponto);
     assert.doesNotMatch(fonte, /computacao-(educacao|anos|ensino)|data\/bncc/, ponto);
+  }
+  for (const arquivo of [join(grupoDoHub, "bncc", "page.tsx"), join(grupoDoHub, "layout.tsx")]) {
+    assert.doesNotMatch(readFileSync(arquivo, "utf-8"), /computacao-(educacao|anos|ensino)|data\/bncc/, arquivo);
   }
   // A rota vive no grupo (fora de app/bncc/loading.tsx, para o conteúdo vir no HTML inicial).
   assert.ok(existsSync(join(grupoDaRota, "bncc", "computacao", "page.tsx")), "rota /bncc/computacao");

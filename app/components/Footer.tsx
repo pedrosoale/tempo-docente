@@ -16,6 +16,7 @@ export function Footer() {
           <a href="/bncc/ensino-fundamental">Ensino Fundamental</a>
           <a href="/bncc/ensino-medio">Ensino Médio</a>
           <a href="/bncc/competencias-gerais">Competências Gerais</a>
+          <a href="/bncc/computacao">BNCC Computação</a>
           <a href="/saresp">SARESP</a>
           <a href="/saeb">SAEB</a>
           <a href="/sobre">Sobre</a>
